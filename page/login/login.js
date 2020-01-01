@@ -43,7 +43,7 @@ Page({
                 })
               } else {
                 wx.reLaunch({
-                  url: '/page/dating/dating',
+                  url: '/page/match/match',
                 })
               }
             },

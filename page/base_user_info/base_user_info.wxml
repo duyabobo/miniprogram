@@ -4,7 +4,7 @@
 </view>
   
 <view class='answers'>
-  <button wx:for="{{answers}}" wx:key="key" data-key="value" data-value='{{item.value}}' data-user_info_type='{{user_info_type}}' class='answer' bindtap="change_base_user_info">{{item.key}}</button> 
+  <button wx:for="{{answers}}" wx:key="key" data-key="{{user_info_key}}" data-value='{{item.value}}' data-user_info_type='{{user_info_type}}' class='answer' bindtap="change_base_user_info">{{item.key}}</button> 
 </view>
 
 <view class='steps'>

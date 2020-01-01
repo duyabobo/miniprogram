@@ -11,6 +11,7 @@ Page({
     back_icon: "",
     front_icon: "",
     user_info_type: 1,
+    user_info_key: '',
     max_user_info_step: -1,
     match_url: "/page/match/match",
     left_icon: "/resources/base_user_info/left.png",
@@ -22,6 +23,12 @@ Page({
       2: '你的学历 2/4',
       3: '你的身高(cm) 3/4',
       4: '你的年龄(岁) 4/4'
+    },
+    user_info_key_dict: {
+      1: 'sex',
+      2: 'degree',
+      3: 'height',
+      4: 'age'
     },
     answer_dict: {
       1: [
@@ -230,6 +237,7 @@ Page({
     }
     val_data_dict['question'] = this.data.question_dict[user_info_type]
     val_data_dict['answers'] = this.data.answer_dict[user_info_type]
+    val_data_dict['user_info_key'] = this.data.user_info_key_dict[user_info_type]
     that.setData(val_data_dict)
   },
 
@@ -263,13 +271,13 @@ Page({
     }
     request_data[key] = value 
     wx.request({
-      url: config.HTTP_HOST_TEST + config.update_male_user_url,
+      url: config.HTTP_HOST_TEST + config.update_user_url,
       method: 'POST',
       data: request_data,
       success(res) {
         console.log('succ')
         if (user_info_type == 4) {
-          wx.reLaunch({ url: '/page/dating/dating' })
+          wx.reLaunch({ url: '/page/match/match' })
         } else {
           user_info_type = Number(user_info_type) + Number(1)
           that.resetData(that, user_info_type) 
