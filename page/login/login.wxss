@@ -1,0 +1,17 @@
+page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #FFFFFF;  
+} 
+
+.title {
+  color: #FF6600;
+  font-size: 30px;
+}
+
+button[type=primary] {
+  width: 60%;
+  background-color: #FF6600;
+}

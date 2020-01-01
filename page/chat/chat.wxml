@@ -1,0 +1,22 @@
+<scroll-view  scroll-into-view="{{last_message_id}}" scroll-y="true" class="messages">
+  <view wx:for="{{message_list}}" wx:for-item="message" wx:key="id" class="{{message.position}} message" id='{{message.message_id}}'>
+
+    <navigator url="/page/profile/profile?user_id={{to_user_id}}">
+      <image wx:if="{{message.position==='left'}}" class="head_image" src="{{left_image}}"></image>
+    </navigator>
+    <view wx:if="{{message.position==='left'}}" class="content content-left">{{message.message_content}}</view> 
+
+    <navigator url="/page/profile/profile">
+      <image wx:if="{{message.position==='right'}}" class="head_image" src="{{right_image}}"></image>
+    </navigator>
+    <view wx:if="{{message.position==='right'}}" class="content content-right">{{message.message_content}}</view> 
+
+  </view>  
+</scroll-view>
+
+<form bindsubmit="send_message">
+  <view class="send">
+    <input class="send-input" type="text" name="message_content" value='{{message_content}}'/>
+    <button class="send-button" form-type="submit">发送</button>
+  </view>
+</form>

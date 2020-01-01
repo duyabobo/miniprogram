@@ -1,0 +1,9 @@
+<view class='expect-info'>
+  <view class='info-list' wx:for="{{expect_info_list}}" wx:key='key' bindtap='expect_info_click'>
+    <view class="expect-info-item">
+      <view class='info-key'>{{item.key}}</view>
+      <view class='info-value'>{{item.value}}</view>
+    </view>
+    <view class='line'></view>
+  </view>
+</view>

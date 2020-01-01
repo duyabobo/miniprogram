@@ -1,0 +1,21 @@
+<view class="match-item" wx:for="{{match_list}}" wx:key="id" data-id='{{item.id}}' bindtap="click_match_item">
+  <image class="user-img" src="{{item.user_img}}"></image>
+  <view class="chat-content">
+    <view class="content-title">
+      <view class="user-name {{item.chat_type}}">{{item.user_name}}</view>
+      <!-- <view class="images">
+        <image class="verify" src='{{item.verify_1}}'></image>
+        <image class="verify" src='{{item.verify_2}}'></image>
+        <image class="verify" src='{{item.verify_3}}'></image>
+        <image class="verify" src='{{item.verify_4}}'></image>
+        <image class="verify" src='{{item.verify_5}}'></image>
+        <image class="verify" src='{{item.verify_6}}'></image>
+      </view> -->
+      <view class="lst-msg-time">{{item.last_msg_time}}</view>
+    </view>
+    <view class="content-text">
+      <view class="last-msg">{{item.last_msg}}</view>
+      <image class="unread-flag" src='{{item.unread_icon}}'></image>
+    </view>
+  </view>
+</view>

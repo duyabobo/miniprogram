@@ -1,0 +1,99 @@
+/* page/practice/practice.wxss */
+.user-info-base {
+  display: flex;
+  align-items: center;
+  height:20%; 
+  padding: 0 20rpx;
+  background-color: #FFFFFF;
+}
+.user-info-image {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  box-sizing:border-box;
+  margin: 20rpx;
+  height: 50%; 
+}
+.verify-and-nickname {
+  display: flex;
+  flex: 10;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 15rpx; 
+} 
+.user-info-detail-list {
+  margin-top: 5rpx; 
+  padding: 10 20rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #FFFFFF;
+}
+.user-info-detail {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.user-info-detail-name{
+  flex: 1;
+  text-align:center;
+  line-height: 60rpx;
+}
+
+.desc {
+  color: #888888;
+  height: 86rpx;
+  font-size: 28rpx;
+}
+.func-group-list {
+  margin: 22rpx 0px;
+}
+.func-group {
+  display: flex;
+  align-items: center;
+  margin: 4rpx 0;
+  padding: 24rpx 30rpx;
+  border-radius: 4rpx;
+  background-color: #FFFFFF;
+}
+.func-name{
+  flex: 1;
+  align-items: center;
+  line-height: 60rpx;
+}
+.navigator-arrow {
+  padding-right: 26rpx;
+  position: relative;
+}
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
+}
+
+.login-input {
+  background-color: #FFFFFF;
+}
+image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.images {
+  display: flex;
+  flex-direction: row; 
+  height: 50%;
+}
+
+.verify { 
+  flex: 1;
+}  

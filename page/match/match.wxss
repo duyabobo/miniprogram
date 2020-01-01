@@ -1,0 +1,66 @@
+/* page/practice/practice.wxss */
+.match-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx 0;
+  padding: 24rpx;
+  border-radius: 4rpx; 
+}
+.user-img {
+  display: flex;
+  flex: 2;
+  margin-right: 20rpx; 
+  height: 86rpx;
+  width: 86rpx;
+}
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  flex: 12
+}
+.content-title {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.user-name {
+  display: flex;
+  flex: 2;
+}
+.dating {
+  color: red;
+}
+.lst-msg-time { 
+  flex: 2;
+  color: #888888;
+  font-size: 28rpx;
+  text-align: right;
+}
+image {
+  width: auto;
+  height: auto;
+}
+.images {
+  display: flex;
+  flex-direction: row;
+  flex: 5;
+}
+.verify { 
+  flex: 1;
+}  
+.content-text {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.last-msg { 
+  flex: 9;
+  color: #888888;
+  font-size: 28rpx;
+}
+.unread-flag { 
+  flex: 1;
+  color: red;
+}

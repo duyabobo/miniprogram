@@ -1,0 +1,4 @@
+<view class='title'>关关雎鸠</view>
+<button class="login" type="primary" bindtap="login"> 
+  找男/女朋友 
+</button>
