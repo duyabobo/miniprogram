@@ -1,4 +1,7 @@
-<view class='title'>关关雎鸠</view>
+<view class="name">
+  <view class='header'>关关雎鸠</view>
+  <view class='title'>真实的恋爱社区</view>
+</view>
 <button class="login" type="primary" bindtap="login"> 
-  找男/女朋友 
+  微信登录
 </button>

@@ -43,7 +43,7 @@ Page({
                 })
               } else {
                 wx.reLaunch({
-                  url: '/page/match/match',
+                  url: '/page/guanguan/guanguan',
                 })
               }
             },

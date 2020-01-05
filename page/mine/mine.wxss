@@ -22,7 +22,7 @@
   margin-left: 15rpx; 
 } 
 .user-info-detail-list {
-  margin-top: 5rpx; 
+  margin-bottom: 35rpx; 
   padding: 10 20rpx;
   display: flex;
   align-items: center;

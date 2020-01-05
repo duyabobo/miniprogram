@@ -1,13 +1,11 @@
 {
   "pages": [
-    "page/match/match",
+    "page/guanguan/guanguan",
     "page/login/login",
+    "page/guan_info/guan_info",
     "page/base_user_info/base_user_info",
-    "page/chat/chat",
-    "page/profile/profile",
     "page/mine/mine",
-    "page/detail_info/detail_info",
-    "page/expected_info/expected_info",
+    "page/detail_info/detail_info", 
     "page/API/index"
   ],
   "window": {
@@ -23,10 +21,10 @@
     "backgroundColor": "#FFFFFF",
     "list": [
       {
-        "pagePath": "page/match/match",
+        "pagePath": "page/guanguan/guanguan",
         "iconPath": "resources/image/icon_component.png",
         "selectedIconPath": "resources/image/icon_component_HL.png",
-        "text": "匹配"
+        "text": "关关"
       },
       {
         "pagePath": "page/mine/mine",

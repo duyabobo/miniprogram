@@ -20,49 +20,33 @@ Page({
       {
         id: 1,
         url: '/page/detail_info/detail_info',
-        name: '个人信息'
+        name: '基本信息'
       },
       {
         id: 2,
-        url: '/page/expected_info/expected_info',
-        name: '择偶条件'
+        // url: '/page/expected_info/expected_info',
+        name: '身份认证'
       },
       {
         id: 3,
         // url: '/page/image/image',
-        name: '照片视频'
+        name: '关关积分'
       }
     ],
     func_group_list: [ 
-      [ 
-        {
-          id: 1,
-          // url: '/page/member/member',
-          name: '认证会员'
-        },
-        {
-          id: 3,
-          name: '魅力值',
-          // url: '/page/point/point',
-        }
-      ],
       [
         {
-          id: 4,
+          id: 1,
           name: '意见给我们',
         }, 
         {
-          id: 5,
+          id: 2,
           name: '分享给好友',
         }
       ], 
       [
         {
-          id: 6,
-          name: '隐私',
-        },
-        {
-          id: 7,
+          id: 4,
           name: '设置',
         }
       ]
