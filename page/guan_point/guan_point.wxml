@@ -1,0 +1,16 @@
+<view class="point-background">
+  <image class='background' src="{{point_background}}" mode="aspectFill"></image>
+  <view class='point'>{{point}}</view>
+</view>
+
+<view class="qa-desc">
+  <navigator class="desc">
+  1，关关积分是什么？
+  </navigator>
+  <navigator class="desc">
+  2，关关积分如何赚取？
+  </navigator>
+  <navigator class="desc">
+  3，关关积分能做什么？
+  </navigator>
+</view>

@@ -1,0 +1,15 @@
+<navigator class="question" wx:for="{{question_list}}" wx:key="id" data-id='{{item.id}}' url="{{guan_info_url}}?id={{item.id}}">
+  <view class="question-title">
+    {{item.title}}
+  </view>
+  <view class="question-info">
+    <view class="static-info">
+      <view class="info classification">{{item.classification}}</view>
+      <view class="info point">{{item.point}}</view>
+    </view>
+    <view class="dynamic-info">
+      <view class="info answers">{{item.answers}}</view>
+      <view class="info ctime">{{item.ctime}}</view>
+    </view>
+  </view>
+</navigator> 

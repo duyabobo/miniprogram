@@ -29,7 +29,7 @@ Page({
       },
       {
         id: 3,
-        // url: '/page/image/image',
+        url: '/page/guan_point/guan_point',
         name: '关关积分'
       }
     ],

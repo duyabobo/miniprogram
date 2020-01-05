@@ -5,7 +5,8 @@
     "page/guan_info/guan_info",
     "page/base_user_info/base_user_info",
     "page/mine/mine",
-    "page/detail_info/detail_info", 
+    "page/detail_info/detail_info",
+    "page/guan_point/guan_point",
     "page/API/index"
   ],
   "window": {
