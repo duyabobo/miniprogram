@@ -10,7 +10,7 @@ Page({
     question_list: [
       {
         id: 1,
-        title: "问题标题，问题标题问题标题，问题标题问题标题，问题标题",
+        title: "问题标题，问题标题问题标题标题，问题标题问题标题，问题标题",
         classification: "分类分类",
         point: "+2个积分",
         answers: "10个参与",

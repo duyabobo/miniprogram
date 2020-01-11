@@ -18,7 +18,7 @@ Page({
             data: {
               code: res.code,
             },
-            success(res) {
+            success(res) { 
               const app = getApp()
               app.globalData.access_token = res.data.access_token
               app.globalData.hasLogin = true  
@@ -39,7 +39,7 @@ Page({
               }  
               if (user_info_type) {
                 wx.redirectTo({
-                  url: '/page/base_user_info/base_user_info?user_info_type=' + user_info_type
+                  url: '/page/update_user_info/update_user_info?user_info_type=' + user_info_type
                 })
               } else {
                 wx.reLaunch({

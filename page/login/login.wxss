@@ -14,12 +14,12 @@ page {
 
 .header {
   color: #FF6600;
-  font-size: 30px;
+  font-size: 32px;
 }
 
 .title {
   color: #FF6600;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 button[type=primary] {

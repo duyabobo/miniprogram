@@ -1,24 +1,3 @@
-<view class="user-info-base">
-  <image class="user-info-image" src="{{head_img_url}}"></image>
-  <view class="verify-and-nickname">
-    <view class="images">
-      <image class="verify" src='{{verify_1}}'></image>
-      <image class="verify" src='{{verify_2}}'></image>
-      <image class="verify" src='{{verify_3}}'></image>
-      <image class="verify" src='{{verify_4}}'></image>
-      <image class="verify" src='{{verify_5}}'></image>
-      <image class="verify" src='{{verify_6}}'></image>
-    </view>
-    <view class="nickname">{{nickname}}</view> 
-  </view> 
-</view>
-
-<view class="user-info-detail-list">
-  <navigator wx:for="{{user_info_detail_list}}" wx:for-item="user_info_detail" wx:key="id" class="user-info-detail" url="{{user_info_detail.url}}">
-    <view class="user-info-detail-name">{{user_info_detail.name}}</view>
-  </navigator>
-</view>
-
 <view wx:for="{{func_group_list}}" wx:for-item="func_group" wx:key="id" class="func-group-list">
   <navigator wx:for="{{func_group}}" wx:key="id" url="{{item.url}}" class=" func-group">
     <view class="func-name">{{item.name}}</view>

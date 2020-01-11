@@ -7,33 +7,24 @@ Page({
    */
   data: { 
     has_login: app.hasLogin, 
-    head_img_url: '/resources/logo.png',
-    nickname: '昵称',
-    mobile: '133******55',
-    verify_1: '',
-    verify_2: '',
-    verify_3: '',
-    verify_4: '',
-    verify_5: '',
-    verify_6: '',
-    user_info_detail_list: [
-      {
-        id: 1,
-        url: '/page/detail_info/detail_info',
-        name: '基本信息'
-      },
-      {
-        id: 2,
-        // url: '/page/expected_info/expected_info',
-        name: '身份认证'
-      },
-      {
-        id: 3,
-        url: '/page/guan_point/guan_point',
-        name: '关关积分'
-      }
-    ],
     func_group_list: [ 
+      [
+        {
+          id: 1,
+          url: '/page/user_info/user_info',
+          name: '基本信息'
+        },
+        {
+          id: 2,
+          // url: '/page/verfy/verfy',
+          name: '身份认证'
+        },
+        {
+          id: 3,
+          url: '/page/guan_point/guan_point',
+          name: '关关积分'
+        }
+      ],
       [
         {
           id: 1,
@@ -51,10 +42,6 @@ Page({
         }
       ]
     ]
-  },
-
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.target.id)
   },
 
   /**

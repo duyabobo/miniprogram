@@ -4,13 +4,10 @@
 </view>
 
 <view class="qa-desc">
-  <navigator class="desc">
-  1，关关积分是什么？
-  </navigator>
-  <navigator class="desc">
-  2，关关积分如何赚取？
-  </navigator>
-  <navigator class="desc">
-  3，关关积分能做什么？
-  </navigator>
+  <view class="desc">
+  1，关关积分是用户在线问答时，获取的一种奖励。
+  </view>
+  <view class="desc">
+  2，用户参加线下活动时，需要扣除关关积分。
+  </view> 
 </view>
