@@ -39,6 +39,7 @@ Page({
         {
           id: 2,
           img_url: '/resources/logo.png',
+          url: '/page/share/share',
           name: '分享给好友',
         }
       ], 

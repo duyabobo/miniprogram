@@ -8,6 +8,7 @@
     "page/user_info/user_info",
     "page/verfy/verfy",
     "page/guan_point/guan_point",
+    "page/share/share",
     "page/API/index"
   ],
   "window": {
