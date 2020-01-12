@@ -1,19 +1,35 @@
-// page/suggestion/suggestion.js
+var config = require('../../config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-
+  data: { 
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  },
-
-  formReset: function () {
-    console.log('form发生了reset事件')
+    var suggestion = e.detail.value.suggestion
+    var app = getApp() 
+    var request_data = {
+      access_token: app.globalData.access_token,
+      suggestion: suggestion
+    }
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.user_info_url,
+      method: 'POST',
+      data: request_data,
+      success(res) {
+        console.log('success')
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        }) 
+      },
+      fail(res) {
+        console.log('err')
+      }
+    })
   },
   
   /**

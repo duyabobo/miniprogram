@@ -1,7 +1,19 @@
 page {
   background-color: #f3f3f3;
 }
-.suggestion-input {
-  margin: 20rpx;
+
+.form-submit { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+} 
+
+.btn-submit {
+  color: #ff6600;
+  width: 60%;
+}
+
+.suggestion-input {   
   background-color: #ffffff;
 }
