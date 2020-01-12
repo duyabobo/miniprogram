@@ -1,0 +1,7 @@
+page {
+  background-color: #f3f3f3;
+}
+.suggestion-input {
+  margin: 20rpx;
+  background-color: #ffffff;
+}

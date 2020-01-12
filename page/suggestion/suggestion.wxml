@@ -1,0 +1,8 @@
+<!--page/suggestion/suggestion.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <editor class="suggestion-input" placeholder="please input here" name="suggestion"></editor>
+  <view class="btn-area">
+    <button formType="submit">Submit</button>
+    <button formType="reset">Reset</button>
+  </view>
+</form>
