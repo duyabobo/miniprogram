@@ -9,6 +9,8 @@
     "page/verfy/verfy",
     "page/guan_point/guan_point",
     "page/share/share",
+    "page/suggestion/suggestion",
+    "page/setting/setting",
     "page/API/index"
   ],
   "window": {

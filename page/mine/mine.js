@@ -34,6 +34,7 @@ Page({
         {
           id: 1,
           img_url: '/resources/logo.png',
+          url: '/page/suggestion/suggestion',
           name: '意见给我们',
         }, 
         {
@@ -47,6 +48,7 @@ Page({
         {
           id: 4,
           img_url: '/resources/logo.png',
+          url: '/page/setting/setting',
           name: '设置',
         }
       ]
