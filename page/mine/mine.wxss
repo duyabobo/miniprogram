@@ -1,16 +1,35 @@
+page {
+  background-color: #F3F3F3;
+}
+
+.my_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding: 35rpx 30rpx;
+}
+
+.mobile { 
+  text-align: center;  
+}
+
 .func-group-list {
-  margin: 22rpx 0px;
+  margin: 30rpx 0px;
 }
 .func-group {
   display: flex;
   align-items: center;
-  margin: 4rpx 0;
-  padding: 10rpx 30rpx;
+  margin: 10rpx 0;
+  padding: 15rpx 30rpx;
   border-radius: 4rpx;
   background-color: #FFFFFF;
 }
-.func-name{
+.func-img {
   flex: 1;
+}
+.func-name{
+  flex: 10;
   align-items: center;
   line-height: 60rpx;
 }

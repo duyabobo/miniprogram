@@ -35,6 +35,12 @@ Page({
     ]
   },
 
+  getPhoneNumber(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -52,6 +58,8 @@ Page({
           const longitude = res.longitude
           const speed = res.speed
           const accuracy = res.accuracy
+          console.log(latitude)
+          console.log(longitude)
         }
       })
     }

@@ -1,0 +1,9 @@
+<view class='user-info'>
+  <view class='info-list' wx:for="{{user_info_list}}" wx:key='key' bindtap='user_info_click'>
+    <view class="user-info-item">
+      <view class='info-key'>{{item.key}}</view>
+      <view class='info-value'>{{item.value}}</view>
+    </view>
+    <view class='line'></view>
+  </view>
+</view>
