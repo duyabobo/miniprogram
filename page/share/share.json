@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "分享给好友",
+  "color": "#FFFFFF",
+  "backgroundTextStyle": "light",
   "disableScroll": true
 }

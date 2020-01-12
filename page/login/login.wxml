@@ -1,7 +1,7 @@
 <view class="name">
   <view class='header'>关关雎鸠</view>
-  <view class='title'>线上问答线下活动</view>
+  <view class='title'>线上问答 线下活动</view>
 </view>
-<button class="login" type="primary" bindtap="login"> 
+<button class="login" bindtap="login"> 
   微信登录
 </button>

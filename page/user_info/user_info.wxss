@@ -24,16 +24,14 @@
 .info-key {
   margin-right: 60rpx;  
   font-size: 35rpx;
-  display: flex;
-  color: #FF6600;
+  display: flex; 
   flex: 1;
   justify-content: flex-end;
 }
 .info-value {
   margin-left: 60rpx; 
   font-size: 35rpx;
-  display: flex;
-  color: #FF6600;
+  display: flex; 
   flex: 1;
   justify-content: flex-start; 
   text-decoration:underline;

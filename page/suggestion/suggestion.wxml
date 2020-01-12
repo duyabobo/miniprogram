@@ -1,5 +1,5 @@
 <!--page/suggestion/suggestion.wxml-->
-<form class="form-submit" bindsubmit="formSubmit">
+<form class="suggestion" bindsubmit="formSubmit" bindreset="formReset">
   <textarea class="suggestion-input" placeholder="please input here" name="suggestion"></textarea>
-  <button class="btn-submit" formType="submit">Submit</button> 
+  <button class="btn-submit" formType="submit">提交</button> 
 </form>

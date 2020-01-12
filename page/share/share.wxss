@@ -3,10 +3,9 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-around; 
 }
 
 button {
-  width: 60%;
-  color: #FF6600;
+  width: 60%; 
 }

@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "关关雎鸠",
+  "color": "#FFFFFF",
+  "backgroundTextStyle": "light" 
+}

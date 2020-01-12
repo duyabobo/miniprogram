@@ -40,7 +40,7 @@ page {
 
 .answer {
   width: 34%;
-  color: #FF6600;
+  color: #000000;
 }
  
 .steps {

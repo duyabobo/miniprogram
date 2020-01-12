@@ -1,19 +1,20 @@
 page {
-  margin-top: 30rpx;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #FFFFFF;  
+  align-items: center; 
 } 
 
 .question {
   display: flex;
-  width: 92%;
-  margin: 20rpx 0;
+  width: 100%;
+  margin: 2rpx 0;
+  padding: 10rpx;
   flex-direction: column;
+  background-color: #FFFFFF;
 }
 
 .question-title {
+  padding: 20rpx;
   font-size: 30rpx;
 }
 

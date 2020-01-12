@@ -2,8 +2,8 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  background-color: #FFFFFF;  
+  justify-content: space-around; 
+  background-color: #ffffff;
 } 
 
 .name {
@@ -22,7 +22,8 @@ page {
   font-size: 15px;
 }
 
-button[type=primary] {
+.login {
   width: 60%;
   background-color: #FF6600;
+  color: #FFFFFF;
 }

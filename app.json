@@ -14,10 +14,9 @@
     "page/API/index"
   ],
   "window": {
-    "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "关关雎鸠",
-    "navigationBarBackgroundColor": "#FF6600",
-    "backgroundColor": "#FF9955"
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#7A7E83",
