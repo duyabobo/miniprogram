@@ -8,38 +8,32 @@ Page({
   data: { 
     has_login: app.hasLogin, 
     mobile: '13366397755',
-    head_img_url: '/resources/logo.png',
+    head_img_url: '/resources/boy.jpeg',
     func_group_list: [ 
       [
         {
           id: 1,
-          img_url: '/resources/logo.png',
-          url: '/page/user_info/user_info',
-          name: '基本信息'
+          img_url: '/resources/foursquare.png',
+          url: '/page/guan_evaluation/guan_evaluation',
+          name: '我的关关'
         },
         {
           id: 2,
-          img_url: '/resources/logo.png',
-          // url: '/page/verfy/verfy',
-          name: '身份认证'
-        },
-        {
-          id: 3,
-          img_url: '/resources/logo.png',
+          img_url: '/resources/diamond.png',
           url: '/page/guan_point/guan_point',
-          name: '关关积分'
+          name: '我的积分'
         }
       ],
       [
         {
           id: 1,
-          img_url: '/resources/logo.png',
+          img_url: '/resources/triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
         }, 
         {
           id: 2,
-          img_url: '/resources/logo.png',
+          img_url: '/resources/cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
         }
@@ -47,7 +41,7 @@ Page({
       [
         {
           id: 4,
-          img_url: '/resources/logo.png',
+          img_url: '/resources/octagon.png',
           url: '/page/setting/setting',
           name: '设置',
         }

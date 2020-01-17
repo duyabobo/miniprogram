@@ -1,4 +1,4 @@
-<navigator class="question" wx:for="{{question_list}}" wx:key="id" data-id='{{item.id}}' url="{{guan_info_url}}?id={{item.id}}">
+<navigator class="question" wx:for="{{question_list}}" wx:key="id" data-id='{{item.id}}' url="{{item.url}}?id={{item.id}}">
   <view class="question-title">
     {{item.title}}
   </view>

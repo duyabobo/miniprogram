@@ -1,92 +1,87 @@
-var config = require('../../config.js')
-
+// page/guan_evaluation/guan_evaluation.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id: 3,
-    question: '问题标题',
-    answers: [
+    evaluations: [
       {
-        'key': '小学',
-        'value': 0,
+        id: 1,
+        name: '测评1',
+        results: ['结果1', '结果2', '结果3', '结果1', '结果2', '结果3', '结果1', '结果2', '结果3']
       },
       {
-        'key': '中学',
-        'value': 1,
+        id: 2,
+        name: '测评2',
+        results: ['结果1', '结果2', '结果3']
       },
       {
-        'key': '高中',
-        'value': 2,
+        id: 3,
+        name: '测评3',
+        results: ['结果1', '结果2', '结果3']
       },
       {
-        'key': '专科',
-        'value': 3,
+        id: 4,
+        name: '测评4',
+        results: ['结果1', '结果2', '结果3']
       }
-    ],
-    question_background: "/resources/question_background.png",
-  },
-
-  give_a_answer: function () {
-    wx.reLaunch({ url: '/page/guanguan/guanguan' })
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var user_info_type = options.user_info_type
-    var that = this
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

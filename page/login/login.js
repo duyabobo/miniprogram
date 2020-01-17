@@ -19,33 +19,12 @@ Page({
               code: res.code,
             },
             success(res) { 
+              wx.reLaunch({
+                url: '/page/guanguan/guanguan',
+              })
               const app = getApp()
               app.globalData.access_token = res.data.access_token
-              app.globalData.hasLogin = true  
-              console.log(res.data.current_user_info.sex)
-              var sex = res.data.current_user_info.sex
-              var age = res.data.current_user_info.age
-              var degree = res.data.current_user_info.degree
-              var height = res.data.current_user_info.height
-              var user_info_type = 0
-              if (sex == -1) {
-                user_info_type = 1
-              } else if (degree == -1) {
-                user_info_type = 2
-              } else if (height == 0) {
-                user_info_type = 3
-              } else if (age > 40) {
-                user_info_type = 4
-              }  
-              if (user_info_type) {
-                wx.redirectTo({
-                  url: '/page/update_user_info/update_user_info?user_info_type=' + user_info_type
-                })
-              } else {
-                wx.reLaunch({
-                  url: '/page/guanguan/guanguan',
-                })
-              }
+              app.globalData.hasLogin = true   
             },
             fail(res) {
               console.log('fail')

@@ -1,0 +1,24 @@
+page {
+  display: flex;
+  flex-direction: column; 
+}
+
+.evaluation {
+  color: #FFFFFF;
+  background-color: #FF6600;
+  padding: 10rpx 20rpx;
+}
+
+.results {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;
+  margin: 20rpx;
+}
+
+.result {
+  margin: 15rpx;
+  padding: 15rpx;
+  border-radius: 20rpx;
+  background-color: #FFFFFF;
+}

@@ -5,8 +5,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    guan_info_url: "/page/guan_info/guan_info",
+  data: { 
     question_list: [
       {
         id: 1,
@@ -14,7 +13,8 @@ Page({
         classification: "分类分类",
         point: "+2个积分",
         answers: "10个参与",
-        ctime: "1分钟前"
+        ctime: "1分钟前",
+        url: '/page/multi_guan_info/multi_guan_info?user_info_type=1'
       },
       {
         id: 2,
@@ -22,7 +22,8 @@ Page({
         classification: "分分类",
         point: "+2个积分",
         answers: "10个参与",
-        ctime: "10分钟前"
+        ctime: "10分钟前",
+        url: "/page/guan_info/guan_info"
       },
       {
         id: 3,
@@ -30,7 +31,8 @@ Page({
         classification: "分类",
         point: "+2个积分",
         answers: "10个参与",
-        ctime: "1小时前"
+        ctime: "1小时前",
+        url: "/page/guan_info/guan_info"
       }
     ]
   },

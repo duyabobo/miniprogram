@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   background-color: #FFFFFF;
-  padding: 35rpx 30rpx;
 }
 
 .mobile { 
@@ -23,6 +22,7 @@
 }
 .func-img {
   flex: 1;
+  margin-right: 20rpx;
 }
 .func-name{
   flex: 10;
@@ -51,6 +51,12 @@
 .login-input {
   background-color: #FFFFFF;
 }
+
+.head-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+
 image {
   width: 50rpx;
   height: 50rpx;
