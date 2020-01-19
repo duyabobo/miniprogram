@@ -4,5 +4,13 @@
 </view>
   
 <view class='answers'>
-  <button wx:for="{{answers}}" wx:key="key" data-key="{{user_info_key}}" data-value='{{item.value}}' data-user_info_type='{{user_info_type}}' class='answer' bindtap="give_a_answer">{{item.key}}</button> 
+  <button wx:for="{{answers}}" wx:key="key" data-value='{{item.value}}' data-step='{{step}}' class='answer' bindtap="answer_question">{{item.key}}</button> 
+</view>
+
+<view class='steps'>
+  <image class='step' src="{{back_icon}}" data-incr='-1' data-step='{{step}}' bindtap='change_step'></image>
+  <view class='just_for_fun'>
+    <navigator class="just_for_fun_text" wx:if="{{step != 1}}" url="{{guanguan_url}}" open-type="reLaunch">随便逛逛</navigator>
+  </view>
+  <image class='step' src="{{front_icon}}" data-incr='1' data-step='{{step}}'  bindtap='change_step'></image> 
 </view>

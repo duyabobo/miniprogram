@@ -2,8 +2,7 @@
   "pages": [
     "page/guanguan/guanguan",
     "page/login/login",
-    "page/guan_info/guan_info",
-    "page/multi_guan_info/multi_guan_info",
+    "page/guan_info/guan_info", 
     "page/mine/mine", 
     "page/verfy/verfy",
     "page/guan_point/guan_point",

@@ -14,7 +14,7 @@ Page({
         point: "+2个积分",
         answers: "10个参与",
         ctime: "1分钟前",
-        url: '/page/multi_guan_info/multi_guan_info?user_info_type=1'
+        url: '/page/guan_info/guan_info?guan_id=1&step=1'
       },
       {
         id: 2,
