@@ -6,35 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: { 
-    question_list: [
-      {
-        id: 1,
-        title: "问题标题，问题标题问题标题标题，问题标题问题标题，问题标题",
-        classification: "分类分类",
-        point: "+2个积分",
-        answers: "10个参与",
-        ctime: "1分钟前",
-        url: '/page/guan_info/guan_info?guan_id=1&step=1'
-      },
-      {
-        id: 2,
-        title: "问题标题",
-        classification: "分分类",
-        point: "+2个积分",
-        answers: "10个参与",
-        ctime: "10分钟前",
-        url: "/page/guan_info/guan_info"
-      },
-      {
-        id: 3,
-        title: "问题标题",
-        classification: "分类",
-        point: "+2个积分",
-        answers: "10个参与",
-        ctime: "1小时前",
-        url: "/page/guan_info/guan_info"
-      }
-    ]
+    guanguan_list: []
   },
 
   getPhoneNumber(e) {
@@ -48,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     const app = getApp()
+    var that = this
     if (!app.globalData.hasLogin) {
       wx.redirectTo({
         url: '/page/login/login'
@@ -62,6 +35,22 @@ Page({
           const accuracy = res.accuracy
           console.log(latitude)
           console.log(longitude)
+        }
+      })
+      var request_data = {
+        access_token: app.globalData.access_token
+      } 
+      wx.request({
+        url: config.HTTP_HOST_TEST + config.guanguan_url,
+        data: request_data,
+        success(res) {  
+          that.setData({
+            guanguan_list: res.data.guanguan_list
+          })
+        },
+        fail(res) {
+          console.log('guanguan err')
+          console.log(res)
         }
       })
     }

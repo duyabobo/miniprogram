@@ -27,7 +27,7 @@ Page({
               app.globalData.hasLogin = true   
             },
             fail(res) {
-              console.log('fail')
+              console.log('login fail')
             }
           })
         } else {
