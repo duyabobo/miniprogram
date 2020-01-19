@@ -8,8 +8,7 @@
       <view class="info point">{{item.guan_point}}</view>
     </view>
     <view class="dynamic-info">
-      <view class="info answers">{{item.answers}}</view>
-      <view class="info crtime">{{item.crtime}}</view>
+      <view class="info answers">{{item.answers}}</view> 
     </view>
   </view>
 </navigator> 
