@@ -6,7 +6,9 @@ const HTTP_HOST_TEST = 'http://' + HOST_TEST
 
 const login_url = '/login' 
 const guanguan_url = '/guanguan'
+const guaninfo_url = '/guan_info'
 
 module.exports.HTTP_HOST_TEST = HTTP_HOST_TEST 
 module.exports.login_url = login_url 
 module.exports.guanguan_url = guanguan_url
+module.exports.guaninfo_url = guaninfo_url
