@@ -79,7 +79,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + that.data.service_url,  
       data: request_data,
-      method: post,
+      method: 'POST',
       success(res) { 
         if (step == that.data.total_step) {
           wx.reLaunch({ url: that.data.guanguan_page_url })

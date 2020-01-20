@@ -1,4 +1,5 @@
-// page/practice/practice.js
+var config = require('../../config.js')
+
 var app = getApp();
 Page({
 
@@ -53,19 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {   
-    var sex = app.globalData.user_info.sex
-    var mobile = app.globalData.user_info.mobile
-    var head_img_url = this.data.head_img_url
-    if (sex in [0, 1]){
-      var head_img_url = {
-        0: '/resources/girl.jpg',
-        1: '/resources/boy.jpg'
-        }[sex]
-    }
-    this.setData({
-      head_img_url: head_img_url,
-      mobile: mobile
-    })
+    
   },
 
   /**
@@ -79,7 +68,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var sex = -1
+    var mobile = ''
+    var that = this
+    var request_data = {
+      access_token: app.globalData.access_token 
+    }
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.userinfo_url,
+      data: request_data,
+      success(res) {
+        sex = res.data.sex_int
+        mobile = res.data.mobile
+        var head_img_url = that.data.head_img_url
+        console.log(sex)
+        console.log(mobile)
+        if (sex in [0, 1]) {
+          var head_img_url = {
+            0: '/resources/girl.jpg',
+            1: '/resources/boy.jpg'
+          }[sex]
+        }
+        that.setData({
+          head_img_url: head_img_url,
+          mobile: mobile
+        })
+      },
+      fail(res) {
+        console.log('login fail')
+      }
+    })
   },
 
   /**
