@@ -36,8 +36,7 @@ Page({
        'front_icon': data.right_icon
     } 
     if (step == 1) {
-      val_data_dict['back_icon'] = data.white_icon
-      val_data_dict['front_icon'] = data.white_icon
+      val_data_dict['back_icon'] = data.white_icon 
     }
     if (step == data.total_step) {
       val_data_dict['front_icon'] = data.white_icon
@@ -47,16 +46,25 @@ Page({
       val_data_dict['max_step'] = step
     } 
     val_data_dict['question'] = data.question_dict[step]
-    val_data_dict['answers'] = data.answer_dict[step] 
+    val_data_dict['answers'] = data.answer_dict[step]
     that.setData(val_data_dict)
   },
 
   change_step: function (event) {
     var step = Number(this.data.step)
+    var max_step = Number(this.data.max_step)
     var incr = Number(event.target.dataset.incr)  
     var that = this
-    this.resetData(that, step + incr)
-  }, 
+    if (step == 1 && incr == -1) {
+      return
+    }
+    if (step == 4 && incr == 1) {
+      return
+    }
+    if (step <= max_step && step + incr <= max_step) {
+      that.resetData(that, step + incr)
+    }
+ }, 
 
   answer_question: function (event) {
     var step = event.target.dataset.step 

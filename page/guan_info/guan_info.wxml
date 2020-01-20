@@ -10,7 +10,7 @@
 <view class='steps'>
   <image class='step' src="{{back_icon}}" data-incr='-1' data-step='{{step}}' bindtap='change_step'></image>
   <view class='just_for_fun'>
-    <navigator class="just_for_fun_text" wx:if="{{step != 1}}" url="{{guanguan_url}}" open-type="reLaunch">随便逛逛</navigator>
+    <navigator class="just_for_fun_text" wx:if="{{step != 1}}" url="{{guanguan_page_url}}" open-type="reLaunch">随便逛逛</navigator>
   </view>
   <image class='step' src="{{front_icon}}" data-incr='1' data-step='{{step}}'  bindtap='change_step'></image> 
 </view>
