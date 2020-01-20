@@ -21,7 +21,8 @@ App({
   globalData: {
     hasLogin: false,
     openid: null,
-    access_token: ''
+    access_token: '',
+    user_info: {}
   },
   // lazy loading openid
   getUserOpenId(callback) {

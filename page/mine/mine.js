@@ -7,8 +7,8 @@ Page({
    */
   data: { 
     has_login: app.hasLogin, 
-    mobile: '13366397755',
-    head_img_url: '/resources/boy.jpeg',
+    mobile: '',
+    head_img_url: '/resources/unknown.jpg',
     func_group_list: [ 
       [
         {
@@ -52,8 +52,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (options) {   
+    var sex = app.globalData.user_info.sex
+    var mobile = app.globalData.user_info.mobile
+    var head_img_url = this.data.head_img_url
+    if (sex in [0, 1]){
+      var head_img_url = {
+        0: '/resources/girl.jpg',
+        1: '/resources/boy.jpg'
+        }[sex]
+    }
+    this.setData({
+      head_img_url: head_img_url,
+      mobile: mobile
+    })
   },
 
   /**

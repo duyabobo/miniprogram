@@ -25,6 +25,7 @@ Page({
               const app = getApp()
               app.globalData.access_token = res.data.access_token
               app.globalData.hasLogin = true   
+              app.globalData.user_info = res.data.current_user_info
             },
             fail(res) {
               console.log('login fail')
