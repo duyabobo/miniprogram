@@ -1,39 +1,35 @@
 // page/guan_evaluation/guan_evaluation.js
+var config = require('../../config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    evaluations: [
-      {
-        id: 1,
-        name: '测评1',
-        results: ['结果1', '结果2', '结果3', '结果1', '结果2', '结果3', '结果1', '结果2', '结果3']
-      },
-      {
-        id: 2,
-        name: '测评2',
-        results: ['结果1', '结果2', '结果3']
-      },
-      {
-        id: 3,
-        name: '测评3',
-        results: ['结果1', '结果2', '结果3']
-      },
-      {
-        id: 4,
-        name: '测评4',
-        results: ['结果1', '结果2', '结果3']
-      }
-    ]
+    guan_evaluations: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var app = getApp()
+    var request_data = {
+      access_token: app.globalData.access_token
+    }
+    var that = this
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.evaluation_url,
+      data: request_data,
+      success(res) {
+        that.setData(res.data)
+      },
+      fail(res) {
+        console.log('guan_evaluation err')
+        console.log(res)
+      }
+    })
   },
 
   /**

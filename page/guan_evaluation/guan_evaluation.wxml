@@ -1,8 +1,8 @@
 <!--page/guan_evaluation/guan_evaluation.wxml-->
-<view wx:for="{{evaluations}}" wx:key="id" wx:for-item="evaluation">
-  <view class="evaluation">{{evaluation.name}}</view>
+<view wx:for="{{guan_evaluations}}" wx:key="id" wx:for-item="evaluation">
+  <view class="evaluation">{{evaluation.guan_type}}</view>
   <view class="results">
-    <view wx:for="{{evaluation.results}}" wx:key="id" class="result" wx:for-item="result">
+    <view wx:for="{{evaluation.guan_evaluation_results}}" wx:key="id" class="result" wx:for-item="result">
       {{result}}
     </view>
   </view>
