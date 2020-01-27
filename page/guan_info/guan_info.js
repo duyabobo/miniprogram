@@ -35,7 +35,7 @@ Page({
        'back_icon': data.left_icon,
        'front_icon': data.right_icon
     } 
-    if (step == 1) {
+    if (step == 0) {
       val_data_dict['back_icon'] = data.white_icon 
     }
     if (step == data.total_step) {
@@ -55,10 +55,10 @@ Page({
     var max_step = Number(this.data.max_step)
     var incr = Number(event.target.dataset.incr)  
     var that = this
-    if (step == 1 && incr == -1) {
+    if (step == 0 && incr == -1) {
       return
     }
-    if (step == 4 && incr == 1) {
+    if (step == max_step && incr == 1) {
       return
     }
     if (step <= max_step && step + incr <= max_step) {
@@ -77,7 +77,7 @@ Page({
       step: step
     } 
     wx.request({
-      url: config.HTTP_HOST_TEST + that.data.service_url,  
+      url: config.HTTP_HOST_TEST + config.answer_url,  
       data: request_data,
       method: 'POST',
       success(res) { 
@@ -100,7 +100,6 @@ Page({
   onLoad: function (options) {
     var app = getApp()
     var guan_id = options.guan_id
-    var step = options.step
     var request_data = {
       access_token: app.globalData.access_token,
       guan_id: guan_id
@@ -111,6 +110,7 @@ Page({
       data: request_data,
       success(res) {
         that.setData(res.data)
+        var step = res.data.step
         that.resetData(that, step, res.data)
       },
       fail(res) {
