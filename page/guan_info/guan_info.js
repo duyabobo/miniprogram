@@ -66,15 +66,13 @@ Page({
     }
  }, 
 
-  answer_question: function (event) {
-    var step = event.target.dataset.step 
-    var value = event.target.dataset.value
+  answer_question: function (event) { 
+    var answer_id = event.target.dataset.answer_id
     var app = getApp()
     var that = this
     var request_data = {
       access_token: app.globalData.access_token,
-      value: value,
-      step: step
+      answer_id: answer_id
     } 
     wx.request({
       url: config.HTTP_HOST_TEST + config.answer_url,  
