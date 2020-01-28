@@ -67,18 +67,19 @@ Page({
  }, 
 
   answer_question: function (event) { 
-    var answer_id = event.target.dataset.answer_id
+    var answer_info_id = event.target.dataset.answer_info_id 
     var app = getApp()
     var that = this
     var request_data = {
       access_token: app.globalData.access_token,
-      answer_id: answer_id
+      answer_info_id: answer_info_id
     } 
     wx.request({
-      url: config.HTTP_HOST_TEST + config.answer_url,  
+      url: config.HTTP_HOST_TEST + config.guananswer_url,  
       data: request_data,
       method: 'POST',
       success(res) { 
+        var step = that.data.step
         if (step == that.data.total_step) {
           wx.reLaunch({ url: that.data.guanguan_page_url })
         } else {
@@ -87,7 +88,7 @@ Page({
         }
       },
       fail(res) {
-        console.log('err')
+        console.log('guan answer err')
       }
     })
   },
