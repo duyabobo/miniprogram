@@ -95,7 +95,7 @@ Page({
         })
       },
       fail(res) {
-        console.log('login fail')
+        console.log('user_info fail')
       }
     })
   },

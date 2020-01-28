@@ -19,6 +19,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     const app = getApp()
     var that = this
     if (!app.globalData.hasLogin) {
@@ -39,11 +53,11 @@ Page({
       })
       var request_data = {
         access_token: app.globalData.access_token
-      } 
+      }
       wx.request({
         url: config.HTTP_HOST_TEST + config.guanguan_url,
         data: request_data,
-        success(res) {  
+        success(res) {
           that.setData({
             guanguan_list: res.data.guanguan_list
           })
@@ -54,20 +68,6 @@ Page({
         }
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

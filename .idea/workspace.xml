@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36897b65-beba-4bd7-84d6-4a01345e56c8" name="Default" comment="" />
+    <list default="true" id="36897b65-beba-4bd7-84d6-4a01345e56c8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/page/guanguan/guanguan.js" afterPath="$PROJECT_DIR$/page/guanguan/guanguan.js" />
+      <change beforePath="$PROJECT_DIR$/page/mine/mine.js" afterPath="$PROJECT_DIR$/page/mine/mine.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
