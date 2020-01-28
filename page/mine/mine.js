@@ -8,7 +8,6 @@ Page({
    */
   data: { 
     has_login: app.hasLogin, 
-    mobile: '',
     head_img_url: '/resources/unknown.jpg',
     func_group_list: [ 
       [
@@ -68,30 +67,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var sex = -1
-    var mobile = ''
     var that = this
     var request_data = {
-      access_token: app.globalData.access_token 
+      access_token: app.globalData.access_token,
+      guan_info_id: 1 
     }
     wx.request({
-      url: config.HTTP_HOST_TEST + config.userinfo_url,
+      url: config.HTTP_HOST_TEST + config.guananswer_url,
       data: request_data,
       success(res) {
-        sex = res.data.sex_int
-        mobile = res.data.mobile
+        var answer_info_id = res.data.answer_info_id 
         var head_img_url = that.data.head_img_url
-        console.log(sex)
-        console.log(mobile)
-        if (sex in [0, 1]) {
-          var head_img_url = {
-            0: '/resources/girl.jpg',
-            1: '/resources/boy.jpg'
-          }[sex]
-        }
+        var head_img_url = {
+          0: '',
+          1: '/resources/girl.jpg',
+          2: '/resources/boy.jpg'
+        }[answer_info_id]
         that.setData({
-          head_img_url: head_img_url,
-          mobile: mobile
+          head_img_url: head_img_url
         })
       },
       fail(res) {

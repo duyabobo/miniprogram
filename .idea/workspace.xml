@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36897b65-beba-4bd7-84d6-4a01345e56c8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/page/guanguan/guanguan.js" afterPath="$PROJECT_DIR$/page/guanguan/guanguan.js" />
+      <change beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
       <change beforePath="$PROJECT_DIR$/page/mine/mine.js" afterPath="$PROJECT_DIR$/page/mine/mine.js" />
+      <change beforePath="$PROJECT_DIR$/page/mine/mine.wxml" afterPath="$PROJECT_DIR$/page/mine/mine.wxml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -100,6 +101,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />

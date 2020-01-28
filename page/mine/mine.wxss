@@ -55,6 +55,7 @@
 .head-img {
   width: 100rpx;
   height: 100rpx;
+  margin: 15px 0rpx;
 }
 
 image {

@@ -1,6 +1,5 @@
 <view class="my_info">
   <image class='head-img' src="{{head_img_url}}"></image>
-  <view class="mobile">{{mobile}}</view>
 </view>
 
 <view wx:for="{{func_group_list}}" wx:for-item="func_group" wx:key="id" class="func-group-list">
