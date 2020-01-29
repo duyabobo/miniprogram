@@ -82,8 +82,17 @@ Page({
       data: request_data,
       method: 'POST',
       success(res) { 
+        var guan_answer_id = res.data.guan_answer_id
+        var errmsg = res.data.errmsg
         var step = that.data.step
-        if (step == that.data.total_step) {
+        if (guan_answer_id == 0) {
+          wx.showToast({
+            title: errmsg,
+            icon: 'loading',
+            duration: 300,
+            mask: true
+          })
+        } else if (step == that.data.total_step) {
           var guan_point = that.data.guan_point
           wx.navigateTo({ url: '/page/guan_answer_suc/guan_answer_suc?guan_id=' + guan_id + '&guan_point=' + guan_point})
         } else {
