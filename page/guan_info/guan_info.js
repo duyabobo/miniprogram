@@ -8,6 +8,7 @@ Page({
   data: {
     guan_id: 0,
     guan_point: 0,
+    guanguan_page_url: "/page/guanguan/guanguan",
     // 默认数据 
     left_icon: "/resources/left.png",
     right_icon: "/resources/right.png",
