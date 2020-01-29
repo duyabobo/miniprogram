@@ -1,0 +1,11 @@
+/* page/guan_answer_suc/guan_answer_suc.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+}
+
+.confirm {
+  width: 60%; 
+}
