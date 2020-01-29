@@ -1,11 +1,12 @@
-// page/guan_point/guan_point.js
+var config = require('../../config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    point: 47,
+    guan_point: 0,
     point_background: "/resources/point_background.png"
   },
 
@@ -13,7 +14,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var app = getApp()
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.user_url,
+      data: {
+        access_token: app.globalData.access_token
+      },
+      method: 'GET',
+      success(res) {
+        var guan_point = res.data.guan_point 
+        that.setData({ guan_point: guan_point })
+      },
+      fail(res) {
+        console.log('guan point err')
+      }
+    })
   },
 
   /**
