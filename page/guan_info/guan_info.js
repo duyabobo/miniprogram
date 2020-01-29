@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 默认数据
-    guanguan_page_url: "/page/guanguan/guanguan",
+    guan_id: 0,
+    guan_point: 0,
+    // 默认数据 
     left_icon: "/resources/left.png",
     right_icon: "/resources/right.png",
     white_icon: "/resources/no_direction.png",
@@ -69,10 +70,12 @@ Page({
   answer_question: function (event) { 
     var answer_info_id = event.target.dataset.answer_info_id 
     var app = getApp()
+    var guan_id = this.data.guan_id
     var that = this
     var request_data = {
       access_token: app.globalData.access_token,
-      answer_info_id: answer_info_id
+      answer_info_id: answer_info_id,
+      guan_id: guan_id
     } 
     wx.request({
       url: config.HTTP_HOST_TEST + config.guananswer_url,  
@@ -81,7 +84,8 @@ Page({
       success(res) { 
         var step = that.data.step
         if (step == that.data.total_step) {
-          wx.reLaunch({ url: that.data.guanguan_page_url })
+          var guan_point = that.data.guan_point
+          wx.navigateTo({ url: '/page/guan_answer_suc/guan_answer_suc?guan_id=' + guan_id + '&guan_point=' + guan_point})
         } else {
           step = Number(step) + Number(1) 
           that.resetData(that, step) 
