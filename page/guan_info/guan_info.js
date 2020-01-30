@@ -93,9 +93,21 @@ Page({
             duration: 300,
             mask: true
           })
-        } else if (step == that.data.total_step) {
-          var guan_point = that.data.guan_point
-          wx.navigateTo({ url: '/page/guan_answer_suc/guan_answer_suc?guan_id=' + guan_id + '&guan_point=' + guan_point})
+        } else if (step == that.data.total_step) { 
+          wx.request({
+            url: config.HTTP_HOST_TEST + config.guanpoint_url,
+            data: {
+              access_token: app.globalData.access_token,
+              guan_id: guan_id
+            },
+            method: 'POST',
+            success(res) {
+              wx.reLaunch({ url: '/page/guanguan/guanguan' })
+            },
+            fail(res) {
+              console.log('guan point err')
+            }
+          })
         } else {
           step = Number(step) + Number(1) 
           that.resetData(that, step) 

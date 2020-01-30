@@ -1,6 +1,0 @@
-<!--page/guan_answer_suc/guan_answer_suc.wxml-->
-<view>
-  <view class="warning">本次问答结束后将奖励{{guan_point}}积分。</view>
-  <view class="info">确认问答真实性即可领取积分。</view>
-</view>
-<button class="confirm" bindtap="confirm">确认</button>
