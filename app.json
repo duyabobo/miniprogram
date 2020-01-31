@@ -25,14 +25,14 @@
     "list": [
       {
         "pagePath": "page/guanguan/guanguan",
-        "iconPath": "resources/icon_component.png",
-        "selectedIconPath": "resources/icon_component_HL.png",
+        "iconPath": "resources/logo_grey.png",
+        "selectedIconPath": "resources/logo_orange.png",
         "text": "关关"
       },
       {
         "pagePath": "page/mine/mine",
-        "iconPath": "resources/icon_component.png",
-        "selectedIconPath": "resources/icon_component_HL.png",
+        "iconPath": "resources/mine_grey.png",
+        "selectedIconPath": "resources/mine_orange.png",
         "text": "我的"
       }
     ]
