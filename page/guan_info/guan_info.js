@@ -8,6 +8,7 @@ Page({
   data: {
     guan_id: 0,
     guan_point: 0,
+    guan_type_id: 0,
     guanguan_page_url: "/page/guanguan/guanguan",
     // 默认数据 
     left_icon: "/resources/left.png",
@@ -68,6 +69,30 @@ Page({
     }
  }, 
 
+  self_answer: function (event) {
+    wx.showToast({
+      title: '你已报名该席位',
+      icon: 'loading',
+      duration: 400,
+      mask: true
+    })
+  },
+
+  has_answered: function (event) {
+    wx.navigateTo({
+      url: '',
+    })
+  },
+
+  could_not_answer: function (event) {
+    wx.showToast({
+      title: '请选择正确性别',
+      icon: 'loading',
+      duration: 400,
+      mask: true
+    })
+  },
+
   answer_question: function (event) { 
     var answer_info_id = event.target.dataset.answer_info_id 
     var app = getApp()
@@ -90,7 +115,7 @@ Page({
           wx.showToast({
             title: errmsg,
             icon: 'loading',
-            duration: 300,
+            duration: 400,
             mask: true
           })
         } else if (step == that.data.total_step) { 

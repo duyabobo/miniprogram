@@ -31,6 +31,7 @@ page {
   height: 70%;
   display: flex;
   overflow:auto;
+  justify-content: space-around;
   font-size: 40rpx;
   flex-direction: row;
   align-items: center;
@@ -41,7 +42,18 @@ page {
 
 .answer {
   width: 34%;
-  color: #000000;
+}
+
+.has_answered {
+  background-color: #51ab38;
+}
+
+.could_not_answer {
+  background-color: #f1f1f1;
+}
+
+.self_answer {
+  background-color: #FF6600;
 }
  
 .steps {

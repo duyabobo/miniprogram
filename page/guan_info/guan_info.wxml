@@ -4,7 +4,13 @@
 </view>
   
 <view class='answers'>
-  <button wx:for="{{answers}}" wx:key="id" data-answer_info_id='{{item.answer_info_id}}' class='answer' bindtap="answer_question">{{item.answer_key}}</button> 
+  <view wx:for="{{answers}}" wx:key="id" class='answer'>
+    <button wx:if="{{item.self_answer == 1}}" class="self_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="self_answer">{{item.answer_key}}</button> 
+    <button wx:elif="{{item.answer_user_id}}" class="has_answered" data-answer_info_id='{{item.answer_info_id}}' bindtap="has_answered">{{item.answer_key}}</button> 
+    <button wx:elif="{{item.could_answer == 1}}" class="could_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="answer_question">{{item.answer_key}}</button> 
+    <button wx:elif="{{item.could_answer == 0}}" class="could_not_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="could_not_answer">{{item.answer_key}}</button> 
+    <button wx:else class="could_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="answer_question">{{item.answer_key}}</button> 
+  </view>
 </view>
 
 <view class='steps'>
