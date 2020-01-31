@@ -15,7 +15,7 @@ page {
 
 .question-title {
   padding: 20rpx;
-  font-size: 30rpx;
+  font-size: 35rpx;
 }
 
 .question-info {
