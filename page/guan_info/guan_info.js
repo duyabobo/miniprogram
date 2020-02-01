@@ -24,6 +24,8 @@ Page({
     front_icon: "", 
     // request 请求数据
     total_step: 0,
+    meeting_time: '',
+    meeting_address: '',
     service_url: '',
     question_dict: {}, 
     answer_dict: {} 

@@ -1,5 +1,7 @@
 <view class="question-and-background">
   <image class='background' src="{{question_background}}" mode="aspectFill"></image>
+  <view class='question'>{{meeting_time}}</view>
+  <view class='question'>{{meeting_address}}</view>
   <view class='question'>{{question}}</view>
 </view>
   
