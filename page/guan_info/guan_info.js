@@ -134,6 +134,13 @@ Page({
               console.log('guan point err')
             }
           })
+          if (that.data.guan_type_id == 2) {
+            console.log('abc')
+            wx.requestSubscribeMessage({
+              tmplIds: [config.subscribe_offline_noti_tid],
+              success(res) { }
+            })
+          }
         } else {
           step = Number(step) + Number(1) 
           that.resetData(that, step) 

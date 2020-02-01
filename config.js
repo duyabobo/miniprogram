@@ -13,6 +13,8 @@ const evaluation_url = '/guan_evaluation'
 const user_url = '/user'
 const suggestion_url = '/suggestion'
 
+const subscribe_offline_noti_tid = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
+
 module.exports.HTTP_HOST_TEST = HTTP_HOST_TEST 
 module.exports.login_url = login_url 
 module.exports.guanguan_url = guanguan_url
@@ -22,3 +24,4 @@ module.exports.evaluation_url = evaluation_url
 module.exports.guanpoint_url = guanpoint_url
 module.exports.user_url = user_url
 module.exports.suggestion_url = suggestion_url
+module.exports.subscribe_offline_noti_tid = subscribe_offline_noti_tid
