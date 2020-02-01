@@ -79,8 +79,9 @@ Page({
   },
 
   has_answered: function (event) {
+    var answer_user_id = event.target.dataset.answer_user_id
     wx.navigateTo({
-      url: '',
+      url: '/page/guan_evaluation/guan_evaluation?answer_user_id=' + answer_user_id,
     })
   },
 

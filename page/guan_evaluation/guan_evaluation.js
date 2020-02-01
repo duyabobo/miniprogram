@@ -14,9 +14,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var answer_user_id = options.answer_user_id
     var app = getApp()
     var request_data = {
-      access_token: app.globalData.access_token
+      access_token: app.globalData.access_token,
+      answer_user_id: answer_user_id
     }
     var that = this
     wx.request({

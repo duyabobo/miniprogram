@@ -12,10 +12,10 @@ Page({
     var app = getApp() 
     var request_data = {
       access_token: app.globalData.access_token,
-      suggestion: suggestion
+      suggestion_content: suggestion
     }
     wx.request({
-      url: config.HTTP_HOST_TEST + config.user_info_url,
+      url: config.HTTP_HOST_TEST + config.suggestion_url,
       method: 'POST',
       data: request_data,
       success(res) {
@@ -27,7 +27,7 @@ Page({
         }) 
       },
       fail(res) {
-        console.log('err')
+        console.log('err', res)
       }
     })
   },
