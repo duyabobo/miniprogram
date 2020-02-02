@@ -1,6 +1,6 @@
 <view class="name">
   <view class='header'>关关雎鸠</view>
-  <view class='title'>线上问答 线下交友</view>
+  <view class='title'>{{slogan}}</view>
 </view>
 <button class="login" bindtap="login"> 
   微信登录

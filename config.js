@@ -1,9 +1,10 @@
 /**
  * 小程序配置文件
  */
-const HOST_TEST = '127.0.0.1:7777'
+const HOST_TEST = '39.105.52.216:7777'
 const HTTP_HOST_TEST = 'http://' + HOST_TEST 
 
+const init_url = '/init'
 const login_url = '/login' 
 const guanguan_url = '/guanguan'
 const guaninfo_url = '/guan_info'
@@ -16,6 +17,7 @@ const suggestion_url = '/suggestion'
 const subscribe_offline_noti_tid = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
 
 module.exports.HTTP_HOST_TEST = HTTP_HOST_TEST 
+module.exports.init_url = init_url
 module.exports.login_url = login_url 
 module.exports.guanguan_url = guanguan_url
 module.exports.guaninfo_url = guaninfo_url
