@@ -41,7 +41,7 @@ page {
 }
 
 .answer {
-  width: 34%;
+  width: 75%;
 }
 
 .has_answered {
