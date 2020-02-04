@@ -1,0 +1,3 @@
+<!--page/about/about.wxml-->
+<image class='logo-img' src="{{real_logo_url}}"></image>
+<view>深圳市罗湖区雎鸠网络科技工作室</view>

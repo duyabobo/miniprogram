@@ -8,6 +8,7 @@
     "page/guan_point/guan_point",
     "page/share/share",
     "page/setting/setting",
+    "page/about/about",
     "page/suggestion/suggestion",
     "page/guan_evaluation/guan_evaluation",
     "page/API/index"

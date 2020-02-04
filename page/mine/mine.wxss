@@ -27,7 +27,8 @@
 .func-name{
   flex: 10;
   align-items: center;
-  line-height: 60rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
 }
 .navigator-arrow {
   padding-right: 26rpx;

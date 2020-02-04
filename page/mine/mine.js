@@ -26,13 +26,13 @@ Page({
       ],
       [
         {
-          id: 1,
+          id: 3,
           img_url: '/resources/triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
         }, 
         {
-          id: 2,
+          id: 4,
           img_url: '/resources/cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
@@ -40,10 +40,18 @@ Page({
       ], 
       [
         {
-          id: 4,
+          id: 5,
           img_url: '/resources/octagon.png',
           url: '/page/setting/setting',
           name: '设置',
+        }
+      ],
+      [
+        {
+          id: 6,
+          img_url: '/resources/heart.png',
+          url: '/page/about/about',
+          name: '关于',
         }
       ]
     ]
