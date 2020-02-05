@@ -7,7 +7,7 @@ page {
 } 
 .logo-img {
   margin: 20px;
-  width: 400px;
-  height: 200px;
+  width: 80%;
+  height: 30%;
   border-radius: 20px
 }
