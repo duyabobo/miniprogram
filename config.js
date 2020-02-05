@@ -1,8 +1,8 @@
 /**
  * 小程序配置文件
  */
-const HOST_TEST = 'localhost:7777'
-const HTTP_HOST_TEST = 'http://' + HOST_TEST 
+const HOST_TEST = 'www.ggjjzhzz.cn'
+const HTTP_HOST_TEST = 'https://' + HOST_TEST 
 
 const init_url = '/init'
 const login_url = '/login' 
