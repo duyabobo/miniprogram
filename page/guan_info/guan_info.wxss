@@ -46,14 +46,25 @@ page {
 
 .has_answered {
   background-color: #51ab38;
+  text-align: left;
+  padding: 0 0 0 10%;
 }
 
 .could_not_answer {
   background-color: #f1f1f1;
+  text-align: left;
+  padding: 0 0 0 10%;
 }
 
 .self_answer {
   background-color: #FF6600;
+  text-align: left;
+  padding: 0 0 0 10%;
+}
+
+.could_answer {
+  text-align: left;
+  padding: 0 0 0 10%;
 }
  
 .steps {
