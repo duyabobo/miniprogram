@@ -13,17 +13,17 @@ page {
 }
 
 .header {
-  color: #FF6600;
+  color: #FF5500;
   font-size: 32px;
 }
 
 .title {
-  color: #FF6600;
+  color: #FF5500;
   font-size: 15px;
 }
 
 .login {
   width: 60%;
-  background-color: #FF6600;
+  background-color: #FF5500;
   color: #FFFFFF;
 }
