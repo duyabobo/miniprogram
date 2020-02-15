@@ -1,5 +1,5 @@
-<view class="name">
-  <view class='header'>关关雎鸠</view>
+<view class="name"> 
+  <image class='header' src="{{head_img_url}}"></image>
   <view class='title'>{{slogan}}</view>
 </view>
 <button class="login" bindtap="login"> 

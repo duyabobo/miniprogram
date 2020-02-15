@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    head_img_url: '/resources/logo_login.png',
     slogan: ''
   },
 
