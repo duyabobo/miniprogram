@@ -15,8 +15,7 @@ Page({
     }
     return {
       title: '关关雎鸠',
-      path: 'page/guanguan/guanguan',  // 路径，传递参数到指定页面。
-      imageUrl: '/resources/logo.png', // 分享的封面图
+      path: '/page/guanguan/guanguan',  // 路径，传递参数到指定页面。
       success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
@@ -76,11 +75,4 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
