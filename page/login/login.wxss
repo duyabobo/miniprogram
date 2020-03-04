@@ -5,22 +5,11 @@ page {
   justify-content: space-around; 
   background-color: #ffffff;
 } 
-
-.name {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  color: #FF5500;
-  width: 200rpx;
+ 
+.logo {
+  width: 400rpx;
   height: 200rpx;
-}
-
-.title {
-  color: #000000;
-  font-size: 15px;
+  align-items: center;
 }
 
 .login {

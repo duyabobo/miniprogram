@@ -1,7 +1,4 @@
-<view class="name"> 
-  <image class='header' src="{{head_img_url}}"></image>
-  <view class='title'>{{slogan}}</view>
-</view>
+<image class='logo' src="{{head_img_url}}"></image>
 <button class="login" bindtap="login"> 
   微信登录
 </button>
