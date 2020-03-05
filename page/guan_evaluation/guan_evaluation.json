@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的关关",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
 }
