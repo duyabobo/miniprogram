@@ -72,11 +72,37 @@ Page({
  }, 
 
   self_answer: function (event) {
-    wx.showToast({
-      title: '你已报名该席位',
-      icon: 'loading',
-      duration: 400,
-      mask: true
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '你已报名该席位，希望做什么呢？',
+      confirmText: '准时应约',
+      cancelText: '取消报名',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          var answer_info_id = event.target.dataset.answer_info_id
+          var app = getApp()
+          var guan_id = that.data.guan_id
+          var request_data = {
+            access_token: app.globalData.access_token,
+            answer_info_id: answer_info_id,
+            guan_id: guan_id
+          } 
+          wx.request({
+            url: config.HTTP_HOST_TEST + config.guananswer_url,
+            data: request_data,
+            method: 'PUT',
+            success(res) {
+              wx.reLaunch({ url: '/page/guanguan/guanguan' })
+            },
+            fail(res) {
+              console.log('guan point err')
+            }
+          })
+        }
+      }
     })
   },
 
