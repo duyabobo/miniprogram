@@ -195,6 +195,13 @@ Page({
       url: config.HTTP_HOST_TEST + config.guaninfo_url,
       data: request_data,
       success(res) {
+        var code = res.data.code
+        if (code!=0){
+          var errmsg = res.data.errmsg
+          wx.reLaunch({
+            url: '/page/guanguan/guanguan?errmsg=' + errmsg,
+          })
+        }
         that.setData(res.data)
         var step = res.data.step
         that.resetData(that, step, res.data)
