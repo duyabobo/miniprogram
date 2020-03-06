@@ -48,34 +48,40 @@ Page({
       wx.redirectTo({
         url: '/page/login/login'
       })
-    } else {
+    } else {  
+      wx.getSetting({
+        success(res){
+          let status = res.authSetting['scope.userLocation']
+          if (!status) {
+            wx.authorize({ // 发起请求用户授权
+              scope: 'scope.userLocation'
+            })
+          }
+        }
+      })
       wx.getLocation({
-        type: 'wgs84',
-        success(res) {
-          const latitude = res.latitude
-          const longitude = res.longitude
-          const speed = res.speed
-          const accuracy = res.accuracy
-          console.log(latitude)
-          console.log(longitude)
-        }
-      })
-      var request_data = {
-        access_token: app.globalData.access_token
-      }
-      wx.request({
-        url: config.HTTP_HOST_TEST + config.guanguan_url,
-        data: request_data,
-        success(res) {
-          that.setData({
-            guanguan_list: res.data.guanguan_list
+        type: 'wgs84', 
+        complete(res) {  
+          var request_data = {
+            access_token: app.globalData.access_token,
+            latitude: res.latitude,
+            longitude: res.longitude
+          }
+          wx.request({
+            url: config.HTTP_HOST_TEST + config.guanguan_url,
+            data: request_data,
+            success(res) {
+              that.setData({
+                guanguan_list: res.data.guanguan_list
+              })
+            },
+            fail(res) {
+              console.log('guanguan err')
+              console.log(res)
+            }
           })
-        },
-        fail(res) {
-          console.log('guanguan err')
-          console.log(res)
         }
-      })
+      }) 
     }
   },
 
