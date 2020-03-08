@@ -76,7 +76,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '你已报名该席位，希望做什么呢？',
-      confirmText: '准时应约',
+      confirmText: '准时参加',
       cancelText: '取消报名',
       success: function (res) {
         if (res.confirm) {
@@ -115,9 +115,9 @@ Page({
 
   could_not_answer: function (event) {
     wx.showToast({
-      title: '请选择正确性别',
+      title: '该名额不可报名',
       icon: 'loading',
-      duration: 400,
+      duration: 600,
       mask: true
     })
   },

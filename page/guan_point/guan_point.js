@@ -7,6 +7,8 @@ Page({
    */
   data: {
     guan_point: 0,
+    information_1: '',
+    information_2: '',
     point_background: "/resources/point_background.png"
   },
 
@@ -24,7 +26,15 @@ Page({
       method: 'GET',
       success(res) {
         var guan_point = res.data.guan_point 
-        that.setData({ guan_point: guan_point })
+        var information_1 = res.data.information_1
+        var information_2 = res.data.information_2
+        that.setData(
+          { 
+            guan_point: guan_point,
+            information_1: information_1,
+            information_2: information_2
+          }
+        )
       },
       fail(res) {
         console.log('guan point err')

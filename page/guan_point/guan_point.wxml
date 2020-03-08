@@ -5,9 +5,9 @@
 
 <view class="qa-desc">
   <view class="desc">
-  1，参与关关在线问答，可以获取积分。
+  {{ information_1 }}
   </view>
   <view class="desc">
-  2，参加关关线下活动，需要扣除积分。
+  {{ information_2 }}
   </view> 
 </view>

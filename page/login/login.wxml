@@ -1,4 +1,4 @@
-<image class='logo' src="{{head_img_url}}"></image>
+<image class='logo' src="{{logo_uri}}"></image>
 <button class="login" bindtap="login"> 
   微信登录
 </button>
