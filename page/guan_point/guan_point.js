@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    guan_point: 0,
+    guan_point: '',
     information_1: '',
     information_2: '',
-    point_background: "http://img.ggjjzhzz.cn/point_background.png"
+    point_background: ""
   },
 
   /**
@@ -33,11 +33,13 @@ Page({
           var guan_point = res.data.guan_point 
           var information_1 = res.data.information_1
           var information_2 = res.data.information_2
+          var point_background = res.data.point_background
           that.setData(
             { 
               guan_point: guan_point,
               information_1: information_1,
-              information_2: information_2
+              information_2: information_2,
+              point_background: point_background
             }
           )
         },

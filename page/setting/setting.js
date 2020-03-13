@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    login: 0
   },
 
   logout: function () {
@@ -34,12 +34,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var app = getApp()
-    var that = this
+    var app = getApp() 
     if (!app.globalData.hasLogin) {
       wx.reLaunch({
         url: '/page/login/login'
       })
+    } else {
+      this.setData({ login: 1 })
     }
   },
 

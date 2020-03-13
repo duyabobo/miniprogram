@@ -1,2 +1,2 @@
 <!--page/setting/setting.wxml-->
-<button class="logout" bindtap="logout">退出登录</button>
+<button wx:if="{{item.login == 1}}" class="logout" bindtap="logout">退出登录</button>
