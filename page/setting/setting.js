@@ -34,7 +34,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var app = getApp()
+    var that = this
+    if (!app.globalData.hasLogin) {
+      wx.reLaunch({
+        url: '/page/login/login'
+      })
+    }
   },
 
   /**

@@ -44,45 +44,39 @@ Page({
   onShow: function () {
     const app = getApp()
     var that = this
-    if (!app.globalData.hasLogin) {
-      wx.redirectTo({
-        url: '/page/login/login'
-      })
-    } else {  
-      wx.getSetting({
-        success(res){
-          let status = res.authSetting['scope.userLocation']
-          if (!status) {
-            wx.authorize({ // 发起请求用户授权
-              scope: 'scope.userLocation'
-            })
-          }
-        }
-      })
-      wx.getLocation({
-        type: 'wgs84', 
-        complete(res) {  
-          var request_data = {
-            access_token: app.globalData.access_token,
-            latitude: res.latitude,
-            longitude: res.longitude
-          }
-          wx.request({
-            url: config.HTTP_HOST_TEST + config.guanguan_url,
-            data: request_data,
-            success(res) {
-              that.setData({
-                guanguan_list: res.data.guanguan_list
-              })
-            },
-            fail(res) {
-              console.log('guanguan err')
-              console.log(res)
-            }
+    wx.getSetting({
+      success(res) {
+        let status = res.authSetting['scope.userLocation']
+        if (!status) {
+          wx.authorize({ // 发起请求用户授权
+            scope: 'scope.userLocation'
           })
         }
-      }) 
-    }
+      }
+    })
+    wx.getLocation({
+      type: 'wgs84',
+      complete(res) {
+        var request_data = {
+          access_token: app.globalData.access_token,
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
+        wx.request({
+          url: config.HTTP_HOST_TEST + config.guanguan_url,
+          data: request_data,
+          success(res) {
+            that.setData({
+              guanguan_list: res.data.guanguan_list
+            })
+          },
+          fail(res) {
+            console.log('guanguan err')
+            console.log(res)
+          }
+        })
+      }
+    })
   },
 
   /**

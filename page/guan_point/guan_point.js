@@ -16,30 +16,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
     var app = getApp()
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.user_url,
-      data: {
-        access_token: app.globalData.access_token
-      },
-      method: 'GET',
-      success(res) {
-        var guan_point = res.data.guan_point 
-        var information_1 = res.data.information_1
-        var information_2 = res.data.information_2
-        that.setData(
-          { 
-            guan_point: guan_point,
-            information_1: information_1,
-            information_2: information_2
-          }
-        )
-      },
-      fail(res) {
-        console.log('guan point err')
-      }
-    })
+    var that = this
+    if (!app.globalData.hasLogin) {
+      wx.reLaunch({
+        url: '/page/login/login'
+      })
+    } else {
+      wx.request({
+        url: config.HTTP_HOST_TEST + config.user_url,
+        data: {
+          access_token: app.globalData.access_token
+        },
+        method: 'GET',
+        success(res) {
+          var guan_point = res.data.guan_point 
+          var information_1 = res.data.information_1
+          var information_2 = res.data.information_2
+          that.setData(
+            { 
+              guan_point: guan_point,
+              information_1: information_1,
+              information_2: information_2
+            }
+          )
+        },
+        fail(res) {
+          console.log('guan point err')
+        }
+      })
+    }
   },
 
   /**

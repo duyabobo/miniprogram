@@ -185,32 +185,38 @@ Page({
    */
   onLoad: function (options) {
     var app = getApp()
-    var guan_id = options.guan_id
-    var request_data = {
-      access_token: app.globalData.access_token,
-      guan_id: guan_id
-    }
-    var that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.guaninfo_url,
-      data: request_data,
-      success(res) {
-        var code = res.data.code
-        if (code!=0){
-          var errmsg = res.data.errmsg
-          wx.reLaunch({
-            url: '/page/guanguan/guanguan?errmsg=' + errmsg,
-          })
-        }
-        that.setData(res.data)
-        var step = res.data.step
-        that.resetData(that, step, res.data)
-      },
-      fail(res) {
-        console.log('guaninfo err')
-        console.log(res)
+    if (!app.globalData.hasLogin) {
+      wx.reLaunch({
+        url: '/page/login/login'
+      })
+    } else {
+      var guan_id = options.guan_id
+      var request_data = {
+        access_token: app.globalData.access_token,
+        guan_id: guan_id
       }
-    })
+      var that = this
+      wx.request({
+        url: config.HTTP_HOST_TEST + config.guaninfo_url,
+        data: request_data,
+        success(res) {
+          var code = res.data.code
+          if (code!=0){
+            var errmsg = res.data.errmsg
+            wx.reLaunch({
+              url: '/page/guanguan/guanguan?errmsg=' + errmsg,
+            })
+          }
+          that.setData(res.data)
+          var step = res.data.step
+          that.resetData(that, step, res.data)
+        },
+        fail(res) {
+          console.log('guaninfo err')
+          console.log(res)
+        }
+      })
+    }
   },
 
   /**

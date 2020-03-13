@@ -5,6 +5,13 @@ page {
   justify-content: space-around; 
   background-color: #ffffff;
 } 
+
+.login_and_visit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
  
 .logo {
   width: 400rpx;
@@ -16,4 +23,9 @@ page {
   width: 60%;
   background-color: #FF5500;
   color: #FFFFFF;
+}
+
+.visit {
+  width: 60%;
+  color: #000000;
 }
