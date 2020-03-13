@@ -9,7 +9,7 @@ Page({
     guan_point: 0,
     information_1: '',
     information_2: '',
-    point_background: "/resources/point_background.png"
+    point_background: "http://img.ggjjzhzz.cn/point_background.png"
   },
 
   /**

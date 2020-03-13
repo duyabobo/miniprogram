@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logo_uri: '',
+    logo_url: '',
     slogan: ''
   },
 
@@ -51,7 +51,7 @@ Page({
       success(res) {
         that.setData({
           slogan: res.data.slogan,
-          logo_uri: res.data.logo_uri,
+          logo_url: res.data.logo_url,
         })
       },
       fail(res) {

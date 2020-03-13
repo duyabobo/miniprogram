@@ -8,18 +8,18 @@ Page({
    */
   data: { 
     has_login: app.hasLogin, 
-    head_img_url: '/resources/unknown.jpg',
+    head_img_url: 'http://img.ggjjzhzz.cn/unknown.jpg',
     func_group_list: [ 
       [
         {
           id: 1,
-          img_url: '/resources/foursquare.png',
+          img_url: 'http://img.ggjjzhzz.cn/foursquare.png',
           url: '/page/guan_evaluation/guan_evaluation',
           name: '我的关关'
         },
         {
           id: 2,
-          img_url: '/resources/diamond.png',
+          img_url: 'http://img.ggjjzhzz.cn/diamond.png',
           url: '/page/guan_point/guan_point',
           name: '我的积分'
         }
@@ -27,13 +27,13 @@ Page({
       [
         {
           id: 3,
-          img_url: '/resources/triangle.png',
+          img_url: 'http://img.ggjjzhzz.cn/triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
         }, 
         {
           id: 4,
-          img_url: '/resources/cicle.png',
+          img_url: 'http://img.ggjjzhzz.cn/cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
         }
@@ -41,7 +41,7 @@ Page({
       [
         {
           id: 5,
-          img_url: '/resources/octagon.png',
+          img_url: 'http://img.ggjjzhzz.cn/octagon.png',
           url: '/page/setting/setting',
           name: '设置',
         }
@@ -49,7 +49,7 @@ Page({
       [
         {
           id: 6,
-          img_url: '/resources/heart.png',
+          img_url: 'http://img.ggjjzhzz.cn/heart.png',
           url: '/page/about/about',
           name: '关于',
         }
@@ -88,8 +88,8 @@ Page({
         var head_img_url = that.data.head_img_url
         var head_img_url = {
           0: '',
-          1: '/resources/girl.jpg',
-          2: '/resources/boy.jpg'
+          1: 'http://img.ggjjzhzz.cn/girl.jpg',
+          2: 'http://img.ggjjzhzz.cn/boy.jpg'
         }[answer_info_id]
         that.setData({
           head_img_url: head_img_url

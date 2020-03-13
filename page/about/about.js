@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    real_logo_url: '/resources/real_logo.png'
+    real_logo_url: 'http://img.ggjjzhzz.cn/real_logo.png'
   },
 
   /**

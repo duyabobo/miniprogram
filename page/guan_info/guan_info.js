@@ -11,10 +11,10 @@ Page({
     guan_type_id: 0,
     guanguan_page_url: "/page/guanguan/guanguan",
     // 默认数据 
-    left_icon: "/resources/left.png",
-    right_icon: "/resources/right.png",
-    white_icon: "/resources/no_direction.png",
-    question_background: "/resources/question_background.png",
+    left_icon: "http://img.ggjjzhzz.cn/left.png",
+    right_icon: "http://img.ggjjzhzz.cn/right.png",
+    white_icon: "http://img.ggjjzhzz.cn/no_direction.png",
+    question_background: "http://img.ggjjzhzz.cn/question_background.png",
     step: 0,
     // reset_data 计算数据
     max_step: -1,
