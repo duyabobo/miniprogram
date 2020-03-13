@@ -34,6 +34,7 @@ Page({
           var information_1 = res.data.information_1
           var information_2 = res.data.information_2
           var point_background = res.data.point_background
+          console.log('point_background', res)
           that.setData(
             { 
               guan_point: guan_point,
