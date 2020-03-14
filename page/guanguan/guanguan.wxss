@@ -7,21 +7,22 @@ page {
 .question {
   display: flex;
   width: 100%;
-  margin: 2rpx 0;
+  margin: 2px 0;
   padding: 10rpx;
   flex-direction: column;
   background-color: #FFFFFF;
 }
 
 .question-title {
-  padding: 20rpx;
-  font-size: 35rpx;
+  padding: 10px;
+  font-size: 38rpx;
 }
 
 .question-info {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  padding-left: 10px;
 }
 
 .info {

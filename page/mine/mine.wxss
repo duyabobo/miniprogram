@@ -10,12 +10,12 @@
 }
 
 .func-group-list {
-  margin: 30rpx 0px;
+  margin: 8px 0px;
 }
 .func-group {
   display: flex;
   align-items: center;
-  margin: 10rpx 0;
+  margin: 2px 0;
   padding: 15rpx 30rpx;
   border-radius: 4rpx;
   background-color: #FFFFFF;
