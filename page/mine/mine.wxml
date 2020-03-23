@@ -3,9 +3,9 @@
 </view>
 
 <view wx:for="{{func_group_list}}" wx:for-item="func_group" wx:key="id" class="func-group-list">
-  <navigator wx:for="{{func_group}}" wx:key="id" url="{{item.url}}" class=" func-group">
+  <view class=" func-group" wx:for="{{func_group}}" wx:key="id" data-url="{{item.url}}" data-need_login="{{item.need_login}}" bindtap="click_mine">
     <image class='func-img' src="{{item.img_url}}"></image>
     <view class="func-name">{{item.name}}</view>
     <view class="navigator-arrow"></view>
-  </navigator>
+  </view>
 </view>

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "page/guanguan/guanguan",
     "page/login/login",
+    "page/guanguan/guanguan",
     "page/guan_info/guan_info",
     "page/mine/mine", 
     "page/guan_point/guan_point",

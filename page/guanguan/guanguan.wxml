@@ -1,4 +1,4 @@
-<navigator class="question" wx:for="{{guanguan_list}}" wx:key="id" data-id='{{item.id}}' url="/page/guan_info/guan_info?guan_id={{item.id}}">
+<view class="question" wx:for="{{guanguan_list}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="click_guan_info">
   <view class="question-title">
     {{item.name}}
   </view>
@@ -7,4 +7,4 @@
     <view class="info point">{{item.guan_point}}</view>
     <view class="info answers">{{item.answers}}</view> 
   </view>
-</navigator> 
+</view> 

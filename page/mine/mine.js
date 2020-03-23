@@ -8,50 +8,56 @@ Page({
    */
   data: { 
     has_login: app.hasLogin, 
-    head_img_url: 'http://img.ggjjzhzz.cn/unknown.jpg',
+    head_img_url: config.CDN_QINIU_URL + 'unknown.jpg',
     func_group_list: [ 
       [
         {
           id: 1,
-          img_url: 'http://img.ggjjzhzz.cn/foursquare.png',
+          img_url: config.CDN_QINIU_URL + 'foursquare.png',
           url: '/page/guan_evaluation/guan_evaluation',
-          name: '我的关关'
+          name: '我的关关',
+          need_login: true
         },
         {
           id: 2,
-          img_url: 'http://img.ggjjzhzz.cn/diamond.png',
+          img_url: config.CDN_QINIU_URL + 'diamond.png',
           url: '/page/guan_point/guan_point',
-          name: '我的积分'
+          name: '我的积分',
+          need_login: true
         }
       ],
       [
         {
           id: 3,
-          img_url: 'http://img.ggjjzhzz.cn/triangle.png',
+          img_url: config.CDN_QINIU_URL + 'triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
+          need_login: false
         }, 
         {
           id: 4,
-          img_url: 'http://img.ggjjzhzz.cn/cicle.png',
+          img_url: config.CDN_QINIU_URL + 'cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
+          need_login: false
         }
       ], 
       [
         {
           id: 5,
-          img_url: 'http://img.ggjjzhzz.cn/octagon.png',
+          img_url: config.CDN_QINIU_URL + 'octagon.png',
           url: '/page/setting/setting',
           name: '设置',
+          need_login: true
         }
       ],
       [
         {
           id: 6,
-          img_url: 'http://img.ggjjzhzz.cn/heart.png',
+          img_url: config.CDN_QINIU_URL + 'heart.png',
           url: '/page/about/about',
           name: '关于',
+          need_login: false
         }
       ]
     ]
@@ -71,6 +77,19 @@ Page({
   
   },
 
+  click_mine: function(event) {
+    var app = getApp() 
+    var suc_url = event.currentTarget.dataset.url
+    var need_login = event.currentTarget.dataset.need_login
+    if (!app.globalData.hasLogin && need_login) {
+      config.wxlogin(suc_url)
+    } else {
+      wx.navigateTo({
+        url: suc_url,
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -88,8 +107,8 @@ Page({
         var head_img_url = that.data.head_img_url
         var head_img_url = {
           0: '',
-          1: 'http://img.ggjjzhzz.cn/girl.jpg',
-          2: 'http://img.ggjjzhzz.cn/boy.jpg'
+          1: config.CDN_QINIU_URL + 'girl.jpg',
+          2: config.CDN_QINIU_URL + 'boy.jpg'
         }[answer_info_id]
         that.setData({
           head_img_url: head_img_url

@@ -11,9 +11,9 @@ Page({
     guan_type_id: 0,
     guanguan_page_url: "/page/guanguan/guanguan",
     // 默认数据 
-    left_icon: "http://img.ggjjzhzz.cn/left.png",
-    right_icon: "http://img.ggjjzhzz.cn/right.png",
-    white_icon: "http://img.ggjjzhzz.cn/no_direction.png",
+    left_icon: config.CDN_QINIU_URL + "left.png",
+    right_icon: config.CDN_QINIU_URL + "right.png",
+    white_icon: config.CDN_QINIU_URL + "no_direction.png",
     question_background: "",
     step: 0,
     // reset_data 计算数据
@@ -58,7 +58,7 @@ Page({
   change_step: function (event) {
     var step = Number(this.data.step)
     var max_step = Number(this.data.max_step)
-    var incr = Number(event.target.dataset.incr)  
+    var incr = Number(event.target.dataset.incr)   
     var that = this
     if (step == 0 && incr == -1) {
       return
@@ -185,38 +185,32 @@ Page({
    */
   onLoad: function (options) {
     var app = getApp()
-    if (!app.globalData.hasLogin) {
-      wx.reLaunch({
-        url: '/page/login/login'
-      })
-    } else {
-      var guan_id = options.guan_id
-      var request_data = {
-        access_token: app.globalData.access_token,
-        guan_id: guan_id
-      }
-      var that = this
-      wx.request({
-        url: config.HTTP_HOST_TEST + config.guaninfo_url,
-        data: request_data,
-        success(res) {
-          var code = res.data.code
-          if (code!=0){
-            var errmsg = res.data.errmsg
-            wx.reLaunch({
-              url: '/page/guanguan/guanguan?errmsg=' + errmsg,
-            })
-          }
-          that.setData(res.data)
-          var step = res.data.step
-          that.resetData(that, step, res.data)
-        },
-        fail(res) {
-          console.log('guaninfo err')
-          console.log(res)
-        }
-      })
+    var guan_id = options.guan_id
+    var request_data = {
+      access_token: app.globalData.access_token,
+      guan_id: guan_id
     }
+    var that = this
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.guaninfo_url,
+      data: request_data,
+      success(res) {
+        var code = res.data.code
+        if (code != 0) {
+          var errmsg = res.data.errmsg
+          wx.reLaunch({
+            url: '/page/guanguan/guanguan?errmsg=' + errmsg,
+          })
+        }
+        that.setData(res.data)
+        var step = res.data.step
+        that.resetData(that, step, res.data)
+      },
+      fail(res) {
+        console.log('guaninfo err')
+        console.log(res)
+      }
+    })
   },
 
   /**

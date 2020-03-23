@@ -17,27 +17,21 @@ Page({
     var answer_user_id = options.answer_user_id
     var app = getApp()
     var that = this
-    if (!app.globalData.hasLogin) {
-      wx.reLaunch({
-        url: '/page/login/login'
-      })
-    } else {
-      var request_data = {
-        access_token: app.globalData.access_token,
-        answer_user_id: answer_user_id
-      }
-      wx.request({
-        url: config.HTTP_HOST_TEST + config.evaluation_url,
-        data: request_data,
-        success(res) {
-          that.setData(res.data)
-        },
-        fail(res) {
-          console.log('guan_evaluation err')
-          console.log(res)
-        }
-      })
+    var request_data = {
+      access_token: app.globalData.access_token,
+      answer_user_id: answer_user_id
     }
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.evaluation_url,
+      data: request_data,
+      success(res) {
+        that.setData(res.data)
+      },
+      fail(res) {
+        console.log('guan_evaluation err')
+        console.log(res)
+      }
+    })
   },
 
   /**

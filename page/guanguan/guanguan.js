@@ -15,6 +15,18 @@ Page({
     console.log(e.detail.encryptedData)
   },
 
+  click_guan_info: function (event) {
+    var app = getApp() 
+    var suc_url = "/page/guan_info/guan_info?guan_id=" + event.currentTarget.dataset.guan_id
+    if (!app.globalData.hasLogin) {
+      config.wxlogin(suc_url)
+    } else {
+      wx.navigateTo({
+        url: suc_url,
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

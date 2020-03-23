@@ -18,37 +18,31 @@ Page({
   onLoad: function (options) {
     var app = getApp()
     var that = this
-    if (!app.globalData.hasLogin) {
-      wx.reLaunch({
-        url: '/page/login/login'
-      })
-    } else {
-      wx.request({
-        url: config.HTTP_HOST_TEST + config.user_url,
-        data: {
-          access_token: app.globalData.access_token
-        },
-        method: 'GET',
-        success(res) {
-          var guan_point = res.data.guan_point 
-          var information_1 = res.data.information_1
-          var information_2 = res.data.information_2
-          var point_background = res.data.point_background
-          console.log('point_background', res)
-          that.setData(
-            { 
-              guan_point: guan_point,
-              information_1: information_1,
-              information_2: information_2,
-              point_background: point_background
-            }
-          )
-        },
-        fail(res) {
-          console.log('guan point err')
-        }
-      })
-    }
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.user_url,
+      data: {
+        access_token: app.globalData.access_token
+      },
+      method: 'GET',
+      success(res) {
+        var guan_point = res.data.guan_point
+        var information_1 = res.data.information_1
+        var information_2 = res.data.information_2
+        var point_background = res.data.point_background
+        console.log('point_background', res)
+        that.setData(
+          {
+            guan_point: guan_point,
+            information_1: information_1,
+            information_2: information_2,
+            point_background: point_background
+          }
+        )
+      },
+      fail(res) {
+        console.log('guan point err')
+      }
+    })
   },
 
   /**
