@@ -17,7 +17,6 @@
   align-items: center;
   margin: 2px 0;
   padding: 15rpx 30rpx;
-  border-radius: 4rpx;
   background-color: #FFFFFF;
 }
 .func-img {
@@ -26,7 +25,7 @@
 }
 .func-name{
   flex: 10;
-  align-items: center;
+  text-align: left;
   line-height: 50rpx;
   font-size: 28rpx;
 }
@@ -73,3 +72,7 @@ image {
 .verify { 
   flex: 1;
 }  
+
+.online_service {
+  width: 60%;
+}

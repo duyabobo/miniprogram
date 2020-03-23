@@ -16,14 +16,18 @@ Page({
           img_url: config.CDN_QINIU_URL + 'foursquare.png',
           url: '/page/guan_evaluation/guan_evaluation',
           name: '我的关关',
-          need_login: true
+          need_login: true,
+          open_type: '',
+          bind_func_name: 'click_mine'
         },
         {
           id: 2,
           img_url: config.CDN_QINIU_URL + 'diamond.png',
           url: '/page/guan_point/guan_point',
           name: '我的积分',
-          need_login: true
+          need_login: true,
+          open_type: '',
+          bind_func_name: 'click_mine'
         }
       ],
       [
@@ -32,14 +36,18 @@ Page({
           img_url: config.CDN_QINIU_URL + 'triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
-          need_login: false
+          need_login: false,
+          open_type: 'contact',
+          bind_func_name: 'handleContact'
         }, 
         {
           id: 4,
           img_url: config.CDN_QINIU_URL + 'cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
-          need_login: false
+          need_login: false,
+          open_type: 'share',
+          bind_func_name: 'onShareAppMessage'
         }
       ], 
       [
@@ -48,7 +56,9 @@ Page({
           img_url: config.CDN_QINIU_URL + 'octagon.png',
           url: '/page/setting/setting',
           name: '设置',
-          need_login: true
+          need_login: true,
+          open_type: '',
+          bind_func_name: 'click_mine'
         }
       ],
       [
@@ -57,10 +67,37 @@ Page({
           img_url: config.CDN_QINIU_URL + 'heart.png',
           url: '/page/about/about',
           name: '关于',
-          need_login: false
+          need_login: false,
+          open_type: '',
+          bind_func_name: 'click_mine'
         }
       ]
     ]
+  },
+
+  handleContact(e) {
+    console.log(e.detail.path)
+    console.log(e.detail.query)
+  },
+
+  onShareAppMessage: function (ops) {
+    console.log('share from button')
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target)
+    }
+    return {
+      title: '关关雎鸠',
+      path: '/page/guanguan/guanguan',  // 路径，传递参数到指定页面。
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
   },
 
   /**
@@ -147,11 +184,4 @@ Page({
   onReachBottom: function () {
   
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
