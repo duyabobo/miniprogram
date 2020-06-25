@@ -1,9 +1,0 @@
-.btn-submit { 
-  width: 60%;
-}
-
-.suggestion-input {   
-  background-color: #ffffff;
-  width: 90%;
-  margin: 5%;
-}

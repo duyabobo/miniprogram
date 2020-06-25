@@ -7,8 +7,7 @@
     "page/guan_point/guan_point",
     "page/share/share",
     "page/setting/setting",
-    "page/about/about",
-    "page/suggestion/suggestion",
+    "page/about/about", 
     "page/guan_evaluation/guan_evaluation",
     "page/API/index"
   ],
@@ -46,7 +45,6 @@
   "navigateToMiniProgramAppIdList": [
     "wx4f1b24bdc99fa23b"
   ],
-  "workers": "workers",
   "debug": false,
   "permission": {
     "scope.userLocation": {
