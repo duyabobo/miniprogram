@@ -21,7 +21,7 @@ page {
 
 .login {
   width: 60%;
-  background-color: #FF5500;
+  background-color: #FF6600;
   color: #FFFFFF;
 }
 

@@ -5,7 +5,7 @@ page {
 
 .evaluation {
   color: #FFFFFF;
-  background-color: #FF5500;
+  background-color: #FF6600;
   padding: 10rpx 20rpx;
 }
 

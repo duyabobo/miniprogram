@@ -37,7 +37,7 @@ page {
   align-items: center;
   align-content: flex-start;
   flex-wrap: wrap; 
-  color: #FF5500;
+  color: #FF6600;
 }
 
 .answer {
@@ -57,7 +57,7 @@ page {
 }
 
 .self_answer {
-  background-color: #FF5500;
+  background-color: #FF6600;
   text-align: left;
   padding: 0 0 0 10%;
 }
@@ -88,5 +88,5 @@ page {
 
 .just_for_fun_text {
   text-decoration:underline;
-  color: #FF5500;
+  color: #FF6600;
 }

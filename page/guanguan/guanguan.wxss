@@ -29,5 +29,5 @@ page {
 .info {
   width: 30%;
   font-size: 25rpx;
-  color: #FF5500;
+  color: #FF6600;
 }
