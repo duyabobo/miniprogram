@@ -14,17 +14,8 @@ Page({
         {
           id: 1,
           img_url: config.CDN_QINIU_URL + 'foursquare.png',
-          url: '/page/guan_evaluation/guan_evaluation',
+          url: '/page/my_guan/my_guan',
           name: '我的关关',
-          need_login: true,
-          open_type: '',
-          bind_func_name: 'click_mine'
-        },
-        {
-          id: 2,
-          img_url: config.CDN_QINIU_URL + 'diamond.png',
-          url: '/page/guan_point/guan_point',
-          name: '我的积分',
           need_login: true,
           open_type: '',
           bind_func_name: 'click_mine'
@@ -32,7 +23,7 @@ Page({
       ],
       [
         {
-          id: 3,
+          id: 2,
           img_url: config.CDN_QINIU_URL + 'triangle.png',
           url: '/page/suggestion/suggestion',
           name: '意见给我们',
@@ -41,7 +32,7 @@ Page({
           bind_func_name: 'handleContact'
         }, 
         {
-          id: 4,
+          id: 3,
           img_url: config.CDN_QINIU_URL + 'cicle.png',
           url: '/page/share/share',
           name: '分享给好友',
@@ -52,18 +43,16 @@ Page({
       ], 
       [
         {
-          id: 5,
+          id: 4,
           img_url: config.CDN_QINIU_URL + 'octagon.png',
           url: '/page/setting/setting',
           name: '设置',
           need_login: true,
           open_type: '',
           bind_func_name: 'click_mine'
-        }
-      ],
-      [
+        },
         {
-          id: 6,
+          id: 5,
           img_url: config.CDN_QINIU_URL + 'heart.png',
           url: '/page/about/about',
           name: '关于',

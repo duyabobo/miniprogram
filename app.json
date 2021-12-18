@@ -4,11 +4,10 @@
     "page/guanguan/guanguan",
     "page/guan_info/guan_info",
     "page/mine/mine", 
-    "page/guan_point/guan_point",
+    "page/my_guan/my_guan",
     "page/share/share",
     "page/setting/setting",
     "page/about/about", 
-    "page/guan_evaluation/guan_evaluation",
     "page/API/index"
   ],
   "window": {

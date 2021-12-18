@@ -1,8 +1,8 @@
 <view class="question-and-background">
   <image class='background' src="{{question_background}}" mode="aspectFit"></image>
-  <view class='question'>{{meeting_time}}</view>
-  <view class='question'>{{meeting_address}}</view>
-  <view class='question'>{{question}}</view>
+  <view class='question'>{{name}}</view>
+  <view class='question'>{{address}}</view>
+  <view class='question'>{{time}}</view>
 </view>
   
 <view class='answers'>
@@ -13,12 +13,4 @@
     <button wx:elif="{{item.could_answer == 0}}" class="could_not_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="could_not_answer">{{item.answer_key}}</button> 
     <button wx:else class="could_answer" data-answer_info_id='{{item.answer_info_id}}' bindtap="answer_question">{{item.answer_key}}</button> 
   </view>
-</view>
-
-<view class='steps'>
-  <image class='step' src="{{back_icon}}" data-incr='-1' data-step='{{step}}' bindtap='change_step'></image>
-  <view class='just_for_fun'>
-    <navigator class="just_for_fun_text" wx:if="{{step != 0}}" url="{{guanguan_page_url}}" open-type="reLaunch">随便逛逛</navigator>
-  </view>
-  <image class='step' src="{{front_icon}}" data-incr='1' data-step='{{step}}'  bindtap='change_step'></image> 
 </view>

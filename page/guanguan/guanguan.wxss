@@ -5,29 +5,14 @@ page {
 } 
 
 .question {
-  flex-shrink: 0;
   display: flex;
-  width: 100%;
+  align-items: center;
   margin: 2px 0;
-  padding: 10rpx;
-  flex-direction: column;
+  padding: 30rpx 30rpx;
   background-color: #FFFFFF;
 }
 
 .question-title {
   padding: 10px;
   font-size: 38rpx;
-}
-
-.question-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  padding-left: 10px;
-}
-
-.info {
-  width: 30%;
-  font-size: 25rpx;
-  color: #FF6600;
 }

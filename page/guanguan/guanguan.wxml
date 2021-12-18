@@ -2,9 +2,4 @@
   <view class="question-title">
     {{item.name}}
   </view>
-  <view class="question-info"> 
-    <view class="info classification">{{item.guan_type}}</view>
-    <view class="info point">{{item.guan_point}}</view>
-    <view class="info answers">{{item.answers}}</view> 
-  </view>
 </view> 
