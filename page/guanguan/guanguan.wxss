@@ -4,15 +4,28 @@ page {
   align-items: center; 
 } 
 
-.question {
+.guan {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 20%;
   align-items: center;
   margin: 2px 0;
-  padding: 30rpx 30rpx;
+  padding: 10rpx 10rpx;
   background-color: #FFFFFF;
 }
 
-.question-title {
-  padding: 10px;
-  font-size: 38rpx;
+.img {
+  width: 66%;
+  height: 100%;
+}
+
+.address-time {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }

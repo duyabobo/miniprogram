@@ -14,8 +14,8 @@ Page({
         {
           id: 1,
           img_url: config.CDN_QINIU_URL + 'foursquare.png',
-          url: '/page/my_guan/my_guan',
-          name: '我的关关',
+          url: config.MYGUAN_PAGE,
+          name: '我的',
           need_login: true,
           open_type: '',
           bind_func_name: 'click_mine'
@@ -25,8 +25,8 @@ Page({
         {
           id: 2,
           img_url: config.CDN_QINIU_URL + 'triangle.png',
-          url: '/page/suggestion/suggestion',
-          name: '意见给我们',
+          url: config.SUGGESTION_PAGE,
+          name: '客服',
           need_login: false,
           open_type: 'contact',
           bind_func_name: 'handleContact'
@@ -34,8 +34,8 @@ Page({
         {
           id: 3,
           img_url: config.CDN_QINIU_URL + 'cicle.png',
-          url: '/page/share/share',
-          name: '分享给好友',
+          url: config.SHARE_PAGE,
+          name: '分享',
           need_login: false,
           open_type: 'share',
           bind_func_name: 'onShareAppMessage'
@@ -45,7 +45,7 @@ Page({
         {
           id: 4,
           img_url: config.CDN_QINIU_URL + 'octagon.png',
-          url: '/page/setting/setting',
+          url: config.SETTING_PAGE,
           name: '设置',
           need_login: true,
           open_type: '',
@@ -54,7 +54,7 @@ Page({
         {
           id: 5,
           img_url: config.CDN_QINIU_URL + 'heart.png',
-          url: '/page/about/about',
+          url: config.ABOUT_PAGE,
           name: '关于',
           need_login: false,
           open_type: '',
@@ -77,7 +77,7 @@ Page({
     }
     return {
       title: '关关雎鸠',
-      path: '/page/guanguan/guanguan',  // 路径，传递参数到指定页面。
+      path: config.GUANGUAN_PAGE,  // 路径，传递参数到指定页面。
       success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
@@ -126,22 +126,13 @@ Page({
       guan_info_id: 1 
     }
     wx.request({
-      url: config.HTTP_HOST_TEST + config.guananswer_url,
+      url: config.HTTP_HOST_TEST + config.myself_url,
       data: request_data,
       success(res) {
-        var answer_info_id = res.data.answer_info_id 
-        var head_img_url = that.data.head_img_url
-        var head_img_url = {
-          0: '',
-          1: config.CDN_QINIU_URL + 'girl.jpg',
-          2: config.CDN_QINIU_URL + 'boy.jpg'
-        }[answer_info_id]
-        that.setData({
-          head_img_url: head_img_url
-        })
+        that.setData(res.data)
       },
       fail(res) {
-        console.log('user_info fail')
+        console.log('myself fail')
       }
     })
   },

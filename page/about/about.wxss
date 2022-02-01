@@ -6,8 +6,6 @@ page {
   justify-content: space-around; 
 } 
 .logo-img {
-  margin: 20px;
-  width: 80%;
-  height: 30%;
+  width: 85%;
   border-radius: 20px
 }

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    login: 0
+    has_login: true
   },
 
   logout: function () {
@@ -21,7 +21,7 @@ Page({
         console.log('suc')
         app.globalData.hasLogin = false  
         wx.reLaunch({
-          url: '/page/login/login',
+          url: config.LOGIN_PAGE,
         })
       },
       fail(res) {
@@ -34,7 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ login: 1 })
+
   },
 
   /**

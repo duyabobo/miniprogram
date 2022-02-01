@@ -1,10 +1,9 @@
-<view class="my_info">
+<view class="my-info">
   <image class='head-img' src="{{head_img_url}}"></image>
 </view>
 
 <view wx:for="{{func_group_list}}" wx:for-item="func_group" wx:key="id" class="func-group-list">
   <button class="func-group" open-type="{{item.open_type}}" wx:for="{{func_group}}" wx:key="id" data-url="{{item.url}}" data-need_login="{{item.need_login}}" bindtap="{{item.bind_func_name}}">
-    <image class='func-img' src="{{item.img_url}}"></image>
     <view class="func-name">{{item.name}}</view>
     <view class="navigator-arrow"></view>
   </button>

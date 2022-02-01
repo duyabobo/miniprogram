@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36897b65-beba-4bd7-84d6-4a01345e56c8" name="Default" comment="" />
+    <list default="true" id="36897b65-beba-4bd7-84d6-4a01345e56c8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +57,9 @@
       <workItem from="1593051103706" duration="2654000" />
       <workItem from="1603546517039" duration="50000" />
       <workItem from="1637897726508" duration="626000" />
-      <workItem from="1639802505673" duration="1208000" />
+      <workItem from="1639802505673" duration="1543000" />
+      <workItem from="1639809666664" duration="58000" />
+      <workItem from="1643718828107" duration="3533000" />
     </task>
     <servers />
   </component>
@@ -67,29 +71,11 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="text">
-                    <value>
-                      <list>
-                        <option value="疫情" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1603546566886">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1603546566886" />
   </component>
 </project>

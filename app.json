@@ -1,14 +1,7 @@
 {
   "pages": [
-    "page/login/login",
     "page/guanguan/guanguan",
-    "page/guan_info/guan_info",
-    "page/mine/mine", 
-    "page/my_guan/my_guan",
-    "page/share/share",
-    "page/setting/setting",
-    "page/about/about", 
-    "page/API/index"
+    "page/mine/mine"  
   ],
   "window": {
     "navigationBarTextStyle": "black",

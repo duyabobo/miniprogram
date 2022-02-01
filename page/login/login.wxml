@@ -3,7 +3,7 @@
   <button class="login" bindtap="login"> 
     微信登录
   </button>
-  <button class="visit" bindtap="visit">
-    随便逛逛
-  </button>
+  <view class="visit" bindtap="visit">
+    随便看看
+  </view>
 </view>

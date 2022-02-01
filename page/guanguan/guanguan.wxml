@@ -1,5 +1,16 @@
-<view class="question" wx:for="{{guanguan_list}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="click_guan_info">
-  <view class="question-title">
-    {{item.name}}
+<view class="guan" wx:for="{{guanguan_list}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="click_guan_info">
+  <image class="img">
+    {{item.img}}
+  </image>
+  <view class="address-time-status">
+    <view class="address">
+    {{item.address}}
+    </view>
+    <view class="time">
+    {{item.time}}
+    </view>
+    <view class="status">
+    {{item.status}}
+    </view>
   </view>
 </view> 

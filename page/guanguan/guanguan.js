@@ -5,19 +5,13 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: { 
-    guanguan_list: []
-  },
-
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+  data: {
+    guanguan_list: [],
   },
 
   click_guan_info: function (event) {
-    var app = getApp() 
-    var suc_url = "/page/guan_info/guan_info?guan_id=" + event.currentTarget.dataset.guan_id
+    const app = getApp();
+    const suc_url = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id;
     if (!app.globalData.hasLogin) {
       config.wxlogin(suc_url)
     } else {
@@ -31,9 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var errmsg = options.errmsg
+    const errmsg = options.errmsg;
     console.log(errmsg)
-    if (errmsg != undefined) {
+    if (errmsg !== undefined) {
       wx.showToast({
         title: errmsg,
         icon: 'loading',
@@ -55,7 +49,7 @@ Page({
    */
   onShow: function () {
     const app = getApp()
-    var that = this
+    const that = this;
     wx.getSetting({
       success(res) {
         let status = res.authSetting['scope.userLocation']
@@ -69,18 +63,16 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       complete(res) {
-        var request_data = {
+        const request_data = {
           access_token: app.globalData.access_token,
           latitude: res.latitude,
           longitude: res.longitude
-        }
+        };
         wx.request({
           url: config.HTTP_HOST_TEST + config.guanguan_url,
           data: request_data,
           success(res) {
-            that.setData({
-              guanguan_list: res.data.guanguan_list
-            })
+            that.setData(res.data)
           },
           fail(res) {
             console.log('guanguan err')

@@ -22,7 +22,7 @@ Page({
             },
             success(res) { 
               wx.reLaunch({
-                url: '/page/guanguan/guanguan',
+                url: config.GUANGUAN_PAGE,
               })
               const app = getApp()
               app.globalData.access_token = res.data.access_token
@@ -41,7 +41,7 @@ Page({
 
   visit: function () {
     wx.reLaunch({
-      url: '/page/guanguan/guanguan',
+      url: config.GUANGUAN_PAGE,
     })
   },
 
