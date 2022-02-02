@@ -1,5 +1,4 @@
-<image class="img">
-  {{img}}
+<image class="img" src="{{img}}">
 </image>
 
 <view class="time-address-person">

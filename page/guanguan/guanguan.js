@@ -6,7 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    guanguan_list: [],
+    guanguan_list: [
+      {
+        id: 1,
+        img: config.CDN_QINIU_URL + "question_background.png",
+        address: "玉檀园公园",
+        time: "2月12日",
+      }
+    ],
   },
 
   click_guan_info: function (event) {

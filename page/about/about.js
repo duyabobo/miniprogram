@@ -1,18 +1,28 @@
 // page/about/about.js
+const config = require("../../config.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    real_logo_url: 'http://img.ggjjzhzz.cn/about_guan.png'
+    real_logo_url: 'http://img.ggjjzhzz.cn/real_logo.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.about_url,
+      data: request_data,
+      success(res) {
+        that.setData(res.data)
+      },
+      fail(res) {
+        console.log('about fail')
+      }
+    })
   },
 
   /**

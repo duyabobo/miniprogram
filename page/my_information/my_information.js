@@ -1,4 +1,3 @@
-// page/my_requirement/my_requirement.js
 var config = require('../../config.js')
 
 Page({
@@ -7,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    requirement_list: [
+    user_info: [
       {
         id: 1,
         op_type: "ceshi",
@@ -18,7 +17,7 @@ Page({
     ]
   },
 
-  upsert_requirement: function(event) {
+  upsert_myself: function(event) {
     const that = this;
     const id = event.currentTarget.dataset.id;
     const op_type = event.currentTarget.dataset.op_type;
@@ -28,7 +27,7 @@ Page({
       success (res) {
         console.log(res.tapIndex)
         wx.request({
-          url: config.HTTP_HOST_TEST + config.upsert_requirement_url,
+          url: config.HTTP_HOST_TEST + config.update_myself_url,
           data: {
             id: id,
             op_type: op_type,
@@ -38,7 +37,7 @@ Page({
             that.setData(res.data)  // 有性能问题
           },
           fail(res) {
-            console.log('upsert_requirement fail')
+            console.log('update_myself fail')
           }
         })
       },
@@ -58,7 +57,7 @@ Page({
       access_token: app.globalData.access_token,
     };
     wx.request({
-      url: config.HTTP_HOST_TEST + config.requirement_url,
+      url: config.HTTP_HOST_TEST + config.myself_url,
       data: request_data,
       success(res) {
         const code = res.data.code;

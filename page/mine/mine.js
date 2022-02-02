@@ -13,7 +13,7 @@ Page({
       [
         {
           id: 1,
-          url: config.MYGUAN_PAGE,
+          url: config.MYINFORMATION_PAGE,
           name: '我的资料',
           need_login: true,
           open_type: '',
@@ -22,7 +22,7 @@ Page({
         {
           id: 2,
           url: config.MYREQUIREMENT_PAGE,
-          name: '择偶条件',
+          name: '我的期望',
           need_login: true,
           open_type: '',
           bind_func_name: 'click_mine'

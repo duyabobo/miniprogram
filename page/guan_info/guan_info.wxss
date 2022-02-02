@@ -47,9 +47,7 @@ page {
 }
 
 .operate {
-  text-align: center;
   width: 80%;
-  height: 100rpx;
   color: #000000;
   background-color: #FF6600;
 }
