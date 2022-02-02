@@ -19,6 +19,7 @@ const SETTING_PAGE = '/page/setting/setting'
 const SHARE_PAGE = '/page/share/share'
 const SUGGESTION_PAGE = '/page/suggestion/suggestion'
 const MYGUAN_PAGE = '/page/my_guan/my_guan'
+const MYREQUIREMENT_PAGE = '/page/my_requirement/my_requirement'
 
 const subscribe_offline_noti_tid = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
 
@@ -76,6 +77,7 @@ module.exports.SETTING_PAGE = SETTING_PAGE
 module.exports.SHARE_PAGE = SHARE_PAGE
 module.exports.SUGGESTION_PAGE = SUGGESTION_PAGE
 module.exports.MYGUAN_PAGE = MYGUAN_PAGE
+module.exports.MYREQUIREMENT_PAGE = MYREQUIREMENT_PAGE
 
 module.exports.subscribe_offline_noti_tid = subscribe_offline_noti_tid
 module.exports.wxlogin = wxlogin

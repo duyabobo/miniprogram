@@ -1,19 +1,18 @@
-// page/guan_evaluation/guan_evaluation.js
-var config = require('../../config.js')
-
+// page/my_requirement/my_requirement.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user_info: {}
+    requirement: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**

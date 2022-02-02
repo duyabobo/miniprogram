@@ -14,7 +14,15 @@ Page({
         {
           id: 1,
           url: config.MYGUAN_PAGE,
-          name: '我的',
+          name: '我的资料',
+          need_login: true,
+          open_type: '',
+          bind_func_name: 'click_mine'
+        },
+        {
+          id: 2,
+          url: config.MYREQUIREMENT_PAGE,
+          name: '择偶条件',
           need_login: true,
           open_type: '',
           bind_func_name: 'click_mine'
@@ -22,7 +30,7 @@ Page({
       ],
       [
         {
-          id: 2,
+          id: 3,
           url: config.SUGGESTION_PAGE,
           name: '客服',
           need_login: false,
@@ -30,7 +38,7 @@ Page({
           bind_func_name: 'handleContact'
         }, 
         {
-          id: 3,
+          id: 4,
           url: config.SHARE_PAGE,
           name: '分享',
           need_login: false,
@@ -40,7 +48,7 @@ Page({
       ], 
       [
         {
-          id: 4,
+          id: 5,
           url: config.SETTING_PAGE,
           name: '设置',
           need_login: true,
@@ -48,7 +56,7 @@ Page({
           bind_func_name: 'click_mine'
         },
         {
-          id: 5,
+          id: 6,
           url: config.ABOUT_PAGE,
           name: '关于',
           need_login: false,
