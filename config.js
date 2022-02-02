@@ -14,7 +14,6 @@ const operate_url = '/operate'
 
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errmsg='
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guan_id='
-const LOGIN_PAGE = '/page/login/login'
 const ABOUT_PAGE = '/page/about/about'
 const SETTING_PAGE = '/page/setting/setting'
 const SHARE_PAGE = '/page/share/share'
@@ -72,7 +71,6 @@ module.exports.operate_url = operate_url
 
 module.exports.GUANGUAN_PAGE = GUANGUAN_PAGE
 module.exports.GUANINFO_PAGE = GUANINFO_PAGE
-module.exports.LOGIN_PAGE = LOGIN_PAGE
 module.exports.ABOUT_PAGE = ABOUT_PAGE
 module.exports.SETTING_PAGE = SETTING_PAGE
 module.exports.SHARE_PAGE = SHARE_PAGE

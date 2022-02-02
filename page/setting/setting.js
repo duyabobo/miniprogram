@@ -21,7 +21,7 @@ Page({
         console.log('suc')
         app.globalData.hasLogin = false  
         wx.reLaunch({
-          url: config.LOGIN_PAGE,
+          url: config.GUANGUAN_PAGE,
         })
       },
       fail(res) {

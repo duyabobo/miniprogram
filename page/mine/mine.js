@@ -13,7 +13,6 @@ Page({
       [
         {
           id: 1,
-          img_url: config.CDN_QINIU_URL + 'foursquare.png',
           url: config.MYGUAN_PAGE,
           name: '我的',
           need_login: true,
@@ -24,7 +23,6 @@ Page({
       [
         {
           id: 2,
-          img_url: config.CDN_QINIU_URL + 'triangle.png',
           url: config.SUGGESTION_PAGE,
           name: '客服',
           need_login: false,
@@ -33,7 +31,6 @@ Page({
         }, 
         {
           id: 3,
-          img_url: config.CDN_QINIU_URL + 'cicle.png',
           url: config.SHARE_PAGE,
           name: '分享',
           need_login: false,
@@ -44,7 +41,6 @@ Page({
       [
         {
           id: 4,
-          img_url: config.CDN_QINIU_URL + 'octagon.png',
           url: config.SETTING_PAGE,
           name: '设置',
           need_login: true,
@@ -53,7 +49,6 @@ Page({
         },
         {
           id: 5,
-          img_url: config.CDN_QINIU_URL + 'heart.png',
           url: config.ABOUT_PAGE,
           name: '关于',
           need_login: false,
