@@ -95,7 +95,7 @@ Page({
 
   clickMine: function(event) {
     let sucUrl = event.currentTarget.dataset.url
-    let needLogin = event.currentTarget.dataset.needLogin
+    let needLogin = event.currentTarget.dataset.need_login
     if (!app.globalData.hasLogin && needLogin) {
       wxLogin.wxLogin(sucUrl)
     } else {

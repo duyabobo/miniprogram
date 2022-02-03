@@ -3,7 +3,7 @@
 </view>
 
 <view wx:for="{{func_group_list}}" wx:for-item="func_group" wx:key="id" class="func-group-list">
-  <button class="func-group" open-type="{{item.open_type}}" wx:for="{{func_group}}" wx:key="id" data-url="{{item.url}}" data-needLogin="{{item.need_login}}" bindtap="{{item.bind_func_name}}">
+  <button class="func-group" open-type="{{item.open_type}}" wx:for="{{func_group}}" wx:key="id" data-url="{{item.url}}" data-need_login="{{item.need_login}}" bindtap="{{item.bind_func_name}}">
     <view class="func-name">{{item.name}}</view>
     <view class="navigator-arrow"></view>
   </button>
