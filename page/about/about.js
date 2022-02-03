@@ -1,12 +1,12 @@
-// page/about/about.js
 const config = require("../../config.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    real_logoUrl: 'http://img.ggjjzhzz.cn/real_logo.png'
+    realLogoUrl: config.CDN_QINIU_URL + '/real_logo.png'
   },
 
   /**
@@ -21,7 +21,7 @@ Page({
         that.setData(res.data)
       },
       fail(res) {
-        console.log('about fail')
+        console.log('about fail, res=' + res)
       }
     })
   },
