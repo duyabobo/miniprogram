@@ -1,5 +1,5 @@
 function wxToast(msg) {
-  if (msg !== undefined) {
+  if (msg !== undefined && msg !== "" && msg !== "undefined") {
     wx.showToast({
       title: msg,
       icon: 'loading',
