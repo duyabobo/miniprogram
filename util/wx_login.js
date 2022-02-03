@@ -33,5 +33,4 @@ function wxLogin(sucUrl) {
 
 module.exports = {
   checkLoginBeforeJump,
-  wxLogin
 }
