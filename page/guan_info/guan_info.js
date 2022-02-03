@@ -1,4 +1,5 @@
 const config = require('../../config.js')
+const enumerate = require("../../util/enumerate");
 
 Page({
 
@@ -24,13 +25,18 @@ Page({
         op_type: opType,
       },
       success(res) {
-        if (res.data.code !== 0) {
+        let code = res.data.code
+        if (code === enumerate.SUCESS_CODE) {
           wx.reLaunch({
-            url: config.GUANGUAN_PAGE + res.data.errMsg,
+            url: config.GUANINFO_PAGE + guan_id,
+          })
+        } else if (code === enumerate.NEED_FILL_INFORMATION_CODE) {
+          wx.navigateTo({
+            url: config.MYINFORMATION_PAGE + res.data.errMsg,
           })
         } else {
           wx.reLaunch({
-            url: config.GUANINFO_PAGE + guan_id,
+            url: config.GUANGUAN_PAGE + res.data.errMsg,
           })
         }
       },
@@ -54,7 +60,7 @@ Page({
       url: config.HTTP_HOST_TEST + config.guaninfoUrl,
       data: requestData,
       success(res) {
-        if (res.data.code !== 0) {
+        if (res.data.code !== enumerate.SUCESS_CODE) {
           wx.reLaunch({
             url: config.GUANGUAN_PAGE + res.data.errMsg,
           })

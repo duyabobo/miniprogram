@@ -1,6 +1,7 @@
 const config = require('../../config.js')
 const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
+const wxInteractive = require("../../util/wx_interactive");
 
 Page({
 
@@ -35,16 +36,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let errMsg = options.errMsg;
-    console.log(errMsg)
-    if (errMsg !== undefined) {
-      wx.showToast({
-        title: errMsg,
-        icon: 'loading',
-        duration: 800,
-        mask: true
-      })
-    }
+    wxInteractive.wxToast(options.errMsg)
   },
 
   /**
@@ -71,7 +63,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         };
-        request.getGuanguan(that, requestData)
+        request.getGuanguanRequest(that, requestData)
       }
     })
   },

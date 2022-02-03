@@ -1,11 +1,12 @@
 const config = require("../config");
+const enumerate = require("./enumerate");
 
 function normalUpdateRequest(that, url, data) {
   wx.request({
     url: url,
     data: data,
     success(res) {
-      if (res.data.code === 0) {
+      if (res.data.code === enumerate.SUCESS_CODE) {
         that.setData(res.data)  // 有性能问题
       }
       else {
@@ -47,7 +48,7 @@ function loginRequest(code, suc_uri) {
   })
 }
 
-function getGuanguan(that, requestData) {
+function getGuanguanRequest(that, requestData) {
   wx.request({
     url: config.HTTP_HOST_TEST + config.guanguanUrl,
     data: requestData,
@@ -64,5 +65,5 @@ function getGuanguan(that, requestData) {
 module.exports = {
   normalUpdateRequest,
   loginRequest,
-  getGuanguan
+  getGuanguanRequest
 }

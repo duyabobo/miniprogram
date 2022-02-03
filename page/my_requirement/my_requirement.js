@@ -1,5 +1,6 @@
 const config = require('../../config.js')
 const request = require("../../util/request");
+const enumerate = require("../../util/enumerate");
 
 Page({
 
@@ -54,7 +55,7 @@ Page({
       url: config.HTTP_HOST_TEST + config.requirementUrl,
       data: requestData,
       success(res) {
-        if (res.data.code === 0) {
+        if (res.data.code === enumerate.SUCESS_CODE) {
           that.setData(res.data)
         }
       },

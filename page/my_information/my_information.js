@@ -1,5 +1,7 @@
 const config = require('../../config.js');
 const request = require("../../util/request");
+const wxInteractive = require("../../util/wx_interactive");
+const enumerate = require("../../util/enumerate");
 
 Page({
 
@@ -45,6 +47,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wxInteractive.wxToast(options.errMsg)
     let that = this;
     let app = getApp();
     let requestData = {
@@ -54,7 +57,7 @@ Page({
       url: config.HTTP_HOST_TEST + config.myselfUrl,
       data: requestData,
       success(res) {
-        if (res.data.code === 0) {
+        if (res.data.code === enumerate.SUCESS_CODE) {
           that.setData(res.data)
         }
       },
@@ -64,4 +67,5 @@ Page({
       }
     })
   },
+
 })

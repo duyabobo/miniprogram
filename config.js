@@ -22,7 +22,7 @@ const ABOUT_PAGE = '/page/about/about'
 const SETTING_PAGE = '/page/setting/setting'
 const SHARE_PAGE = '/page/share/share'
 const SUGGESTION_PAGE = '/page/suggestion/suggestion'
-const MYINFORMATION_PAGE = '/page/my_information/my_information'
+const MYINFORMATION_PAGE = '/page/my_information/my_information?errMsg='
 const MYREQUIREMENT_PAGE = '/page/my_requirement/my_requirement'
 
 const SUBSCRIBE_OFFLINE_NOTI_TID = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
