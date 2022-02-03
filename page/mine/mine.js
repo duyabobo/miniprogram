@@ -1,14 +1,15 @@
-var config = require('../../config.js')
+const config = require('../../config.js')
+const wxLogin = require("../../util/wx_login");
 
-var app = getApp();
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: { 
-    has_login: app.hasLogin, 
-    head_img_url: config.CDN_QINIU_URL + 'unknown.jpg',
+    has_login: app.globalData.hasLogin,
+    head_imgUrl: config.CDN_QINIU_URL + 'unknown.jpg',
     func_group_list: [ 
       [
         {
@@ -17,7 +18,7 @@ Page({
           name: '我的资料',
           need_login: true,
           open_type: '',
-          bind_func_name: 'click_mine'
+          bind_func_name: 'clickMine'
         },
         {
           id: 2,
@@ -25,7 +26,7 @@ Page({
           name: '我的期望',
           need_login: true,
           open_type: '',
-          bind_func_name: 'click_mine'
+          bind_func_name: 'clickMine'
         }
       ],
       [
@@ -53,7 +54,7 @@ Page({
           name: '设置',
           need_login: true,
           open_type: '',
-          bind_func_name: 'click_mine'
+          bind_func_name: 'clickMine'
         },
         {
           id: 6,
@@ -61,7 +62,7 @@ Page({
           name: '关于',
           need_login: false,
           open_type: '',
-          bind_func_name: 'click_mine'
+          bind_func_name: 'clickMine'
         }
       ]
     ]
@@ -92,29 +93,14 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {   
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  click_mine: function(event) {
-    var app = getApp() 
-    var suc_url = event.currentTarget.dataset.url
-    var need_login = event.currentTarget.dataset.need_login
-    if (!app.globalData.hasLogin && need_login) {
-      config.wxlogin(suc_url)
+  clickMine: function(event) {
+    let sucUrl = event.currentTarget.dataset.url
+    let needLogin = event.currentTarget.dataset.needLogin
+    if (!app.globalData.hasLogin && needLogin) {
+      wxLogin.wxLogin(sucUrl)
     } else {
       wx.navigateTo({
-        url: suc_url,
+        url: sucUrl,
       })
     }
   },
@@ -123,14 +109,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
-    var request_data = {
-      access_token: app.globalData.access_token,
+    let that = this
+    let requestData = {
+      access_token: app.globalData.accessToken,
       guan_info_id: 1 
     }
     wx.request({
-      url: config.HTTP_HOST_TEST + config.myself_url,
-      data: request_data,
+      url: config.HTTP_HOST_TEST + config.myselfUrl,
+      data: requestData,
       success(res) {
         that.setData(res.data)
       },

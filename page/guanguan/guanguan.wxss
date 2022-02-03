@@ -19,7 +19,7 @@ page {
 .img {
   width: 66%;
   height: 99%;
-  padding: 10rpx;
+  padding: 5rpx;
 }
 
 .address-time-status {

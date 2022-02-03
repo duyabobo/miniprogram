@@ -1,5 +1,5 @@
-// page/my_requirement/my_requirement.js
-var config = require('../../config.js')
+const config = require('../../config.js')
+const request = require("../../util/request");
 
 Page({
 
@@ -18,42 +18,22 @@ Page({
     ]
   },
 
-  upsert_requirement: function(event) {
-    const that = this;
-    const id = event.currentTarget.dataset.id;
-    const op_type = event.currentTarget.dataset.op_type;
-    const item_list = event.currentTarget.dataset.item_list;
+  upsertRequirement: function(event) {
+    let that = this;
+    let id = event.currentTarget.dataset.id;
+    let opType = event.currentTarget.dataset.op_type;
+    let itemList = event.currentTarget.dataset.item_list;
     wx.showActionSheet({
-      itemList: item_list,
+      itemList: itemList,
       success (res) {
         console.log(res.tapIndex)
-        wx.request({
-          url: config.HTTP_HOST_TEST + config.upsert_requirement_url,
-          data: {
-            id: id,
-            op_type: op_type,
-            value: res.tapIndex
-          },
-          success(res) {
-            if (res.data.code === 0) {
-              that.setData(res.data)  // 有性能问题
-            } else {
-                const errmsg = res.data.errmsg;
-                console.log(errmsg)
-                if (errmsg !== undefined) {
-                  wx.showToast({
-                    title: errmsg,
-                    icon: 'loading',
-                    duration: 800,
-                    mask: true
-                  })
-                }
-            }
-          },
-          fail(res) {
-            console.log('upsert_requirement fail')
-          }
-        })
+        let requestData = {
+          id: id,
+          op_type: opType,
+          value: res.tapIndex
+        }
+        let url = config.HTTP_HOST_TEST + config.upsertRequirementUrl
+        request.normalUpdateRequest(that, url, requestData)
       },
       fail (res) {
         console.log(res.errMsg)
@@ -65,14 +45,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that = this;
-    const app = getApp();
-    const request_data = {
-      access_token: app.globalData.access_token,
+    let that = this;
+    let app = getApp();
+    let requestData = {
+      access_token: app.globalData.accessToken,
     };
     wx.request({
-      url: config.HTTP_HOST_TEST + config.requirement_url,
-      data: request_data,
+      url: config.HTTP_HOST_TEST + config.requirementUrl,
+      data: requestData,
       success(res) {
         if (res.data.code === 0) {
           that.setData(res.data)

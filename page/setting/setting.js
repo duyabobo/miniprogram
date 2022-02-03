@@ -1,4 +1,4 @@
-var config = require('../../config.js')
+const config = require('../../config.js')
 
 Page({
 
@@ -10,12 +10,12 @@ Page({
   },
 
   logout: function () {
-    var app = getApp()
+    let app = getApp()
     wx.request({
-      url: config.HTTP_HOST_TEST + config.login_url,
+      url: config.HTTP_HOST_TEST + config.loginUrl,
       method: 'PUT',
       data: {
-        access_token: app.globalData.access_token,
+        access_token: app.globalData.accessToken,
       },
       success(res) {
         console.log('suc')

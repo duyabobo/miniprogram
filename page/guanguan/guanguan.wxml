@@ -1,4 +1,4 @@
-<view class="guan" wx:for="{{guanguan_list}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="click_guan_info">
+<view class="guan" wx:for="{{guanguan_list}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="clickGuanInfo">
   <image class="img" src="{{item.img}}">
   </image>
   <view class="address-time-status">

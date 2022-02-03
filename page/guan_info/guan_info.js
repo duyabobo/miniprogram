@@ -1,4 +1,4 @@
-var config = require('../../config.js')
+const config = require('../../config.js')
 
 Page({
 
@@ -9,24 +9,24 @@ Page({
     img: config.CDN_QINIU_URL + "202010201143196086.png",
     address: "地点：玉檀园公园",
     time: "时间：2月12日",
-    op_desc: "确认参加"
+    op_desc: "报名参加"
   },
 
   operate: function (event) {
-    const app = getApp();
-    const guan_id = event.currentTarget.dataset.guan_id;
-    const op_type = event.currentTarget.dataset.op_type;
+    let app = getApp();
+    let guan_id = event.currentTarget.dataset.guan_id;
+    let opType = event.currentTarget.dataset.op_type;
     wx.request({
-      url: config.HTTP_HOST_TEST + config.operate_url,
+      url: config.HTTP_HOST_TEST + config.operateUrl,
       data: {
-        access_token: app.globalData.access_token,
+        access_token: app.globalData.accessToken,
         guan_id: guan_id,
-        op_type: op_type,
+        op_type: opType,
       },
       success(res) {
         if (res.data.code !== 0) {
           wx.reLaunch({
-            url: config.GUANGUAN_PAGE + res.data.errmsg,
+            url: config.GUANGUAN_PAGE + res.data.errMsg,
           })
         } else {
           wx.reLaunch({
@@ -44,19 +44,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const app = getApp();
-    const guan_id = options.guan_id;
-    const request_data = {
-      access_token: app.globalData.access_token,
+    let app = getApp();
+    let guan_id = options.guan_id;
+    let requestData = {
+      access_token: app.globalData.accessToken,
       guan_id: guan_id
     };
     wx.request({
-      url: config.HTTP_HOST_TEST + config.guaninfo_url,
-      data: request_data,
+      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+      data: requestData,
       success(res) {
         if (res.data.code !== 0) {
           wx.reLaunch({
-            url: config.GUANGUAN_PAGE + res.data.errmsg,
+            url: config.GUANGUAN_PAGE + res.data.errMsg,
           })
         }
       },

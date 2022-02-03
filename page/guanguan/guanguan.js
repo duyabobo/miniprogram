@@ -1,4 +1,6 @@
-var config = require('../../config.js')
+const config = require('../../config.js')
+const wxLogin = require("../../util/wx_login");
+const request = require("../../util/request");
 
 Page({
 
@@ -17,14 +19,14 @@ Page({
     ],
   },
 
-  click_guan_info: function (event) {
-    const app = getApp();
-    const suc_url = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id;
+  clickGuanInfo: function (event) {
+    let app = getApp();
+    let sucUrl = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id;
     if (!app.globalData.hasLogin) {
-      config.wxlogin(suc_url)
+      wxLogin.wxLogin(sucUrl)
     } else {
       wx.navigateTo({
-        url: suc_url,
+        url: sucUrl,
       })
     }
   },
@@ -33,15 +35,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const errmsg = options.errmsg;
-    console.log(errmsg)
-    if (errmsg !== undefined) {
+    let errMsg = options.errMsg;
+    console.log(errMsg)
+    if (errMsg !== undefined) {
       wx.showToast({
-        title: errmsg,
+        title: errMsg,
         icon: 'loading',
         duration: 800,
         mask: true
       })
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    const app = getApp()
+    const that = this;
+    wx.getSetting({
+      success(res) {
+        let status = res.authSetting['scope.userLocation']
+        if (!status) {
+          wx.authorize({ // 发起请求用户授权
+            scope: 'scope.userLocation'
+          })
+        }
+      }
+    })
+    wx.getLocation({
+      type: 'wgs84',
+      complete(res) {
+        const requestData = {
+          access_token: app.globalData.accessToken,
+          latitude: res.latitude,
+          longitude: res.longitude
+        };
+        request.getGuanguan(that, requestData)
+      }
+    })
   },
 })

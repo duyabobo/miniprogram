@@ -6,16 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    real_logo_url: 'http://img.ggjjzhzz.cn/real_logo.png'
+    real_logoUrl: 'http://img.ggjjzhzz.cn/real_logo.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
     wx.request({
-      url: config.HTTP_HOST_TEST + config.about_url,
-      data: request_data,
+      url: config.HTTP_HOST_TEST + config.aboutUrl,
+      data: {},
       success(res) {
         that.setData(res.data)
       },

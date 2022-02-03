@@ -1,3 +1,3 @@
 <!--page/about/about.wxml-->
-<image class='logo-img' src="{{real_logo_url}}"></image>
+<image class='logo-img' src="{{real_logoUrl}}"></image>
 <view>关关雎鸠 v1.2</view>

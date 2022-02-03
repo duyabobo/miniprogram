@@ -8,7 +8,7 @@ page {
 .img {
   width: 99%;
   height: 30%; 
-  padding: 10rpx;
+  padding: 5rpx;
   background-color: #FFFFFF;
 }
 
