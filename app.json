@@ -1,7 +1,9 @@
 {
   "pages": [
     "page/guanguan/guanguan",
-    "page/mine/mine"
+    "page/mine/mine",
+    "page/my_information/my_information",
+    "page/my_requirement/my_requirement"
   ],
   "window": {
     "navigationBarTextStyle": "black",
