@@ -18,6 +18,7 @@ page {
 }
 .value {
   flex: 4;
+  font-size: 25rpx;
 }
 .navigator-arrow {
   flex: 1;

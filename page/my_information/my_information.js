@@ -34,7 +34,20 @@ Page({
             value: res.tapIndex
           },
           success(res) {
-            that.setData(res.data)  // 有性能问题
+            if (res.data.code === 0) {
+              that.setData(res.data)  // 有性能问题
+            } else {
+                const errmsg = res.data.errmsg;
+                console.log(errmsg)
+                if (errmsg !== undefined) {
+                  wx.showToast({
+                    title: errmsg,
+                    icon: 'loading',
+                    duration: 800,
+                    mask: true
+                  })
+                }
+            }
           },
           fail(res) {
             console.log('update_myself fail')
@@ -60,8 +73,7 @@ Page({
       url: config.HTTP_HOST_TEST + config.myself_url,
       data: request_data,
       success(res) {
-        const code = res.data.code;
-        if (code == 0) {
+        if (res.data.code === 0) {
           that.setData(res.data)
         }
       },
@@ -71,53 +83,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

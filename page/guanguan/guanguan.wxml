@@ -2,13 +2,13 @@
   <image class="img" src="{{item.img}}">
   </image>
   <view class="address-time-status">
-    <view class="address">
-    {{item.address}}
-    </view>
-    <view class="time">
+    <view class="info">
     {{item.time}}
     </view>
-    <view class="status">
+    <view class="info">
+    {{item.address}}
+    </view>
+    <view class="info">
     {{item.status}}
     </view>
   </view>
