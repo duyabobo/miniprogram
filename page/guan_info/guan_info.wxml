@@ -2,32 +2,21 @@
 </image>
 
 <view class="time-address-person">
-  <view class="time">
-    时间:{{time}}({{time_desc}})
+  <view class="info">
+    <image class="info-img" src="{{timeImg}}"></image> 
+    <view class="info-text">{{time}}({{time_desc}})</view>
   </view>
-  <view class="address">
-    地点:{{address}}({{address_desc}})
+  <view class="info">
+    <image class="info-img" src="{{addressImg}}"></image> 
+    <view class="info-text">{{address}}({{address_desc}})</view> 
   </view>
-  <view wx:if="{{person}}" class="person">
-    见面对象:
-    <button class="person-info">
-    {{person.sex}}
-    </button>
-    <button class="person-info">
-    {{person.age}}
-    </button>
-    <button class="person-info">
-    {{person.marriage}}
-    </button>
-    <button class="person-info">
-    {{person.height}}
-    </button>
-    <button class="person-info">
-    {{person.weight}}
-    </button>
-    <button class="person-info">
-    {{person.annual_income}}
-    </button>
+  <view wx:if="{{personInfos}}" class="info">
+    <image class="info-img" src="{{personImg}}"></image> 
+    <view class="person"> 
+      <button wx:for="{{personInfos}}" wx:for-item="personInfo" wx:key="id" class="person-info">
+        {{personInfo.text}}
+      </button>
+    </view>
   </view>
 </view>
 

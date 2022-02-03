@@ -9,7 +9,7 @@ function normalUpdateRequest(that, url, data) {
     url: url,
     data: data,
     success(res) {
-      if (request.requestIsSuccess(res)) {
+      if (requestIsSuccess(res)) {
         that.setData(res.data)  // 有性能问题
       }
       else {

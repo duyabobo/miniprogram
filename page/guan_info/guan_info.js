@@ -11,9 +11,13 @@ Page({
    */
   data: {
     img: config.CDN_QINIU_URL + "202010201143196086.png",
-    address: "地点：玉檀园公园",
-    time: "时间：2月12日",
-    opDesc: "报名参加"
+    address: "玉檀园公园",
+    time: "2月12日",
+    personInfos: [{"text": "汉服爱好者"},{"text": "汉好者"},{"text": "汉服好者"},{"text": "汉服爱好者"},{"text": "汉服爱好者"},{"text": "者"},{"text": "汉好者"}],
+    opDesc: "报名参加",
+    timeImg: config.CDN_QINIU_URL + "202010201143196086.png",
+    addressImg: config.CDN_QINIU_URL + "202010201143196086.png",
+    personImg: config.CDN_QINIU_URL + "202010201143196086.png",
   },
 
   operate: function (event) {
