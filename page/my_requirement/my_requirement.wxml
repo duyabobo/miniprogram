@@ -1,4 +1,4 @@
-<button class="requirement" wx:for="{{requirement_list}}" wx:key="id" data-op_type="{{item.op_type}}" data-item_list="{{item.item_list}}" data-id="{{item.id}}" bindtap="upsertRequirement">
+<button class="requirement" wx:for="{{requirementList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.item_list}}" data-id="{{item.id}}" bindtap="upsertRequirement">
   <view class="desc">{{item.desc}}</view>
   <view class="value">{{item.value}}</view>
   <view class="navigator-arrow"></view>

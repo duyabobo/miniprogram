@@ -1,4 +1,4 @@
-<button class="user_info" wx:for="{{user_info}}" wx:key="id" data-op_type="{{item.op_type}}" data-item_list="{{item.item_list}}" data-id="{{item.id}}" bindtap="upsertMyself">
+<button class="user_info" wx:for="{{user_info}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.item_list}}" data-id="{{item.id}}" bindtap="upsertMyself">
   <view class="desc">{{item.desc}}</view>
   <view class="value">{{item.value}}</view>
   <view class="navigator-arrow"></view>

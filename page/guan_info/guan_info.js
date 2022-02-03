@@ -1,5 +1,8 @@
 const config = require('../../config.js')
 const enumerate = require("../../util/enumerate");
+const request = require("../../util/request");
+
+let app = getApp();
 
 Page({
 
@@ -10,27 +13,24 @@ Page({
     img: config.CDN_QINIU_URL + "202010201143196086.png",
     address: "地点：玉檀园公园",
     time: "时间：2月12日",
-    op_desc: "报名参加"
+    opDesc: "报名参加"
   },
 
   operate: function (event) {
-    let app = getApp();
-    let guan_id = event.currentTarget.dataset.guan_id;
-    let opType = event.currentTarget.dataset.op_type;
+    let guanId = event.currentTarget.dataset.guan_id;
     wx.request({
       url: config.HTTP_HOST_TEST + config.operateUrl,
       data: {
-        access_token: app.globalData.accessToken,
-        guan_id: guan_id,
-        op_type: opType,
+        accessToken: app.globalData.accessToken,
+        guanId: guanId,
+        opType: event.currentTarget.dataset.op_type,
       },
       success(res) {
-        let code = res.data.code
-        if (code === enumerate.SUCESS_CODE) {
+        if (request.requestIsSuccess(res)) {
           wx.reLaunch({
-            url: config.GUANINFO_PAGE + guan_id,
+            url: config.GUANINFO_PAGE + guanId,
           })
-        } else if (code === enumerate.NEED_FILL_INFORMATION_CODE) {
+        } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
             url: config.MYINFORMATION_PAGE + res.data.errMsg,
           })
@@ -41,7 +41,7 @@ Page({
         }
       },
       fail(res) {
-        console.log('operate fail')
+        request.logRequestErr("operateUrl err:", res)
       }
     })
   },
@@ -50,26 +50,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let app = getApp();
-    let guan_id = options.guan_id;
-    let requestData = {
-      access_token: app.globalData.accessToken,
-      guan_id: guan_id
-    };
     wx.request({
       url: config.HTTP_HOST_TEST + config.guaninfoUrl,
-      data: requestData,
+      data: {
+        accessToken: app.globalData.accessToken,
+        guanId: options.guanId
+      },
       success(res) {
-        if (res.data.code !== enumerate.SUCESS_CODE) {
+        if (request.requestIsSuccess(res)) {
           wx.reLaunch({
             url: config.GUANGUAN_PAGE + res.data.errMsg,
           })
         }
       },
       fail(res) {
-        console.log('guaninfo err')
-        console.log(res)
+        request.logRequestErr("guaninfoUrl err:", res)
       }
     })
   },
+
 })

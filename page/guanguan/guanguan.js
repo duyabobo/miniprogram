@@ -3,13 +3,15 @@ const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 
+let app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    guanguan_list: [
+    guanguanList: [
       {
         id: 1,
         img: config.CDN_QINIU_URL + "202010201143196086.png",
@@ -21,30 +23,21 @@ Page({
   },
 
   clickGuanInfo: function (event) {
-    let app = getApp();
-    let sucUrl = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id;
-    if (!app.globalData.hasLogin) {
-      wxLogin.wxLogin(sucUrl)
-    } else {
-      wx.navigateTo({
-        url: sucUrl,
-      })
-    }
+    let needLogin = !app.globalData.hasLogin
+    wxLogin.checkLoginBeforeJump(config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id, needLogin)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wxInteractive.wxToast(options.errMsg)
+    wxInteractive.wxCheckToast(options.errMsg)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const app = getApp()
-    const that = this;
     wx.getSetting({
       success(res) {
         let status = res.authSetting['scope.userLocation']
@@ -55,11 +48,13 @@ Page({
         }
       }
     })
+
+    const that = this;
     wx.getLocation({
       type: 'wgs84',
       complete(res) {
-        const requestData = {
-          access_token: app.globalData.accessToken,
+        let requestData = {
+          accessToken: app.globalData.accessToken,
           latitude: res.latitude,
           longitude: res.longitude
         };
@@ -67,4 +62,5 @@ Page({
       }
     })
   },
+  
 })

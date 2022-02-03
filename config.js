@@ -12,12 +12,13 @@ const guanguanUrl = '/guanguan'
 const guaninfoUrl = '/guan_info'
 const operateUrl = '/operate'
 const myselfUrl = '/myself'
+const mineUrl = '/mine'
 const updateMyselfUrl = '/update_myself'
 const requirementUrl = '/requirement'
 const upsertRequirementUrl = '/upsertRequirement'
 
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='
-const GUANINFO_PAGE = '/page/guan_info/guan_info?guan_id='
+const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='
 const ABOUT_PAGE = '/page/about/about'
 const SETTING_PAGE = '/page/setting/setting'
 const SHARE_PAGE = '/page/share/share'
@@ -37,6 +38,7 @@ module.exports = {
     guaninfoUrl,
     operateUrl,
     myselfUrl,
+    mineUrl,
     updateMyselfUrl,
     requirementUrl,
     upsertRequirementUrl,

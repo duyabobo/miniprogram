@@ -1,4 +1,4 @@
-function wxToast(msg) {
+function wxCheckToast(msg) {
   if (msg !== undefined && msg !== "" && msg !== "undefined") {
     wx.showToast({
       title: msg,
@@ -10,5 +10,5 @@ function wxToast(msg) {
 }
 
 module.exports = {
-  wxToast
+  wxCheckToast
 }

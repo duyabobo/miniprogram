@@ -1,6 +1,16 @@
 const request = require("./request");
 
-function wxLogin(suc_uri) {
+function checkLoginBeforeJump(sucUrl, needLogin) {
+  if (needLogin) {
+      wxLogin(sucUrl)
+    } else {
+      wx.navigateTo({
+        url: sucUrl,
+      })
+    }
+}
+
+function wxLogin(sucUrl) {
   wx.showActionSheet({
     itemList: ['微信登录'],
     success: function (res) {
@@ -8,7 +18,7 @@ function wxLogin(suc_uri) {
       wx.login({
         success(res) {
           if (res.code) {
-            request.loginRequest(res.code, suc_uri)
+            request.loginRequest(res.code, sucUrl)
           } else {
             console.log('登录失败！' + res.errMsg)
           }
@@ -22,5 +32,6 @@ function wxLogin(suc_uri) {
 }
 
 module.exports = {
+  checkLoginBeforeJump,
   wxLogin
 }

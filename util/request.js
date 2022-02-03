@@ -1,29 +1,23 @@
 const config = require("../config");
 const enumerate = require("./enumerate");
+const wxInteractive = require("./wx_interactive");
+
+let app = getApp()
 
 function normalUpdateRequest(that, url, data) {
   wx.request({
     url: url,
     data: data,
     success(res) {
-      if (res.data.code === enumerate.SUCESS_CODE) {
+      if (request.requestIsSuccess(res)) {
         that.setData(res.data)  // 有性能问题
       }
       else {
-        const errMsg = res.data.errMsg;
-        console.log(errMsg)
-        if (errMsg !== undefined) {
-          wx.showToast({
-            title: errMsg,
-            icon: 'loading',
-            duration: 800,
-            mask: true
-          })
-        }
+        wxInteractive.wxCheckToast(res.data.errMsg)
       }
     },
     fail(res) {
-      console.log('normal_update fail')
+      logRequestErr(url + " err:", res)
     }
   })
 }
@@ -35,15 +29,16 @@ function loginRequest(code, suc_uri) {
       code: code,
     },
     success(res) {
-      const app = getApp()
-      app.globalData.accessToken = res.data.accessToken
-      app.globalData.hasLogin = true
-      wx.navigateTo({
-        url: suc_uri,
-      })
+      if (requestIsSuccess(res)) {
+        app.globalData.accessToken = res.data.accessToken
+        app.globalData.hasLogin = true
+        wx.navigateTo({
+          url: suc_uri,
+        })
+      }
     },
     fail(res) {
-      console.log('login fail')
+      logRequestErr("loginUrl err:", res)
     }
   })
 }
@@ -53,17 +48,38 @@ function getGuanguanRequest(that, requestData) {
     url: config.HTTP_HOST_TEST + config.guanguanUrl,
     data: requestData,
     success(res) {
-      that.setData(res.data)
+      if (requestIsSuccess(res)) {
+        that.setData(res.data)
+      }
     },
     fail(res) {
-      console.log('guanguan err')
-      console.log(res)
+      logRequestErr("guanguanUrl err:", res)
     }
   })
+}
+
+function logRequestErr(msg, res) {
+  console.log(msg + JSON.stringify(res))
+}
+
+function requestFinishWithCode(res, code) {
+  return res.statusCode === 200 && res.data.code === code
+}
+
+function requestIsSuccess(res) {
+  return requestFinishWithCode(res, enumerate.SUCESS_CODE)
+}
+
+function requestFinishWithErr(res) {
+  return res.statusCode === 200 && res.data.code !== enumerate.SUCESS_CODE
 }
 
 module.exports = {
   normalUpdateRequest,
   loginRequest,
-  getGuanguanRequest
+  getGuanguanRequest,
+  logRequestErr,
+  requestFinishWithCode,
+  requestIsSuccess,
+  requestFinishWithErr
 }
