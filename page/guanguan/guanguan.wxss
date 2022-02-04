@@ -17,8 +17,8 @@ page {
 }
 
 .img {
-  width: 66%;
-  height: 99%;
+  width: 450rpx;
+  height: 225rpx;
   padding: 5rpx;
 }
 

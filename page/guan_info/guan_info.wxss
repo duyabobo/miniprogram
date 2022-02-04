@@ -6,8 +6,8 @@ page {
 }
 
 .img {
-  width: 99%;
-  height: 30%; 
+  width: 740rpx;
+  height: 370rpx; 
   padding: 5rpx;
   background-color: #FFFFFF;
 }
