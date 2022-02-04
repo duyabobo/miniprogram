@@ -1,15 +1,15 @@
-<view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' bindtap="clickGuanInfo">
+<view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-status='{{item.status}}' bindtap="clickGuanInfo">
   <image class="img" src="{{item.img}}">
   </image>
   <view class="address-time-status">
     <view class="info">
-    {{item.time}}
+    时间：{{item.time}}
     </view>
     <view class="info">
-    {{item.address}}
+    地点：{{item.address}}
     </view>
     <view class="info">
-    {{item.status}}
+    状态：{{item.status}}
     </view>
   </view>
 </view> 
