@@ -1,15 +1,17 @@
-<view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-status='{{item.status}}' bindtap="clickGuanInfo">
-  <image class="img" src="{{item.img}}">
-  </image>
-  <view class="address-time-status">
-    <view class="info">
-    时间：{{item.time}}
+<scroll-view class="container" scroll-y="true">
+  <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-status='{{item.status}}' bindtap="clickGuanInfo">
+    <image class="img" src="{{item.img}}">
+    </image>
+    <view class="address-time-status">
+      <view class="info">
+      时间：{{item.time}}
+      </view>
+      <view class="info">
+      地点：{{item.address}}
+      </view>
+      <view class="info">
+      状态：{{item.status}}
+      </view>
     </view>
-    <view class="info">
-    地点：{{item.address}}
-    </view>
-    <view class="info">
-    状态：{{item.status}}
-    </view>
-  </view>
-</view> 
+  </view> 
+</scroll-view>
