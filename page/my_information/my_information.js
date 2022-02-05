@@ -9,16 +9,18 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    user_info: [
-      {
-        id: 1,
-        opType: "ceshi",
-        desc: "周末有时间", 
-        value: "是的",
-        item_list: ["是的", "没有"],
-      }
-    ]
+  data: { },
+
+  updateBirthYear: function(event) {
+    console.log('picker发送选择改变，携带值为', event.detail.value)
+    let that = this;
+    let url = config.HTTP_HOST_TEST + config.myselfUrl
+    let requestData = { 
+      accessToken: app.globalData.accessToken,
+      opType: 2,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
   },
 
   upsertMyself: function(event) {
@@ -26,9 +28,9 @@ Page({
     wx.showActionSheet({
       itemList: event.currentTarget.dataset.item_list,
       success (res) {
-        let url = config.HTTP_HOST_TEST + config.updateMyselfUrl
+        let url = config.HTTP_HOST_TEST + config.myselfUrl
         let requestData = {
-          id: event.currentTarget.dataset.id,
+          accessToken: app.globalData.accessToken,
           opType: event.currentTarget.dataset.op_type,
           value: res.tapIndex
         }

@@ -4,9 +4,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
+  data: { },
 
   onShareAppMessage: function (ops) {
     if (ops.from === 'button') {

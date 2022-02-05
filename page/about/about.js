@@ -6,9 +6,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    realLogoUrl: config.CDN_QINIU_URL + '/real_logo.png'
-  },
+  data: { },
 
   /**
    * 生命周期函数--监听页面加载

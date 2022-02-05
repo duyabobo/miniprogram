@@ -7,6 +7,7 @@ let app = getApp()
 function normalUpdateRequest(that, url, data) {
   wx.request({
     url: url,
+    method: 'PUT',
     data: data,
     success(res) {
       if (requestIsSuccess(res)) {

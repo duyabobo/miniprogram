@@ -9,16 +9,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    img: config.CDN_QINIU_URL + "202010201143196086.png",
-    address: "玉檀园公园",
-    time: "2月12日",
-    personInfos: [{"text": "汉服爱好者"},{"text": "汉好者"},{"text": "汉服好者"},{"text": "汉服爱好者"},{"text": "汉服爱好者"},{"text": "者"},{"text": "汉好者"}],
-    opDesc: "报名参加",
-    timeImg: config.CDN_QINIU_URL + "202010201143196086.png",
-    addressImg: config.CDN_QINIU_URL + "202010201143196086.png",
-    personImg: config.CDN_QINIU_URL + "202010201143196086.png",
-  },
+  data: {},
 
   operate: function (event) {
     let guanId = event.currentTarget.dataset.guan_id;
@@ -55,9 +46,10 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: options.status
+      title: options.state
     })
 
+    let that = this
     wx.request({
       url: config.HTTP_HOST_TEST + config.guaninfoUrl,
       data: {
@@ -66,9 +58,7 @@ Page({
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          wx.reLaunch({
-            url: config.GUANGUAN_PAGE + res.data.errMsg,
-          })
+          that.setData(res.data)
         }
       },
       fail(res) {

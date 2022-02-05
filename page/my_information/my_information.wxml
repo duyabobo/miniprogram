@@ -1,5 +1,21 @@
-<button class="user_info" wx:for="{{user_info}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.item_list}}" data-id="{{item.id}}" bindtap="upsertMyself">
-  <view class="desc">{{item.desc}}</view>
-  <view class="value">{{item.value}}</view>
-  <view class="navigator-arrow"></view>
-</button>
+<scroll-view class="container" scroll-y="true">
+  <button class="user_info" data-op_type="{{sex.opType}}" data-item_list="{{sex.choiceList}}" bindtap="upsertMyself">
+    <view class="desc">{{sex.desc}}</view>
+    <view class="value">{{sex.value}}</view>
+    <view class="navigator-arrow"></view>
+  </button>
+
+  <picker mode="date" value="{{birthYear.defaultValue}}" bindchange="updateBirthYear" fields="year">
+    <button class="user_info">
+      <view class="desc">{{birthYear.desc}}</view>
+      <view class="value">{{birthYear.value}}</view>
+      <view class="navigator-arrow"></view>
+    </button>
+  </picker>
+
+  <button class="user_info" wx:for="{{otherInfoList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" bindtap="upsertMyself">
+    <view class="desc">{{item.desc}}</view>
+    <view class="value">{{item.value}}</view>
+    <view class="navigator-arrow"></view>
+  </button>
+</scroll-view>

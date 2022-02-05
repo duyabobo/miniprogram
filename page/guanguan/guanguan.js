@@ -11,62 +11,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    guanguanList: [
-      {
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },{
-        id: 1,
-        img: config.CDN_QINIU_URL + "202010201143196086.png",
-        time: "2月12日",
-        address: "玉檀园公园",
-        status: "虚位以待",
-      },
-    ],
+    guanguanList: [],
   },
 
   clickGuanInfo: function (event) {
     let needLogin = !app.globalData.hasLogin
-    let sucUrl = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id + "&status=" + event.currentTarget.dataset.status
+    let sucUrl = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
     wxLogin.checkLoginBeforeJump(sucUrl, needLogin)
   },
 

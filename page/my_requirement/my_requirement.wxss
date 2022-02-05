@@ -12,9 +12,8 @@ page {
 }
 .desc{
   flex: 8;
-  text-align: left;
-  line-height: 50rpx;
-  font-size: 28rpx;
+  text-align: left; 
+  font-size: 25rpx;
 }
 .value {
   flex: 4;

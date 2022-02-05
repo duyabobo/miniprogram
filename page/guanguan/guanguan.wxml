@@ -1,5 +1,5 @@
 <scroll-view class="container" scroll-y="true">
-  <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-status='{{item.status}}' bindtap="clickGuanInfo">
+  <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-state='{{item.state}}' bindtap="clickGuanInfo">
     <image class="img" src="{{item.img}}">
     </image>
     <view class="address-time-status">
@@ -10,7 +10,7 @@
       地点：{{item.address}}
       </view>
       <view class="info">
-      状态：{{item.status}}
+      状态：{{item.state}}
       </view>
     </view>
   </view> 
