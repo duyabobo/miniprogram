@@ -10,7 +10,7 @@
     <image class="info-img" src="{{addressImg}}"></image> 
     <view class="info-text">{{address}} ({{addressDesc}})</view> 
   </view>
-  <view wx:if="{{personInfos}}" class="info">
+  <view wx:if="{{personInfos.length}}" class="info">
     <image class="info-img" src="{{personImg}}"></image> 
     <view class="person"> 
       <button wx:for="{{personInfos}}" wx:for-item="personInfo" wx:key="id" class="person-info">
