@@ -1,4 +1,10 @@
 <scroll-view class="container" scroll-y="true">
+  <button class="user_info" data-op_type="{{verify.opType}}" bindtap="verify">
+    <view class="desc">{{verify.desc}}</view>
+    <view class="value">{{verify.value}}</view>
+    <view class="navigator-arrow"></view>
+  </button>
+
   <button class="user_info" data-op_type="{{sex.opType}}" data-item_list="{{sex.choiceList}}" bindtap="upsertMyself">
     <view class="desc">{{sex.desc}}</view>
     <view class="value">{{sex.value}}</view>

@@ -11,6 +11,12 @@ Page({
    */
   data: { },
 
+  verify: function (event) {
+    wx.navigateTo({
+      url: config.WORKVERIFY_PAGE,
+    })
+  },
+
   updateBirthYear: function(event) {
     console.log('picker发送选择改变，携带值为', event.detail.value)
     let that = this;

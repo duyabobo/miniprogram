@@ -12,9 +12,11 @@ Page({
   data: {},
 
   operate: function (event) {
+    let that = this
     let guanId = event.currentTarget.dataset.guan_id;
     wx.request({
-      url: config.HTTP_HOST_TEST + config.operateUrl,
+      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+      method: 'PUT',
       data: {
         accessToken: app.globalData.accessToken,
         guanId: guanId,
@@ -22,9 +24,7 @@ Page({
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          wx.reLaunch({
-            url: config.GUANINFO_PAGE + guanId,
-          })
+          that.setData(res.data)
         } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
             url: config.MYINFORMATION_PAGE + res.data.errMsg,
@@ -36,7 +36,7 @@ Page({
         }
       },
       fail(res) {
-        request.logRequestErr("operateUrl err:", res)
+        request.logRequestErr("guaninfoUrl err:", res)
       }
     })
   },

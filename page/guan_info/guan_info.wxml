@@ -4,11 +4,11 @@
 <view class="time-address-person">
   <view class="info">
     <image class="info-img" src="{{timeImg}}"></image> 
-    <view class="info-text">{{time}} ({{time_desc}})</view>
+    <view class="info-text">{{time}} ({{timeDesc}})</view>
   </view>
   <view class="info">
     <image class="info-img" src="{{addressImg}}"></image> 
-    <view class="info-text">{{address}} ({{address_desc}})</view> 
+    <view class="info-text">{{address}} ({{addressDesc}})</view> 
   </view>
   <view wx:if="{{personInfos}}" class="info">
     <image class="info-img" src="{{personImg}}"></image> 
@@ -20,6 +20,6 @@
   </view>
 </view>
 
-<button class="operate" bindtap="operate" data-guan_id='{{guan_id}}' data-op_type='{{opType}}'>
+<button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
   {{opDesc}}
 </button> 

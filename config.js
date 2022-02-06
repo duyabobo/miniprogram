@@ -8,11 +8,11 @@ const CDN_QINIU_URL = 'http://img.ggjjzhzz.cn/'  // 七牛云存储域名
 const loginUrl = '/login'  // 登录
 const aboutUrl = '/about'  // 关于
 const guanguanUrl = '/guanguan'  // 关关列表获取
-const guaninfoUrl = '/guan_info'  // 关关详情页信息获取
-const operateUrl = '/operate'  // 某人对某个关关操作
+const guaninfoUrl = '/guan_info'  // 关关详情页信息
 const mineUrl = '/mine'  // 我的页面信息获取
 const myselfUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
+const emailVerifyUrl = '/email_verify'  // 验证邮件
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
@@ -22,6 +22,7 @@ const SHARE_PAGE = '/page/share/share'  // 分享
 const SUGGESTION_PAGE = '/page/suggestion/suggestion'  // 客服（建议）
 const MYINFORMATION_PAGE = '/page/my_information/my_information?errMsg='  // 我的资料
 const MYREQUIREMENT_PAGE = '/page/my_requirement/my_requirement'  // 我的期望
+const WORKVERIFY_PAGE = '/page/work_verify/work_verify'  // 工作认证
 // 提醒发消息用的
 const SUBSCRIBE_OFFLINE_NOTI_TID = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
 
@@ -32,10 +33,10 @@ module.exports = {
     loginUrl,
     guanguanUrl,
     guaninfoUrl,
-    operateUrl,
     myselfUrl,
     mineUrl,
     requirementUrl,
+    emailVerifyUrl,
     GUANGUAN_PAGE,
     GUANINFO_PAGE,
     ABOUT_PAGE,
@@ -44,5 +45,6 @@ module.exports = {
     SUGGESTION_PAGE,
     MYINFORMATION_PAGE,
     MYREQUIREMENT_PAGE,
+    WORKVERIFY_PAGE,
     SUBSCRIBE_OFFLINE_NOTI_TID
 }
