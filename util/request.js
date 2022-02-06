@@ -11,7 +11,7 @@ function normalUpdateRequest(that, url, data) {
     data: data,
     success(res) {
       if (requestIsSuccess(res)) {
-        that.setData(res.data)  // 有性能问题
+        that.setData(res.data.data)  // 有性能问题
       }
       else {
         wxInteractive.wxCheckToast(res.data.errMsg)
@@ -31,7 +31,7 @@ function loginRequest(code, suc_uri) {
     },
     success(res) {
       if (requestIsSuccess(res)) {
-        app.globalData.accessToken = res.data.accessToken
+        app.globalData.accessToken = res.data.data.accessToken
         app.globalData.hasLogin = true
         wx.navigateTo({
           url: suc_uri,
@@ -50,7 +50,7 @@ function getGuanguanRequest(that, requestData) {
     data: requestData,
     success(res) {
       if (requestIsSuccess(res)) {
-        that.setData(res.data)
+        that.setData(res.data.data)
       }
     },
     fail(res) {

@@ -53,7 +53,7 @@ Page({
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          that.setData(res.data)
+          that.setData(res.data.data)
         }
       },
       fail(res) {

@@ -24,7 +24,7 @@ Page({
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          that.setData(res.data)
+          that.setData(res.data.data)
         } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
             url: config.MYINFORMATION_PAGE + res.data.errMsg,
@@ -58,7 +58,7 @@ Page({
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          that.setData(res.data)
+          that.setData(res.data.data)
         }
       },
       fail(res) {
