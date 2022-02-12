@@ -9,7 +9,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: { },
 
   operate: function (event) {
     let that = this

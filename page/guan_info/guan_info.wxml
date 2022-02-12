@@ -1,38 +1,41 @@
-<image class="img" src="{{img}}">
-</image>
+<scroll-view class="container" scroll-y="true">
+  <image class="img" src="{{img}}">
+  </image>
 
-<view class="address-time-person">
+  <view class="address-time-people">
 
-  <view class="info">
-    <image class="info-img" src="{{addressImg}}"></image> 
-    <view class="info-text">{{address}}</view> 
-  </view>
-  <view class="address-desc"> 
-    <button wx:for="{{addressInfos}}" wx:for-item="addressInfo" wx:key="id" class="address-info">
-      {{addressInfo}}
-    </button>
-  </view>
+    <view class="info">
+      <image class="info-img" src="{{addressImg}}"></image> 
+      <view class="info-text">{{address}}</view> 
+    </view>
+    <view class="address-desc"> 
+      <button wx:for="{{addressInfos}}" wx:for-item="addressInfo" wx:key="id" class="address-info">
+        {{addressInfo}}
+      </button>
+    </view>
 
-  <view class="info">
-    <image class="info-img" src="{{timeImg}}"></image> 
-    <view class="info-text">{{time}}</view>
-  </view>
-  <view class="time-desc"> 
-    <button wx:for="{{timeInfos}}" wx:for-item="timeInfo" wx:key="id" class="time-info">
-      {{timeInfo}}
-    </button>
-  </view>
+    <view class="info">
+      <image class="info-img" src="{{timeImg}}"></image> 
+      <view class="info-text">{{time}}</view>
+    </view>
+    <view class="time-desc"> 
+      <button wx:for="{{timeInfos}}" wx:for-item="timeInfo" wx:key="id" class="time-info">
+        {{timeInfo}}
+      </button>
+    </view>
 
-  <view wx:if="{{personInfos.length}}" class="info">
-    <image class="info-img" src="{{personImg}}"></image> 
-    <view class="person"> 
-      <button wx:for="{{personInfos}}" wx:for-item="personInfo" wx:key="id" class="person-info">
-        {{personInfo}}
+    <view wx:if="{{peopleInfos.length}}" class="info">
+      <image class="info-img" src="{{peopleImg}}"></image> 
+      <view class="info-text">{{people}}</view>
+    </view>
+    <view class="people-desc">
+      <button wx:for="{{peopleInfos}}" wx:for-item="peopleInfo" wx:key="id" class="people-info">
+        {{peopleInfo}}
       </button>
     </view>
   </view>
-</view>
 
-<button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
-  {{opDesc}}
-</button> 
+  <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
+    {{opDesc}}
+  </button> 
+</scroll-view>

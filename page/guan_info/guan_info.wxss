@@ -8,15 +8,14 @@ page {
 .img {
   width: 740rpx;
   height: 370rpx; 
-  padding: 30rpx 5rpx;
+  padding: 5rpx;
   background-color: #FFFFFF;
 }
 
-.address-time-person {
-  width: 80%;
-  height: 40%; 
+.address-time-people {
   display: flex;
   flex-direction: column;
+  padding: 30rpx 60rpx;
 }
 
 .info {
@@ -31,7 +30,7 @@ page {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 0 20 0 65rpx;
+  padding-left: 65rpx;
 }
 
 .address-info {
@@ -47,7 +46,7 @@ page {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 0 20 0 65rpx;
+  padding-left: 65rpx;
 }
 
 .time-info {
@@ -68,15 +67,15 @@ page {
   font-size:40rpx; 
 }
 
-.person {
-  flex: 8;
+.people-desc {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
+  padding-left: 65rpx;
 }
 
-.person-info { 
+.people-info { 
   text-align: center;
   line-height: 50rpx;
   font-size: 30rpx;
