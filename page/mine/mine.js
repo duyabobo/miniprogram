@@ -24,7 +24,7 @@ Page({
         {
           id: 2,
           url: config.MYREQUIREMENT_PAGE,
-          name: '我的期望',
+          name: '择偶条件',
           needLogin: true,
           openType: '',
           bindFuncName: 'clickMine'

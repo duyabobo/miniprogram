@@ -1,15 +1,28 @@
 <image class="img" src="{{img}}">
 </image>
 
-<view class="time-address-person">
-  <view class="info">
-    <image class="info-img" src="{{timeImg}}"></image> 
-    <view class="info-text">{{time}} ({{timeDesc}})</view>
-  </view>
+<view class="address-time-person">
+
   <view class="info">
     <image class="info-img" src="{{addressImg}}"></image> 
-    <view class="info-text">{{address}} ({{addressDesc}})</view> 
+    <view class="info-text">{{address}}</view> 
   </view>
+  <view class="address-desc"> 
+    <button wx:for="{{addressInfos}}" wx:for-item="addressInfo" wx:key="id" class="address-info">
+      {{addressInfo}}
+    </button>
+  </view>
+
+  <view class="info">
+    <image class="info-img" src="{{timeImg}}"></image> 
+    <view class="info-text">{{time}}</view>
+  </view>
+  <view class="time-desc"> 
+    <button wx:for="{{timeInfos}}" wx:for-item="timeInfo" wx:key="id" class="time-info">
+      {{timeInfo}}
+    </button>
+  </view>
+
   <view wx:if="{{personInfos.length}}" class="info">
     <image class="info-img" src="{{personImg}}"></image> 
     <view class="person"> 

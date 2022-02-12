@@ -24,15 +24,34 @@ page {
 }
 
 .address-time-status {
-  width: 40%;
-  height: 100%;
+  width: 260rpx;
+  height: 225rpx;
   display: flex;
   flex-direction: column;
-  padding-left: 30rpx;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
 .info {
-  font-size: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.info-img {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.address {
+  font-size: 35rpx; 
+}
+
+.time {
+  font-size: 35rpx; 
+}
+
+.state {
+  font-size: 35rpx; 
+  padding-left: 35rpx;
 }

@@ -4,13 +4,21 @@
     </image>
     <view class="address-time-status">
       <view class="info">
-      时间：{{item.time}}
+        <image class="info-img" src="{{addressImg}}"></image> 
+        <view class="address">
+          {{item.address}}
+        </view>
       </view>
       <view class="info">
-      地点：{{item.address}}
+        <image class="info-img" src="{{timeImg}}"></image> 
+        <view class="time">
+          {{item.time}}
+        </view>
       </view>
       <view class="info">
-      状态：{{item.state}}
+        <view class="state">
+          {{item.state}}
+        </view>
       </view>
     </view>
   </view> 
