@@ -65,12 +65,12 @@ Page({
     let currentValue = e.detail.value
     if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.weight.fromAndToIndex[0])) {
       this.setData({
-        ["birthYear.fromAndToIndex[0]"]: currentValue,
-        ["birthYear.fromAndToIndex[1]"]: currentValue,
+        ["weight.fromAndToIndex[0]"]: currentValue,
+        ["weight.fromAndToIndex[1]"]: currentValue,
       })
     } else {
       this.setData({
-        ["birthYear.fromAndToIndex[1]"]: currentValue,
+        ["weight.fromAndToIndex[1]"]: currentValue,
       })
     }
   },
