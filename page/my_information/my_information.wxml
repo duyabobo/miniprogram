@@ -19,7 +19,7 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{heightChoiceList}}" value="{{height.defaultValue}}" bindchange="updateHeight">
+  <picker mode="selector" range="{{height.choiceList}}" value="{{height.defaultValue}}" bindchange="updateHeight">
     <button class="user_info">
       <view class="desc">{{height.desc}}</view>
       <view class="value">{{height.value}}</view>
@@ -27,7 +27,7 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{weightChoiceList}}" value="{{weight.defaultValue}}" bindchange="updateWeight">
+  <picker mode="selector" range="{{weight.choiceList}}" value="{{weight.defaultValue}}" bindchange="updateWeight">
     <button class="user_info">
       <view class="desc">{{weight.desc}}</view>
       <view class="value">{{weight.value}}</view>
