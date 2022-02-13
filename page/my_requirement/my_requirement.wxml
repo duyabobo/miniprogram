@@ -21,10 +21,10 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{weight.choiceList}}" value="{{weight.defaultValue}}" bindchange="updateWeight">
+  <picker mode="multiSelector" value="{{weight.fromAndToIndex}}" range="{{weight.fromAndToArray}}" bindchange="updateWeight" bindcolumnchange="weightColumnChange">
     <button class="requirement">
       <view class="desc">{{weight.desc}}</view>
-      <view class="value">{{weight.value}}</view>
+      <view class="value" wx:if="{{weight.fromValue || weight.toValue}}">{{weight.fromValue}}-{{weight.toValue}}</view>
       <view class="navigator-arrow"></view>
     </button>
   </picker>
