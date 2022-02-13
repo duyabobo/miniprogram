@@ -1,11 +1,31 @@
 /* page/about/about.wxss */
 page {
   display: flex;
-  flex-direction: column;
-  align-items: center; 
+  flex-direction: column; 
   justify-content: space-around; 
+  align-items: center;
 } 
+
 .logo-img {
-  width: 85%;
+  width: 400rpx;
+  height: 200rpx;
   border-radius: 20px
+}
+
+.desc {
+  font-size: 35rpx;
+  padding: 10rpx 70rpx;
+}
+
+.version {
+  font-size: 25rpx;
+  color: gray;
+  text-align: center;
+  padding: 40rpx 0rpx;
+}
+
+.container {
+  min-height: 40%;
+  max-height: 90%;
+  justify-content: flex-start;
 }

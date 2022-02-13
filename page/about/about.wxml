@@ -1,3 +1,6 @@
 <!--page/about/about.wxml-->
 <image class='logo-img' src="{{realLogoUrl}}"></image>
-<view>关关雎鸠 {{version}}</view>
+<scroll-view class="container" scroll-y="true">
+    <view class="desc" wx:for="{{descList}}" wx:key="id">{{item}}</view>
+</scroll-view>
+<view class="version">关关雎鸠 {{version}}</view>
