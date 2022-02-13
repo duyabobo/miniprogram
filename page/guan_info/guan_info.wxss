@@ -22,7 +22,7 @@ page {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20rpx;
+  padding: 6rpx;
 }
 
 .address-desc {

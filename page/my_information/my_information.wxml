@@ -11,7 +11,7 @@
     <view class="navigator-arrow"></view>
   </button>
 
-  <picker mode="date" value="{{birthYear.defaultValue}}" bindchange="updateBirthYear" fields="year">
+  <picker mode="date" value="{{birthYear.defaultValue}}" bindchange="updateBirthYear" fields="year" start="{{birthYear.start}}" end="{{birthYear.end}}">
     <button class="user_info">
       <view class="desc">{{birthYear.desc}}</view>
       <view class="value">{{birthYear.value}}</view>
