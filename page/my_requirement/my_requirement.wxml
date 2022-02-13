@@ -13,10 +13,10 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{height.choiceList}}" value="{{height.defaultValue}}" bindchange="updateHeight">
+  <picker mode="multiSelector" value="{{height.fromAndToIndex}}" range="{{height.fromAndToArray}}" bindchange="updateHeight" bindcolumnchange="heightColumnChange">
     <button class="requirement">
       <view class="desc">{{height.desc}}</view>
-      <view class="value">{{height.value}}</view>
+      <view class="value" wx:if="{{height.fromValue || height.toValue}}">{{height.fromValue}}-{{height.toValue}}</view>
       <view class="navigator-arrow"></view>
     </button>
   </picker>

@@ -38,15 +38,29 @@ Page({
   },
 
   updateHeight: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
     let requestData = {
       accessToken: app.globalData.accessToken,
-      opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT,
+      opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT_PERIOD,
       value: event.detail.value
     }
     request.normalUpdateRequest(that, url, requestData)
+  },
+
+  heightColumnChange(e) {  // todo 这里对于区间处理，重复代码过多，可能可以优化
+    let currentColunm = e.detail.column;
+    let currentValue = e.detail.value
+    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.height.fromAndToIndex[0])) {
+      this.setData({
+        ["height.fromAndToIndex[0]"]: currentValue,
+        ["height.fromAndToIndex[1]"]: currentValue,
+      })
+    } else {
+      this.setData({
+        ["height.fromAndToIndex[1]"]: currentValue,
+      })
+    }
   },
 
   updateWeight: function(event) {
