@@ -4,13 +4,13 @@
     </image>
     <view class="address-time-status">
       <view class="info">
-        <image class="info-img" src="{{addressImg}}"></image> 
+        <image class="info-img" src="{{item.addressImg}}"></image> 
         <view class="address">
           {{item.address}}
         </view>
       </view>
       <view class="info">
-        <image class="info-img" src="{{timeImg}}"></image> 
+        <image class="info-img" src="{{item.timeImg}}"></image> 
         <view class="time">
           {{item.time}}
         </view>
