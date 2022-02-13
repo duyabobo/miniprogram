@@ -1,6 +1,7 @@
 const config = require('../../config.js');
 const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
+const enumerate = require("../../util/enumerate");
 
 let app = getApp();
 
@@ -23,7 +24,31 @@ Page({
     let url = config.HTTP_HOST_TEST + config.myselfUrl
     let requestData = { 
       accessToken: app.globalData.accessToken,
-      opType: 2,
+      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
+  updateHeight: function(event) {
+    console.log('picker发送选择改变，携带值为', event.detail.value)
+    let that = this;
+    let url = config.HTTP_HOST_TEST + config.myselfUrl
+    let requestData = { 
+      accessToken: app.globalData.accessToken,
+      opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
+  updateWeight: function(event) {
+    console.log('picker发送选择改变，携带值为', event.detail.value)
+    let that = this;
+    let url = config.HTTP_HOST_TEST + config.myselfUrl
+    let requestData = {
+      accessToken: app.globalData.accessToken,
+      opType: enumerate.MODEL_USER_OP_TYPE_WEIGHT,
       value: event.detail.value
     }
     request.normalUpdateRequest(that, url, requestData)
