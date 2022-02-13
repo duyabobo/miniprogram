@@ -54,6 +54,18 @@ Page({
     request.normalUpdateRequest(that, url, requestData)
   },
 
+  updateMonthPay: function(event) {
+    console.log('picker发送选择改变，携带值为', event.detail.value)
+    let that = this;
+    let url = config.HTTP_HOST_TEST + config.myselfUrl
+    let requestData = {
+      accessToken: app.globalData.accessToken,
+      opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
   upsertMyself: function(event) {
     let that = this;
     wx.showActionSheet({
