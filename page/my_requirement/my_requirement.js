@@ -90,15 +90,29 @@ Page({
   },
 
   updateMonthPay: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
     let requestData = {
       accessToken: app.globalData.accessToken,
-      opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY,
+      opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY_PERIOD,
       value: event.detail.value
     }
     request.normalUpdateRequest(that, url, requestData)
+  },
+
+  monthPayColumnChange(e) {
+    let currentColunm = e.detail.column;
+    let currentValue = e.detail.value
+    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.monthPay.fromAndToIndex[0])) {
+      this.setData({
+        ["monthPay.fromAndToIndex[0]"]: currentValue,
+        ["monthPay.fromAndToIndex[1]"]: currentValue,
+      })
+    } else {
+      this.setData({
+        ["monthPay.fromAndToIndex[1]"]: currentValue,
+      })
+    }
   },
 
   upsertRequirement: function(event) {

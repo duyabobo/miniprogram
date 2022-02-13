@@ -29,10 +29,10 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{monthPay.choiceList}}" value="{{monthPay.defaultValue}}" bindchange="updateMonthPay">
+  <picker mode="multiSelector" value="{{monthPay.fromAndToIndex}}" range="{{monthPay.fromAndToArray}}" bindchange="updateMonthPay" bindcolumnchange="monthPayColumnChange">
     <button class="requirement">
       <view class="desc">{{monthPay.desc}}</view>
-      <view class="value">{{monthPay.value}}</view>
+      <view class="value" wx:if="{{monthPay.fromValue || monthPay.toValue}}">{{monthPay.fromValue}}-{{monthPay.toValue}}</view>
       <view class="navigator-arrow"></view>
     </button>
   </picker>
