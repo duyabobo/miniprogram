@@ -11,16 +11,31 @@ Page({
    */
   data: { },
 
-  updateBirthYear: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
+  updateBirthYear(event) {
+    console.log(event.detail.value)
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
-    let requestData = { 
+    let requestData = {
       accessToken: app.globalData.accessToken,
-      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
+      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR_PERIOD,
       value: event.detail.value
     }
     request.normalUpdateRequest(that, url, requestData)
+  },
+  
+  birthYearColumnChange(e) {
+    let currentColunm = e.detail.column; 
+    let currentValue = e.detail.value 
+    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.birthYear.fromAndToIndex[0])) {
+      this.setData({
+        ["birthYear.fromAndToIndex[0]"]: currentValue,
+        ["birthYear.fromAndToIndex[1]"]: currentValue,
+      })
+    } else {
+      this.setData({
+        ["birthYear.fromAndToIndex[1]"]: currentValue,
+      })
+    }
   },
 
   updateHeight: function(event) {

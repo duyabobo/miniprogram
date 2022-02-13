@@ -5,14 +5,14 @@
     <view class="navigator-arrow"></view>
   </button>
 
-  <picker mode="selector" range="{{birthYear.choiceList}}" value="{{birthYear.defaultValue}}" bindchange="updateBirthYear">
+  <picker mode="multiSelector" value="{{birthYear.fromAndToIndex}}" range="{{birthYear.fromAndToArray}}" bindchange="updateBirthYear" bindcolumnchange="birthYearColumnChange">
     <button class="requirement">
       <view class="desc">{{birthYear.desc}}</view>
-      <view class="value">{{birthYear.value}}</view>
+      <view class="value" wx:if="{{birthYear.fromValue || birthYear.toValue}}">{{birthYear.fromValue}}-{{birthYear.toValue}}</view>
       <view class="navigator-arrow"></view>
     </button>
   </picker>
-  
+
   <picker mode="selector" range="{{height.choiceList}}" value="{{height.defaultValue}}" bindchange="updateHeight">
     <button class="requirement">
       <view class="desc">{{height.desc}}</view>
