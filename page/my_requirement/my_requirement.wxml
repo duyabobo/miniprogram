@@ -29,7 +29,7 @@
     </button>
   </picker>
 
-  <picker mode="selector" range="{{monthPay.choiceList}}" value="{{weight.defaultValue}}" bindchange="updateMonthPay">
+  <picker mode="selector" range="{{monthPay.choiceList}}" value="{{monthPay.defaultValue}}" bindchange="updateMonthPay">
     <button class="requirement">
       <view class="desc">{{monthPay.desc}}</view>
       <view class="value">{{monthPay.value}}</view>
