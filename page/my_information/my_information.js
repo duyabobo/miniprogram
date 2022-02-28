@@ -37,6 +37,14 @@ Page({
     });
   },
 
+  verifyPhone: function() {
+    this.setData({
+      verifyPhoneSheetHidden: false,
+      sendCodeButonText: "发送验证码",
+      sendPhoneCodeDisabled: false,
+    });
+  },
+
   sendPhoneCode: function() { 
     let phone = this.data.phone
     let that = this
@@ -58,24 +66,20 @@ Page({
           showCancel: false,
           confirmText: '确认',
         })
-        request.logRequestErr("myselfUrl err:", res)
+        request.logRequestErr("sendPhoneCodeUrl err:", res)
       }
     })
   },
 
-  updatePhone: function (event) {
-    wx.showModal({
-      title: '提示',
-      editable: true,
-      placeholderText: "这是一个模态弹窗",
-      success (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+  checkPhoneCode: function() {
+    let url = config.HTTP_HOST_TEST + config.verifyPhoneCodeUrl
+    let that = this
+    let requestData = { 
+      accessToken: app.globalData.accessToken,
+      phone: this.data.phone,
+      code: this.data.code,
+    }
+    request.normalUpdateRequest(that, url, requestData)
   },
 
   updateBirthYear: function(event) {

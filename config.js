@@ -1,8 +1,8 @@
 /**
  * 小程序配置文件
  */
-const HOST_TEST = 'localhost:443'  // 后台api域名
-const HTTP_HOST_TEST = 'http://' + HOST_TEST
+const HOST_TEST = 'www.ggjjzhzz.cn'  // 后台api域名
+const HTTP_HOST_TEST = 'https://' + HOST_TEST
 const CDN_QINIU_URL = 'http://img.ggjjzhzz.cn/'  // 七牛云存储域名
 // 后台api接口
 const loginUrl = '/login'  // 登录
@@ -14,6 +14,7 @@ const myselfUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
 const emailVerifyUrl = '/email_verify'  // 验证邮件
 const sendPhoneCodeUrl = '/send_phone_code'  // 发送手机短信验证码
+const verifyPhoneCodeUrl = '/verify_phone_code'  // 手机短信验证
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
@@ -39,6 +40,7 @@ module.exports = {
     requirementUrl,
     emailVerifyUrl,
     sendPhoneCodeUrl,
+    verifyPhoneCodeUrl,
     GUANGUAN_PAGE,
     GUANINFO_PAGE,
     ABOUT_PAGE,
