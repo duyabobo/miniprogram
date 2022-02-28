@@ -1,7 +1,0 @@
-<form class="verify" bindsubmit="sendVerifyMail">
-    <view class="email" >
-        <input class="value" name="email" placeholder="请输入企业邮箱"></input>
-        <view class="desc">企业邮箱只会用于本次认证</view>
-    </view>
-    <button formType="submit" class="send">{{opText}}</button> 
-</form>
