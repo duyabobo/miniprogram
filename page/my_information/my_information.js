@@ -11,43 +11,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-    verifyWorkSheetHidden: true,   //作为开关控制弹窗是否从底部弹出
-    email: "",  // 
+    verifyPhoneSheetHidden: true,   //作为开关控制弹窗是否从底部弹出
+    phone: "",  //
+    code: "",  // 验证码
+    sendCodeButonText: "发送验证码",
+    sendPhoneCodeDisabled: false,
    },
 
    //将输入的内容绑定到 msg 中
-  obtainEmail: function(data) {
+  obtainPhone: function(data) {
     this.setData({
-      email: data.detail.value
+      phone: data.detail.value
     });
   },
 
-  updateVerifyWorkSheetHidden: function() {
+  obtainCode: function(data) {
     this.setData({
-      verifyWorkSheetHidden: !this.data.verifyWorkSheetHidden
+      code: data.detail.value
     });
   },
 
-  //用户输完并点击确认后，输入的信息会打印到控制台上
-  sendEmail: function() {
-    console.log(this.data.email);
-    let email = this.data.email
+  updateVerifyPhoneSheetHidden: function() {
+    this.setData({
+      verifyPhoneSheetHidden: !this.data.verifyPhoneSheetHidden
+    });
+  },
+
+  sendPhoneCode: function() { 
+    let phone = this.data.phone
+    let that = this
     wx.request({
-      url: config.HTTP_HOST_TEST + config.emailVerifyUrl,
+      url: config.HTTP_HOST_TEST + config.sendPhoneCodeUrl,
       data: {
         accessToken: app.globalData.accessToken,
-        email: email,
+        phone: phone,
       },
       success(res) {
-        wx.showModal({
-          title: '登录企业邮箱 完成工作认证',
-          showCancel: false,
-          confirmText: '确认',
-        })
+        that.setData({
+          sendCodeButonText: "发送成功",
+          sendPhoneCodeDisabled: true,
+        });
       },
       fail(res) {
         wx.showModal({
-          title: '发送失败，请联系客服',
+          title: res.errMsg,
           showCancel: false,
           confirmText: '确认',
         })

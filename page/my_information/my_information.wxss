@@ -2,6 +2,20 @@ page {
   display: flex;
   flex-direction: column; 
 }
+action-sheet-item  {
+  display: flex;
+  flex-direction: line; 
+  align-items: center;
+}
+
+input {
+  text-align: left;
+  padding: 10rpx;
+}
+
+.phone_code {
+  flex: 5;
+}
 
 .user_info {
   display: flex;
