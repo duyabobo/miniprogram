@@ -12,7 +12,22 @@ Page({
    */
   data: { },
 
-  verify: function (event) {
+  updatePhone: function (event) {
+    wx.showModal({
+      title: '提示',
+      editable: true,
+      placeholderText: "这是一个模态弹窗",
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
+  verifyWork: function (event) {
     wx.navigateTo({
       url: config.WORKVERIFY_PAGE,
     })

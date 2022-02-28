@@ -1,7 +1,13 @@
 <scroll-view class="container" scroll-y="true">
-  <button class="user_info" data-op_type="{{verify.opType}}" bindtap="verify">
-    <view class="desc">{{verify.desc}}</view>
-    <view class="value">{{verify.value}}</view>
+  <button class="user_info" bindtap="updatePhone">
+    <view class="desc">{{phone.desc}}</view>
+    <view class="value">{{phone.value}}</view>
+    <view class="navigator-arrow"></view>
+  </button>
+
+  <button class="user_info" bindtap="verifyWork">
+    <view class="desc">{{work.desc}}</view>
+    <view class="value">{{work.value}}</view>
     <view class="navigator-arrow"></view>
   </button>
 
