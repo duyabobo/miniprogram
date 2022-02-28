@@ -10,7 +10,51 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: { },
+  data: {
+    verifyWorkSheetHidden: true,   //作为开关控制弹窗是否从底部弹出
+    email: "",  // 
+   },
+
+   //将输入的内容绑定到 msg 中
+  obtainEmail: function(data) {
+    this.setData({
+      email: data.detail.value
+    });
+  },
+
+  updateVerifyWorkSheetHidden: function() {
+    this.setData({
+      verifyWorkSheetHidden: !this.data.verifyWorkSheetHidden
+    });
+  },
+
+  //用户输完并点击确认后，输入的信息会打印到控制台上
+  sendEmail: function() {
+    console.log(this.data.email);
+    let email = this.data.email
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.emailVerifyUrl,
+      data: {
+        accessToken: app.globalData.accessToken,
+        email: email,
+      },
+      success(res) {
+        wx.showModal({
+          title: '登录企业邮箱 完成工作认证',
+          showCancel: false,
+          confirmText: '确认',
+        })
+      },
+      fail(res) {
+        wx.showModal({
+          title: '发送失败，请联系客服',
+          showCancel: false,
+          confirmText: '确认',
+        })
+        request.logRequestErr("myselfUrl err:", res)
+      }
+    })
+  },
 
   updatePhone: function (event) {
     wx.showModal({

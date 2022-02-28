@@ -1,11 +1,14 @@
 <scroll-view class="container" scroll-y="true">
-  <button class="user_info" bindtap="updatePhone">
-    <view class="desc">{{phone.desc}}</view>
-    <view class="value">{{phone.value}}</view>
-    <view class="navigator-arrow"></view>
-  </button>
+  <!--默认action-sheet为隐藏，由button触发-->
+  <action-sheet hidden="{{verifyWorkSheetHidden}}" bindchange="updateVerifyWorkSheetHidden" >
+    <action-sheet-item >
+      <input type="text" placeholder="输入企业邮箱 完成工作认证" bindinput="obtainEmail"/>
+    </action-sheet-item>
+    <!--自动隐藏action-sheet-->
+    <action-sheet-cancel bindtap="sendEmail">确认</action-sheet-cancel>
+  </action-sheet> 
 
-  <button class="user_info" bindtap="verifyWork">
+  <button class="user_info" bindtap="updateVerifyWorkSheetHidden">
     <view class="desc">{{work.desc}}</view>
     <view class="value">{{work.value}}</view>
     <view class="navigator-arrow"></view>
