@@ -10,7 +10,7 @@ action-sheet-item  {
 
 input {
   text-align: left;
-  padding: 10rpx;
+  padding: 20rpx;
 }
 
 .phone_code {

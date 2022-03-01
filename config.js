@@ -24,7 +24,6 @@ const SHARE_PAGE = '/page/share/share'  // 分享
 const SUGGESTION_PAGE = '/page/suggestion/suggestion'  // 客服（建议）
 const MYINFORMATION_PAGE = '/page/my_information/my_information?errMsg='  // 我的资料
 const MYREQUIREMENT_PAGE = '/page/my_requirement/my_requirement'  // 我的期望
-const WORKVERIFY_PAGE = '/page/work_verify/work_verify'  // 工作认证
 // 提醒发消息用的
 const SUBSCRIBE_OFFLINE_NOTI_TID = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
 
@@ -49,6 +48,5 @@ module.exports = {
     SUGGESTION_PAGE,
     MYINFORMATION_PAGE,
     MYREQUIREMENT_PAGE,
-    WORKVERIFY_PAGE,
     SUBSCRIBE_OFFLINE_NOTI_TID
 }
