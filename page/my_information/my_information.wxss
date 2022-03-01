@@ -13,7 +13,7 @@ input {
   padding: 20rpx;
 }
 
-.phone_code {
+.code {
   flex: 5;
 }
 

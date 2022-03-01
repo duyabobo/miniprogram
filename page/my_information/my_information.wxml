@@ -2,19 +2,38 @@
   <!--默认action-sheet为隐藏，由button触发-->
   <action-sheet hidden="{{verifyPhoneSheetHidden}}" bindchange="updateVerifyPhoneSheetHidden" >
     <action-sheet-item >
-      <input type="text" placeholder="请输入手机号" bindinput="obtainPhone"/>
+      <input type="text" placeholder="输入手机号" bindinput="obtainPhone"/>
     </action-sheet-item>
     <action-sheet-item >
-      <input class="phone_code" type="text" placeholder="请输入验证码" bindinput="obtainCode"/>
-      <button class="phone_code" bindtap="sendPhoneCode" disabled="{{sendPhoneCodeDisabled}}">{{sendCodeButonText}}</button>
+      <input class="code" type="text" placeholder="输入验证码" bindinput="obtainCode"/>
+      <button class="code" bindtap="sendPhoneCode" disabled="{{sendPhoneCodeDisabled}}">{{sendCodeButtonText}}</button>
     </action-sheet-item>
     <!--自动隐藏action-sheet-->
     <action-sheet-cancel bindtap="checkPhoneCode">确认</action-sheet-cancel>
+  </action-sheet> 
+  
+  <!--默认action-sheet为隐藏，由button触发-->
+  <action-sheet hidden="{{verifyWorkSheetHidden}}" bindchange="updateVerifyWorkSheetHidden" >
+    <action-sheet-item >
+      <input type="text" placeholder="输入企业邮箱" bindinput="obtainWorkEmail"/>
+    </action-sheet-item>
+    <action-sheet-item >
+      <input class="code" type="text" placeholder="输入验证码" bindinput="obtainWorkCode"/>
+      <button class="code" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
+    </action-sheet-item>
+    <!--自动隐藏action-sheet-->
+    <action-sheet-cancel bindtap="checkWorkCode">确认</action-sheet-cancel>
   </action-sheet> 
 
   <button class="user_info" bindtap="verifyPhone">
     <view class="desc">{{phoneVerify.desc}}</view>
     <view class="value">{{phoneVerify.value}}</view>
+    <view class="navigator-arrow"></view>
+  </button>
+
+  <button class="user_info" bindtap="verifyWork">
+    <view class="desc">{{workVerify.desc}}</view>
+    <view class="value">{{workVerify.value}}</view>
     <view class="navigator-arrow"></view>
   </button>
 

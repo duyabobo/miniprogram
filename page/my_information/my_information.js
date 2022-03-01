@@ -14,8 +14,14 @@ Page({
     verifyPhoneSheetHidden: true,   //作为开关控制弹窗是否从底部弹出
     phone: "",  //
     code: "",  // 验证码
-    sendCodeButonText: "发送验证码",
+    sendCodeButtonText: "发送验证码",
     sendPhoneCodeDisabled: false,
+
+    verifyWorkSheetHidden: true,
+    email: "",
+    emailCode: "",
+    sendEmailButonText: "发送验证邮件",
+    sendWorkCodeDisabled: false,
    },
 
    //将输入的内容绑定到 msg 中
@@ -25,7 +31,19 @@ Page({
     });
   },
 
+  obtainWorkEmail: function(data) {
+    this.setData({
+      email: data.detail.email
+    });
+  },
+
   obtainCode: function(data) {
+    this.setData({
+      emailCode: data.detail.emailCode
+    });
+  },
+
+  obtainWorkCode: function(data) {
     this.setData({
       code: data.detail.value
     });
@@ -37,11 +55,25 @@ Page({
     });
   },
 
+  updateVerifyWorkSheetHidden: function () {
+    this.setData({
+      verifyWorkSheetHidden: !this.data.verifyWorkSheetHidden
+    });
+  },
+
   verifyPhone: function() {
     this.setData({
       verifyPhoneSheetHidden: false,
       sendCodeButonText: "发送验证码",
       sendPhoneCodeDisabled: false,
+    });
+  },
+
+  verifyWork: function () {
+    this.setData({
+      verifyWorkSheetHidden: false,
+      sendEmailButonText: "发送验证邮件",
+      sendWorkCodeDisabled: false,
     });
   },
 
@@ -71,12 +103,49 @@ Page({
     })
   },
 
+  sendEmailCode: function() {
+    let email = this.data.email
+    let that = this
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.sendEmailCodeUrl,
+      data: {
+        accessToken: app.globalData.accessToken,
+        email: email,
+      },
+      success(res) {
+        that.setData({
+          sendEmailButonText: "发送成功",
+          sendWorkCodeDisabled: true,
+        });
+      },
+      fail(res) {
+        wx.showModal({
+          title: res.errMsg,
+          showCancel: false,
+          confirmText: '确认',
+        })
+        request.logRequestErr("sendEmailCodeUrl err:", res)
+      }
+    })
+  },
+
   checkPhoneCode: function() {
     let url = config.HTTP_HOST_TEST + config.verifyPhoneCodeUrl
     let that = this
     let requestData = { 
       accessToken: app.globalData.accessToken,
       phone: this.data.phone,
+      code: this.data.code,
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
+  checkWorkCode: function () {
+    let url = config.HTTP_HOST_TEST + config.verifyEmailCodeUrl
+    let that = this
+    let requestData = {
+      accessToken: app.globalData.accessToken,
+      mail: this.data.mail,
       code: this.data.code,
     }
     request.normalUpdateRequest(that, url, requestData)
