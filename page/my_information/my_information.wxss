@@ -15,7 +15,11 @@ input {
 
 .code {
   flex: 5;
-  margin: 0 10rpx;
+}
+
+.code-button {
+  flex: 5;
+  margin: 0rpx 40rpx 0rpx 70rpx;
 }
 
 .user_info {
