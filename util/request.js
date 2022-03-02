@@ -14,7 +14,11 @@ function normalUpdateRequest(that, url, data) {
         that.setData(res.data.data)  // 有性能问题
       }
       else {
-        wxInteractive.wxCheckToast(res.data.errMsg)
+        wx.showModal({
+          title: res.data.errMsg,
+          showCancel: false,
+          confirmText: '确认',
+        })
       }
     },
     fail(res) {

@@ -33,7 +33,7 @@ Page({
 
   obtainWorkEmail: function(data) {
     this.setData({
-      email: data.detail.email
+      email: data.detail.value
     });
   },
 
@@ -140,7 +140,7 @@ Page({
     request.normalUpdateRequest(that, url, requestData)
   },
 
-  checkWorkCode: function () {
+  checkEmailCode: function () {
     let url = config.HTTP_HOST_TEST + config.emailVerifyUrl
     let that = this
     let requestData = {

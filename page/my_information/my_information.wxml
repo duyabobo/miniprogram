@@ -22,7 +22,7 @@
       <button class="code-button" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
     </action-sheet-item>
     <!--自动隐藏action-sheet-->
-    <action-sheet-cancel bindtap="checkWorkCode">确认</action-sheet-cancel>
+    <action-sheet-cancel bindtap="checkEmailCode">确认</action-sheet-cancel>
   </action-sheet> 
 
 <!--  <button class="user_info" bindtap="verifyPhone">-->
