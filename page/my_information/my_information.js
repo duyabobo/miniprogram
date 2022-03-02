@@ -87,14 +87,22 @@ Page({
         phone: phone,
       },
       success(res) {
-        that.setData({
-          sendCodeButonText: "发送成功",
-          sendPhoneCodeDisabled: true,
-        });
+        if (request.requestIsSuccess(res)) {
+          that.setData({
+            sendCodeButonText: "发送成功",
+            sendPhoneCodeDisabled: true,
+          });
+        } else {
+          wx.showModal({
+            title: res.data.errMsg,
+            showCancel: false,
+            confirmText: '确认',
+          })
+        }
       },
       fail(res) {
         wx.showModal({
-          title: res.errMsg,
+          title: res.data.errMsg,
           showCancel: false,
           confirmText: '确认',
         })
@@ -113,14 +121,22 @@ Page({
         email: email,
       },
       success(res) {
-        that.setData({
-          sendEmailButonText: "发送成功",
-          sendWorkCodeDisabled: true,
-        });
+        if (request.requestIsSuccess(res)) {
+          that.setData({
+            sendEmailButonText: "发送成功",
+            sendWorkCodeDisabled: true,
+          });
+        } else {
+          wx.showModal({
+            title: res.data.errMsg,
+            showCancel: false,
+            confirmText: '确认',
+          })
+        }
       },
       fail(res) {
         wx.showModal({
-          title: res.errMsg,
+          title: res.data.errMsg,
           showCancel: false,
           confirmText: '确认',
         })
@@ -145,7 +161,7 @@ Page({
     let that = this
     let requestData = {
       accessToken: app.globalData.accessToken,
-      mail: this.data.mail,
+      email: this.data.email,
       code: this.data.code,
     }
     request.normalUpdateRequest(that, url, requestData)
@@ -213,7 +229,7 @@ Page({
         request.normalUpdateRequest(that, url, requestData)
       },
       fail (res) {
-        console.log(res.errMsg)
+        console.log(res.data.errMsg)
       }
     })    
   },
