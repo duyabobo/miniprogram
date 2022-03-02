@@ -39,7 +39,7 @@ Page({
 
   obtainCode: function(data) {
     this.setData({
-      emailCode: data.detail.emailCode
+      emailCode: data.detail.value
     });
   },
 
