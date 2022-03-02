@@ -12,10 +12,8 @@ const guaninfoUrl = '/guan_info'  // 关关详情页信息
 const mineUrl = '/mine'  // 我的页面信息获取
 const myselfUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
-const sendPhoneCodeUrl = '/send_phone_code'  // 发送手机短信验证码
-const verifyPhoneCodeUrl = '/verify_phone_code'  // 手机短信验证
-const sendEmailCodeUrl = '/send_email_code'  // 发送email验证码
-const verifyEmailCodeUrl = '/verify_email_code'  // email验证
+const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
+const emailVerifyUrl = '/email_verify'  // email验证
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
@@ -38,10 +36,8 @@ module.exports = {
     myselfUrl,
     mineUrl,
     requirementUrl,
-    sendPhoneCodeUrl,
-    verifyPhoneCodeUrl,
-    sendEmailCodeUrl,
-    verifyEmailCodeUrl,
+    phoneVerifyUrl,
+    emailVerifyUrl,
     GUANGUAN_PAGE,
     GUANINFO_PAGE,
     ABOUT_PAGE,

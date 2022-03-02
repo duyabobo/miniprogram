@@ -81,7 +81,7 @@ Page({
     let phone = this.data.phone
     let that = this
     wx.request({
-      url: config.HTTP_HOST_TEST + config.sendPhoneCodeUrl,
+      url: config.HTTP_HOST_TEST + config.phoneVerifyUrl,
       data: {
         accessToken: app.globalData.accessToken,
         phone: phone,
@@ -98,7 +98,7 @@ Page({
           showCancel: false,
           confirmText: '确认',
         })
-        request.logRequestErr("sendPhoneCodeUrl err:", res)
+        request.logRequestErr("phoneVerifyUrl err:", res)
       }
     })
   },
@@ -107,7 +107,7 @@ Page({
     let email = this.data.email
     let that = this
     wx.request({
-      url: config.HTTP_HOST_TEST + config.sendEmailCodeUrl,
+      url: config.HTTP_HOST_TEST + config.emailVerifyUrl,
       data: {
         accessToken: app.globalData.accessToken,
         email: email,
@@ -124,13 +124,13 @@ Page({
           showCancel: false,
           confirmText: '确认',
         })
-        request.logRequestErr("sendEmailCodeUrl err:", res)
+        request.logRequestErr("emailVerifyUrl err:", res)
       }
     })
   },
 
   checkPhoneCode: function() {
-    let url = config.HTTP_HOST_TEST + config.verifyPhoneCodeUrl
+    let url = config.HTTP_HOST_TEST + config.phoneVerifyUrl
     let that = this
     let requestData = { 
       accessToken: app.globalData.accessToken,
@@ -141,7 +141,7 @@ Page({
   },
 
   checkWorkCode: function () {
-    let url = config.HTTP_HOST_TEST + config.verifyEmailCodeUrl
+    let url = config.HTTP_HOST_TEST + config.emailVerifyUrl
     let that = this
     let requestData = {
       accessToken: app.globalData.accessToken,
