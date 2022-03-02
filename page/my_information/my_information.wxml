@@ -25,11 +25,11 @@
     <action-sheet-cancel bindtap="checkWorkCode">确认</action-sheet-cancel>
   </action-sheet> 
 
-  <button class="user_info" bindtap="verifyPhone">
-    <view class="desc">{{phoneVerify.desc}}</view>
-    <view class="value">{{phoneVerify.value}}</view>
-    <view class="navigator-arrow"></view>
-  </button>
+<!--  <button class="user_info" bindtap="verifyPhone">-->
+<!--    <view class="desc">{{phoneVerify.desc}}</view>-->
+<!--    <view class="value">{{phoneVerify.value}}</view>-->
+<!--    <view class="navigator-arrow"></view>-->
+<!--  </button>-->
 
   <button class="user_info" bindtap="verifyWork">
     <view class="desc">{{workVerify.desc}}</view>
