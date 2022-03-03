@@ -54,7 +54,6 @@ button::after {
   position: absolute;
   top: 50%;
   margin-top: -8rpx;
-  right: 28rpx;
 }
 
 .login-input {
