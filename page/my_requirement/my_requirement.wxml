@@ -4,6 +4,7 @@
     <view class="value">{{sex.value}}</view>
     <view class="navigator-arrow"></view>
   </button>
+  <view class="line"></view>
 
   <picker mode="multiSelector" value="{{birthYear.fromAndToIndex}}" range="{{birthYear.fromAndToArray}}" bindchange="updateBirthYear" bindcolumnchange="birthYearColumnChange">
     <button class="requirement">
@@ -12,6 +13,7 @@
       <view class="navigator-arrow"></view>
     </button>
   </picker>
+  <view class="line"></view>
 
   <picker mode="multiSelector" value="{{height.fromAndToIndex}}" range="{{height.fromAndToArray}}" bindchange="updateHeight" bindcolumnchange="heightColumnChange">
     <button class="requirement">
@@ -20,6 +22,7 @@
       <view class="navigator-arrow"></view>
     </button>
   </picker>
+  <view class="line"></view>
 
   <picker mode="multiSelector" value="{{weight.fromAndToIndex}}" range="{{weight.fromAndToArray}}" bindchange="updateWeight" bindcolumnchange="weightColumnChange">
     <button class="requirement">
@@ -28,6 +31,7 @@
       <view class="navigator-arrow"></view>
     </button>
   </picker>
+  <view class="line"></view>
 
   <picker mode="multiSelector" value="{{monthPay.fromAndToIndex}}" range="{{monthPay.fromAndToArray}}" bindchange="updateMonthPay" bindcolumnchange="monthPayColumnChange">
     <button class="requirement">
@@ -36,6 +40,7 @@
       <view class="navigator-arrow"></view>
     </button>
   </picker>
+  <view class="line"></view>
 
   <button class="requirement" wx:for="{{otherRequirementList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" data-id="{{item.id}}" bindtap="upsertRequirement">
     <view class="desc">{{item.desc}}</view>
