@@ -30,7 +30,14 @@ button::after {
   background-color: #FFFFFF;
 }
 
-.user_info {
+.user-info-and-line {
+  display: flex;
+  flex-direction: column; 
+  padding: 0rpx;
+  margin: 0rpx;
+}
+
+.user-info {
   display: flex;
   align-items: center;
   margin: 0rpx;
