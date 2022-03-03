@@ -10,20 +10,33 @@
 }
 
 .main-group-list {
-  margin: 8px 0px;
+  margin: 10rpx 0rpx;
+  background-color: #f3f3f3;
 }
 .main-group {
   display: flex;
-  align-items: center;
-  margin: 2px 0;
-  padding: 30rpx 30rpx;
-  background-color: #FFFFFF;
+  margin: 0rpx;
+  flex-direction: column;
 }
+.main-group-content {
+  display: flex;
+  align-items: center;
+  padding: 25rpx 0rpx;
+}
+button::after {
+  border-radius: 0rpx;
+  border:0rpx;
+}
+.line {
+  height: 1rpx;
+  background-color: #f3f3f3;
+}
+
 .func-name{
   flex: 10;
   text-align: left;
   line-height: 50rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
 .navigator-arrow {
   padding-right: 26rpx;

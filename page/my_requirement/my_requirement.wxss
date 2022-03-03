@@ -22,6 +22,10 @@ page {
 .navigator-arrow {
   flex: 1;
 }
+
+button::after {
+  border-radius: 0rpx;
+}
 .navigator-arrow:after {
   content: " ";
   display: inline-block;

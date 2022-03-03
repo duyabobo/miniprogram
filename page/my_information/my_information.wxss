@@ -13,6 +13,10 @@ input {
   padding: 20rpx;
 }
 
+button::after {
+  border-radius: 0rpx;
+}
+
 .code {
   flex: 5;
 }

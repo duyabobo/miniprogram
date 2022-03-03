@@ -4,7 +4,10 @@
 
 <view wx:for="{{mainGroupList}}" wx:for-item="mainGroup" wx:key="id" class="main-group-list">
   <button class="main-group" open-type="{{item.openType}}" wx:for="{{mainGroup}}" wx:key="id" data-url="{{item.url}}" data-need_login="{{item.needLogin}}" bindtap="{{item.bindFuncName}}">
-    <view class="func-name">{{item.name}}</view>
-    <view class="navigator-arrow"></view>
+    <view class="main-group-content"> 
+      <view class="func-name">{{item.name}}</view>
+      <view class="navigator-arrow"></view>
+    </view>
+    <view class="line"></view>
   </button>
 </view>
