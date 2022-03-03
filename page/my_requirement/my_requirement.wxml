@@ -42,9 +42,12 @@
   </picker>
   <view class="line"></view>
 
-  <button class="requirement" wx:for="{{otherRequirementList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" data-id="{{item.id}}" bindtap="upsertRequirement">
-    <view class="desc">{{item.desc}}</view>
-    <view class="value">{{item.value}}</view>
-    <view class="navigator-arrow"></view>
+  <button class="requirement-and-line" wx:for="{{otherRequirementList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" data-id="{{item.id}}" bindtap="upsertRequirement">
+    <view class="requirement">
+      <view class="desc">{{item.desc}}</view>
+      <view class="value">{{item.value}}</view>
+      <view class="navigator-arrow"></view>
+    </view>
+    <view class="line"></view>
   </button>
 </scroll-view>
