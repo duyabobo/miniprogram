@@ -84,7 +84,7 @@ page {
 }
 
 .operate {
-  width: 80%;
+  width: 90%;
   color: #000000;
   background-color: #FF6600;
 }
