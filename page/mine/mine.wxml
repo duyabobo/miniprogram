@@ -8,6 +8,6 @@
       <view class="func-name">{{item.name}}</view>
       <view class="navigator-arrow"></view>
     </view>
-    <view class="line"></view>
+    <view wx:if="{{item.index + 1 < mainGroup.length}}" class="line"></view>
   </button>
 </view>

@@ -15,6 +15,7 @@ Page({
       [
         {
           id: 1,
+          index: 0,
           url: config.MYINFORMATION_PAGE,
           name: '我的资料',
           needLogin: true,
@@ -23,6 +24,7 @@ Page({
         },
         {
           id: 2,
+          index: 1,
           url: config.MYREQUIREMENT_PAGE,
           name: '我的期望',
           needLogin: true,
@@ -33,6 +35,7 @@ Page({
       [
         {
           id: 3,
+          index: 0,
           url: config.SUGGESTION_PAGE,
           name: '客服',
           needLogin: false,
@@ -41,6 +44,7 @@ Page({
         }, 
         {
           id: 4,
+          index: 1,
           url: config.SHARE_PAGE,
           name: '分享',
           needLogin: false,
@@ -51,6 +55,7 @@ Page({
       [
         {
           id: 5,
+          index: 0,
           url: config.SETTING_PAGE,
           name: '设置',
           needLogin: true,
@@ -59,6 +64,7 @@ Page({
         },
         {
           id: 6,
+          index: 1,
           url: config.ABOUT_PAGE,
           name: '关于',
           needLogin: false,
