@@ -25,6 +25,13 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
+        } else if (request.requestFinishWithCode(res, enumerate.GUAN_INFO_UPDATE_SUCCESS_WITH_NOTI)) {
+          that.setData(res.data.data)
+          wx.showModal({
+            title: res.data.errMsg,
+            showCancel: false,
+            confirmText: '确认',
+          })
         } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
             url: config.MYINFORMATION_PAGE + res.data.errMsg,

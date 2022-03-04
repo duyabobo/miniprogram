@@ -1,8 +1,5 @@
 const config = require("../config");
 const enumerate = require("./enumerate");
-const wxInteractive = require("./wx_interactive");
-
-let app = getApp()
 
 function normalUpdateRequest(that, url, data) {
   wx.request({
@@ -35,7 +32,6 @@ function loginRequest(code, suc_uri) {
     },
     success(res) {
       if (requestIsSuccess(res)) {
-        // wx.getStorageSync('accessToken') = res.data.data.accessToken
         wx.setStorageSync('accessToken', res.data.data.accessToken)
         wx.setStorageSync('hasLogin', true)
         wx.navigateTo({
