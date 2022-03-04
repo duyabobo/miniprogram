@@ -67,4 +67,17 @@ Page({
     })
   },
 
+  onShareAppMessage: function (ops) {
+    return {
+      title: '关关雎鸠',
+      path: config.GUANGUAN_PAGE,
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  },
+
 })

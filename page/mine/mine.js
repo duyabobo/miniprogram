@@ -81,10 +81,6 @@ Page({
   },
 
   onShareAppMessage: function (ops) {
-    if (ops.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(ops.target)
-    }
     return {
       title: '关关雎鸠',
       path: config.GUANGUAN_PAGE,
