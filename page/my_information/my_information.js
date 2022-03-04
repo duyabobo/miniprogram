@@ -83,7 +83,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + config.phoneVerifyUrl,
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
         phone: phone,
       },
       success(res) {
@@ -117,7 +117,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + config.emailVerifyUrl,
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
         email: email,
       },
       success(res) {
@@ -149,7 +149,7 @@ Page({
     let url = config.HTTP_HOST_TEST + config.phoneVerifyUrl
     let that = this
     let requestData = { 
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       phone: this.data.phone,
       code: this.data.code,
     }
@@ -160,7 +160,7 @@ Page({
     let url = config.HTTP_HOST_TEST + config.emailVerifyUrl
     let that = this
     let requestData = {
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       email: this.data.email,
       code: this.data.code,
     }
@@ -172,7 +172,7 @@ Page({
     let that = this;
     let url = config.HTTP_HOST_TEST + config.myselfUrl
     let requestData = { 
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
       value: event.detail.value
     }
@@ -184,7 +184,7 @@ Page({
     let that = this;
     let url = config.HTTP_HOST_TEST + config.myselfUrl
     let requestData = { 
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT,
       value: event.detail.value
     }
@@ -196,7 +196,7 @@ Page({
     let that = this;
     let url = config.HTTP_HOST_TEST + config.myselfUrl
     let requestData = {
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       opType: enumerate.MODEL_USER_OP_TYPE_WEIGHT,
       value: event.detail.value
     }
@@ -208,7 +208,7 @@ Page({
     let that = this;
     let url = config.HTTP_HOST_TEST + config.myselfUrl
     let requestData = {
-      accessToken: app.globalData.accessToken,
+      accessToken: wx.getStorageSync('accessToken'),
       opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY,
       value: event.detail.value
     }
@@ -222,7 +222,7 @@ Page({
       success (res) {
         let url = config.HTTP_HOST_TEST + config.myselfUrl
         let requestData = {
-          accessToken: app.globalData.accessToken,
+          accessToken: wx.getStorageSync('accessToken'),
           opType: event.currentTarget.dataset.op_type,
           value: res.tapIndex
         }
@@ -243,7 +243,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + config.myselfUrl,
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {

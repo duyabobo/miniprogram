@@ -94,7 +94,7 @@ Page({
   },
 
   clickMine: function(event) {
-    let needLogin = !app.globalData.hasLogin && event.currentTarget.dataset.need_login
+    let needLogin = !wx.getStorageSync('hasLogin') && event.currentTarget.dataset.need_login
     wxLogin.checkLoginBeforeJump(event.currentTarget.dataset.url, needLogin)
   },
 
@@ -106,7 +106,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + config.mineUrl,
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {

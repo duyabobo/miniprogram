@@ -35,8 +35,9 @@ function loginRequest(code, suc_uri) {
     },
     success(res) {
       if (requestIsSuccess(res)) {
-        app.globalData.accessToken = res.data.data.accessToken
-        app.globalData.hasLogin = true
+        // wx.getStorageSync('accessToken') = res.data.data.accessToken
+        wx.setStorageSync('accessToken', res.data.data.accessToken)
+        wx.setStorageSync('hasLogin', true)
         wx.navigateTo({
           url: suc_uri,
         })

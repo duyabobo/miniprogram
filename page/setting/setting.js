@@ -15,11 +15,12 @@ Page({
       url: config.HTTP_HOST_TEST + config.loginUrl,
       method: 'PUT',
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
-          app.globalData.hasLogin = false
+          wx.setStorageSync('hasLogin', false)
+          wx.setStorageSync('accessToken', '')
           wx.reLaunch({
             url: config.GUANGUAN_PAGE,
           })

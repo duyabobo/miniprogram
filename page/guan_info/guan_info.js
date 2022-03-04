@@ -18,7 +18,7 @@ Page({
       url: config.HTTP_HOST_TEST + config.guaninfoUrl,
       method: 'PUT',
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
         guanId: guanId,
         opType: event.currentTarget.dataset.op_type,
       },
@@ -53,7 +53,7 @@ Page({
     wx.request({
       url: config.HTTP_HOST_TEST + config.guaninfoUrl,
       data: {
-        accessToken: app.globalData.accessToken,
+        accessToken: wx.getStorageSync('accessToken'),
         guanId: options.guanId
       },
       success(res) {

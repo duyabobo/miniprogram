@@ -15,7 +15,7 @@ Page({
   },
 
   clickGuanInfo: function (event) {
-    let needLogin = !app.globalData.hasLogin
+    let needLogin = !wx.getStorageSync('hasLogin')
     let sucUrl = config.GUANINFO_PAGE + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
     wxLogin.checkLoginBeforeJump(sucUrl, needLogin)
   },
@@ -47,7 +47,7 @@ Page({
       type: 'wgs84',
       complete(res) {
         let requestData = {
-          accessToken: app.globalData.accessToken,
+          accessToken: wx.getStorageSync('accessToken'),
           latitude: res.latitude,
           longitude: res.longitude
         };
