@@ -9,8 +9,14 @@ function normalUpdateRequest(that, url, data) {
     success(res) {
       if (requestIsSuccess(res)) {
         that.setData(res.data.data)  // 有性能问题
-      }
-      else {
+      } else if (requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
+        that.setData(res.data.data)
+        wx.showModal({
+          title: res.data.errMsg,
+          showCancel: false,
+          confirmText: '确认',
+        })
+      } else {
         wx.showModal({
           title: res.data.errMsg,
           showCancel: false,
@@ -68,6 +74,10 @@ function requestFinishWithCode(res, code) {
   return res.statusCode === 200 && res.data.code === code
 }
 
+function requestFinishBiggerThanCode(res, code) {
+  return res.statusCode === 200 && res.data.code > code
+}
+
 function requestIsSuccess(res) {
   return requestFinishWithCode(res, enumerate.SUCESS_CODE)
 }
@@ -83,5 +93,6 @@ module.exports = {
   logRequestErr,
   requestFinishWithCode,
   requestIsSuccess,
-  requestFinishWithErr
+  requestFinishWithErr,
+  requestFinishBiggerThanCode
 }

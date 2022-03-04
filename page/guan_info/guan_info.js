@@ -25,7 +25,7 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
-        } else if (request.requestFinishWithCode(res, enumerate.GUAN_INFO_UPDATE_SUCCESS_WITH_NOTI)) {
+        } else if (request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
           that.setData(res.data.data)
           wx.showModal({
             title: res.data.errMsg,
