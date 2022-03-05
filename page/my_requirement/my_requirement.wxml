@@ -11,6 +11,7 @@
       <button class="requirement">
         <view class="desc">{{item.desc}}</view>
         <view class="value" wx:if="{{item.fromValue || item.toValue}}">{{item.fromValue}}-{{item.toValue}}</view>
+        <view class="value" wx:else></view>
         <view class="navigator-arrow"></view>
       </button>
     </picker>
