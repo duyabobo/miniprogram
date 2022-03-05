@@ -177,15 +177,11 @@ Page({
   },
 
   updateSex: function(event) {
-    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_WEIGHT, event.detail.value)
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_SEX, event.detail.value)
   },
 
   updateBirthYear: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR, event.detail.value)
-  },
-
-  updateMartialStatus: function(event) {
-    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_MARTIAL_STATUS, event.detail.value)
   },
 
   updateHeight: function(event) {
@@ -200,88 +196,148 @@ Page({
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_MONTH_PAY, event.detail.value)
   },
 
+  updateMartialStatus: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_MARTIAL_STATUS, event.detail.value)
+  },
+
   updateEducation: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EDUCATION, event.detail.value)
   },
 
-  updateEntend1: function(event) {
+  updateExtend1: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_1, event.detail.value)
   },
 
-  updateEntend2: function(event) {
+  updateExtend2: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_2, event.detail.value)
   },
 
-  updateEntend3: function(event) {
+  updateExtend3: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_3, event.detail.value)
   },
 
-  updateEntend4: function(event) {
+  updateExtend4: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_4, event.detail.value)
   },
 
-  updateEntend5: function(event) {
+  updateExtend5: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_5, event.detail.value)
   },
 
-  updateEntend6: function(event) {
+  updateExtend6: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_6, event.detail.value)
   },
 
-  updateEntend7: function(event) {
+  updateExtend7: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_7, event.detail.value)
   },
 
-  updateEntend8: function(event) {
+  updateExtend8: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_8, event.detail.value)
   },
 
-  updateEntend9: function(event) {
+  updateExtend9: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_9, event.detail.value)
   },
 
-  updateEntend10: function(event) {
+  updateExtend10: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_10, event.detail.value)
   },
 
-  updatePeriodEntend1: function(event) {
+  updatePeriodExtend1: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_1, event.detail.value)
   },
 
-  updatePeriodEntend2: function(event) {
+  updatePeriodExtend2: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_2, event.detail.value)
   },
 
-  updatePeriodEntend3: function(event) {
+  updatePeriodExtend3: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_3, event.detail.value)
   },
 
-  updatePeriodEntend4: function(event) {
+  updatePeriodExtend4: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_4, event.detail.value)
   },
 
-  updatePeriodEntend5: function(event) {
+  updatePeriodExtend5: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_5, event.detail.value)
   },
 
-  updatePeriodEntend6: function(event) {
+  updatePeriodExtend6: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_6, event.detail.value)
   },
 
-  updatePeriodEntend7: function(event) {
+  updatePeriodExtend7: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_7, event.detail.value)
   },
 
-  updatePeriodEntend8: function(event) {
+  updatePeriodExtend8: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_8, event.detail.value)
   },
 
-  updatePeriodEntend9: function(event) {
+  updatePeriodExtend9: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_9, event.detail.value)
   },
 
-  updatePeriodEntend10: function(event) {
+  updatePeriodExtend10: function(event) {
     this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_10, event.detail.value)
+  },
+  
+  columnChange(e, columnChangeType) {
+    let currentColunm = e.detail.column;
+    let currentValue = e.detail.value
+    let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap[columnChangeType]
+    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.informationList[columnChangeTypeIndex].fromAndToSelectValueIndex[0])) {
+      this.setData({
+        ["informationList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[0]"]: currentValue,
+        ["informationList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
+      })
+    } else {
+      this.setData({
+        ["informationList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
+      })
+    }
+  },
+
+  monthPeriodExtend1ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend1")
+  },
+
+  monthPeriodExtend2ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend2")
+  },
+
+  monthPeriodExtend3ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend3")
+  },
+
+  monthPeriodExtend4ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend4")
+  },
+
+  monthPeriodExtend5ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend5")
+  },
+
+  monthPeriodExtend6ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend6")
+  },
+
+  monthPeriodExtend7ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend7")
+  },
+
+  monthPeriodExtend8ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend8")
+  },
+
+  monthPeriodExtend9ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend9")
+  },
+
+  monthPeriodExtend10ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend10")
   },
 
   /**

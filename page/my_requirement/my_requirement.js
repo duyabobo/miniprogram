@@ -11,73 +11,128 @@ Page({
    */
   data: { },
 
-  updateBirthYear(event) {
+  updateRequirement(opType, value) {
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR_PERIOD,
-      value: event.detail.value
+      opType: opType,
+      value: value
     }
     request.normalUpdateRequest(that, url, requestData)
+  },
+  updateSex: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_SEX, event.detail.value)
+  },
+
+  updateBirthYearPeriod: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR_PERIOD, event.detail.value)
+  },
+
+  updateHeightPeriod: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_HEIGHT_PERIOD, event.detail.value)
+  },
+
+  updateWeightPeriod: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_WEIGHT_PERIOD, event.detail.value)
+  },
+
+  updateMonthPayPeriod: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_MONTH_PAY_PERIOD, event.detail.value)
+  },
+
+  updateMartialStatus: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_MARTIAL_STATUS, event.detail.value)
+  },
+
+  updateEducationPeriod: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EDUCATION_PERIOD, event.detail.value)
   },
   
-  birthYearColumnChange(e) {
-    let currentColunm = e.detail.column; 
-    let currentValue = e.detail.value 
-    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.birthYear.fromAndToIndex[0])) {
-      this.setData({
-        ["birthYear.fromAndToIndex[0]"]: currentValue,
-        ["birthYear.fromAndToIndex[1]"]: currentValue,
-      })
-    } else {
-      this.setData({
-        ["birthYear.fromAndToIndex[1]"]: currentValue,
-      })
-    }
+  updateExtend1: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_1, event.detail.value)
   },
 
-  updateHeight: function(event) {
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.requirementUrl
-    let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT_PERIOD,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+  updateExtend2: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_2, event.detail.value)
   },
 
-  heightColumnChange(e) {  // todo 这里对于区间处理，重复代码过多，可能可以优化
+  updateExtend3: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_3, event.detail.value)
+  },
+
+  updateExtend4: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_4, event.detail.value)
+  },
+
+  updateExtend5: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_5, event.detail.value)
+  },
+
+  updateExtend6: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_6, event.detail.value)
+  },
+
+  updateExtend7: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_7, event.detail.value)
+  },
+
+  updateExtend8: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_8, event.detail.value)
+  },
+
+  updateExtend9: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_9, event.detail.value)
+  },
+
+  updateExtend10: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_10, event.detail.value)
+  },
+
+  updatePeriodExtend1: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_1, event.detail.value)
+  },
+
+  updatePeriodExtend2: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_2, event.detail.value)
+  },
+
+  updatePeriodExtend3: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_3, event.detail.value)
+  },
+
+  updatePeriodExtend4: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_4, event.detail.value)
+  },
+
+  updatePeriodExtend5: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_5, event.detail.value)
+  },
+
+  updatePeriodExtend6: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_6, event.detail.value)
+  },
+
+  updatePeriodExtend7: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_7, event.detail.value)
+  },
+
+  updatePeriodExtend8: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_8, event.detail.value)
+  },
+
+  updatePeriodExtend9: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_9, event.detail.value)
+  },
+
+  updatePeriodExtend10: function(event) {
+    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_10, event.detail.value)
+  },
+
+  columnChange(e, columnChangeType) {
     let currentColunm = e.detail.column;
     let currentValue = e.detail.value
-    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.height.fromAndToIndex[0])) {
-      this.setData({
-        ["height.fromAndToIndex[0]"]: currentValue,
-        ["height.fromAndToIndex[1]"]: currentValue,
-      })
-    } else {
-      this.setData({
-        ["height.fromAndToIndex[1]"]: currentValue,
-      })
-    }
-  },
-
-  updateWeight: function(event) {
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.requirementUrl
-    let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_WEIGHT_PERIOD,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
-  },
-
-  weightColumnChange(e) {
-    let currentColunm = e.detail.column;
-    let currentValue = e.detail.value
-    let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap['weight']
+    let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap[columnChangeType]
     if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.requirementList[columnChangeTypeIndex].fromAndToSelectValueIndex[0])) {
       this.setData({
         ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[0]"]: currentValue,
@@ -90,49 +145,64 @@ Page({
     }
   },
 
-  updateMonthPay: function(event) {
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.requirementUrl
-    let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY_PERIOD,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+  educationPeriodColumnChange(e) {
+    this.columnChange(e, "educationPeriod")
   },
 
-  monthPayColumnChange(e) {
-    let currentColunm = e.detail.column;
-    let currentValue = e.detail.value
-    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.monthPay.fromAndToIndex[0])) {
-      this.setData({
-        ["monthPay.fromAndToIndex[0]"]: currentValue,
-        ["monthPay.fromAndToIndex[1]"]: currentValue,
-      })
-    } else {
-      this.setData({
-        ["monthPay.fromAndToIndex[1]"]: currentValue,
-      })
-    }
+  weightPeriodColumnChange(e) {
+    this.columnChange(e, "weightPeriod")
   },
 
-  upsertRequirement: function(event) {
-    let that = this;
-    wx.showActionSheet({
-      itemList: event.currentTarget.dataset.item_list,
-      success (res) {
-        let url = config.HTTP_HOST_TEST + config.requirementUrl
-        let requestData = { 
-          accessToken: wx.getStorageSync('accessToken'),
-          opType: event.currentTarget.dataset.op_type,
-          value: res.tapIndex
-        }
-        request.normalUpdateRequest(that, url, requestData)
-      },
-      fail (res) {
-        request.logRequestErr("upsertRequirementUrl err:", res)
-      }
-    })    
+  birthYearPeriodColumnChange(e) {
+    this.columnChange(e, "birthYearPeriod")
+  },
+
+  heightPeriodColumnChange(e) {
+    this.columnChange(e, "heightPeriod")
+  },
+
+  monthPayPeriodColumnChange(e) {
+    this.columnChange(e, "monthPayPeriod")
+  },
+
+  monthPeriodExtend1ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend1")
+  },
+
+  monthPeriodExtend2ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend2")
+  },
+
+  monthPeriodExtend3ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend3")
+  },
+
+  monthPeriodExtend4ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend4")
+  },
+
+  monthPeriodExtend5ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend5")
+  },
+
+  monthPeriodExtend6ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend6")
+  },
+
+  monthPeriodExtend7ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend7")
+  },
+
+  monthPeriodExtend8ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend8")
+  },
+
+  monthPeriodExtend9ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend9")
+  },
+
+  monthPeriodExtend10ColumnChange(e) {
+    this.columnChange(e, "PeriodExtend10")
   },
 
   /**
