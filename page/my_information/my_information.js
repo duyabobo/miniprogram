@@ -3,8 +3,6 @@ const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 const enumerate = require("../../util/enumerate");
 
-let app = getApp();
-
 Page({
 
   /**
@@ -166,84 +164,124 @@ Page({
     }
     request.normalUpdateRequest(that, url, requestData)
   },
-
-  updateUserInfo: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail)
+  
+  updateInformation: function (opType, value) {
     let that = this;
-    let url = config.HTTP_HOST_TEST + config.myselfUrl
-    let requestData = { 
+    let url = config.HTTP_HOST_TEST + config.informationUrl
+    let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
-      value: event.detail.value
+      opType: opType,
+      value: value
     }
     request.normalUpdateRequest(that, url, requestData)
+  },
+
+  updateSex: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_WEIGHT, event.detail.value)
   },
 
   updateBirthYear: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.myselfUrl
-    let requestData = { 
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR, event.detail.value)
+  },
+
+  updateMartialStatus: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_MARTIAL_STATUS, event.detail.value)
   },
 
   updateHeight: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.myselfUrl
-    let requestData = { 
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_HEIGHT,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_HEIGHT, event.detail.value)
   },
 
   updateWeight: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.myselfUrl
-    let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_WEIGHT,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_WEIGHT, event.detail.value)
   },
 
   updateMonthPay: function(event) {
-    console.log('picker发送选择改变，携带值为', event.detail.value)
-    let that = this;
-    let url = config.HTTP_HOST_TEST + config.myselfUrl
-    let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
-      opType: enumerate.MODEL_USER_OP_TYPE_MONTH_PAY,
-      value: event.detail.value
-    }
-    request.normalUpdateRequest(that, url, requestData)
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_MONTH_PAY, event.detail.value)
   },
 
-  upsertMyself: function(event) {
-    let that = this;
-    wx.showActionSheet({
-      itemList: event.currentTarget.dataset.item_list,
-      success (res) {
-        let url = config.HTTP_HOST_TEST + config.myselfUrl
-        let requestData = {
-          accessToken: wx.getStorageSync('accessToken'),
-          opType: event.currentTarget.dataset.op_type,
-          value: res.tapIndex
-        }
-        request.normalUpdateRequest(that, url, requestData)
-      },
-      fail (res) {
-        console.log(res.data.errMsg)
-      }
-    })    
+  updateEducation: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EDUCATION, event.detail.value)
+  },
+
+  updateEntend1: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_1, event.detail.value)
+  },
+
+  updateEntend2: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_2, event.detail.value)
+  },
+
+  updateEntend3: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_3, event.detail.value)
+  },
+
+  updateEntend4: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_4, event.detail.value)
+  },
+
+  updateEntend5: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_5, event.detail.value)
+  },
+
+  updateEntend6: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_6, event.detail.value)
+  },
+
+  updateEntend7: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_7, event.detail.value)
+  },
+
+  updateEntend8: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_8, event.detail.value)
+  },
+
+  updateEntend9: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_9, event.detail.value)
+  },
+
+  updateEntend10: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_EXTEND_10, event.detail.value)
+  },
+
+  updatePeriodEntend1: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_1, event.detail.value)
+  },
+
+  updatePeriodEntend2: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_2, event.detail.value)
+  },
+
+  updatePeriodEntend3: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_3, event.detail.value)
+  },
+
+  updatePeriodEntend4: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_4, event.detail.value)
+  },
+
+  updatePeriodEntend5: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_5, event.detail.value)
+  },
+
+  updatePeriodEntend6: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_6, event.detail.value)
+  },
+
+  updatePeriodEntend7: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_7, event.detail.value)
+  },
+
+  updatePeriodEntend8: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_8, event.detail.value)
+  },
+
+  updatePeriodEntend9: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_9, event.detail.value)
+  },
+
+  updatePeriodEntend10: function(event) {
+    this.updateInformation(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_10, event.detail.value)
   },
 
   /**
@@ -253,7 +291,7 @@ Page({
     wxInteractive.wxCheckToast(options.errMsg)
     let that = this; 
     wx.request({
-      url: config.HTTP_HOST_TEST + config.myselfUrl,
+      url: config.HTTP_HOST_TEST + config.informationUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
       },
@@ -263,7 +301,7 @@ Page({
         }
       },
       fail(res) {
-        request.logRequestErr("myselfUrl err:", res)
+        request.logRequestErr("informationUrl err:", res)
       }
     })
   },

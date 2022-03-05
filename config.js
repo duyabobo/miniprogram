@@ -10,7 +10,7 @@ const aboutUrl = '/about'  // 关于
 const guanguanUrl = '/guanguan'  // 关关列表获取
 const guaninfoUrl = '/guan_info'  // 关关详情页信息
 const mineUrl = '/mine'  // 我的页面信息获取
-const myselfUrl = '/myself'  // 我的资料
+const informationUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
 const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
 const emailVerifyUrl = '/email_verify'  // email验证
@@ -33,7 +33,7 @@ module.exports = {
     loginUrl,
     guanguanUrl,
     guaninfoUrl,
-    myselfUrl,
+    informationUrl,
     mineUrl,
     requirementUrl,
     phoneVerifyUrl,
