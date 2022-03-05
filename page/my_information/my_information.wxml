@@ -38,55 +38,22 @@
   </button>
   <view class="line"></view>
 
-  <button class="user-info" data-op_type="{{sex.opType}}" data-item_list="{{sex.choiceList}}" bindtap="upsertMyself">
-    <view class="desc">{{sex.desc}}</view>
-    <view class="value">{{sex.value}}</view>
-    <view class="navigator-arrow"></view>
-  </button>
-  <view class="line"></view>
-
-  <picker mode="date" value="{{birthYear.defaultValue}}" bindchange="updateBirthYear" fields="year" start="{{birthYear.start}}" end="{{birthYear.end}}">
-    <button class="user-info">
-      <view class="desc">{{birthYear.desc}}</view>
-      <view class="value">{{birthYear.value}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="selector" range="{{height.choiceList}}" value="{{height.defaultValue}}" bindchange="updateHeight">
-    <button class="user-info">
-      <view class="desc">{{height.desc}}</view>
-      <view class="value">{{height.value}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="selector" range="{{weight.choiceList}}" value="{{weight.defaultValue}}" bindchange="updateWeight">
-    <button class="user-info">
-      <view class="desc">{{weight.desc}}</view>
-      <view class="value">{{weight.value}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="selector" range="{{monthPay.choiceList}}" value="{{monthPay.defaultValue}}" bindchange="updateMonthPay">
-    <button class="user-info">
-      <view class="desc">{{monthPay.desc}}</view>
-      <view class="value">{{monthPay.value}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <button class="user-info-and-line" wx:for="{{otherInfoList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" bindtap="upsertMyself">
-    <view class="user-info">
-      <view class="desc">{{item.desc}}</view>
-      <view class="value">{{item.value}}</view>
-      <view class="navigator-arrow"></view>
-    </view>
+  <view wx:for="{{userInfoList}}" wx:key="id">
+    <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
+      <button class="user-info">
+        <view class="desc">{{item.desc}}</view>
+        <view class="value">{{item.value}}</view>
+        <view class="navigator-arrow"></view>
+      </button>
+    </picker>
+    <picker wx:if="{{item.pickerType==1}}" mode="multiSelector" value="{{item.fromAndToSelectValueIndex}}" range="{{item.fromAndToChoiceList}}" bindchange="{{item.bindChange}}" bindcolumnchange="{{item.bindcolumnchange}}">
+      <button class="user-info">
+        <view class="desc">{{item.desc}}</view>
+        <view class="value" wx:if="{{item.fromValue || item.toValue}}">{{item.fromValue}}-{{item.toValue}}</view>
+        <view class="navigator-arrow"></view>
+      </button>
+    </picker>
     <view class="line"></view>
-  </button>
+  </view>
+
 </scroll-view>

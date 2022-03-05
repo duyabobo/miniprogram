@@ -1,53 +1,19 @@
 <scroll-view class="container" scroll-y="true">
-  <button class="requirement" data-op_type="{{sex.opType}}" data-item_list="{{sex.choiceList}}" bindtap="upsertRequirement">
-    <view class="desc">{{sex.desc}}</view>
-    <view class="value">{{sex.value}}</view>
-    <view class="navigator-arrow"></view>
-  </button>
-  <view class="line"></view>
-
-  <picker mode="multiSelector" value="{{birthYear.fromAndToIndex}}" range="{{birthYear.fromAndToArray}}" bindchange="updateBirthYear" bindcolumnchange="birthYearColumnChange">
-    <button class="requirement">
-      <view class="desc">{{birthYear.desc}}</view>
-      <view class="value" wx:if="{{birthYear.fromValue || birthYear.toValue}}">{{birthYear.fromValue}}-{{birthYear.toValue}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="multiSelector" value="{{height.fromAndToIndex}}" range="{{height.fromAndToArray}}" bindchange="updateHeight" bindcolumnchange="heightColumnChange">
-    <button class="requirement">
-      <view class="desc">{{height.desc}}</view>
-      <view class="value" wx:if="{{height.fromValue || height.toValue}}">{{height.fromValue}}-{{height.toValue}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="multiSelector" value="{{weight.fromAndToIndex}}" range="{{weight.fromAndToArray}}" bindchange="updateWeight" bindcolumnchange="weightColumnChange">
-    <button class="requirement">
-      <view class="desc">{{weight.desc}}</view>
-      <view class="value" wx:if="{{weight.fromValue || weight.toValue}}">{{weight.fromValue}}-{{weight.toValue}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <picker mode="multiSelector" value="{{monthPay.fromAndToIndex}}" range="{{monthPay.fromAndToArray}}" bindchange="updateMonthPay" bindcolumnchange="monthPayColumnChange">
-    <button class="requirement">
-      <view class="desc">{{monthPay.desc}}</view>
-      <view class="value" wx:if="{{monthPay.fromValue || monthPay.toValue}}">{{monthPay.fromValue}}-{{monthPay.toValue}}</view>
-      <view class="navigator-arrow"></view>
-    </button>
-  </picker>
-  <view class="line"></view>
-
-  <button class="requirement-and-line" wx:for="{{otherRequirementList}}" wx:key="id" data-op_type="{{item.opType}}" data-item_list="{{item.choiceList}}" data-id="{{item.id}}" bindtap="upsertRequirement">
-    <view class="requirement">
-      <view class="desc">{{item.desc}}</view>
-      <view class="value">{{item.value}}</view>
-      <view class="navigator-arrow"></view>
-    </view>
+  <view wx:for="{{requirementList}}" wx:key="id">
+    <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
+      <button class="requirement">
+        <view class="desc">{{item.desc}}</view>
+        <view class="value">{{item.value}}</view>
+        <view class="navigator-arrow"></view>
+      </button>
+    </picker>
+    <picker wx:if="{{item.pickerType==1}}" mode="multiSelector" value="{{item.fromAndToSelectValueIndex}}" range="{{item.fromAndToChoiceList}}" bindchange="{{item.bindChange}}" bindcolumnchange="{{item.bindColumnChange}}">
+      <button class="requirement">
+        <view class="desc">{{item.desc}}</view>
+        <view class="value" wx:if="{{item.fromValue || item.toValue}}">{{item.fromValue}}-{{item.toValue}}</view>
+        <view class="navigator-arrow"></view>
+      </button>
+    </picker>
     <view class="line"></view>
-  </button>
+  </view>
 </scroll-view>

@@ -1,8 +1,8 @@
 /**
  * 小程序配置文件
  */
-const HOST_TEST = 'www.ggjjzhzz.cn'  // 后台api域名
-const HTTP_HOST_TEST = 'https://' + HOST_TEST
+const HOST_TEST = 'localhost:443'  // 后台api域名
+const HTTP_HOST_TEST = 'http://' + HOST_TEST
 const CDN_QINIU_URL = 'http://img.ggjjzhzz.cn/'  // 七牛云存储域名
 // 后台api接口
 const loginUrl = '/login'  // 登录

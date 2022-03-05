@@ -167,6 +167,18 @@ Page({
     request.normalUpdateRequest(that, url, requestData)
   },
 
+  updateUserInfo: function(event) {
+    console.log('picker发送选择改变，携带值为', event.detail)
+    let that = this;
+    let url = config.HTTP_HOST_TEST + config.myselfUrl
+    let requestData = { 
+      accessToken: wx.getStorageSync('accessToken'),
+      opType: enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
   updateBirthYear: function(event) {
     console.log('picker发送选择改变，携带值为', event.detail.value)
     let that = this;

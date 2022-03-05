@@ -77,14 +77,15 @@ Page({
   weightColumnChange(e) {
     let currentColunm = e.detail.column;
     let currentValue = e.detail.value
-    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.weight.fromAndToIndex[0])) {
+    let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap['weight']
+    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.requirementList[columnChangeTypeIndex].fromAndToSelectValueIndex[0])) {
       this.setData({
-        ["weight.fromAndToIndex[0]"]: currentValue,
-        ["weight.fromAndToIndex[1]"]: currentValue,
+        ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[0]"]: currentValue,
+        ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
       })
     } else {
       this.setData({
-        ["weight.fromAndToIndex[1]"]: currentValue,
+        ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
       })
     }
   },
