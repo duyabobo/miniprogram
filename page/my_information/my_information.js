@@ -14,12 +14,16 @@ Page({
     code: "",  // 验证码
     sendCodeButtonText: "发送验证码",
     sendPhoneCodeDisabled: false,
+    obtainPhonePlaceHolder: "输入手机号",
+    obtainCodePlaceHolder: "输入验证码",
 
     verifyWorkSheetHidden: true,
     email: "",
     emailCode: "",
     sendEmailButonText: "发送验证邮件",
     sendWorkCodeDisabled: false,
+    obtainWorkEmailPlaceHolder: "输入企业邮箱",
+    obtainWorkCodePlaceHolder: "输入验证码",
    },
 
    //将输入的内容绑定到 msg 中

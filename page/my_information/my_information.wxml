@@ -2,10 +2,10 @@
   <!--默认action-sheet为隐藏，由button触发-->
   <action-sheet hidden="{{verifyPhoneSheetHidden}}" bindchange="updateVerifyPhoneSheetHidden" >
     <action-sheet-item >
-      <input type="text" placeholder="输入手机号" bindinput="obtainPhone"/>
+      <input type="text" placeholder="{{obtainPhonePlaceHolder}}" bindinput="obtainPhone"/>
     </action-sheet-item>
     <action-sheet-item >
-      <input class="code" type="text" placeholder="输入验证码" bindinput="obtainCode"/>
+      <input class="code" type="text" placeholder="{{obtainCodePlaceHolder}}" bindinput="obtainCode"/>
       <button class="code-button" bindtap="sendPhoneCode" disabled="{{sendPhoneCodeDisabled}}">{{sendCodeButtonText}}</button>
     </action-sheet-item>
     <!--自动隐藏action-sheet-->
@@ -15,10 +15,10 @@
   <!--默认action-sheet为隐藏，由button触发-->
   <action-sheet hidden="{{verifyWorkSheetHidden}}" bindchange="updateVerifyWorkSheetHidden" >
     <action-sheet-item >
-      <input type="text" placeholder="输入企业邮箱" bindinput="obtainWorkEmail"/>
+      <input type="text" placeholder="{{obtainWorkEmailPlaceHolder}}" bindinput="obtainWorkEmail"/>
     </action-sheet-item>
     <action-sheet-item >
-      <input class="code" type="text" placeholder="输入验证码" bindinput="obtainWorkCode"/>
+      <input class="code" type="text" placeholder="{{obtainWorkCodePlaceHolder}}" bindinput="obtainWorkCode"/>
       <button class="code-button" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
     </action-sheet-item>
     <!--自动隐藏action-sheet-->
