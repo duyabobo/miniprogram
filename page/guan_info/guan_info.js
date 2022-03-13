@@ -37,8 +37,10 @@ Page({
             url: config.MYINFORMATION_PAGE + res.data.errMsg,
           })
         } else {
-          wx.reLaunch({
-            url: config.GUANGUAN_PAGE + res.data.errMsg,
+          wx.showModal({
+            title: res.data.errMsg,
+            showCancel: false,
+            confirmText: '确认',
           })
         }
       },

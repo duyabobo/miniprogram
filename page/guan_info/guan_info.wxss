@@ -6,22 +6,38 @@ page {
 }
 
 .img {
-  width: 740rpx;
-  height: 370rpx; 
-  padding: 5rpx;
-  background-color: #FFFFFF;
+  width: 750rpx;
+  height: 446rpx; 
 }
 
 .address-time-people {
   display: flex;
   flex-direction: column;
-  padding: 30rpx 60rpx;
+}
+
+.address-time {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  margin: 15rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+
+.opposite {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  margin: 15rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
 }
 
 .info {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
   padding: 6rpx;
 }
 
@@ -33,12 +49,8 @@ page {
   padding-left: 65rpx;
 }
 
-.address-info {
-  text-align: center;
-  line-height: 50rpx;
+.people-desc {
   font-size: 30rpx;
-  margin: 0 10rpx 10rpx 10rpx;
-  padding: 10rpx; 
 }
 
 .time-desc {
@@ -49,38 +61,28 @@ page {
   padding-left: 65rpx;
 }
 
-.time-info {
-  text-align: center;
-  line-height: 50rpx;
-  font-size: 30rpx;
-  margin: 0 10rpx 10rpx 10rpx;
-  padding: 10rpx; 
-}
-
 .info-img { 
   height: 45rpx;
   width: 45rpx; 
   padding-right: 20rpx;
 }
 
-.info-text { 
-  font-size:40rpx; 
+.address-text { 
+  font-size:30rpx; 
 }
 
-.people-desc {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  padding-left: 65rpx;
+.time-text {
+  font-size:30rpx; 
+  color: gray;
 }
 
 .people-info { 
   text-align: center;
   line-height: 50rpx;
   font-size: 30rpx;
-  margin: 0 10rpx 10rpx 10rpx;
-  padding: 10rpx; 
+  color: gray;
+  margin: 10rpx;
+  padding: 5rpx; 
 }
 
 .operate {

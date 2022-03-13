@@ -17,7 +17,8 @@
       </view>
       <view class="info">
         <view class="state">
-          {{item.state}}
+          <image class="info-img" src="{{item.boyImg}}"></image> 
+          <image class="info-img" src="{{item.girlImg}}"></image> 
         </view>
       </view>
     </view>

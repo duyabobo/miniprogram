@@ -1,37 +1,30 @@
-<scroll-view class="container" scroll-y="true">
+<scroll-view class="container" scroll-y="true" >
   <image class="img" src="{{img}}">
   </image>
 
   <view class="address-time-people">
 
-    <view class="info">
-      <image class="info-img" src="{{addressImg}}"></image> 
-      <view class="info-text">{{address}}</view> 
-    </view>
-    <view class="address-desc"> 
-      <button wx:for="{{addressInfos}}" wx:for-item="addressInfo" wx:key="id" class="address-info">
-        {{addressInfo}}
-      </button>
-    </view>
-
-    <view class="info">
-      <image class="info-img" src="{{timeImg}}"></image> 
-      <view class="info-text">{{time}}</view>
-    </view>
-    <view class="time-desc"> 
-      <button wx:for="{{timeInfos}}" wx:for-item="timeInfo" wx:key="id" class="time-info">
-        {{timeInfo}}
-      </button>
+    <view class="address-time">
+      <view class="info">
+        <image class="info-img" src="{{addressImg}}"></image> 
+        <view class="address-text">{{address}}</view> 
+      </view>
+      <view class="info">
+        <image class="info-img" src="{{timeImg}}"></image> 
+        <view class="time-text">{{time}}</view>
+      </view>
     </view>
 
-    <view wx:if="{{peopleInfos.length}}" class="info">
-      <image class="info-img" src="{{peopleImg}}"></image> 
-      <view class="info-text">{{people}}</view>
-    </view>
-    <view class="people-desc">
-      <button wx:for="{{peopleInfos}}" wx:for-item="peopleInfo" wx:key="id" class="people-info">
-        {{peopleInfo}}
-      </button>
+    <view wx:if="{{oppositePeopleInfos.length}}" class="opposite">
+      <view class="info">
+        <image class="info-img" src="{{peopleImg}}"></image> 
+        <view class="people-desc">{{people}}</view>
+      </view>
+      <view class="info">
+        <button wx:for="{{oppositePeopleInfos}}" wx:for-item="peopleInfo" wx:key="id" class="people-info">
+          {{peopleInfo}}
+        </button>
+      </view>
     </view>
   </view>
 

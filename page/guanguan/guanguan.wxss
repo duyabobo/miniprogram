@@ -3,27 +3,27 @@ page {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+  background-color: #FFFFFF;
 } 
 
 .guan {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: space-around;
   height: 225rpx;
   align-items: center;
-  margin: 5px 0;
+  margin: 35rpx 35rpx;
   background-color: #FFFFFF;
 }
 
 .img {
-  width: 450rpx;
+  width: 378rpx;
   height: 225rpx;
-  padding: 5rpx;
+  margin: 10rpx;
 }
 
 .address-time-status {
-  width: 275rpx;
+  width: 320rpx;
   height: 225rpx;
   display: flex;
   flex-direction: column;
@@ -44,11 +44,12 @@ page {
 }
 
 .address {
-  font-size: 35rpx; 
+  font-size: 30rpx; 
 }
 
 .time {
-  font-size: 35rpx; 
+  font-size: 30rpx; 
+  color: gray;
 }
 
 .state {
