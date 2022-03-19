@@ -46,6 +46,11 @@ button::after {
   background-color: #f3f3f3;
 }
 
+.button-hover {
+  color: black !important;
+  background-color: white !important;
+}
+
 .func-name{
   flex: 10;
   text-align: left;
