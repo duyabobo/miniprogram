@@ -12,6 +12,6 @@
   </button>
 </view>
 
-<view class="logout" bindtap="logout">
+<view wx:if="{{hasLogin}}" class="logout" bindtap="logout">
   退出登录
 </view>
