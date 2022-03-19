@@ -1,2 +1,0 @@
-<!--page/setting/setting.wxml-->
-<button class="logout" bindtap="logout">退出登录</button>

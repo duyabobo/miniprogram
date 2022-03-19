@@ -1,5 +1,7 @@
-page {
-  background-color: #fafafa;
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .my-info {
@@ -86,4 +88,12 @@ image {
 
 .online_service {
   width: 60%;
+}
+
+.logout {
+  text-align: center;
+  margin: 40rpx;
+  font-size: 25rpx;
+  color: orangered;
+  text-decoration: underline;
 }

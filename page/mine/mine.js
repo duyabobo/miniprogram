@@ -56,9 +56,9 @@ Page({
         {
           id: 5,
           index: 0,
-          url: config.SETTING_PAGE,
-          name: '设置',
-          needLogin: true,
+          url: config.SECRET_PAGE,
+          name: '隐私条款',
+          needLogin: false,
           openType: '',
           bindFuncName: 'clickMine'
         },
@@ -66,7 +66,7 @@ Page({
           id: 6,
           index: 1,
           url: config.ABOUT_PAGE,
-          name: '关于',
+          name: '关于我们',
           needLogin: false,
           openType: '',
           bindFuncName: 'clickMine'
@@ -115,6 +115,28 @@ Page({
       },
       fail(res) {
         request.logRequestErr("mineUrl err:", res)
+      }
+    })
+  },
+
+  logout: function () {
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.loginUrl,
+      method: 'PUT',
+      data: {
+        accessToken: wx.getStorageSync('accessToken'),
+      },
+      success(res) {
+        if (request.requestIsSuccess(res)) {
+          wx.setStorageSync('hasLogin', false)
+          wx.setStorageSync('accessToken', '')
+          wx.reLaunch({
+            url: config.GUANGUAN_PAGE,
+          })
+        }
+      },
+      fail(res) {
+        request.logRequestErr("loginUrl err:", res)
       }
     })
   },

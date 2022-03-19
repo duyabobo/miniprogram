@@ -11,3 +11,7 @@
     <view wx:if="{{item.index + 1 < mainGroup.length}}" class="line"></view>
   </button>
 </view>
+
+<view class="logout" bindtap="logout">
+  退出登录
+</view>
