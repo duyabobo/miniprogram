@@ -8,6 +8,10 @@ Page({
    * 页面的初始数据
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: options.title
+    })
+    
     let that = this
     wx.request({
       url: config.HTTP_HOST_TEST + config.secretUrl,

@@ -1,6 +1,3 @@
 {
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "我的期望",
-  "backgroundTextStyle": "light",
-  "disableScroll": true
+  "usingComponents": {}
 }
