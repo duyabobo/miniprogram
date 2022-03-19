@@ -11,68 +11,6 @@ Page({
    */
   data: { 
     headImg: config.CDN_QINIU_URL + 'unknown.jpg',
-    mainGroupList: [
-      [
-        {
-          id: 1,
-          index: 0,
-          url: config.MYINFORMATION_PAGE,
-          name: '我的资料',
-          needLogin: true,
-          openType: '',
-          bindFuncName: 'clickMine'
-        },
-        {
-          id: 2,
-          index: 1,
-          url: config.MYREQUIREMENT_PAGE,
-          name: '我的期望',
-          needLogin: true,
-          openType: '',
-          bindFuncName: 'clickMine'
-        }
-      ],
-      [
-        {
-          id: 3,
-          index: 0,
-          url: config.SUGGESTION_PAGE,
-          name: '客服',
-          needLogin: false,
-          openType: 'contact',
-          bindFuncName: 'handleContact'
-        }, 
-        {
-          id: 4,
-          index: 1,
-          url: config.SHARE_PAGE,
-          name: '分享',
-          needLogin: false,
-          openType: 'share',
-          bindFuncName: 'onShareAppMessage'
-        }
-      ], 
-      [
-        {
-          id: 5,
-          index: 0,
-          url: config.SECRET_PAGE,
-          name: '隐私条款',
-          needLogin: false,
-          openType: '',
-          bindFuncName: 'clickMine'
-        },
-        {
-          id: 6,
-          index: 1,
-          url: config.ABOUT_PAGE,
-          name: '关于我们',
-          needLogin: false,
-          openType: '',
-          bindFuncName: 'clickMine'
-        }
-      ]
-    ]
   },
 
   handleContact(e) {
@@ -131,7 +69,7 @@ Page({
           wx.setStorageSync('hasLogin', false)
           wx.setStorageSync('accessToken', '')
           wx.reLaunch({
-            url: config.GUANGUAN_PAGE,
+            url: config.MINE_PAGE,
           })
         }
       },

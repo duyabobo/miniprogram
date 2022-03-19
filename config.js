@@ -19,6 +19,7 @@ const emailVerifyUrl = '/email_verify'  // email验证
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
+const MINE_PAGE = '/page/mine/mine'  // 我的
 const ABOUT_PAGE = '/page/about/about'  // 关于
 const SECRET_PAGE = '/page/secret/secret'  // 隐私条款
 const SHARE_PAGE = '/page/share/share'  // 分享
@@ -43,6 +44,7 @@ module.exports = {
     emailVerifyUrl,
     GUANGUAN_PAGE,
     GUANINFO_PAGE,
+    MINE_PAGE,
     ABOUT_PAGE,
     SECRET_PAGE,
     SHARE_PAGE,
