@@ -6,13 +6,16 @@ page {
 }
 
 .img {
-  width: 750rpx;
-  height: 446rpx; 
+  width: 650rpx;
+  height: 401rpx; 
+  border-radius: 40rpx;
+  margin: 50rpx 50rpx 0rpx 50rpx;
 }
 
 .address-time-people {
   display: flex;
   flex-direction: column;
+  margin: 10rpx 30rpx 30rpx 30rpx;
 }
 
 .address-time {
@@ -21,7 +24,7 @@ page {
   background-color: #FFFFFF;
   margin: 15rpx;
   padding: 20rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
 }
 
 .opposite {
@@ -30,7 +33,7 @@ page {
   background-color: #FFFFFF;
   margin: 15rpx;
   padding: 20rpx;
-  border-radius: 20rpx;
+  border-radius: 40rpx;
 }
 
 .info {
@@ -50,7 +53,7 @@ page {
 }
 
 .people-desc {
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 
 .time-desc {
@@ -68,25 +71,31 @@ page {
 }
 
 .address-text { 
-  font-size:30rpx; 
+  font-size:28rpx; 
 }
 
 .time-text {
-  font-size:30rpx; 
+  font-size:28rpx; 
   color: gray;
 }
 
 .people-info { 
   text-align: center;
-  line-height: 50rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   color: gray;
+  padding: 0rpx 10rpx;
   margin: 10rpx;
-  padding: 5rpx; 
 }
 
 .operate {
   width: 90%;
-  color: #000000;
-  background-color: #FF6600;
+  color: white;
+  background-color: orangered;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+}
+
+.operate::after {
+  border-radius: 20rpx;
+  border: 1rpx solid #F3F3F3;
 }
