@@ -108,5 +108,4 @@ image {
   margin: 40rpx;
   font-size: 25rpx;
   color: orangered;
-  text-decoration: underline;
 }

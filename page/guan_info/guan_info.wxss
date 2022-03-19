@@ -88,9 +88,9 @@ page {
 }
 
 .operate {
-  width: 90%;
   color: white;
   background-color: orangered;
+  margin: 0rpx 50rpx;
   font-size: 32rpx;
   border-radius: 40rpx;
 }
