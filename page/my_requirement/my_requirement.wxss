@@ -16,18 +16,17 @@ page {
 .requirement {
   display: flex;
   align-items: center;
-  margin: 0rpx;
+  margin: 0rpx 20rpx;
   padding: 15rpx 30rpx;
   background-color: #FFFFFF;
 }
 button::after {
-  border-radius: 0rpx;
   border:0rpx;
 }
 .line {
   height: 3rpx;
   background-color: #f3f3f3;
-  margin: 0rpx 30rpx;
+  margin: 0rpx 50rpx;
 }
 .desc{
   flex: 8;
