@@ -23,7 +23,7 @@
         "pagePath": "page/guanguan/guanguan",
         "iconPath": "resources/logo_grey.png",
         "selectedIconPath": "resources/logo_orange.png",
-        "text": "关关"
+        "text": "见面"
       },
       {
         "pagePath": "page/mine/mine",
