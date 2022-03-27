@@ -3,7 +3,7 @@ function wxCheckToast(msg) {
     wx.showToast({
       title: msg,
       icon: 'loading',
-      duration: 800,
+      duration: 1000,
       mask: true
     })
   }

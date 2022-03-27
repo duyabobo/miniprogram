@@ -25,6 +25,19 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
+          if (that.data.subscribeTemplateIds.length > 0) {
+            wx.requestSubscribeMessage({
+              tmplIds: that.data.subscribeTemplateIds,
+              complete (res) {
+                console.log('用户订阅消息结束', res)
+                request.simplePostRequest(config.HTTP_HOST_TEST + config.subscribeCBUrl, {
+                  accessToken: wx.getStorageSync('accessToken'),
+                  guanId: guanId,
+                  subscribeRes: res,
+                })
+              }
+            })
+          }
         } else if (request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
           that.setData(res.data.data)
           wx.showModal({

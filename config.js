@@ -16,6 +16,7 @@ const informationUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
 const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
 const emailVerifyUrl = '/email_verify'  // email验证
+const subscribeCBUrl = '/subscribe_cb'  // 用户订阅事件回调
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
@@ -37,6 +38,7 @@ module.exports = {
     loginUrl,
     guanguanUrl,
     guaninfoUrl,
+    subscribeCBUrl,
     informationUrl,
     mineUrl,
     requirementUrl,

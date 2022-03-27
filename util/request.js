@@ -1,6 +1,19 @@
 const config = require("../config");
 const enumerate = require("./enumerate");
 
+function simplePostRequest(url, data) {  // 简单查询请求，不会刷新页面data数据，不会触发弹框。
+  wx.request({
+    url: url,
+    method: 'POST',
+    data: data,
+    success(res) {
+    },
+    fail(res) {
+      logRequestErr(url + " err:", res)
+    }
+  })
+}
+
 function normalUpdateRequest(that, url, data) {
   wx.request({
     url: url,
@@ -90,6 +103,7 @@ module.exports = {
   normalUpdateRequest,
   loginRequest,
   getGuanguanRequest,
+  simplePostRequest,
   logRequestErr,
   requestFinishWithCode,
   requestIsSuccess,
