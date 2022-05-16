@@ -10,7 +10,6 @@ page {
   align-items: center;
   background-color: #FFFFFF;
   width: 680rpx;
-  margin: 35rpx;
   border-radius: 40rpx;
 }
 
@@ -25,7 +24,7 @@ page {
   margin: 10rpx 35rpx;
   background-color: white; 
   border-radius: 40rpx;
-  box-shadow: 0rpx 5rpx 5rpx 0rpx #F3F3F3;
+  box-shadow: 0rpx 0rpx 5rpx 5rpx #F3F3F3;
 }
 .main-group {
   display: flex;

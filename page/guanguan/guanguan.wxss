@@ -11,10 +11,11 @@ page {
   justify-content: space-around;
   height: 225rpx;
   align-items: center;
-  margin: 35rpx 35rpx;
+  margin: 30rpx;
+  padding: 20rpx;
   background-color: #FFFFFF;
   border-radius: 40rpx;
-  box-shadow: 0rpx 5rpx 5rpx 0rpx #F3F3F3;
+  box-shadow: 0rpx 0rpx 10rpx 10rpx #F3F3F3;
 }
 
 .img {
