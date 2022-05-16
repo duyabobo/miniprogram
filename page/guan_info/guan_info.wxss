@@ -8,14 +8,15 @@ page {
 .img {
   width: 650rpx;
   height: 401rpx; 
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   margin: 50rpx 50rpx 0rpx 50rpx;
 }
 
 .address-time-people {
   display: flex;
   flex-direction: column;
-  margin: 10rpx 35rpx 30rpx 35rpx;
+  border-radius: 20rpx;
+  margin: 10rpx 50rpx 30rpx 50rpx;
 }
 
 .address-time {
@@ -24,7 +25,7 @@ page {
   background-color: #FFFFFF;
   margin: 15rpx;
   padding: 20rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
 }
 
 .opposite {
@@ -33,7 +34,7 @@ page {
   background-color: #FFFFFF;
   margin: 15rpx;
   padding: 20rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
 }
 
 .info {
@@ -92,7 +93,7 @@ page {
   background-color: orangered;
   margin: 0rpx 50rpx;
   font-size: 32rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
 }
 
 .operate::after {

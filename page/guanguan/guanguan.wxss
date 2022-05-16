@@ -14,14 +14,14 @@ page {
   margin: 30rpx;
   padding: 20rpx;
   background-color: #FFFFFF;
-  border-radius: 40rpx;
-  box-shadow: 0rpx 0rpx 10rpx 10rpx #F3F3F3;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 0rpx 20rpx 5rpx #F3F3F3;
 }
 
 .img {
   width: 378rpx;
   height: 225rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
 }
 
 .address-time-status {
