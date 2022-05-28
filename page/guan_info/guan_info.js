@@ -104,7 +104,7 @@ Page({
 
   updateRequirement: function (ops) {
     wx.navigateTo({
-      url: this.data.my_requirement_page,
+      url: this.data.myRequirementPage,
     })
   },
 

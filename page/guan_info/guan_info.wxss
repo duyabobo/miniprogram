@@ -97,7 +97,7 @@ page {
 }
 
 .requirement_result {
-  color: orangered;
+  color: gray;
   font-size: 25rpx;
   display: flex;
   margin: 30rpx 0rpx;
