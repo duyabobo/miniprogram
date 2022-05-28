@@ -17,4 +17,5 @@
     </picker>
     <view class="line"></view>
   </view>
+  <view class="requirement_result">{{requirementResult}}</view>
 </scroll-view>

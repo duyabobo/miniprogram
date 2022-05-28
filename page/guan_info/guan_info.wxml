@@ -31,4 +31,8 @@
   <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
     {{opDesc}}
   </button> 
+
+  <view class="requirement_result" bindtap="updateRequirement">
+    {{requirementResult}}
+  </view>
 </scroll-view>

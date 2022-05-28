@@ -96,6 +96,15 @@ page {
   border-radius: 20rpx;
 }
 
+.requirement_result {
+  color: orangered;
+  font-size: 25rpx;
+  display: flex;
+  margin: 30rpx 0rpx;
+  justify-content: center;
+  text-decoration: underline;
+}
+
 .operate::after {
   border-radius: 20rpx;
   border: 1rpx solid #F3F3F3;

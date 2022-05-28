@@ -6,6 +6,14 @@ page {
   background-color: #FFFFFF;
 }
 
+.requirement_result {
+  color: gray;
+  font-size: 25rpx;
+  display: flex;
+  margin: 30rpx 0rpx;
+  justify-content: center;
+}
+
 .requirement-and-line {
   display: flex;
   flex-direction: column; 
