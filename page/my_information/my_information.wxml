@@ -55,5 +55,5 @@
     </picker>
     <view class="line"></view>
   </view>
-
+  <view class="information_result">{{informationResult}}</view>
 </scroll-view>

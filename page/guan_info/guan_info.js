@@ -47,7 +47,7 @@ Page({
           })
         } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
-            url: config.MYINFORMATION_PAGE + res.data.errMsg,
+            url: res.data.data.myInformationPage,
           })
         } else {
           wx.showModal({

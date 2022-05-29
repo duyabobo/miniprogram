@@ -38,6 +38,14 @@ button::after {
   background-color: #FFFFFF; 
 }
 
+.information_result {
+  color: gray;
+  font-size: 25rpx;
+  display: flex;
+  margin: 30rpx 0rpx;
+  justify-content: center;
+}
+
 .information::after { 
   border:0rpx;
 }
