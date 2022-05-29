@@ -89,6 +89,29 @@ Page({
     })
   },
 
+  onShow: function() {
+    var that=this;
+    let guanId = that.data.guanId
+    if (guanId == undefined) {
+      return
+    }
+    wx.request({
+      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+      data: {
+        accessToken: wx.getStorageSync('accessToken'),
+        guanId: that.data.guanId
+      },
+      success(res) {
+        if (request.requestIsSuccess(res)) {
+          that.setData(res.data.data)
+        }
+      },
+      fail(res) {
+        request.logRequestErr("guaninfoUrl err:", res)
+      }
+    })
+  },
+
   onShareAppMessage: function (ops) {
     return {
       title: '关关雎鸠',
