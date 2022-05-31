@@ -25,7 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setStorageSync('shareOpenid', options.shareOpenid)
+    if (wx.getStorageSync('shareOpenid') === '') {
+      wx.setStorageSync('shareOpenid', options.shareOpenid)
+    }
     wxInteractive.wxCheckToast(options.errMsg)
   },
 
