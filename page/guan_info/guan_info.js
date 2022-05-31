@@ -1,6 +1,7 @@
 const config = require('../../config.js')
 const enumerate = require("../../util/enumerate");
 const request = require("../../util/request");
+const pageUrl = require("../../util/page_url")
 
 let app = getApp();
 
@@ -115,7 +116,7 @@ Page({
   onShareAppMessage: function (ops) {
     return {
       title: '关关雎鸠',
-      path: config.GUANGUAN_PAGE,
+      path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
       },

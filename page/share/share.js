@@ -1,4 +1,6 @@
 // page/share/share.js
+const pageUrl = require("../../util/page_url");
+
 Page({
 
   /**
@@ -13,7 +15,7 @@ Page({
     }
     return {
       title: '关关雎鸠',
-      path: config.GUANGUAN_PAGE,  // 路径，传递参数到指定页面。
+      path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),  // 路径，传递参数到指定页面。
       success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));

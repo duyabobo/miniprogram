@@ -18,14 +18,14 @@ const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
 const emailVerifyUrl = '/email_verify'  // email验证
 const subscribeCBUrl = '/subscribe_cb'  // 用户订阅事件回调
 // 小程序页面
-const GUANGUAN_PAGE = '/page/guanguan/guanguan?errMsg='  // 关关页面
-const GUANINFO_PAGE = '/page/guan_info/guan_info?guanId='  // 关关详情页
+const GUANGUAN_PAGE = '/page/guanguan/guanguan'  // 关关页面
+const GUANINFO_PAGE = '/page/guan_info/guan_info'  // 关关详情页
 const MINE_PAGE = '/page/mine/mine'  // 我的
 const ABOUT_PAGE = '/page/about/about'  // 关于
 const SECRET_PAGE = '/page/secret/secret'  // 隐私条款
 const SHARE_PAGE = '/page/share/share'  // 分享
 const SUGGESTION_PAGE = '/page/suggestion/suggestion'  // 客服（建议）
-const MYINFORMATION_PAGE = '/page/my_information/my_information?errMsg='  // 我的资料
+const MYINFORMATION_PAGE = '/page/my_information/my_information'  // 我的资料
 const MYREQUIREMENT_PAGE = '/page/my_requirement/my_requirement'  // 我的期望
 // 提醒发消息用的
 const SUBSCRIBE_OFFLINE_NOTI_TID = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'

@@ -44,14 +44,16 @@ function normalUpdateRequest(that, url, data) {
 }
 
 function loginRequest(code, suc_uri) {
+  let shareOpenid = wx.getStorageSync('shareOpenid');
   wx.request({
-    url: config.HTTP_HOST_TEST + config.loginUrl,
+    url: config.HTTP_HOST_TEST + config.loginUrl + '?shareOpenid=' + shareOpenid,
     data: {
       code: code,
     },
     success(res) {
       if (requestIsSuccess(res)) {
         wx.setStorageSync('accessToken', res.data.data.accessToken)
+        wx.setStorageSync('openid', res.data.data.currentUserInfo.openid)
         wx.setStorageSync('hasLogin', true)
         wx.navigateTo({
           url: suc_uri,

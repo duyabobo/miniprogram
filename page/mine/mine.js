@@ -1,6 +1,8 @@
 const config = require('../../config.js')
 const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
+const pageUrl = require("../../util/page_url");
+const wxInteractive = require("../../util/wx_interactive");
 
 let app = getApp();
 
@@ -19,10 +21,17 @@ Page({
     console.log(e.detail.query)
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.setStorageSync('shareOpenid', options.shareOpenid)
+  },
+
   onShareAppMessage: function (ops) {
     return {
       title: '关关雎鸠',
-      path: config.GUANGUAN_PAGE,
+      path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
       },
