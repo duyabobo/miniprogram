@@ -105,6 +105,14 @@ page {
   text-decoration: underline;
 }
 
+.meet_result {
+  color: gray;
+  font-size: 25rpx;
+  display: flex;
+  margin: 30rpx 0rpx;
+  justify-content: center;
+}
+
 .operate::after {
   border-radius: 20rpx;
   border: 1rpx solid #F3F3F3;

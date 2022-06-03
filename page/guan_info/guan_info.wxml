@@ -44,5 +44,8 @@
         {{meetResult.value}}
       </button>
     </picker>
+    <view class="meet_result">
+      {{meetResultDesc}}
+    </view>
   </view>
 </scroll-view>
