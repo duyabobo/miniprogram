@@ -64,6 +64,18 @@ Page({
     })
   },
 
+  meetResultChoice: function (event) {
+    let that = this
+    let guanId = event.currentTarget.dataset.guan_id;
+    let url = config.HTTP_HOST_TEST + config.meetResultUrl
+    let requestData = {
+      accessToken: wx.getStorageSync('accessToken'),
+      guanId: guanId,
+      value: event.detail.value
+    }
+    request.normalUpdateRequest(that, url, requestData)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

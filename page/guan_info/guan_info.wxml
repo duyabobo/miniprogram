@@ -39,9 +39,9 @@
     </view>
   </view>
   <view wx:else>
-    <picker mode="selector" value="{{result.selectValueIndex}}" range="{{result.choiceList}}" bindchange="{{resultChoice}}">
-      <button class="requirement">
-        {{result.value}}
+    <picker mode="selector" value="{{meetResult.selectValueIndex}}" range="{{meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
+      <button class="operate">
+        {{meetResult.value}}
       </button>
     </picker>
   </view>

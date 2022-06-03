@@ -17,6 +17,7 @@ const requirementUrl = '/requirement'  // 我的期望
 const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
 const emailVerifyUrl = '/email_verify'  // email验证
 const subscribeCBUrl = '/subscribe_cb'  // 用户订阅事件回调
+const meetResultUrl = '/meet_result'  // 见面结果
 // 小程序页面
 const GUANGUAN_PAGE = '/page/guanguan/guanguan'  // 关关页面
 const GUANINFO_PAGE = '/page/guan_info/guan_info'  // 关关详情页
@@ -44,6 +45,7 @@ module.exports = {
     requirementUrl,
     phoneVerifyUrl,
     emailVerifyUrl,
+    meetResultUrl,
     GUANGUAN_PAGE,
     GUANINFO_PAGE,
     MINE_PAGE,
