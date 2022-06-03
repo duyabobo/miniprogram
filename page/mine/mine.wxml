@@ -6,6 +6,7 @@
   <button class="main-group" open-type="{{item.openType}}" wx:for="{{mainGroup}}" wx:key="id" data-url="{{item.url}}" data-need_login="{{item.needLogin}}" bindtap="{{item.bindFuncName}}">
     <view class="main-group-content"> 
       <view class="func-name">{{item.name}}</view>
+      <view class="func-desc">{{item.desc}}</view>
       <view class="navigator-arrow"></view>
     </view>
     <view wx:if="{{item.index + 1 < mainGroup.length}}" class="line"></view>

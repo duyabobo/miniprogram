@@ -59,6 +59,12 @@ button::after {
   line-height: 50rpx;
   font-size: 30rpx;
 }
+.func-desc {
+  flex: 10;
+  color: gray;
+  font-size: 22rpx;
+}
+
 .navigator-arrow {
   padding-right: 26rpx;
   position: relative;

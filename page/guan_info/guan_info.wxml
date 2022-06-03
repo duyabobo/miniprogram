@@ -28,11 +28,21 @@
     </view>
   </view>
 
-  <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
-    {{opDesc}}
-  </button> 
+ 
 
-  <view class="requirement_result" bindtap="updateRequirement">
-    {{requirementResult}}
+  <view wx:if="{{isAfterMeet==0}}">
+    <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
+      {{opDesc}}
+    </button> 
+    <view class="requirement_result" bindtap="updateRequirement">
+      {{requirementResult}}
+    </view>
+  </view>
+  <view wx:else>
+    <picker mode="selector" value="{{result.selectValueIndex}}" range="{{result.choiceList}}" bindchange="{{resultChoice}}">
+      <button class="requirement">
+        {{result.value}}
+      </button>
+    </picker>
   </view>
 </scroll-view>
