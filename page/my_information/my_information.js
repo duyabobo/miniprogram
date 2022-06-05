@@ -304,43 +304,43 @@ Page({
     }
   },
 
-  monthPeriodExtend1ColumnChange(e) {
+  periodExtend1ColumnChange(e) {
     this.columnChange(e, "PeriodExtend1")
   },
 
-  monthPeriodExtend2ColumnChange(e) {
+  periodExtend2ColumnChange(e) {
     this.columnChange(e, "PeriodExtend2")
   },
 
-  monthPeriodExtend3ColumnChange(e) {
+  periodExtend3ColumnChange(e) {
     this.columnChange(e, "PeriodExtend3")
   },
 
-  monthPeriodExtend4ColumnChange(e) {
+  periodExtend4ColumnChange(e) {
     this.columnChange(e, "PeriodExtend4")
   },
 
-  monthPeriodExtend5ColumnChange(e) {
+  periodExtend5ColumnChange(e) {
     this.columnChange(e, "PeriodExtend5")
   },
 
-  monthPeriodExtend6ColumnChange(e) {
+  periodExtend6ColumnChange(e) {
     this.columnChange(e, "PeriodExtend6")
   },
 
-  monthPeriodExtend7ColumnChange(e) {
+  periodExtend7ColumnChange(e) {
     this.columnChange(e, "PeriodExtend7")
   },
 
-  monthPeriodExtend8ColumnChange(e) {
+  periodExtend8ColumnChange(e) {
     this.columnChange(e, "PeriodExtend8")
   },
 
-  monthPeriodExtend9ColumnChange(e) {
+  periodExtend9ColumnChange(e) {
     this.columnChange(e, "PeriodExtend9")
   },
 
-  monthPeriodExtend10ColumnChange(e) {
+  periodExtend10ColumnChange(e) {
     this.columnChange(e, "PeriodExtend10")
   },
 
