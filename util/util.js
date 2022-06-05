@@ -36,6 +36,10 @@ function fib(n) {
   return fib(n - 1) + fib(n - 2)
 }
 
+function getFunName (fn) {
+    return fn.name.split(" ")[1]
+}
+
 function formatLeadingZeroNumber(n, digitNum = 2) {
   n = n.toString()
   const needNum = Math.max(digitNum - n.length, 0)
@@ -63,5 +67,6 @@ module.exports = {
   formatTime,
   formatLocation,
   fib,
-  formatDateTime
+  formatDateTime,
+  getFunName
 }

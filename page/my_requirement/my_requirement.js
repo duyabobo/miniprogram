@@ -1,6 +1,6 @@
 const config = require('../../config.js')
 const request = require("../../util/request");
-const enumerate = require("../../util/enumerate");
+const util = require("../../util/util");
 
 let app = getApp();
 
@@ -21,115 +21,116 @@ Page({
     }
     request.normalUpdateRequest(that, url, requestData)
   },
+
   updateSex: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_SEX, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateSex), event.detail.value)
   },
 
   updateBirthYearPeriod: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_BIRTH_YEAR_PERIOD, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateBirthYearPeriod), event.detail.value)
   },
 
   updateHeightPeriod: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_HEIGHT_PERIOD, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateHeightPeriod), event.detail.value)
   },
 
   updateWeightPeriod: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_WEIGHT_PERIOD, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateWeightPeriod), event.detail.value)
   },
 
   updateMonthPayPeriod: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_MONTH_PAY_PERIOD, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateMonthPayPeriod), event.detail.value)
   },
 
   updateMartialStatus: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_MARTIAL_STATUS, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateMartialStatus), event.detail.value)
   },
 
   updateEducationPeriod: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EDUCATION_PERIOD, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateEducationPeriod), event.detail.value)
   },
   
   updateExtend1: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_1, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend1), event.detail.value)
   },
 
   updateExtend2: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_2, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend2), event.detail.value)
   },
 
   updateExtend3: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_3, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend3), event.detail.value)
   },
 
   updateExtend4: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_4, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend4), event.detail.value)
   },
 
   updateExtend5: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_5, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend5), event.detail.value)
   },
 
   updateExtend6: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_6, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend6), event.detail.value)
   },
 
   updateExtend7: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_7, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend7), event.detail.value)
   },
 
   updateExtend8: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_8, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend8), event.detail.value)
   },
 
   updateExtend9: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_9, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend9), event.detail.value)
   },
 
   updateExtend10: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_EXTEND_10, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updateExtend10), event.detail.value)
   },
 
   updatePeriodExtend1: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_1, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend1), event.detail.value)
   },
 
   updatePeriodExtend2: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_2, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend2), event.detail.value)
   },
 
   updatePeriodExtend3: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_3, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend3), event.detail.value)
   },
 
   updatePeriodExtend4: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_4, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend4), event.detail.value)
   },
 
   updatePeriodExtend5: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_5, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend5), event.detail.value)
   },
 
   updatePeriodExtend6: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_6, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend6), event.detail.value)
   },
 
   updatePeriodExtend7: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_7, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend7), event.detail.value)
   },
 
   updatePeriodExtend8: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_8, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend8), event.detail.value)
   },
 
   updatePeriodExtend9: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_9, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend9), event.detail.value)
   },
 
   updatePeriodExtend10: function(event) {
-    this.updateRequirement(enumerate.MODEL_USER_OP_TYPE_PERIOD_EXTEND_10, event.detail.value)
+    this.updateRequirement(util.getFunName(this.updatePeriodExtend10), event.detail.value)
   },
 
-  columnChange(e, columnChangeType) {
+  columnChange: function(e, columnChangeType) {
     let currentColunm = e.detail.column;
     let currentValue = e.detail.value
     let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap[columnChangeType]
@@ -145,64 +146,64 @@ Page({
     }
   },
 
-  educationPeriodColumnChange(e) {
-    this.columnChange(e, "educationPeriod")
+  educationPeriodColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.educationPeriodColumnChange))
   },
 
-  weightPeriodColumnChange(e) {
-    this.columnChange(e, "weightPeriod")
+  weightPeriodColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.weightPeriodColumnChange))
   },
 
-  birthYearPeriodColumnChange(e) {
-    this.columnChange(e, "birthYearPeriod")
+  birthYearPeriodColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.birthYearPeriodColumnChange))
   },
 
-  heightPeriodColumnChange(e) {
-    this.columnChange(e, "heightPeriod")
+  heightPeriodColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.heightPeriodColumnChange))
   },
 
-  monthPayPeriodColumnChange(e) {
-    this.columnChange(e, "monthPayPeriod")
+  monthPayPeriodColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.monthPayPeriodColumnChange))
   },
 
-  periodExtend1ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend1")
+  periodExtend1ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend1ColumnChange))
   },
 
-  periodExtend2ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend2")
+  periodExtend2ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend2ColumnChange))
   },
 
-  periodExtend3ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend3")
+  periodExtend3ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend3ColumnChange))
   },
 
-  periodExtend4ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend4")
+  periodExtend4ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend4ColumnChange))
   },
 
-  periodExtend5ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend5")
+  periodExtend5ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend5ColumnChange))
   },
 
-  periodExtend6ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend6")
+  periodExtend6ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend6ColumnChange))
   },
 
-  periodExtend7ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend7")
+  periodExtend7ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend7ColumnChange))
   },
 
-  periodExtend8ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend8")
+  periodExtend8ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend8ColumnChange))
   },
 
-  periodExtend9ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend9")
+  periodExtend9ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend9ColumnChange))
   },
 
-  periodExtend10ColumnChange(e) {
-    this.columnChange(e, "PeriodExtend10")
+  periodExtend10ColumnChange: function(e) {
+    this.columnChange(e, util.getFunName(this.periodExtend10ColumnChange))
   },
 
   /**
