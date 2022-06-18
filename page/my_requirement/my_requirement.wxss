@@ -21,6 +21,13 @@ page {
   margin: 0rpx;
 }
 
+.requirement-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .requirement {
   display: flex;
   align-items: center;

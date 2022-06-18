@@ -1,5 +1,5 @@
-<scroll-view class="container" scroll-y="true">
-  <view wx:for="{{requirementList}}" wx:key="id">
+<scroll-view class="container" scroll-y="true" enable-flex="true">
+  <view wx:for="{{requirementList}}" wx:key="id" class="requirement-button">
     <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
       <button class="requirement">
         <view class="desc">{{item.desc}}</view>

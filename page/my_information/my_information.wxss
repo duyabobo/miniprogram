@@ -30,6 +30,13 @@ button::after {
   background-color: #FFFFFF;
 }
 
+.information-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .information {
   display: flex;
   align-items: center;

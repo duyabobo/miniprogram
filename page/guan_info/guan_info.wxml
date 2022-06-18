@@ -1,4 +1,4 @@
-<scroll-view class="container" scroll-y="true" >
+<scroll-view class="container" scroll-y="true" enable-flex="true">
   <image class="img" src="{{img}}">
   </image>
 
@@ -30,7 +30,7 @@
 
  
 
-  <view wx:if="{{isAfterMeet==0}}">
+  <view wx:if="{{isAfterMeet==0}}" class="operate-and-desc">
     <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
       {{opDesc}}
     </button> 
@@ -38,7 +38,7 @@
       {{requirementResult}}
     </view>
   </view>
-  <view wx:else>
+  <view wx:else class="operate-and-desc">
     <picker mode="selector" value="{{meetResult.selectValueIndex}}" range="{{meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
       <button class="operate">
         {{meetResult.value}}
