@@ -11,7 +11,7 @@ page {
   justify-content: space-around;
   height: 225rpx;
   align-items: center;
-  margin: 30rpx;
+  margin: 10rpx;
   padding: 20rpx;
   background-color: #FFFFFF;
   border-radius: 20rpx;
