@@ -10,7 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: { 
-    region: ['广东省', '广州市', '海珠区'],
   },
 
   updateRequirement(opType, value) {
@@ -50,6 +49,10 @@ Page({
 
   updateEducationPeriod: function(event) {
     this.updateRequirement(util.getFunName(this.updateEducationPeriod), event.detail.value)
+  },
+
+  updateHomeRegionPeriod: function (event) {
+    this.updateRequirement(util.getFunName(this.updateHomeRegionPeriod), event.detail.value)
   },
   
   updateExtend1: function(event) {
@@ -206,13 +209,6 @@ Page({
 
   periodExtend10ColumnChange: function(e) {
     this.columnChange(e, util.getFunName(this.periodExtend10ColumnChange))
-  },
-
-  bindHomeRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
   },
 
   /**
