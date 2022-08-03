@@ -54,6 +54,10 @@ Page({
   updateHomeRegionPeriod: function (event) {
     this.updateRequirement(util.getFunName(this.updateHomeRegionPeriod), event.detail.value)
   },
+
+  updateStudyRegionPeriod: function (event) {
+    this.updateRequirement(util.getFunName(this.updateStudyRegionPeriod), event.detail.value)
+  },
   
   updateExtend1: function(event) {
     this.updateRequirement(util.getFunName(this.updateExtend1), event.detail.value)

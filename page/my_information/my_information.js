@@ -208,6 +208,14 @@ Page({
     this.updateInformation(util.getFunName(this.updateEducation), event.detail.value)
   },
 
+  updateHomeRegion: function (event) {
+    this.updateInformation(util.getFunName(this.updateHomeRegion), event.detail.value)
+  },
+
+  updateStudyRegion: function (event) {
+    this.updateInformation(util.getFunName(this.updateStudyRegion), event.detail.value)
+  },
+
   updateExtend1: function(event) {
     this.updateInformation(util.getFunName(this.updateExtend1), event.detail.value)
   },

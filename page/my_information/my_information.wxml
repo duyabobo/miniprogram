@@ -55,6 +55,13 @@
         <view class="navigator-arrow"></view>
       </button>
     </picker>
+    <picker wx:if="{{item.pickerType==2}}" mode="region" bindchange="{{item.bindColumnChange}}" value="{{item.region}}" custom-item="{{item.customItem}}">
+      <button class="information">
+        <view class="desc">{{item.desc}}</view>
+        <view class="value">{{item.value}}</view>
+        <view class="navigator-arrow"></view>
+      </button>
+    </picker>
     <view class="line"></view>
   </view>
   <view class="information_result">{{informationResult}}</view>
