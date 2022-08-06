@@ -12,7 +12,9 @@ Page({
   data: { 
   },
 
-  updateRequirement(opType, value) {
+  updateRequirement(op, e) {
+    let opType = util.getFunName(op)
+    let value = e.detail.value
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
     let requestData = {
@@ -24,47 +26,43 @@ Page({
   },
 
   updateSex: function(event) {
-    this.updateRequirement(util.getFunName(this.updateSex), event.detail.value)
+    this.updateRequirement(this.updateSex, event)
   },
 
   updateBirthYearPeriod: function(event) {
-    this.updateRequirement(util.getFunName(this.updateBirthYearPeriod), event.detail.value)
+    this.updateRequirement(this.updateBirthYearPeriod, event)
   },
 
   updateHeightPeriod: function(event) {
-    this.updateRequirement(util.getFunName(this.updateHeightPeriod), event.detail.value)
+    this.updateRequirement(this.updateHeightPeriod, event)
   },
 
   updateWeightPeriod: function(event) {
-    this.updateRequirement(util.getFunName(this.updateWeightPeriod), event.detail.value)
+    this.updateRequirement(this.updateWeightPeriod, event)
   },
 
   updateMonthPayPeriod: function(event) {
-    this.updateRequirement(util.getFunName(this.updateMonthPayPeriod), event.detail.value)
+    this.updateRequirement(this.updateMonthPayPeriod, event)
   },
 
   updateMartialStatus: function(event) {
-    this.updateRequirement(util.getFunName(this.updateMartialStatus), event.detail.value)
+    this.updateRequirement(this.updateMartialStatus, event)
   },
 
   updateHomeRegionPeriod: function (event) {
-    this.updateRequirement(util.getFunName(this.updateHomeRegionPeriod), event.detail.value)
+    this.updateRequirement(this.updateHomeRegionPeriod, event)
   },
 
   updateStudyRegionPeriod: function (event) {
-    this.updateRequirement(util.getFunName(this.updateStudyRegionPeriod), event.detail.value)
+    this.updateRequirement(this.updateStudyRegionPeriod, event)
   },
 
   updateEducationMulti: function (event) {
-    this.updateRequirement(util.getFunName(this.updateEducationMulti), event.detail.value)
+    this.updateRequirement(this.updateEducationMulti, event)
   },
 
-  educationMultiColumnChange: function (event) {
-    this.updateRequirement(util.getFunName(this.educationMultiColumnChange
-    ), event.detail.value)
-  },
-
-  columnChange: function(e, columnChangeType) {
+  columnChange: function(columnChange, e) {
+    let columnChangeType = util.getFunName(columnChange)
     let currentColunm = e.detail.column;
     let currentValue = e.detail.value
     let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap[columnChangeType]
@@ -81,19 +79,19 @@ Page({
   },
 
   weightPeriodColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.weightPeriodColumnChange))
+    this.columnChange(this.weightPeriodColumnChange, e)
   },
 
   birthYearPeriodColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.birthYearPeriodColumnChange))
+    this.columnChange(this.birthYearPeriodColumnChange, e)
   },
 
   heightPeriodColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.heightPeriodColumnChange))
+    this.columnChange(this.heightPeriodColumnChange, e)
   },
 
   monthPayPeriodColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.monthPayPeriodColumnChange))
+    this.columnChange(this.monthPayPeriodColumnChange, e)
   },
 
   /**

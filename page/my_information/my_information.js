@@ -169,7 +169,9 @@ Page({
     request.normalUpdateRequest(that, url, requestData)
   },
   
-  updateInformation: function (opType, value) {
+  updateInformation: function (op, e) {
+    let opType = util.getFunName(op)
+    let value = e.detail.value
     let that = this;
     let url = config.HTTP_HOST_TEST + config.informationUrl
     let requestData = {
@@ -181,44 +183,39 @@ Page({
   },
 
   updateSex: function(event) {
-    this.updateInformation(util.getFunName(this.updateSex), event.detail.value)
+    this.updateInformation(this.updateSex, event)
   },
 
   updateBirthYear: function(event) {
-    this.updateInformation(util.getFunName(this.updateBirthYear), event.detail.value)
+    this.updateInformation(this.updateBirthYear, event)
   },
 
   updateHeight: function(event) {
-    this.updateInformation(util.getFunName(this.updateHeight), event.detail.value)
+    this.updateInformation(this.updateHeight, event)
   },
 
   updateWeight: function(event) {
-    this.updateInformation(util.getFunName(this.updateWeight), event.detail.value)
+    this.updateInformation(this.updateWeight, event)
   },
 
   updateMonthPay: function(event) {
-    this.updateInformation(util.getFunName(this.updateMonthPay), event.detail.value)
+    this.updateInformation(this.updateMonthPay, event)
   },
 
   updateMartialStatus: function(event) {
-    this.updateInformation(util.getFunName(this.updateMartialStatus), event.detail.value)
+    this.updateInformation(this.updateMartialStatus, event)
   },
 
   updateHomeRegion: function (event) {
-    this.updateInformation(util.getFunName(this.updateHomeRegion), event.detail.value)
+    this.updateInformation(this.updateHomeRegion, event)
   },
 
   updateStudyRegion: function (event) {
-    this.updateInformation(util.getFunName(this.updateStudyRegion), event.detail.value)
+    this.updateInformation(this.updateStudyRegion, event)
   },
 
   updateEducationMulti: function (event) {
-    this.updateInformation(util.getFunName(this.updateEducationMulti), event.detail.value)
-  },
-
-  educationMultiColumnChange: function (event) {
-    this.updateInformation(util.getFunName(this.educationMultiColumnChange
-    ), event.detail.value)
+    this.updateInformation(this.updateEducationMulti, event)
   },
 
   /**
