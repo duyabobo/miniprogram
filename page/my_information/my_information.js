@@ -171,12 +171,14 @@ Page({
   
   updateInformation: function (op, e) {
     let opType = util.getFunName(op)
+    let column = e.detail.column
     let value = e.detail.value
     let that = this;
     let url = config.HTTP_HOST_TEST + config.informationUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
+      column: column,
       value: value
     }
     request.normalUpdateRequest(that, url, requestData)
@@ -216,6 +218,10 @@ Page({
 
   updateEducationMulti: function (event) {
     this.updateInformation(this.updateEducationMulti, event)
+  },
+
+  updateEducationMultiColumnChange: function (event) {
+    this.updateInformation(this.updateEducationMultiColumnChange, event)
   },
 
   /**

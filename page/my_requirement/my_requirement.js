@@ -14,12 +14,14 @@ Page({
 
   updateRequirement(op, e) {
     let opType = util.getFunName(op)
+    let column = e.detail.column
     let value = e.detail.value
     let that = this;
     let url = config.HTTP_HOST_TEST + config.requirementUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
+      column: column,
       value: value
     }
     request.normalUpdateRequest(that, url, requestData)
@@ -59,6 +61,10 @@ Page({
 
   updateEducationMulti: function (event) {
     this.updateRequirement(this.updateEducationMulti, event)
+  },
+
+  updateEducationMultiColumnChange: function (event) {
+    this.updateRequirement(this.updateEducationMultiColumnChange, event)
   },
 
   columnChange: function(columnChange, e) {
