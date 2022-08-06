@@ -47,10 +47,6 @@ Page({
     this.updateRequirement(util.getFunName(this.updateMartialStatus), event.detail.value)
   },
 
-  updateEducationPeriod: function(event) {
-    this.updateRequirement(util.getFunName(this.updateEducationPeriod), event.detail.value)
-  },
-
   updateHomeRegionPeriod: function (event) {
     this.updateRequirement(util.getFunName(this.updateHomeRegionPeriod), event.detail.value)
   },
@@ -58,85 +54,14 @@ Page({
   updateStudyRegionPeriod: function (event) {
     this.updateRequirement(util.getFunName(this.updateStudyRegionPeriod), event.detail.value)
   },
-  
-  updateExtend1: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend1), event.detail.value)
+
+  updateEducationMulti: function (event) {
+    this.updateRequirement(util.getFunName(this.updateEducationMulti), event.detail.value)
   },
 
-  updateExtend2: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend2), event.detail.value)
-  },
-
-  updateExtend3: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend3), event.detail.value)
-  },
-
-  updateExtend4: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend4), event.detail.value)
-  },
-
-  updateExtend5: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend5), event.detail.value)
-  },
-
-  updateExtend6: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend6), event.detail.value)
-  },
-
-  updateExtend7: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend7), event.detail.value)
-  },
-
-  updateExtend8: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend8), event.detail.value)
-  },
-
-  updateExtend9: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend9), event.detail.value)
-  },
-
-  updateExtend10: function(event) {
-    this.updateRequirement(util.getFunName(this.updateExtend10), event.detail.value)
-  },
-
-  updatePeriodExtend1: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend1), event.detail.value)
-  },
-
-  updatePeriodExtend2: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend2), event.detail.value)
-  },
-
-  updatePeriodExtend3: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend3), event.detail.value)
-  },
-
-  updatePeriodExtend4: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend4), event.detail.value)
-  },
-
-  updatePeriodExtend5: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend5), event.detail.value)
-  },
-
-  updatePeriodExtend6: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend6), event.detail.value)
-  },
-
-  updatePeriodExtend7: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend7), event.detail.value)
-  },
-
-  updatePeriodExtend8: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend8), event.detail.value)
-  },
-
-  updatePeriodExtend9: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend9), event.detail.value)
-  },
-
-  updatePeriodExtend10: function(event) {
-    this.updateRequirement(util.getFunName(this.updatePeriodExtend10), event.detail.value)
+  educationMultiColumnChange: function (event) {
+    this.updateRequirement(util.getFunName(this.educationMultiColumnChange
+    ), event.detail.value)
   },
 
   columnChange: function(e, columnChangeType) {
@@ -155,10 +80,6 @@ Page({
     }
   },
 
-  educationPeriodColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.educationPeriodColumnChange))
-  },
-
   weightPeriodColumnChange: function(e) {
     this.columnChange(e, util.getFunName(this.weightPeriodColumnChange))
   },
@@ -173,46 +94,6 @@ Page({
 
   monthPayPeriodColumnChange: function(e) {
     this.columnChange(e, util.getFunName(this.monthPayPeriodColumnChange))
-  },
-
-  periodExtend1ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend1ColumnChange))
-  },
-
-  periodExtend2ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend2ColumnChange))
-  },
-
-  periodExtend3ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend3ColumnChange))
-  },
-
-  periodExtend4ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend4ColumnChange))
-  },
-
-  periodExtend5ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend5ColumnChange))
-  },
-
-  periodExtend6ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend6ColumnChange))
-  },
-
-  periodExtend7ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend7ColumnChange))
-  },
-
-  periodExtend8ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend8ColumnChange))
-  },
-
-  periodExtend9ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend9ColumnChange))
-  },
-
-  periodExtend10ColumnChange: function(e) {
-    this.columnChange(e, util.getFunName(this.periodExtend10ColumnChange))
   },
 
   /**
