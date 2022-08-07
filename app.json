@@ -42,6 +42,9 @@
   "navigateToMiniProgramAppIdList": [
     "wx4f1b24bdc99fa23b"
   ],
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
   "debug": false,
   "permission": {
     "scope.userLocation": {
