@@ -62,13 +62,13 @@ button::after {
   margin: 0rpx 50rpx;
 }
 .desc{
-  flex: 8;
+  flex: 4;
   text-align: left;
   font-size: 30rpx;
   color: gray;
 }
 .value {
-  flex: 4;
+  flex: 8;
   font-size: 30rpx;
 }
 .navigator-arrow {
