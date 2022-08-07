@@ -27,6 +27,10 @@ Page({
     request.normalUpdateRequest(that, url, requestData)
   },
 
+  updateVerify: function(event) {
+    this.updateRequirement(this.updateVerify, event)
+  },
+
   updateSex: function(event) {
     this.updateRequirement(this.updateSex, event)
   },
