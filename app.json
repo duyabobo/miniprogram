@@ -5,6 +5,7 @@
     "page/guan_info/guan_info",
     "page/my_information/my_information",
     "page/my_requirement/my_requirement",
+    "page/my_date/my_date",
     "page/about/about",
     "page/secret/secret"
   ],
