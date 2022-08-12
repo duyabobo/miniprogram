@@ -1,6 +1,18 @@
 <scroll-view class="container" scroll-y="true" enable-flex="true">
-  <image class="img" src="{{img}}">
-  </image>
+  <view class="activity">
+    <image class="img" src="{{activity.img}}"></image>
+    <view class="address-text">{{activity.address}}</view>
+    <view class="time-text">{{activity.time}}</view>
+  </view>
+
+  <view wx:if="{{opposite.oppositeDataPairs.length}}" class="people">
+    <view wx:for="{{opposite.oppositeDataPairs}}" wx:for-item="oppositeDataPair" wx:key="id" class="opposite-info-pair">
+      <view wx:for="{{oppositeDataPair}}" wx:for-item="oppositeData" wx:key="id" class="opposite-info">
+        <view class="data-name">{{oppositeData.desc}}</view>
+        <view class="data-value">{{oppositeData.value}}{{oppositeData.subDesc}}</view>
+      </view>
+    </view>
+  </view>
 
   <view wx:if="{{operate.isAfterMeet==0}}" class="operate-and-desc">
     <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>

@@ -43,14 +43,14 @@
   <view wx:for="{{informationList}}" wx:key="id" class="information-button">
     <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
       <button class="information">
-        <view class="desc">{{item.desc}}</view>
+        <view class="desc">{{item.desc}}{{item.subDesc}}</view>
         <view class="value">{{item.value}}</view>
         <view class="navigator-arrow"></view>
       </button>
     </picker>
     <picker wx:if="{{item.pickerType==1}}" mode="multiSelector" value="{{item.fromAndToSelectValueIndex}}" range="{{item.fromAndToChoiceList}}" bindchange="{{item.bindChange}}" bindcolumnchange="{{item.bindcolumnchange}}">
       <button class="information">
-        <view class="desc">{{item.desc}}</view>
+        <view class="desc">{{item.desc}}{{item.subDesc}}</view>
         <view class="value" wx:if="{{item.fromValue || item.toValue}}">{{item.fromValue}}-{{item.toValue}}</view>
         <view class="navigator-arrow"></view>
       </button>
