@@ -2,46 +2,18 @@
   <image class="img" src="{{img}}">
   </image>
 
-  <view class="address-time-people">
-
-    <view class="address-time">
-      <view class="info">
-        <image class="info-img" src="{{addressImg}}"></image> 
-        <view class="address-text">{{address}}</view> 
-      </view>
-      <view class="info">
-        <image class="info-img" src="{{timeImg}}"></image> 
-        <view class="time-text">{{time}}</view>
-      </view>
-    </view>
-
-    <view wx:if="{{oppositePeopleInfos.length}}" class="opposite">
-      <view class="info">
-        <image class="info-img" src="{{peopleImg}}"></image> 
-        <view class="people-desc">{{people}}</view>
-      </view>
-      <view class="info">
-        <button wx:for="{{oppositePeopleInfos}}" wx:for-item="peopleInfo" wx:key="id" class="people-info">
-          {{peopleInfo}}
-        </button>
-      </view>
-    </view>
-  </view>
-
- 
-
-  <view wx:if="{{isAfterMeet==0}}" class="operate-and-desc">
-    <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{opType}}'>
-      {{opDesc}}
+  <view wx:if="{{operate.isAfterMeet==0}}" class="operate-and-desc">
+    <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
+      {{operate.opDesc}}
     </button> 
     <view class="requirement_result" bindtap="updateRequirement">
-      {{requirementResult}}
+      {{operate.requirementResult}}
     </view>
   </view>
   <view wx:else class="operate-and-desc">
-    <picker mode="selector" value="{{meetResult.selectValueIndex}}" range="{{meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
+    <picker mode="selector" value="{{operate.meetResult.selectValueIndex}}" range="{{operate.meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
       <button class="operate">
-        {{meetResult.value}}
+        {{operate.meetResult.value}}
       </button>
     </picker>
     <view class="meet_result">

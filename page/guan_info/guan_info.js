@@ -48,7 +48,7 @@ Page({
           })
         } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
           wx.navigateTo({
-            url: res.data.data.myInformationPage,
+            url: res.data.data.operate.myInformationPage,
           })
         } else {
           wx.showModal({
@@ -140,7 +140,7 @@ Page({
 
   updateRequirement: function (ops) {
     wx.navigateTo({
-      url: this.data.myRequirementPage,
+      url: this.data.operate.myRequirementPage,
     })
   },
 
