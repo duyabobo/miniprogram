@@ -204,6 +204,10 @@ Page({
     this.updateInformation(this.updateMonthPay, event)
   },
 
+  updateStudyFromYear: function(event) {
+    this.updateInformation(this.updateStudyFromYear, event)
+  },
+
   updateMartialStatus: function(event) {
     this.updateInformation(this.updateMartialStatus, event)
   },
@@ -216,12 +220,24 @@ Page({
     this.updateInformation(this.updateStudyRegion, event)
   },
 
+  updateWorkRegion: function (event) {
+    this.updateInformation(this.updateWorkRegion, event)
+  },
+
   updateEducationMulti: function (event) {
     this.updateInformation(this.updateEducationMulti, event)
   },
 
   updateEducationMultiColumnChange: function (event) {
     this.updateInformation(this.updateEducationMultiColumnChange, event)
+  },
+
+  updateWorkMulti: function (event) {
+    this.updateInformation(this.updateWorkMulti, event)
+  },
+
+  updateWorkMultiColumnChange: function (event) {
+    this.updateInformation(this.updateWorkMultiColumnChange, event)
   },
 
   /**

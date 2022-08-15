@@ -59,8 +59,16 @@ Page({
     this.updateRequirement(this.updateHomeRegionPeriod, event)
   },
 
+  updateStudyFromYearPeriod: function (event) {
+    this.updateRequirement(this.updateStudyFromYearPeriod, event)
+  },
+
   updateStudyRegionPeriod: function (event) {
     this.updateRequirement(this.updateStudyRegionPeriod, event)
+  },
+
+  updateWorkRegionPeriod: function (event) {
+    this.updateRequirement(this.updateWorkRegionPeriod, event)
   },
 
   updateEducationMulti: function (event) {
@@ -69,6 +77,14 @@ Page({
 
   updateEducationMultiColumnChange: function (event) {
     this.updateRequirement(this.updateEducationMultiColumnChange, event)
+  },
+
+  updateWorkMulti: function (event) {
+    this.updateRequirement(this.updateWorkMulti, event)
+  },
+
+  updateWorkMultiColumnChange: function (event) {
+    this.updateRequirement(this.updateWorkMultiColumnChange, event)
   },
 
   columnChange: function(columnChange, e) {
@@ -98,6 +114,10 @@ Page({
 
   heightPeriodColumnChange: function(e) {
     this.columnChange(this.heightPeriodColumnChange, e)
+  },
+
+  studyFromYearPeriodColumnChange: function(e) {
+    this.columnChange(this.studyFromYearPeriodColumnChange, e)
   },
 
   monthPayPeriodColumnChange: function(e) {
