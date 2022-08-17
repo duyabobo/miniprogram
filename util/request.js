@@ -17,13 +17,14 @@ const myRequest = function (requestConfig = {}) {
   var sortedKeys = Object.keys(contentDict).sort();　　
   var content = ""
   for (var i = 0; i < sortedKeys.length; i++) {
+    var key = JSON.stringify(sortedKeys[i])
+    var value = JSON.stringify(contentDict[sortedKeys[i]])
     if (content === "") {
-      content = sortedKeys[i] + "|" + contentDict[sortedKeys[i]]
+      content = key + "|" + value
     } else {
-      content = content + "|" + sortedKeys[i] + "|" + contentDict[sortedKeys[i]]
+      content = content + "|" + key + "|" + value
     }
   }
-  console.log(content)
   let sign = md5.hex_md5(content)
   requestConfig.url = config.HTTP_HOST_TEST + requestConfig.url
   requestConfig.header={
