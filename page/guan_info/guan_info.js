@@ -25,7 +25,7 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
-          if (that.data.subscribeTemplateIds.length > 0) {
+          if (that.data.operate.subscribeTemplateIds.length > 0) {
             wx.requestSubscribeMessage({
               tmplIds: that.data.subscribeTemplateIds,
               complete (res) {
