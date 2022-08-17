@@ -5,6 +5,7 @@ const md5 = require("./md5")
 
 const myRequest = function (requestConfig = {}) {
   requestConfig.data.requestSeq = util.randomString()
+  requestConfig.data.accessToken = wx.getStorageSync('accessToken')
   var contentDict = JSON.parse(JSON.stringify(requestConfig.data))
   var method = requestConfig.method
   if (typeof(method) == "undefined") {

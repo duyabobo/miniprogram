@@ -85,7 +85,6 @@ Page({
     request.myRequest({
       url: config.phoneVerifyUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
         phone: phone,
       },
       success(res) {
@@ -119,7 +118,6 @@ Page({
     request.myRequest({
       url: config.emailVerifyUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
         email: email,
       },
       success(res) {
@@ -150,8 +148,7 @@ Page({
   checkPhoneCode: function() {
     let url = config.phoneVerifyUrl
     let that = this
-    let requestData = { 
-      accessToken: wx.getStorageSync('accessToken'),
+    let requestData = {
       phone: this.data.phone,
       code: this.data.code,
     }
@@ -162,7 +159,6 @@ Page({
     let url = config.emailVerifyUrl
     let that = this
     let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
       email: this.data.email,
       code: this.data.code,
     }
@@ -176,7 +172,6 @@ Page({
     let that = this;
     let url = config.informationUrl
     let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
       column: column,
       value: value
@@ -253,7 +248,6 @@ Page({
     request.myRequest({
       url: config.informationUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {

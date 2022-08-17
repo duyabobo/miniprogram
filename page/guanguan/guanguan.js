@@ -51,7 +51,6 @@ Page({
       type: 'wgs84',
       complete(res) {
         let requestData = {
-          accessToken: wx.getStorageSync('accessToken'),
           latitude: res.latitude,
           longitude: res.longitude
         };

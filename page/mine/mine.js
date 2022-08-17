@@ -47,7 +47,6 @@ Page({
     request.myRequest({
       url: config.mineUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
@@ -69,13 +68,12 @@ Page({
           request.myRequest({
             url: config.loginUrl,
             method: 'PUT',
-            data: {
-              accessToken: wx.getStorageSync('accessToken'),
-            },
+            data: {},
             success(res) {
               if (request.requestIsSuccess(res)) {
                 wx.setStorageSync('hasLogin', false)
                 wx.setStorageSync('accessToken', '')
+                wx.setStorageSync('secret', '')
                 wx.reLaunch({
                   url: config.MINE_PAGE,
                 })

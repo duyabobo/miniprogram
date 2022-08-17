@@ -19,7 +19,6 @@ Page({
       url: config.guaninfoUrl,
       method: 'PUT',
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
         guanId: guanId,
         opType: event.currentTarget.dataset.op_type,
       },
@@ -32,7 +31,6 @@ Page({
               complete (res) {
                 console.log('用户订阅消息结束', res)
                 request.simplePostRequest(config.subscribeCBUrl, {
-                  accessToken: wx.getStorageSync('accessToken'),
                   guanId: guanId,
                   subscribeRes: res,
                 })
@@ -69,7 +67,6 @@ Page({
     let guanId = event.currentTarget.dataset.guan_id;
     let url = config.meetResultUrl
     let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
       guanId: guanId,
       value: event.detail.value
     }
@@ -88,7 +85,6 @@ Page({
     request.myRequest({
       url: config.guaninfoUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
         guanId: options.guanId
       },
       success(res) {
@@ -105,13 +101,12 @@ Page({
   onShow: function() {
     var that=this;
     let guanId = that.data.guanId
-    if (guanId == undefined) {
+    if (guanId === undefined) {
       return
     }
     request.myRequest({
       url: config.guaninfoUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
         guanId: that.data.guanId
       },
       success(res) {

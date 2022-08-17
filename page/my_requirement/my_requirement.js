@@ -19,7 +19,6 @@ Page({
     let that = this;
     let url = config.requirementUrl
     let requestData = {
-      accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
       column: column,
       value: value
@@ -136,7 +135,6 @@ Page({
     request.myRequest({
       url: config.requirementUrl,
       data: {
-        accessToken: wx.getStorageSync('accessToken'),
       },
       success(res) {
         if (request.requestIsSuccess(res)) {
