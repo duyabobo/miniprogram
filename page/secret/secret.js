@@ -13,8 +13,8 @@ Page({
     })
     
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.secretUrl,
+    request.myRequest({
+      url: config.secretUrl,
       data: {},
       success(res) {
         if (request.requestIsSuccess(res)) {

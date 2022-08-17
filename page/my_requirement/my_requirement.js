@@ -17,7 +17,7 @@ Page({
     let column = e.detail.column
     let value = e.detail.value
     let that = this;
-    let url = config.HTTP_HOST_TEST + config.requirementUrl
+    let url = config.requirementUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
@@ -133,8 +133,8 @@ Page({
     })
     
     let that = this; 
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.requirementUrl,
+    request.myRequest({
+      url: config.requirementUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
       },

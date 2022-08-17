@@ -1,8 +1,38 @@
 const config = require("../config");
 const enumerate = require("./enumerate");
+const util = require("./util")
+const md5 = require("./md5")
+
+const myRequest = function (requestConfig = {}) {
+  requestConfig.data.requestSeq = util.randomString()
+  var contentDict = JSON.parse(JSON.stringify(requestConfig.data))
+  var method = requestConfig.method
+  if (typeof(method) == "undefined") {
+    method = 'GET' 
+  }
+  contentDict.path = requestConfig.url
+  contentDict.method = method
+  contentDict.secret = wx.getStorageSync('secret')
+  var sortedKeys = Object.keys(contentDict).sort();　　
+  var content = ""
+  for (var i = 0; i < sortedKeys.length; i++) {
+    if (content === "") {
+      content = sortedKeys[i] + "|" + contentDict[sortedKeys[i]]
+    } else {
+      content = content + "|" + sortedKeys[i] + "|" + contentDict[sortedKeys[i]]
+    }
+  }
+  console.log(content)
+  let sign = md5.hex_md5(content)
+  requestConfig.url = config.HTTP_HOST_TEST + requestConfig.url
+  requestConfig.header={
+    'sign': sign
+  }
+  wx.request(requestConfig);
+}
 
 function simplePostRequest(url, data) {  // 简单查询请求，不会刷新页面data数据，不会触发弹框。
-  wx.request({
+  myRequest({
     url: url,
     method: 'POST',
     data: data,
@@ -15,7 +45,7 @@ function simplePostRequest(url, data) {  // 简单查询请求，不会刷新页
 }
 
 function normalUpdateRequest(that, url, data) {
-  wx.request({
+  myRequest({
     url: url,
     method: 'PUT',
     data: data,
@@ -45,14 +75,16 @@ function normalUpdateRequest(that, url, data) {
 
 function loginRequest(code, suc_uri) {
   let shareOpenid = wx.getStorageSync('shareOpenid');
-  wx.request({
-    url: config.HTTP_HOST_TEST + config.loginUrl + '?shareOpenid=' + shareOpenid,
+  myRequest({
+    url: config.loginUrl,
     data: {
       code: code,
+      shareOpenid: shareOpenid,
     },
     success(res) {
       if (requestIsSuccess(res)) {
         wx.setStorageSync('accessToken', res.data.data.accessToken)
+        wx.setStorageSync('secret', res.data.data.secret)
         wx.setStorageSync('openid', res.data.data.currentUserInfo.openid)
         wx.setStorageSync('hasLogin', true)
         wx.navigateTo({
@@ -67,8 +99,8 @@ function loginRequest(code, suc_uri) {
 }
 
 function getGuanguanRequest(that, requestData) {
-  wx.request({
-    url: config.HTTP_HOST_TEST + config.guanguanUrl,
+  myRequest({
+    url: config.guanguanUrl,
     data: requestData,
     success(res) {
       if (requestIsSuccess(res)) {
@@ -102,6 +134,7 @@ function requestFinishWithErr(res) {
 }
 
 module.exports = {
+  myRequest,
   normalUpdateRequest,
   loginRequest,
   getGuanguanRequest,

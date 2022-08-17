@@ -44,8 +44,8 @@ Page({
    */
   onShow: function () {
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.mineUrl,
+    request.myRequest({
+      url: config.mineUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
       },
@@ -66,8 +66,8 @@ Page({
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.request({
-            url: config.HTTP_HOST_TEST + config.loginUrl,
+          request.myRequest({
+            url: config.loginUrl,
             method: 'PUT',
             data: {
               accessToken: wx.getStorageSync('accessToken'),

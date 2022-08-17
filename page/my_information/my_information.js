@@ -82,8 +82,8 @@ Page({
   sendPhoneCode: function() { 
     let phone = this.data.phone
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.phoneVerifyUrl,
+    request.myRequest({
+      url: config.phoneVerifyUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
         phone: phone,
@@ -116,8 +116,8 @@ Page({
   sendEmailCode: function() {
     let email = this.data.email
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.emailVerifyUrl,
+    request.myRequest({
+      url: config.emailVerifyUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
         email: email,
@@ -148,7 +148,7 @@ Page({
   },
 
   checkPhoneCode: function() {
-    let url = config.HTTP_HOST_TEST + config.phoneVerifyUrl
+    let url = config.phoneVerifyUrl
     let that = this
     let requestData = { 
       accessToken: wx.getStorageSync('accessToken'),
@@ -159,7 +159,7 @@ Page({
   },
 
   checkEmailCode: function () {
-    let url = config.HTTP_HOST_TEST + config.emailVerifyUrl
+    let url = config.emailVerifyUrl
     let that = this
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
@@ -174,7 +174,7 @@ Page({
     let column = e.detail.column
     let value = e.detail.value
     let that = this;
-    let url = config.HTTP_HOST_TEST + config.informationUrl
+    let url = config.informationUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
       opType: opType,
@@ -250,8 +250,8 @@ Page({
 
     wxInteractive.wxCheckToast(options.errMsg)
     let that = this; 
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.informationUrl,
+    request.myRequest({
+      url: config.informationUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
       },

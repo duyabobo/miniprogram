@@ -17,8 +17,8 @@ Page({
     })
     
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.aboutUrl,
+    request.myRequest({
+      url: config.aboutUrl,
       data: {},
       success(res) {
         if (request.requestIsSuccess(res)) {

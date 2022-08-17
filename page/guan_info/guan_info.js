@@ -15,8 +15,8 @@ Page({
   operate: function (event) {
     let that = this
     let guanId = event.currentTarget.dataset.guan_id;
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+    request.myRequest({
+      url: config.guaninfoUrl,
       method: 'PUT',
       data: {
         accessToken: wx.getStorageSync('accessToken'),
@@ -31,7 +31,7 @@ Page({
               tmplIds: that.data.subscribeTemplateIds,
               complete (res) {
                 console.log('用户订阅消息结束', res)
-                request.simplePostRequest(config.HTTP_HOST_TEST + config.subscribeCBUrl, {
+                request.simplePostRequest(config.subscribeCBUrl, {
                   accessToken: wx.getStorageSync('accessToken'),
                   guanId: guanId,
                   subscribeRes: res,
@@ -67,7 +67,7 @@ Page({
   meetResultChoice: function (event) {
     let that = this
     let guanId = event.currentTarget.dataset.guan_id;
-    let url = config.HTTP_HOST_TEST + config.meetResultUrl
+    let url = config.meetResultUrl
     let requestData = {
       accessToken: wx.getStorageSync('accessToken'),
       guanId: guanId,
@@ -85,8 +85,8 @@ Page({
     })
 
     let that = this
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+    request.myRequest({
+      url: config.guaninfoUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
         guanId: options.guanId
@@ -108,8 +108,8 @@ Page({
     if (guanId == undefined) {
       return
     }
-    wx.request({
-      url: config.HTTP_HOST_TEST + config.guaninfoUrl,
+    request.myRequest({
+      url: config.guaninfoUrl,
       data: {
         accessToken: wx.getStorageSync('accessToken'),
         guanId: that.data.guanId
