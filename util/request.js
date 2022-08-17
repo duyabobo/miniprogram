@@ -2,11 +2,13 @@ const config = require("../config");
 const enumerate = require("./enumerate");
 const util = require("./util")
 const md5 = require("./md5")
+const base64 = require("./base64")
 
 const myRequest = function (requestConfig = {}) {
   requestConfig.data.requestSeq = util.randomString()
   requestConfig.data.accessToken = wx.getStorageSync('accessToken')
   var contentDict = JSON.parse(JSON.stringify(requestConfig.data))
+  console.log(contentDict)
   var method = requestConfig.method
   if (typeof(method) == "undefined") {
     method = 'GET' 
@@ -17,8 +19,8 @@ const myRequest = function (requestConfig = {}) {
   var sortedKeys = Object.keys(contentDict).sort();　　
   var content = ""
   for (var i = 0; i < sortedKeys.length; i++) {
-    var key = JSON.stringify(sortedKeys[i])
-    var value = JSON.stringify(contentDict[sortedKeys[i]])
+    var key = base64.Base64.encode(sortedKeys[i])
+    var value = base64.Base64.encode(contentDict[sortedKeys[i]].toString())
     if (content === "") {
       content = key + "|" + value
     } else {
@@ -47,6 +49,7 @@ function simplePostRequest(url, data) {  // 简单查询请求，不会刷新页
 }
 
 function normalUpdateRequest(that, url, data) {
+  console.log(data)
   myRequest({
     url: url,
     method: 'PUT',
