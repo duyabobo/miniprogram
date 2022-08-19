@@ -115,9 +115,11 @@ Page({
   sendEmailCode: function() {
     let email = this.data.email
     let that = this
+    let openid = wx.getStorageSync('openid')
     request.myRequest({
       url: config.emailVerifyUrl,
       data: {
+        openid: openid,
         email: email,
       },
       success(res) {
@@ -157,8 +159,10 @@ Page({
 
   checkEmailCode: function () {
     let url = config.emailVerifyUrl
+    let openid = wx.getStorageSync('openid')
     let that = this
     let requestData = {
+      openid: openid,
       email: this.data.email,
       code: this.data.code,
     }
