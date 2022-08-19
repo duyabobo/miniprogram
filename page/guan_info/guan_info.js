@@ -29,7 +29,6 @@ Page({
             wx.requestSubscribeMessage({
               tmplIds: that.data.subscribeTemplateIds,
               complete (res) {
-                console.log('用户订阅消息结束', res)
                 request.simplePostRequest(config.subscribeCBUrl, {
                   guanId: guanId,
                   subscribeRes: res,

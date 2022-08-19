@@ -16,17 +16,17 @@ function getContentFromQuery(data, sep) {
     let contentList = []
     for (var i = 0; i < sortedKeys.length; i++) {
       let k = sortedKeys[i]
-      contentList[i] = getContentFromQuery(k) + sep + getContentFromQuery(data[k])
+      contentList[i] = getContentFromQuery(k, sep) + sep + getContentFromQuery(data[k], sep)
     }
     return contentList.join(sep)
   }
+  return ""
 }
 
 const myRequest = function (requestConfig = {}) {
   requestConfig.data.requestSeq = util.randomString()
   requestConfig.data.accessToken = wx.getStorageSync('accessToken')
   var contentDict = JSON.parse(JSON.stringify(requestConfig.data))
-  console.log(contentDict)
   var method = requestConfig.method
   if (typeof(method) == "undefined") {
     method = 'GET' 
