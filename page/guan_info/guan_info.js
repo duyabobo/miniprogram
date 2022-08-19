@@ -29,7 +29,9 @@ Page({
             wx.requestSubscribeMessage({
               tmplIds: that.data.subscribeTemplateIds,
               complete (res) {
+                let openid = wx.getStorageSync('openid')
                 request.simplePostRequest(config.subscribeCBUrl, {
+                  openId: openid,
                   guanId: guanId,
                   subscribeRes: res,
                 })

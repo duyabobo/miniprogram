@@ -98,7 +98,7 @@ function loginRequest(code, suc_uri) {
       if (requestIsSuccess(res)) {
         wx.setStorageSync('accessToken', res.data.data.accessToken)
         wx.setStorageSync('secret', res.data.data.secret)
-        wx.setStorageSync('openid', res.data.data.currentUserInfo.openid)
+        wx.setStorageSync('openid', res.data.data.openid)
         wx.setStorageSync('hasLogin', true)
         wx.navigateTo({
           url: suc_uri,
