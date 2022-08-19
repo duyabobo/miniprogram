@@ -4,6 +4,24 @@ const util = require("./util")
 const md5 = require("./md5")
 const base64 = require("./base64")
 
+function getContentFromQuery(data, sep) {
+  if (typeof (data) == "string") {
+    return base64.Base64.encode(data)
+  }
+  if (typeof (data) == "number") {
+    return base64.Base64.encode(data.toString())
+  }
+  if (typeof (data) == "object") {
+    let sortedKeys = Object.keys(data).sort()
+    let contentList = []
+    for (var i = 0; i < sortedKeys.length; i++) {
+      let k = sortedKeys[i]
+      contentList[i] = getContentFromQuery(k) + sep + getContentFromQuery(data[k])
+    }
+    return contentList.join(sep)
+  }
+}
+
 const myRequest = function (requestConfig = {}) {
   requestConfig.data.requestSeq = util.randomString()
   requestConfig.data.accessToken = wx.getStorageSync('accessToken')
@@ -16,17 +34,7 @@ const myRequest = function (requestConfig = {}) {
   contentDict.path = requestConfig.url
   contentDict.method = method
   contentDict.secret = wx.getStorageSync('secret')
-  var sortedKeys = Object.keys(contentDict).sort();　　
-  var content = ""
-  for (var i = 0; i < sortedKeys.length; i++) {
-    var key = base64.Base64.encode(sortedKeys[i])
-    var value = base64.Base64.encode(contentDict[sortedKeys[i]].toString())
-    if (content === "") {
-      content = key + "|" + value
-    } else {
-      content = content + "|" + key + "|" + value
-    }
-  }
+  var content = getContentFromQuery(contentDict, "|")
   let sign = md5.hex_md5(content)
   requestConfig.url = config.HTTP_HOST_TEST + requestConfig.url
   requestConfig.header={
