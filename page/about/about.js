@@ -25,9 +25,6 @@ Page({
           that.setData(res.data.data)
         }
       },
-      fail(res) {
-        request.logRequestErr("aboutUrl err:", res)
-      }
     })
   },
 

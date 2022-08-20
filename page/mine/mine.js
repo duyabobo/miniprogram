@@ -52,9 +52,6 @@ Page({
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
         }
-      },
-      fail(res) {
-        request.logRequestErr("mineUrl err:", res)
       }
     })
   },
@@ -78,9 +75,6 @@ Page({
                   url: config.MINE_PAGE,
                 })
               }
-            },
-            fail(res) {
-              request.logRequestErr("loginUrl err:", res)
             }
           })
         } else if (res.cancel) {

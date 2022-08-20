@@ -20,9 +20,6 @@ Page({
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
         }
-      },
-      fail(res) {
-        request.logRequestErr("secretUrl err:", res)
       }
     })
   },

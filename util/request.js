@@ -3,6 +3,7 @@ const enumerate = require("./enumerate");
 const util = require("./util")
 const md5 = require("./md5")
 const base64 = require("./base64")
+const {RESP_SIGN_INVALID} = require("./enumerate");
 
 function getContentFromQuery(data, sep) {
   if (typeof (data) == "string") {
@@ -40,6 +41,23 @@ const myRequest = function (requestConfig = {}) {
   requestConfig.header={
     'sign': sign
   }
+
+  let localFail = requestConfig.fail
+  requestConfig.fail = function (res) {
+    localFail(res)
+    logRequestErr(requestConfig.url + " err:", res)
+  }
+
+  let localSuccess = requestConfig.success
+  requestConfig.success = function (res) {
+    localSuccess(res)
+    if (requestFinishWithCode(res, RESP_SIGN_INVALID)) {
+      wx.setStorageSync('hasLogin', false)
+      wx.setStorageSync('accessToken', "")
+      wx.setStorageSync('secret', "")
+      wx.setStorageSync('openid', "")
+    }
+  }
   wx.request(requestConfig);
 }
 
@@ -49,9 +67,6 @@ function simplePostRequest(url, data) {  // 简单查询请求，不会刷新页
     method: 'POST',
     data: data,
     success(res) {
-    },
-    fail(res) {
-      logRequestErr(url + " err:", res)
     }
   })
 }
@@ -79,9 +94,6 @@ function normalUpdateRequest(that, url, data) {
           confirmText: '确认',
         })
       }
-    },
-    fail(res) {
-      logRequestErr(url + " err:", res)
     }
   })
 }
@@ -104,9 +116,6 @@ function loginRequest(code, suc_uri) {
           url: suc_uri,
         })
       }
-    },
-    fail(res) {
-      logRequestErr("loginUrl err:", res)
     }
   })
 }
@@ -119,9 +128,6 @@ function getGuanguanRequest(that, requestData) {
       if (requestIsSuccess(res)) {
         that.setData(res.data.data)
       }
-    },
-    fail(res) {
-      logRequestErr("guanguanUrl err:", res)
     }
   })
 }

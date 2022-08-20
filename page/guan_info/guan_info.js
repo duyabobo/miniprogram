@@ -56,9 +56,6 @@ Page({
             confirmText: '确认',
           })
         }
-      },
-      fail(res) {
-        request.logRequestErr("guaninfoUrl err:", res)
       }
     })
   },
@@ -92,9 +89,6 @@ Page({
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
         }
-      },
-      fail(res) {
-        request.logRequestErr("guaninfoUrl err:", res)
       }
     })
   },
@@ -114,9 +108,6 @@ Page({
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
         }
-      },
-      fail(res) {
-        request.logRequestErr("guaninfoUrl err:", res)
       }
     })
   },
