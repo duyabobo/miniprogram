@@ -61,7 +61,7 @@ page {
 .operate {
   color: white;
   background-color: orangered;
-  width: 660rpx;
+  width: 700rpx;
   margin-bottom: 10rpx;
   font-size: 32rpx;
   border-radius: 20rpx;
