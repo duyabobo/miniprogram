@@ -35,17 +35,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.getSetting({
-      success(res) {
-        let status = res.authSetting['scope.userLocation']
-        if (!status) {
-          wx.authorize({ // 发起请求用户授权
-            scope: 'scope.userLocation'
-          })
-        }
-      }
-    })
-
     const that = this;
     wx.getLocation({
       type: 'wgs84',
