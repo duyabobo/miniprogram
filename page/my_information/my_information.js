@@ -199,6 +199,10 @@ Page({
     this.updateInformation(this.updateWeight, event)
   },
 
+  updateEducationLevel: function(event) {
+    this.updateInformation(this.updateEducationLevel, event)
+  },
+
   updateMonthPay: function(event) {
     this.updateInformation(this.updateMonthPay, event)
   },

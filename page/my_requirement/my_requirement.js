@@ -34,6 +34,10 @@ Page({
     this.updateRequirement(this.updateSex, event)
   },
 
+  updateEducationLevel: function(event) {
+    this.updateRequirement(this.updateEducationLevel, event)
+  },
+
   updateBirthYearPeriod: function(event) {
     this.updateRequirement(this.updateBirthYearPeriod, event)
   },
