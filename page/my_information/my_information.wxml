@@ -65,7 +65,7 @@
     <picker wx:if="{{item.pickerType==3}}" mode="multiSelector" value="{{item.multiSelectValueIndex}}" range="{{item.multiChoiceList}}" bindchange="{{item.bindChange}}" bindcolumnchange="{{item.bindColumnChange}}">
       <button class="information">
         <view class="desc">{{item.desc}}</view>
-        <view class="value" wx:if="{{item.firstValue}}">{{item.firstValue}}</view>
+        <view class="value" wx:if="{{item.value}}">{{item.value}}</view>
         <view class="value" wx:else></view>
         <view class="navigator-arrow"></view>
       </button>
