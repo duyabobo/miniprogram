@@ -12,6 +12,28 @@ Page({
    */
   data: { },
 
+  subscribeTemplate: function (guanId, subscribeTemplateIds) {
+    if (subscribeTemplateIds.length > 0) {
+      wx.requestSubscribeMessage({
+        tmplIds: subscribeTemplateIds,
+        complete (res) {
+          let openid = wx.getStorageSync('openid')
+          request.simplePostRequest(config.subscribeCBUrl, {
+            openid: openid,
+            guanId: guanId,
+            subscribeRes: res,
+          })
+        }
+      })
+    }
+  },
+
+  addsubscribeTemplate :function (event) {
+    let that = this
+    let guanId = event.currentTarget.dataset.guan_id;
+    that.subscribeTemplate(guanId, that.data.operate.subscribeTemplateIds)
+  },
+
   operate: function (event) {
     let that = this
     let guanId = event.currentTarget.dataset.guan_id;
@@ -25,19 +47,7 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
-          if (that.data.operate.subscribeTemplateIds.length > 0) {
-            wx.requestSubscribeMessage({
-              tmplIds: that.data.operate.subscribeTemplateIds,
-              complete (res) {
-                let openid = wx.getStorageSync('openid')
-                request.simplePostRequest(config.subscribeCBUrl, {
-                  openid: openid,
-                  guanId: guanId,
-                  subscribeRes: res,
-                })
-              }
-            })
-          }
+          that.subscribeTemplate(guanId, that.data.operate.subscribeTemplateIds)
         } else if (request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
           that.setData(res.data.data)
           wx.showModal({
