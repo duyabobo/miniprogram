@@ -81,7 +81,7 @@ page {
 .operate-before {
   color: white;
   background-color: orangered; 
-  width: 350rpx;
+  width: 300rpx;
   margin-bottom: 10rpx;
   font-size: 32rpx;
   border-radius: 20rpx;
@@ -89,7 +89,7 @@ page {
 
 .requirement_result {
   color: orangered; 
-  width: 350rpx;
+  width: 300rpx;
   margin-bottom: 10rpx;
   font-size: 32rpx;
   border-radius: 20rpx;
