@@ -5,6 +5,12 @@ page {
   align-items: center;
 }
 
+.activity-people {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .activity {
   display: flex;
   flex-direction: column;
@@ -19,12 +25,13 @@ page {
 }
 
 .address-text {
-  font-size: 38rpx;
+  font-size: 40rpx;
+  overflow-wrap: break-word; 
   margin: 10rpx 30rpx 5rpx 30rpx;
 }
 
 .time-text {
-  font-size: 30rpx;
+  font-size: 35rpx;
   color: gray;
   margin: 0rpx 30rpx 10rpx 30rpx;
 }
@@ -58,6 +65,10 @@ page {
   margin-left: 10rpx;
 }
 
+.bottom {
+  height: 46rpx;
+}
+
 .operate {
   color: white;
   background-color: orangered;
@@ -67,12 +78,21 @@ page {
   border-radius: 20rpx;
 }
 
+.operate-before {
+  color: white;
+  background-color: orangered; 
+  width: 350rpx;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+}
+
 .requirement_result {
-  color: gray;
-  font-size: 25rpx;
-  display: flex;
-  justify-content: center;
-  text-decoration: underline;
+  color: orangered; 
+  width: 350rpx;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
 }
 
 .meet_result {
@@ -89,5 +109,10 @@ page {
 }
 
 .operate-and-desc {
-  width: 700rpx;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0rpx;
 }

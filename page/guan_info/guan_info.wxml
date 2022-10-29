@@ -1,33 +1,38 @@
 <scroll-view class="container" scroll-y="true" enable-flex="true">
-  <view class="activity">
-    <image class="img" src="{{activity.img}}"></image>
-    <view class="address-text">{{activity.address}}</view>
-    <view class="time-text">{{activity.time}}</view>
-  </view>
+  <view class="activity-people">
+    <view class="activity">
+      <image class="img" src="{{activity.img}}"></image>
+      <view class="address-text">{{activity.address}}</view>
+      <view class="time-text">{{activity.time}}</view>
+    </view>
 
-  <view wx:if="{{opposite.oppositeDataPairs.length}}" class="people">
-    <view wx:for="{{opposite.oppositeDataPairs}}" wx:for-item="oppositeDataPair" wx:key="id" class="opposite-info-pair">
-      <view wx:for="{{oppositeDataPair}}" wx:for-item="oppositeData" wx:key="id" class="opposite-info">
-        <view class="data-name">{{oppositeData.desc}}</view>
-        <view class="data-value">{{oppositeData.value}}{{oppositeData.subDesc}}</view>
+    <view wx:if="{{opposite.oppositeDataPairs.length}}" class="people">
+      <view wx:for="{{opposite.oppositeDataPairs}}" wx:for-item="oppositeDataPair" wx:key="id" class="opposite-info-pair">
+        <view wx:for="{{oppositeDataPair}}" wx:for-item="oppositeData" wx:key="id" class="opposite-info">
+          <view class="data-name">{{oppositeData.desc}}</view>
+          <view class="data-value">{{oppositeData.value}}{{oppositeData.subDesc}}</view>
+        </view>
       </view>
     </view>
-  </view>
 
-  <view wx:if="{{operate.isAfterMeet==0}}" class="operate-and-desc">
-    <button class="operate" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
-      {{operate.opDesc}}
-    </button> 
-    <!-- 如果是发起邀请，就提示多少人满足期望 -->
-    <view wx:if="{{operate.opType==1}}" class="requirement_result" bindtap="updateRequirement">  
-      {{operate.requirementResult}}
-    </view>
-    <!-- 如果不是发起邀请，就提示增加订阅信息 -->
-    <view wx:else class="requirement_result" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
-      订阅见面消息
-    </view>
+    <view class="bottom"></view>
   </view>
-  <view wx:else class="operate-and-desc">
+</scroll-view>
+
+<view wx:if="{{operate.isAfterMeet==0}}" class="operate-and-desc">
+  <button class="operate-before" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
+    {{operate.opDesc}}
+  </button> 
+  <!-- 如果是发起邀请，就提示多少人满足期望 -->
+  <button wx:if="{{operate.opType==1}}" class="requirement_result" bindtap="updateRequirement">  
+    {{operate.requirementResult}}
+  </button>
+  <!-- 如果不是发起邀请，就提示增加订阅信息 -->
+  <button wx:else class="requirement_result" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
+    订阅见面消息
+  </button>
+</view>
+<view wx:else class="operate-and-desc">
     <picker mode="selector" value="{{operate.meetResult.selectValueIndex}}" range="{{operate.meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
       <button class="operate">
         {{operate.meetResult.value}}
@@ -36,5 +41,4 @@
     <view class="meet_result">
       {{meetResultDesc}}
     </view>
-  </view>
-</scroll-view>
+</view>
