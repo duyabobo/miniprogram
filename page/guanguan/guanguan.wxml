@@ -4,18 +4,14 @@
     </image>
     <view class="address-time-status">
       <view class="info">
-        <image class="info-img" src="{{item.addressImg}}"></image> 
         <view class="address">
           {{item.address}}
         </view>
       </view>
       <view class="info">
-        <image class="info-img" src="{{item.timeImg}}"></image> 
         <view class="time">
           {{item.time}}
         </view>
-      </view>
-      <view class="info">
         <view class="state">
           <image class="info-img" src="{{item.boyImg}}"></image> 
           <image class="info-img" src="{{item.girlImg}}"></image> 

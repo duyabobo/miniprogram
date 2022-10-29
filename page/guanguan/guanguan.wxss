@@ -10,7 +10,7 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 225rpx;
+  height: 170rpx;
   width: 100%;
   align-items: center;
   margin: 0rpx 0rpx 20rpx 0rpx;
@@ -19,22 +19,25 @@ page {
 }
 
 .img {
-  width: 300rpx;
-  height: 188rpx;
-  margin-left: 20rpx;
+  width: 240rpx;
+  height: 142rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
 }
 
 .address-time-status {
-  width: 400rpx;
-  height: 188rpx;
+  width: 440rpx;
+  height: 150rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  padding-top: 20rpx;
 }
 
 .info {
   display: flex;
+  width: 440rpx;
   flex-direction: row;
   align-items: center;
 }
@@ -50,7 +53,8 @@ page {
 }
 
 .time {
-  font-size: 30rpx; 
+  width: 300rpx;
+  font-size: 28rpx; 
   color: gray;
 }
 
