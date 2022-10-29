@@ -66,13 +66,13 @@ page {
 }
 
 .bottom {
-  height: 46rpx;
+  height: 100rpx;
 }
 
 .operate {
   color: white;
   background-color: orangered;
-  width: 700rpx;
+  width: 600rpx;
   margin-bottom: 10rpx;
   font-size: 32rpx;
   border-radius: 20rpx;
@@ -114,5 +114,6 @@ page {
   display: flex;
   justify-content: center;
   width: 100%;
-  bottom: 0rpx;
+  bottom: 10rpx;
+  padding: 20rpx;
 }
