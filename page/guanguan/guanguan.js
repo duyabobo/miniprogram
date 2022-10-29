@@ -17,8 +17,8 @@ Page({
 
   clickGuanInfo: function (event) {
     let needLogin = !wx.getStorageSync('hasLogin')
-    let sucUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
-    wxLogin.checkLoginBeforeJump(sucUrl, needLogin)
+    let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
+    wxLogin.checkLoginBeforeJump(config.GUANGUAN_PAGE, jumpUrl, needLogin)
   },
 
   /**

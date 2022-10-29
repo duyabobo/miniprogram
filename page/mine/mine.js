@@ -36,7 +36,8 @@ Page({
 
   clickMine: function(event) {
     let needLogin = !wx.getStorageSync('hasLogin') && event.currentTarget.dataset.need_login
-    wxLogin.checkLoginBeforeJump(event.currentTarget.dataset.url, needLogin)
+    let url = event.currentTarget.dataset.url
+    wxLogin.checkLoginBeforeJump(url, url, needLogin)
   },
 
   /**

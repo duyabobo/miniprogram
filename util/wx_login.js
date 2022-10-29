@@ -1,11 +1,11 @@
 const request = require("./request");
 
-function checkLoginBeforeJump(sucUrl, needLogin) {
+function checkLoginBeforeJump(sucUrl, jumpUrl, needLogin) {  // 不需要登录就直接跳转jumpurl，需要登录就登录后跳转sucUrl
   if (needLogin) {
       wxLogin(sucUrl)
     } else {
       wx.navigateTo({
-        url: sucUrl,
+        url: jumpUrl,
       })
     }
 }
