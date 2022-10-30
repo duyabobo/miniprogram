@@ -18,7 +18,16 @@ Page({
   clickGuanInfo: function (event) {
     let needLogin = !wx.getStorageSync('hasLogin')
     let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
-    wxLogin.checkLoginBeforeJump(config.GUANGUAN_PAGE, jumpUrl, needLogin)
+    wxLogin.checkLoginBeforeJump(function () {
+      wx.switchTab({
+        url: config.GUANGUAN_PAGE,
+        success: function(e) {
+          let page = getCurrentPages().pop();
+          if (page === undefined || page == null) return;
+          page.onShow();
+        }
+      })
+    }, jumpUrl, needLogin)
   },
 
   /**
