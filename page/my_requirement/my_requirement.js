@@ -95,14 +95,15 @@ Page({
     let currentColunm = e.detail.column;
     let currentValue = e.detail.value
     let columnChangeTypeIndex = this.data.columnChangeTypeIndexMap[columnChangeType]
-    if (currentColunm === 0 || (currentColunm === 1 && currentValue < this.data.requirementList[columnChangeTypeIndex].fromAndToSelectValueIndex[0])) {
+    if ((currentColunm === 0 && currentValue > this.data.requirementList[columnChangeTypeIndex].fromAndToSelectValueIndex[1]) || (currentColunm === 1 && currentValue < this.data.requirementList[columnChangeTypeIndex].fromAndToSelectValueIndex[0]))
+    { // 第一列变动后比第二列大，或者第二列变动后必第一列小，需要同时重新赋值第一列的选择给第一列和第二列
       this.setData({
         ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[0]"]: currentValue,
         ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
       })
     } else {
       this.setData({
-        ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex[1]"]: currentValue,
+        ["requirementList["+columnChangeTypeIndex+"].fromAndToSelectValueIndex["+currentColunm+"]"]: currentValue,
       })
     }
   },
