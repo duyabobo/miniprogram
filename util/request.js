@@ -112,8 +112,13 @@ function loginRequest(code, suc_uri) {
         wx.setStorageSync('secret', res.data.data.secret)
         wx.setStorageSync('openid', res.data.data.openid)
         wx.setStorageSync('hasLogin', true)
-        wx.navigateTo({
+        wx.switchTab({
           url: suc_uri,
+          success: function(e) {
+            let page = getCurrentPages().pop();
+            if (page === undefined || page == null) return;
+            page.onShow();
+          }
         })
       }
     }
