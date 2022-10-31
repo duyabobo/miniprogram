@@ -1,20 +1,34 @@
 <scroll-view class="container" scroll-y="true" enable-flex="true">
   <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-state='{{item.state}}' bindtap="clickGuanInfo">
-    <image class="img" src="{{item.img}}">
+    <image wx:if="{{item.id!=0}}" class="img" src="{{item.img}}">
     </image>
+    <image wx:else class="img-default" src=""></image>
     <view class="address-time-status">
-      <view class="info">
+      <view wx:if="{{item.id!=0}}" class="info">
         <view class="address">
           {{item.address}}
         </view>
       </view>
-      <view class="info">
+      <view wx:else class="info-default">  <!-- 占位 -->
+        <view class="address">
+          {{item.address}}
+        </view>
+        <view class="state">  <!-- 这个view只是为了防止address-default为空时，无法渲染出占位背景色 -->
+          <image class="info-img"></image>
+        </view>
+      </view>
+      <view wx:if="{{item.id!=0}}" class="info">
         <view class="time">
           {{item.time}}
         </view>
         <view class="state">
           <image class="info-img" src="{{item.boyImg}}"></image> 
           <image class="info-img" src="{{item.girlImg}}"></image> 
+        </view>
+      </view>
+      <view wx:else class="info-default">  <!-- 占位 -->
+        <view class="state">  <!-- 这个view只是为了防止address-default为空时，无法渲染出占位背景色 -->
+          <image class="info-img"></image>
         </view>
       </view>
     </view>

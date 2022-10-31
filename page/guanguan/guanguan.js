@@ -3,6 +3,7 @@ const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 const pageUrl = require("../../util/page_url");
+const constVar = require("../../util/const_var");
 
 let app = getApp();
 
@@ -12,10 +13,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    guanguanList: [],
+    guanguanList: [
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan
+    ]
   },
 
   clickGuanInfo: function (event) {
+    if (event.currentTarget.dataset.guan_id === 0) {
+      return
+    }
     let needLogin = !wx.getStorageSync('hasLogin')
     let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
     wxLogin.checkLoginBeforeJump(function () {
