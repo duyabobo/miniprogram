@@ -19,6 +19,10 @@ Page({
       constVar.defaultGuan,
       constVar.defaultGuan,
       constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
+      constVar.defaultGuan,
       constVar.defaultGuan
     ]
   },
