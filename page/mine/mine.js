@@ -34,7 +34,7 @@ Page({
   },
 
   takePhoto: function(event) {
-    let needLogin = !wx.getStorageSync('hasLogin') && event.currentTarget.dataset.need_login
+    let needLogin = !wx.getStorageSync('hasLogin')
     let url = config.TAKE_PHOTO
     wxLogin.checkLoginBeforeJump(function (){
       wx.navigateTo({
