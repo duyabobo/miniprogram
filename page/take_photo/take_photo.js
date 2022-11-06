@@ -23,25 +23,19 @@ Page({
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        myRequest({
+        wx.showToast({ icon: "loading", title: "虚拟头像制作中" });
+        wx.uploadFile({
           url: config.updateHeadImgUrl,
-          method: "POST",
-          data: {},
-          success(res) {
+          filePath: res.tempImagePath,
+          name: 'file',
+          formData: {
+            'user': 'test'
+          },
+          success (res){
             console.log(res)
-            console.log(res.tempImagePath)
-            wx.showModal({
-              title: '虚拟头像制作完成',
-              content: '',
-              showCancel: false,
-              success (res) {
-                if (res.confirm) {
-                  wx.switchTab({
-                    url: config.MINE_PAGE,
-                  })
-                } 
-              }
-            })
+          },
+          fail (res) {
+            console.log(res)
           }
         })
       }
