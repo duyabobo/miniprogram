@@ -12,7 +12,7 @@ const secretUrl = '/secret'  // 隐私条款
 const guanguanUrl = '/guanguan'  // 关关列表获取
 const guaninfoUrl = '/guan_info'  // 关关详情页信息
 const mineUrl = '/mine'  // 我的页面信息获取
-const takePhotoUrl = '/take_photo'  // 拍照制作虚拟头像
+const updateHeadImgUrl = '/update_head_img'  // 拍照上传制作虚拟头像
 const informationUrl = '/myself'  // 我的资料
 const requirementUrl = '/requirement'  // 我的期望
 const phoneVerifyUrl = '/phone_verify'  // 手机短信验证
@@ -44,7 +44,7 @@ module.exports = {
     subscribeCBUrl,
     informationUrl,
     mineUrl,
-    takePhotoUrl,
+    updateHeadImgUrl,
     requirementUrl,
     phoneVerifyUrl,
     emailVerifyUrl,
