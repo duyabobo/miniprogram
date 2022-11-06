@@ -20,15 +20,15 @@
 </scroll-view>
 
 <view wx:if="{{operate.isAfterMeet==0}}" class="operate-and-desc">
-  <button class="operate-before" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
+  <button class="common-button-short" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
     {{operate.opDesc}}
   </button> 
   <!-- 如果是发起邀请，就提示多少人满足期望 -->
-  <button wx:if="{{operate.opType==1}}" class="requirement_result" bindtap="updateRequirement">  
+  <button wx:if="{{operate.opType==1}}" class="white-button-short" bindtap="updateRequirement">  
     {{operate.requirementResult}}
   </button>
   <!-- 如果不是发起邀请，就提示增加订阅信息 -->
-  <button wx:else class="requirement_result" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
+  <button wx:else class="white-button-short" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
     订阅见面消息
   </button>
 </view>

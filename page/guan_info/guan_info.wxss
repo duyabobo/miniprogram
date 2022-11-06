@@ -19,7 +19,7 @@ page {
 
 .img {
   width: 700rpx;
-  height: 440rpx; 
+  height: 525rpx; 
   border-radius: 20rpx;
   box-shadow: 0rpx 0rpx 10rpx 5rpx #e1e1e1;
 }
@@ -31,7 +31,7 @@ page {
 }
 
 .time-text {
-  font-size: 35rpx;
+  font-size: 38rpx;
   color: gray;
   margin: 0rpx 30rpx 10rpx 30rpx;
 }
@@ -73,23 +73,6 @@ page {
   color: white;
   background-color: orangered;
   width: 600rpx;
-  margin-bottom: 10rpx;
-  font-size: 32rpx;
-  border-radius: 20rpx;
-}
-
-.operate-before {
-  color: white;
-  background-color: orangered; 
-  width: 300rpx;
-  margin-bottom: 10rpx;
-  font-size: 32rpx;
-  border-radius: 20rpx;
-}
-
-.requirement_result {
-  color: orangered; 
-  width: 300rpx;
   margin-bottom: 10rpx;
   font-size: 32rpx;
   border-radius: 20rpx;

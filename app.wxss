@@ -38,6 +38,24 @@ input {
   font-size: 32rpx;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 } 
+
+/* 自定义button样式 */
+.common-button-short {
+  color: white;
+  background-color: orangered; 
+  width: 300rpx;
+  margin-bottom: 10rpx;
+  font-size: 38rpx;
+  border-radius: 20rpx;
+}
+.white-button-short {
+  color: orangered; 
+  width: 300rpx;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+}
+
 .page-head{
   padding: 60rpx 50rpx 80rpx;
   text-align: center;

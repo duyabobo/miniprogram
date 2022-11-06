@@ -1,5 +1,5 @@
 <view class="my-info">
-  <image class='head-img' src="{{headImg}}"></image>
+  <image class='head-img' src="{{headImg}}" bindtap="takePhoto"></image>
 </view>
 
 <view wx:for="{{mainGroupList}}" wx:for-item="mainGroup" wx:key="id" class="main-group-list">

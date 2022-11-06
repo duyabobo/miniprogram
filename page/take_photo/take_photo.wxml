@@ -1,0 +1,8 @@
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <camera device-position="back" flash="off" binderror="error" style="width: 700rpx; height: 525rpx;"></camera>
+    <view class="btn-area">
+      <button type="primary" bindtap="takePhoto">拍照</button>
+    </view>
+  </view>
+</view>

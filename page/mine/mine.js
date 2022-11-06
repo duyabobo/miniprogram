@@ -2,7 +2,6 @@ const config = require('../../config.js')
 const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
 const pageUrl = require("../../util/page_url");
-const wxInteractive = require("../../util/wx_interactive");
 
 let app = getApp();
 
@@ -32,6 +31,16 @@ Page({
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
+  },
+
+  takePhoto: function(event) {
+    let needLogin = !wx.getStorageSync('hasLogin') && event.currentTarget.dataset.need_login
+    let url = config.TAKE_PHOTO
+    wxLogin.checkLoginBeforeJump(function (){
+      wx.navigateTo({
+        url: url,
+      })
+    }, url, needLogin)
   },
 
   clickMine: function(event) {
