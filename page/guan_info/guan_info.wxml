@@ -34,7 +34,7 @@
 </view>
 <view wx:else class="operate-and-desc">
     <picker mode="selector" value="{{operate.meetResult.selectValueIndex}}" range="{{operate.meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">
-      <button class="operate">
+      <button class="common-button-long">
         {{operate.meetResult.value}}
       </button>
     </picker>

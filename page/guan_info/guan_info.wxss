@@ -69,15 +69,6 @@ page {
   height: 100rpx;
 }
 
-.operate {
-  color: white;
-  background-color: orangered;
-  width: 600rpx;
-  margin-bottom: 10rpx;
-  font-size: 32rpx;
-  border-radius: 20rpx;
-}
-
 .meet_result {
   color: gray;
   font-size: 25rpx;

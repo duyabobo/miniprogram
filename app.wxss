@@ -48,6 +48,14 @@ input {
   font-size: 38rpx;
   border-radius: 20rpx;
 }
+.common-button-long {
+  color: white;
+  background-color: orangered;
+  width: 600rpx;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+}
 .white-button-short {
   color: orangered; 
   width: 300rpx;
