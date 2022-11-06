@@ -25,11 +25,11 @@ Page({
       success: (res) => {
         wx.showToast({ icon: "loading", title: "虚拟头像制作中" });
         wx.uploadFile({
-          url: config.updateHeadImgUrl,
+          url: config.HTTP_HOST_TEST + config.updateHeadImgUrl,
           filePath: res.tempImagePath,
           name: 'file',
           formData: {
-            'user': 'test'
+            'accessToken': wx.getStorageSync('accessToken')
           },
           success (res){
             console.log(res)
