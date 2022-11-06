@@ -45,23 +45,35 @@ input {
   background-color: orangered; 
   width: 300rpx;
   margin-bottom: 10rpx;
-  font-size: 38rpx;
+  font-size: 35rpx;
   border-radius: 20rpx;
+}
+.common-button-short::after {
+  border-radius: 20rpx;
+  border: none;
 }
 .common-button-long {
   color: white;
   background-color: orangered;
   width: 600rpx;
   margin-bottom: 10rpx;
-  font-size: 38rpx;
+  font-size: 35rpx;
   border-radius: 20rpx;
+}
+.common-button-long::after {
+  border-radius: 20rpx;
+  border: none;
 }
 .white-button-short {
   color: orangered; 
   width: 300rpx;
   margin-bottom: 10rpx;
-  font-size: 38rpx;
-  border-radius: 20rpx;
+  font-size: 35rpx;
+  border-radius: 30rpx;
+}
+.white-button-short::after {
+  border-radius: 30rpx;
+  border: 1rpx solid gray;
 }
 
 .page-head{

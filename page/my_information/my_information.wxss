@@ -5,11 +5,13 @@ page {
 action-sheet-item  {
   display: flex;
   flex-direction: line; 
+  justify-content: space-around;
   align-items: center;
 }
 
 input {
   text-align: left;
+  font-size: 38rpx;
   padding: 20rpx;
 }
 
@@ -18,7 +20,8 @@ button::after {
 }
 
 .code {
-  flex: 5;
+  width: 300rpx;
+  font-size: 38rpx;
 }
 
 .container {
