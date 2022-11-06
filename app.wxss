@@ -53,14 +53,14 @@ input {
   background-color: orangered;
   width: 600rpx;
   margin-bottom: 10rpx;
-  font-size: 32rpx;
+  font-size: 38rpx;
   border-radius: 20rpx;
 }
 .white-button-short {
   color: orangered; 
   width: 300rpx;
   margin-bottom: 10rpx;
-  font-size: 32rpx;
+  font-size: 38rpx;
   border-radius: 20rpx;
 }
 
@@ -165,9 +165,6 @@ input {
 .page-section-gap .page-section-title{
   padding-left: 0;
   padding-right: 0;
-}
-.page-section-ctn{
-
 }
 
 /* widget */

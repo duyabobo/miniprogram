@@ -2,6 +2,12 @@
   margin: 20rpx 0;  
 }
 
+.camera {
+  width: 700rpx; 
+  border-radius: 20rpx;
+  height: 525rpx;
+}
+
 .video {
   margin: 50px auto;
   width: 100%;
