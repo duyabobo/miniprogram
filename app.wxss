@@ -75,6 +75,17 @@ input {
   border-radius: 30rpx;
   border: 1rpx solid gray;
 }
+.white-button-long{
+  color: orangered; 
+  width: 600rpx;
+  margin-bottom: 10rpx;
+  font-size: 35rpx;
+  border-radius: 30rpx;
+}
+.white-button-long::after {
+  border-radius: 30rpx;
+  border: 1rpx solid gray;
+}
 
 .page-head{
   padding: 60rpx 50rpx 80rpx;

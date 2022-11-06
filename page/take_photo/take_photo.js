@@ -6,8 +6,16 @@ Page({
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        this.setData({
-          src: res.tempImagePath
+        wx.showModal({
+          title: '虚拟头像制作完成',
+          content: '',
+          success (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       }
     })
