@@ -1,6 +1,6 @@
 <view class="page-body">
   <view class="page-body-wrapper">
-    <camera class="camera" device-position="back" flash="off" binderror="error"></camera>
+    <camera class="camera" device-position="front" flash="off" binderror="error"></camera>
     <view class="btn-area">
       <button class="common-button-long" bindtap="takePhoto">拍照(制作虚拟头像)</button>
       <button class="white-button-long" bindtap="cancelPhoto">使用系统默认头像</button>
