@@ -86,8 +86,8 @@ button::after {
 }
 
 .head-img {
-  width: 100rpx;
-  height: 75rpx;
+  width: 200rpx;
+  height: 150rpx;
   margin: 40rpx 0rpx;
 }
 
