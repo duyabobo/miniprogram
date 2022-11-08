@@ -22,8 +22,7 @@
           {{item.time}}
         </view>
         <view class="state">
-          <image class="info-img" src="{{item.boyImg}}"></image> 
-          <image class="info-img" src="{{item.girlImg}}"></image> 
+          <image class="info-img"></image> 
         </view>
       </view>
       <view wx:else class="info-default">  <!-- 占位 -->
