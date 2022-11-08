@@ -23,7 +23,7 @@ Page({
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        wx.showToast({ icon: "loading", title: "虚拟头像制作中" });
+        wx.showToast({ icon: "loading", title: "虚拟头像制作中", duration: 500});
         wx.uploadFile({
           url: config.HTTP_HOST_TEST + config.updateHeadImgUrl,
           filePath: res.tempImagePath,
@@ -32,7 +32,17 @@ Page({
             'accessToken': wx.getStorageSync('accessToken')
           },
           success (res){
-            console.log(res)
+            wx.showModal({
+              title: '虚拟头像制作成功',
+              showCancel: false,
+              success (res) {
+                if (res.confirm) {
+                  wx.switchTab({
+                    url: config.MINE_PAGE,
+                  })
+                } 
+              }
+            })
           },
           fail (res) {
             console.log(res)
