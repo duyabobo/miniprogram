@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: { 
-    headImg: config.CDN_QINIU_URL + 'unknown.jpg',
+    headImg: config.CDN_QINIU_URL + 'miniprogress/user_head/camera.jpeg',
     hasLogin: wx.getStorageSync('hasLogin'),
   },
 
