@@ -34,14 +34,17 @@ Page({
     let needLogin = !wx.getStorageSync('hasLogin')
     let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
     wxLogin.checkLoginBeforeJump(function () {
-      wx.switchTab({
-        url: config.GUANGUAN_PAGE,
-        success: function(e) {
-          let page = getCurrentPages().pop();
-          if (page === undefined || page == null) return;
-          page.onShow();
-        }
-      })
+      wx.showToast({ title: "登陆成功", duration: 500});
+      setTimeout(()=> {
+        wx.switchTab({
+          url: config.GUANGUAN_PAGE,
+          success: function(e) {
+            let page = getCurrentPages().pop();
+            if (page === undefined || page == null) return;
+            page.onShow();
+          }
+        })
+      }, 500)
     }, jumpUrl, needLogin)
   },
 
