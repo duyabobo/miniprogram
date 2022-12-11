@@ -78,6 +78,10 @@ Page({
       guanId: guanId,
       value: event.detail.value
     }
+    that.setData({
+      ["operate.meetResult.selectValueIndex"]: event.detail.value,
+      ["operate.meetResult.value"]: that.data.operate.meetResult.choiceList[event.detail.value]
+    })
     request.normalUpdateRequest(that, url, requestData)
   },
 
