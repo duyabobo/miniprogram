@@ -54,8 +54,8 @@ Page({
     this.updateRequirement(this.updateMonthPayPeriod, event)
   },
 
-  updateMartialStatus: function(event) {
-    this.updateRequirement(this.updateMartialStatus, event)
+  updateMartialStatusPeriod: function(event) {
+    this.updateRequirement(this.updateMartialStatusPeriod, event)
   },
 
   updateHomeRegionPeriod: function (event) {
