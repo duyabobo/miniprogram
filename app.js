@@ -21,7 +21,20 @@ App({
   globalData: {
     hasLogin: false,
     openid: null,
-    accessToken: ''
+    accessToken: '',
+    PageActive: true
+  },
+  preventActive (fn) {
+    const self = this
+    if (this.globalData.PageActive) {
+      this.globalData.PageActive = false
+      if (fn) fn()
+      setTimeout(() => {
+        self.globalData.PageActive = true
+      }, 500); //设置该时间内重复触发只执行第一次，单位ms，按实际设置
+    } else {
+      console.log('重复点击或触发')
+    }
   },
   // lazy loading openid
   getUserOpenId(callback) {
