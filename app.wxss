@@ -9,8 +9,8 @@ checkbox, radio{
   margin-right: 10rpx;
 }
 button{
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  /* margin-top: 20rpx;
+  margin-bottom: 20rpx; */
   background-color: #FFFFFF;
   overflow: visible;
 }
@@ -44,35 +44,35 @@ input {
   color: white;
   background-color: orangered; 
   width: 300rpx;
-  margin-bottom: 10rpx;
+  /* margin-bottom: 10rpx; */
   font-size: 35rpx;
-  border-radius: 20rpx;
+  border-radius: 100rpx;
 }
 .common-button-short::after {
-  border-radius: 20rpx;
+  border-radius: 100rpx;
   border: none;
 }
 .common-button-long {
   color: white;
   background-color: orangered;
   width: 600rpx;
-  margin-bottom: 10rpx;
+  /* margin-bottom: 10rpx; */
   font-size: 35rpx;
-  border-radius: 20rpx;
+  border-radius: 100rpx;
 }
 .common-button-long::after {
-  border-radius: 20rpx;
+  border-radius: 100rpx;
   border: none;
 }
 .white-button-short {
   color: orangered; 
   width: 300rpx;
-  margin-bottom: 10rpx;
+  /* margin-bottom: 10rpx; */
   font-size: 35rpx;
-  border-radius: 30rpx;
+  border-radius: 100rpx;
 }
 .white-button-short::after {
-  border-radius: 30rpx;
+  border-radius: 100rpx;
   border: 1rpx solid gray;
 }
 .white-button-long{
@@ -80,10 +80,10 @@ input {
   width: 600rpx;
   margin-bottom: 10rpx;
   font-size: 35rpx;
-  border-radius: 30rpx;
+  border-radius: 100rpx;
 }
 .white-button-long::after {
-  border-radius: 30rpx;
+  border-radius: 100rpx;
   border: 1rpx solid gray;
 }
 

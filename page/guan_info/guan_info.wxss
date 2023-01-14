@@ -83,6 +83,5 @@ page {
   display: flex;
   justify-content: center;
   width: 100%;
-  bottom: 10rpx;
-  padding: 20rpx;
+  bottom: 20rpx;
 }

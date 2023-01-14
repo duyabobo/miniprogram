@@ -12,7 +12,7 @@ action-sheet-item  {
 input {
   text-align: left;
   font-size: 38rpx;
-  padding: 20rpx;
+  padding: 20rpx 50rpx;
 }
 
 button::after {

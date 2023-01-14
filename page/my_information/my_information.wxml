@@ -19,7 +19,7 @@
     </action-sheet-item>
     <action-sheet-item >
       <input class="code" type="text" placeholder="{{obtainWorkCodePlaceHolder}}" bindinput="obtainWorkCode"/>
-      <button class="common-button-short" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
+      <button class="white-button-short" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
     </action-sheet-item>
     <!--自动隐藏action-sheet-->
     <action-sheet-cancel bindtap="checkEmailCode">确认</action-sheet-cancel>
