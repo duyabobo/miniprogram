@@ -48,6 +48,11 @@ Page({
         success(res) {
           if (request.requestIsSuccess(res)) {
             that.setData(res.data.data)
+            wx.showModal({
+              title: res.data.errMsg,
+              showCancel: false,
+              confirmText: '确认',
+            })
             that.subscribeTemplate(guanId, that.data.operate.subscribeTemplateIds)
           } else if (request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
             that.setData(res.data.data)
