@@ -81,14 +81,18 @@ page {
   background-color: white;
   position: fixed;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding-top: 15rpx;
   width: 100%;
-  bottom: 20rpx;
+  bottom: 0rpx;
 }
 
 .desc {
   text-align: center;
   color: orangered;
+  padding-bottom: 10rpx;
+  font-size: 25rpx;
   text-decoration: underline;
 }
