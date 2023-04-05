@@ -70,6 +70,10 @@ Page({
     this.updateRequirement(this.updateStudyRegionPeriod, event)
   },
 
+  updateStudySchool: function (event) {
+    this.updateRequirement(this.updateStudySchool, event)
+  },
+
   updateWorkRegionPeriod: function (event) {
     this.updateRequirement(this.updateWorkRegionPeriod, event)
   },

@@ -223,6 +223,10 @@ Page({
     this.updateInformation(this.updateStudyRegion, event)
   },
 
+  updateStudySchool: function (event) {
+    this.updateInformation(this.updateStudySchool, event)
+  },
+
   updateWorkRegion: function (event) {
     this.updateInformation(this.updateWorkRegion, event)
   },
