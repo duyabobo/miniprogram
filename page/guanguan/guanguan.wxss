@@ -65,13 +65,12 @@ page {
 }
 
 .address {
-  font-size: 30rpx; 
+  font-size: 26rpx; 
+  color: gray;
 }
 
 .time {
-  width: 300rpx;
-  font-size: 28rpx; 
-  color: gray;
+  font-size: 30rpx; 
 }
 
 .state {
