@@ -2,8 +2,8 @@
   <view class="activity-people">
     <view class="activity">
       <image class="img" src="{{activity.img}}"></image>
-      <view class="address-text">{{activity.address}}</view>
       <view class="time-text">{{activity.time}}</view>
+      <view class="address-text">{{activity.address}}</view>
     </view>
 
     <view wx:if="{{opposite.oppositeDataPairs.length}}" class="people">
