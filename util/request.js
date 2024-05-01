@@ -118,6 +118,18 @@ function loginRequest(code, sucJumpFunc) {
   })
 }
 
+function getLocationAllowState(that, requestData) {
+  myRequest({
+    url: config.locationStateUrl,
+    data: requestData,
+    success(res) {
+      if (requestIsSuccess(res)) {
+        that.setData(res.data.data)
+      }
+    }
+  })
+}
+
 function getGuanguanRequest(that, requestData) {
   myRequest({
     url: config.guanguanUrl,
@@ -154,6 +166,7 @@ module.exports = {
   myRequest,
   normalUpdateRequest,
   loginRequest,
+  getLocationAllowState,
   getGuanguanRequest,
   simplePostRequest,
   logRequestErr,

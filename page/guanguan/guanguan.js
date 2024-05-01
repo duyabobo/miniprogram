@@ -13,6 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    locationIsAllow: false, // 当前用户是否已允许获取地理位置，如果之前允许过，那么就允许
+    couldAskLocation: false,  // 当前用户的当前上下文是否可以获取地理位置，如果用户已经知道产品功能，就可以
     guanguanList: [
       constVar.defaultGuan,
       constVar.defaultGuan,
@@ -31,6 +33,7 @@ Page({
     if (event.currentTarget.dataset.guan_id === 0) {
       return
     }
+
     let needLogin = !wx.getStorageSync('hasLogin')
     let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
     wxLogin.checkLoginBeforeJump(function () {
@@ -41,6 +44,7 @@ Page({
           success: function(e) {
             let page = getCurrentPages().pop();
             if (page === undefined || page == null) return;
+            page.onLoad({"couldAskLocation":true});
             page.onShow();
           }
         })
@@ -56,6 +60,15 @@ Page({
       wx.setStorageSync('shareOpenid', options.shareOpenid)
     }
     wxInteractive.wxCheckToast(options.errMsg)
+
+    let couldAskLocation = false
+    if (options.couldAskLocation) {
+      couldAskLocation = true
+    }
+    this.setData({"couldAskLocation": couldAskLocation})
+    const that = this;
+    let requestData = {};
+    request.getLocationAllowState(that, requestData)
   },
 
   /**
@@ -63,16 +76,19 @@ Page({
    */
   onShow: function () {
     const that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      complete(res) {
-        let requestData = {
-          latitude: res.latitude,
-          longitude: res.longitude
-        };
-        request.getGuanguanRequest(that, requestData)
-      }
-    })
+    let requestData = {}
+    if (this.data.locationIsAllow || this.data.couldAskLocation) {
+      wx.getLocation({
+        type: 'wgs84',
+        complete(res) {
+          requestData = {
+            latitude: res.latitude,
+            longitude: res.longitude
+          };
+        }
+      })
+    } 
+    request.getGuanguanRequest(that, requestData)
   },
 
   onShareAppMessage: function (ops) {
