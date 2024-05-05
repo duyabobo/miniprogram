@@ -19,7 +19,7 @@ page {
 
 .img {
   width: 700rpx;
-  height: 525rpx; 
+  height: 420rpx; 
   border-radius: 20rpx;
   box-shadow: 0rpx 0rpx 10rpx 5rpx #e1e1e1;
 }
@@ -31,7 +31,7 @@ page {
 }
 
 .address-text {
-  font-size: 35rpx;
+  font-size: 30rpx;
   color: gray;
   margin: 0rpx 30rpx 10rpx 30rpx;
 }
