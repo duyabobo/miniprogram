@@ -18,8 +18,8 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 10rpx;
-  margin: 20rpx;
+  padding: 30rpx;
+  margin: 30rpx;
   background-color: #FFFFFF;
   border-radius: 10rpx;
   width: 80%;
@@ -63,10 +63,10 @@
 }
 
 .address {
-  font-size: 25rpx;
+  font-size: 30rpx;
   color: gray;
 }
 
 .time {
-  font-size: 30rpx;
+  font-size: 35rpx;
 }
