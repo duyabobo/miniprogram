@@ -13,8 +13,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    locationIsAllow: false, // 当前用户是否已允许获取地理位置，如果之前允许过，那么就允许
-    couldAskLocation: false,  // 当前用户的当前上下文是否可以获取地理位置，如果用户已经知道产品功能，就可以
     guanguanList: [
       constVar.defaultGuan,
       constVar.defaultGuan,
@@ -44,7 +42,6 @@ Page({
           success: function(e) {
             let page = getCurrentPages().pop();
             if (page === undefined || page == null) return;
-            page.onLoad({"couldAskLocation":true});
             page.onShow();
           }
         })
@@ -60,35 +57,28 @@ Page({
       wx.setStorageSync('shareOpenid', options.shareOpenid)
     }
     wxInteractive.wxCheckToast(options.errMsg)
-
-    let couldAskLocation = false
-    if (options.couldAskLocation) {
-      couldAskLocation = true
-    }
-    this.setData({"couldAskLocation": couldAskLocation})
-    const that = this;
-    let requestData = {};
-    request.getLocationAllowState(that, requestData)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    const that = this;
-    let requestData = {}
-    if (this.data.locationIsAllow || this.data.couldAskLocation) {
+  onShow: function () { 
+    let that = this
+    if (wx.getStorageSync('hasLogin')) {
       wx.getLocation({
         type: 'wgs84',
         complete(res) {
-          requestData = {
+          let requestData = {
             latitude: res.latitude,
             longitude: res.longitude
           };
+          request.getGuanguanRequest(that, requestData)
         }
       })
-    } 
-    request.getGuanguanRequest(that, requestData)
+    } else {
+      let requestData = {}
+      request.getGuanguanRequest(that, requestData)
+    }
   },
 
   onShareAppMessage: function (ops) {

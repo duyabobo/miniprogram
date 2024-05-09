@@ -9,7 +9,6 @@ const CDN_QINIU_URL = 'http://img.ggjjzhzz.cn/'  // 七牛云存储域名
 const loginUrl = '/login'  // 登录
 const aboutUrl = '/about'  // 关于
 const secretUrl = '/secret'  // 隐私条款
-const locationStateUrl = '/location_state'  // 获取地理位置的允可状态
 const guanguanUrl = '/guanguan'  // 关关列表获取
 const guaninfoUrl = '/guan_info'  // 关关详情页信息
 const mineUrl = '/mine'  // 我的页面信息获取
@@ -41,7 +40,6 @@ module.exports = {
     secretUrl,
     loginUrl,
     guanguanUrl,
-    locationStateUrl,
     guaninfoUrl,
     subscribeCBUrl,
     informationUrl,
