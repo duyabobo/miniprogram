@@ -25,7 +25,7 @@ page {
 }
 .main-group {
   display: flex;
-  margin: 0rpx 20rpx;
+  margin: 0rpx 40rpx;
   flex-direction: column; 
 }
 .main-group-content {
