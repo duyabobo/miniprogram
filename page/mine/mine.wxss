@@ -25,7 +25,7 @@ page {
 }
 .main-group {
   display: flex;
-  margin: 0rpx 40rpx;
+  margin: 0rpx 35rpx;
   flex-direction: column; 
 }
 .main-group-content {
@@ -54,7 +54,7 @@ button::after {
   flex: 10;
   text-align: left;
   line-height: 50rpx;
-  font-size: 30rpx;
+  font-size: 32rpx;
 }
 .func-desc {
   flex: 10;
