@@ -52,6 +52,7 @@ page {
 .opposite-info {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex: 5;
 }
 
