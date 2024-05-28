@@ -5,7 +5,7 @@
 .camera {
   width: 700rpx; 
   border-radius: 20rpx;
-  height: 525rpx;
+  height: 420rpx;
 }
 
 .video {
