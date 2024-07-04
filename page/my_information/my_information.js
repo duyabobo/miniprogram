@@ -16,26 +16,12 @@ Page({
     sendPhoneCodeDisabled: false,
     obtainPhonePlaceHolder: "输入手机号",
     obtainCodePlaceHolder: "输入验证码",
-
-    verifyWorkSheetHidden: true,
-    email: "",
-    emailCode: "",
-    sendEmailButonText: "发送验证邮件",
-    sendWorkCodeDisabled: false,
-    obtainWorkEmailPlaceHolder: "输入企业邮箱",
-    obtainWorkCodePlaceHolder: "输入验证码",
    },
 
    //将输入的内容绑定到 msg 中
   obtainPhone: function(data) {
     this.setData({
       phone: data.detail.value
-    });
-  },
-
-  obtainWorkEmail: function(data) {
-    this.setData({
-      email: data.detail.value
     });
   },
 
@@ -57,25 +43,11 @@ Page({
     });
   },
 
-  updateVerifyWorkSheetHidden: function () {
-    this.setData({
-      verifyWorkSheetHidden: !this.data.verifyWorkSheetHidden
-    });
-  },
-
   verifyPhone: function() {
     this.setData({
       verifyPhoneSheetHidden: false,
       sendCodeButonText: "发送验证码",
       sendPhoneCodeDisabled: false,
-    });
-  },
-
-  verifyWork: function () {
-    this.setData({
-      verifyWorkSheetHidden: false,
-      sendEmailButonText: "发送验证邮件",
-      sendWorkCodeDisabled: false,
     });
   },
 
@@ -112,58 +84,11 @@ Page({
     })
   },
 
-  sendEmailCode: function() {
-    let email = this.data.email
-    let that = this
-    let openid = wx.getStorageSync('openid')
-    request.myRequest({
-      url: config.emailVerifyUrl,
-      data: {
-        openid: openid,
-        email: email,
-      },
-      success(res) {
-        if (request.requestIsSuccess(res)) {
-          that.setData({
-            sendEmailButonText: "发送成功",
-            sendWorkCodeDisabled: true,
-          });
-        } else {
-          wx.showModal({
-            title: res.data.errMsg,
-            showCancel: false,
-            confirmText: '确认',
-          })
-        }
-      },
-      fail(res) {
-        wx.showModal({
-          title: res.data.errMsg,
-          showCancel: false,
-          confirmText: '确认',
-        })
-        request.logRequestErr("emailVerifyUrl err:", res)
-      }
-    })
-  },
-
   checkPhoneCode: function() {
     let url = config.phoneVerifyUrl
     let that = this
     let requestData = {
       phone: this.data.phone,
-      code: this.data.code,
-    }
-    request.normalUpdateRequest(that, url, requestData)
-  },
-
-  checkEmailCode: function () {
-    let url = config.emailVerifyUrl
-    let openid = wx.getStorageSync('openid')
-    let that = this
-    let requestData = {
-      openid: openid,
-      email: this.data.email,
       code: this.data.code,
     }
     request.normalUpdateRequest(that, url, requestData)

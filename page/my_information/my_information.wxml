@@ -11,19 +11,6 @@
     <!--自动隐藏action-sheet-->
     <action-sheet-cancel bindtap="checkPhoneCode">确认</action-sheet-cancel>
   </action-sheet> 
-  
-  <!--默认action-sheet为隐藏，由button触发-->
-  <action-sheet hidden="{{verifyWorkSheetHidden}}" bindchange="updateVerifyWorkSheetHidden" >
-    <action-sheet-item >
-      <input type="text" placeholder="{{obtainWorkEmailPlaceHolder}}" bindinput="obtainWorkEmail"/>
-    </action-sheet-item>
-    <action-sheet-item >
-      <input class="code" type="text" placeholder="{{obtainWorkCodePlaceHolder}}" bindinput="obtainWorkCode"/>
-      <button class="white-button-short" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
-    </action-sheet-item>
-    <!--自动隐藏action-sheet-->
-    <action-sheet-cancel bindtap="checkEmailCode">确认</action-sheet-cancel>
-  </action-sheet> 
 
   <view wx:for="{{informationList}}" wx:key="id" class="information-button">
     <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
