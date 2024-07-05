@@ -12,6 +12,21 @@
     <action-sheet-cancel bindtap="checkPhoneCode">确认</action-sheet-cancel>
   </action-sheet> 
 
+<!--  <button class="information" bindtap="verifyPhone">-->
+<!--    <view class="desc">{{phoneVerify.desc}}</view>-->
+<!--    <view class="value">{{phoneVerify.value}}</view>-->
+<!--    <view class="navigator-arrow"></view>-->
+<!--  </button>-->
+
+  <view class="information-button">
+    <button class="information" bindtap="verifyWork">
+      <view class="desc">{{workVerify.desc}}</view>
+      <view class="value">{{workVerify.value}}</view>
+      <view class="navigator-arrow"></view>
+    </button>
+    <view class="line"></view>
+  </view>
+
   <view wx:for="{{informationList}}" wx:key="id" class="information-button">
     <picker wx:if="{{item.pickerType==0}}" mode="selector" value="{{item.selectValueIndex}}" range="{{item.choiceList}}" bindchange="{{item.bindChange}}">
       <button class="information">
