@@ -19,10 +19,9 @@
   justify-content: space-around;
   align-items: center;
   padding: 30rpx;
-  margin: 30rpx;
+  margin: 30rpx 0rpx;
   background-color: #FFFFFF;
-  border-radius: 10rpx;
-  width: 80%;
+  width: 100%;
   box-sizing: border-box;
 }
 
