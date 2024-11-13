@@ -18,12 +18,7 @@ input {
 button::after {
   border-radius: 0rpx;
 }
-
-.code {
-  width: 300rpx;
-  font-size: 38rpx;
-}
-
+ 
 .container {
   background-color: #FFFFFF;
 }
