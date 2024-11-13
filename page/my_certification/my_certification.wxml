@@ -1,0 +1,43 @@
+<scroll-view class="container" scroll-y="true" enable-flex="true">
+  <!--默认action-sheet为隐藏，由button触发-->
+  <action-sheet hidden="{{verifyPhoneSheetHidden}}" bindchange="updateVerifyPhoneSheetHidden" >
+    <action-sheet-item >
+      <input type="text" placeholder="{{obtainPhonePlaceHolder}}" bindinput="obtainPhone"/>
+    </action-sheet-item>
+    <action-sheet-item >
+      <input class="code" type="text" placeholder="{{obtainCodePlaceHolder}}" bindinput="obtainCode"/>
+      <button class="common-button-short" bindtap="sendPhoneCode" disabled="{{sendPhoneCodeDisabled}}">{{sendCodeButtonText}}</button>
+    </action-sheet-item>
+    <!--自动隐藏action-sheet-->
+    <action-sheet-cancel bindtap="checkPhoneCode">确认</action-sheet-cancel>
+  </action-sheet> 
+  
+  <!--默认action-sheet为隐藏，由button触发-->
+  <action-sheet hidden="{{verifyWorkSheetHidden}}" bindchange="updateVerifyWorkSheetHidden" >
+    <action-sheet-item >
+      <input type="text" placeholder="{{obtainWorkEmailPlaceHolder}}" bindinput="obtainWorkEmail"/>
+    </action-sheet-item>
+    <action-sheet-item >
+      <input class="code" type="text" placeholder="{{obtainWorkCodePlaceHolder}}" bindinput="obtainWorkCode"/>
+      <button class="white-button-short" bindtap="sendEmailCode" disabled="{{sendWorkCodeDisabled}}">{{sendEmailButonText}}</button>
+    </action-sheet-item>
+    <!--自动隐藏action-sheet-->
+    <action-sheet-cancel bindtap="checkEmailCode">确认</action-sheet-cancel>
+  </action-sheet> 
+
+<!--  <button class="information" bindtap="verifyPhone">-->
+<!--    <view class="desc">{{phoneVerify.desc}}</view>-->
+<!--    <view class="value">{{phoneVerify.value}}</view>-->
+<!--    <view class="navigator-arrow"></view>-->
+<!--  </button>-->
+
+  <view class="information-button">
+    <button class="information" bindtap="verifyWork">
+      <view class="desc">{{workVerify.desc}}</view>
+      <view class="value">{{workVerify.value}}</view>
+      <view class="navigator-arrow"></view>
+    </button>
+    <view class="line"></view>
+  </view>
+
+</scroll-view>

@@ -1,0 +1,87 @@
+page {
+  display: flex;
+  flex-direction: column; 
+}
+action-sheet-item  {
+  display: flex;
+  flex-direction: line; 
+  justify-content: space-around;
+  align-items: center;
+}
+
+input {
+  text-align: left;
+  font-size: 38rpx;
+  padding: 20rpx 50rpx;
+}
+
+button::after {
+  border-radius: 0rpx;
+}
+
+.code {
+  width: 300rpx;
+  font-size: 38rpx;
+}
+
+.container {
+  background-color: #FFFFFF;
+}
+
+.information-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.information {
+  display: flex;
+  align-items: center;
+  margin: 0rpx 20rpx;
+  padding: 15rpx 30rpx;
+  background-color: #FFFFFF; 
+}
+
+.information_result {
+  color: gray;
+  font-size: 25rpx;
+  display: flex;
+  margin: 30rpx 0rpx;
+  justify-content: center;
+}
+
+.information::after { 
+  border:0rpx;
+}
+.line {
+  height: 3rpx;
+  background-color: #f3f3f3;
+  margin: 0rpx 50rpx;
+}
+.desc{
+  flex: 4;
+  text-align: left;
+  font-size: 30rpx;
+  color: gray;
+}
+.value {
+  flex: 8;
+  font-size: 30rpx;
+}
+.navigator-arrow {
+  flex: 1;
+}
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+}
