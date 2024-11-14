@@ -16,32 +16,6 @@
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#FFFFFF"
   },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
-    "borderStyle": "black",
-    "backgroundColor": "#FFFFFF",
-    "list": [
-      {
-        "pagePath": "page/guanguan/guanguan",
-        "iconPath": "resources/logo_grey.png",
-        "selectedIconPath": "resources/logo_orange.png",
-        "text": "见面"
-      },
-      {
-        "pagePath": "page/voice/voice",
-        "iconPath": "resources/voice_grey.png",
-        "selectedIconPath": "resources/voice_orange.png",
-        "text": ""
-      },
-      {
-        "pagePath": "page/mine/mine",
-        "iconPath": "resources/mine_grey.png",
-        "selectedIconPath": "resources/mine_orange.png",
-        "text": "我的"
-      }
-    ]
-  },
   "networkTimeout": {
     "request": 10000,
     "connectSocket": 10000,

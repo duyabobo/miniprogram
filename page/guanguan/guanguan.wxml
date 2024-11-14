@@ -1,4 +1,4 @@
-<scroll-view class="container" scroll-y="true" enable-flex="true">
+<scroll-view class="container" scroll-y="true" enable-flex="true" scroll-with-animation="false">
   <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-state='{{item.state}}' bindtap="clickGuanInfo">
     <image wx:if="{{item.id!=0}}" class="img" src="{{item.img}}">
     </image>
@@ -30,3 +30,14 @@
     </view>
   </view> 
 </scroll-view>
+<!-- 使用 cover-view 固定底部按钮 -->
+<cover-view class="footer">
+  <cover-view 
+    class="record-button" 
+    bindlongpress="startRecording" 
+    bindtouchend="stopRecording"
+  >
+    长按录音
+  </cover-view>
+</cover-view>
+

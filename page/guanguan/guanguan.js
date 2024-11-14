@@ -4,6 +4,7 @@ const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 const pageUrl = require("../../util/page_url");
 const constVar = require("../../util/const_var");
+const recorderManager = wx.getRecorderManager();
 
 let app = getApp();
 
@@ -57,6 +58,11 @@ Page({
       wx.setStorageSync('shareOpenid', options.shareOpenid)
     }
     wxInteractive.wxCheckToast(options.errMsg)
+    // 设置录音结束后的处理
+    recorderManager.onStop((res) => {
+      console.log('录音文件路径:', res.tempFilePath);
+      // 在这里可以对录音文件进行处理，比如上传或播放
+    });
   },
 
   /**
@@ -80,7 +86,26 @@ Page({
       request.getGuanguanRequest(that, requestData)
     }
   },
+// 开始录音
+startRecording() {
+  console.log("长按开始录音");
+  const options = {
+    duration: 60000, // 最长录音时间，单位 ms
+    sampleRate: 44100, // 采样率
+    numberOfChannels: 1, // 声道
+    encodeBitRate: 96000, // 编码比特率
+    format: 'mp3' // 音频格式
+  };
+    recorderManager.start(options);
+    console.log('开始录音');
+  },
 
+  // 停止录音
+  stopRecording() {
+    console.log("长按停止录音");
+    recorderManager.stop();
+    console.log('停止录音');
+  },
   onShareAppMessage: function (ops) {
     return {
       title: '关关雎鸠',
