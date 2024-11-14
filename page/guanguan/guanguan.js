@@ -118,5 +118,10 @@ startRecording() {
       }
     }
   },
+  onIconClick: function () {
+    wx.navigateTo({
+      url: '/page/mine/mine' // 在这里跳转到你想要的页面
+    });
+  },
   
 })
