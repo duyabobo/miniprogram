@@ -37,7 +37,7 @@
     bindlongpress="startRecording" 
     bindtouchend="stopRecording"
   >
-    长按录音
+    <cover-image class="record-icon" src="/resources/voice.png" />
   </cover-view>
 </cover-view>
 

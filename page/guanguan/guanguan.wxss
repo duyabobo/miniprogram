@@ -89,3 +89,9 @@
   justify-content: center;
   align-items: center;
 }
+
+/* 图标的样式 */
+.record-icon {
+  width: 60px;  /* 控制图标的大小 */
+  height: 30px;
+}
