@@ -58,10 +58,17 @@
   </cover-view>
 </cover-view>
 
+<!-- 浮层，显示提示文字和实时识别内容 -->
 <view class="overlay" wx:if="{{showOverlay}}">
-  <view class="overlay-text">
-    正在录音，请保持安静...
+  <view class="overlay-header" wx:if="{{!isSpeaking}}">
+    {{promptHeader}}
+  </view>
+  <view class="overlay-hints" wx:if="{{!isSpeaking}}">
+    <block wx:for="{{promptSentences}}" wx:key="index">
+      <view>{{item}}</view>
+    </block>
+  </view>
+  <view class="overlay-result" wx:if="{{isSpeaking}}">
+    {{recognizedText}}
   </view>
 </view>
-
-

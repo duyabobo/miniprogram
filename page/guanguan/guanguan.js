@@ -5,6 +5,12 @@ const wxInteractive = require("../../util/wx_interactive");
 const pageUrl = require("../../util/page_url");
 const constVar = require("../../util/const_var");
 const recorderManager = wx.getRecorderManager();
+const socketTask = wx.connectSocket({
+  url: 'wss://asr.tencentcloudapi.com/', // 替换为腾讯云ASR WebSocket URL
+  header: {
+    'Content-Type': 'application/json'
+  }
+});
 
 let app = getApp();
 
@@ -15,6 +21,9 @@ Page({
    */
   data: {
     showOverlay: false, // 默认不显示蒙层
+    promptHeader: '',         // 提示语
+    promptSentences: [],      // 提示词句子数组
+    recognizedText: '',       // 实时识别文本
     guanguanList: [
       constVar.defaultGuan,
       constVar.defaultGuan,
@@ -88,20 +97,59 @@ Page({
     }
   },
 // 开始录音
-startRecording() {
-  console.log("长按开始录音");
-  this.setData({
-    showOverlay: true // 显示蒙层
-  });
-  const options = {
-    duration: 60000, // 最长录音时间，单位 ms
-    sampleRate: 44100, // 采样率
-    numberOfChannels: 1, // 声道
-    encodeBitRate: 96000, // 编码比特率
-    format: 'mp3' // 音频格式
-  };
+  startRecording() {
+    console.log("长按开始录音");
+    this.setData({
+      showOverlay: true // 显示蒙层
+    });
+    // WebSocket 打开后，发送开始识别的指令
+    socketTask.onOpen(() => {
+      console.log('WebSocket连接成功');
+      socketTask.send(JSON.stringify({
+        action: 'start',
+        engine_model_type: '16k_zh',
+        res_type: 0,
+        result_text_format: 0,
+        secretid: '你的SecretId', // todo
+        secretkey: '你的SecretKey'  // todo
+      }));
+    });
+    const options = {
+      duration: 60000, // 最长录音时间，单位 ms
+      sampleRate: 44100, // 采样率
+      numberOfChannels: 1, // 声道
+      encodeBitRate: 96000, // 编码比特率
+      format: 'mp3' // 音频格式
+    };
+    recorderManager.onFrameRecorded((res) => {
+      console.log('录音帧数据:', res);
+      if (socketTask && res.frameBuffer) {
+        // 实时发送音频帧数据到WebSocket
+        socketTask.send(res.frameBuffer);
+      }
+    });
+
+    recorderManager.onStop(() => {
+      console.log('录音结束');
+      if (socketTask) {
+        // 通知WebSocket停止识别
+        socketTask.send(JSON.stringify({ action: 'end' }));
+        socketTask.close();
+        socketTask = null;
+      }
+    });
+
     recorderManager.start(options);
     console.log('开始录音');
+    // 监听实时识别结果
+    socketTask.onMessage((res) => {
+      const result = JSON.parse(res.data);
+      console.log('实时识别结果:', result.text);
+      this.setData({ 
+        isSpeaking: true,
+        recognizedText: result.text 
+      });
+    });
   },
 
   // 停止录音
@@ -112,7 +160,25 @@ startRecording() {
     });
     recorderManager.stop();
     console.log('停止录音');
+    // 上传识别结果到后端
+    this.uploadRecognizedText();
   },
+
+  // 上传识别内容到后端
+  uploadRecognizedText() {
+    wx.request({
+      url: 'https://your-backend-api.com/submitRecognition', // todo 替换为实际后端API地址
+      method: 'POST',
+      data: { content: this.data.recognizedText },
+      success(res) {
+        console.log('后端响应:', res.data);
+      },
+      fail(err) {
+        console.error('上传识别结果失败:', err);
+      }
+    });
+  },
+
   onShareAppMessage: function (ops) {
     return {
       title: '关关雎鸠',
