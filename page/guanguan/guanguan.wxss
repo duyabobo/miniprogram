@@ -158,7 +158,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
   display: flex;
   justify-content: center;
   align-items: center;
