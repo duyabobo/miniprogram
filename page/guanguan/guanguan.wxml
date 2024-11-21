@@ -1,12 +1,17 @@
 <view class="custom-navbar"> 
   <!-- 左侧图标 -->
   <view class="navbar-left" bindtap="onIconClick">
-    <image src="/resources/voice.png" class="icon-image"></image>
+    <image src="/resources/setting.png" class="icon-image"></image>
   </view>
 
   <!-- 页面标题居中 -->
   <view class="navbar-center">
     <text class="title">见面邀请</text>
+  </view>
+
+  <!-- 右侧占位 -->
+  <view class="navbar-right">
+    <image src="" class="icon-image"></image>
   </view>
 </view>
 
@@ -49,7 +54,7 @@
     bindlongpress="startRecording" 
     bindtouchend="stopRecording"
   >
-    <cover-image class="record-icon" src="/resources/voice.png" />
+    按住说话
   </cover-view>
 </cover-view>
 
