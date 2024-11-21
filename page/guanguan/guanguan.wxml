@@ -58,3 +58,10 @@
   </cover-view>
 </cover-view>
 
+<view class="overlay" wx:if="{{showOverlay}}">
+  <view class="overlay-text">
+    正在录音，请保持安静...
+  </view>
+</view>
+
+

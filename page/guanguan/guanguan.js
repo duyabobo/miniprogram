@@ -14,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showOverlay: false, // 默认不显示蒙层
     guanguanList: [
       constVar.defaultGuan,
       constVar.defaultGuan,
@@ -89,6 +90,9 @@ Page({
 // 开始录音
 startRecording() {
   console.log("长按开始录音");
+  this.setData({
+    showOverlay: true // 显示蒙层
+  });
   const options = {
     duration: 60000, // 最长录音时间，单位 ms
     sampleRate: 44100, // 采样率
@@ -103,6 +107,9 @@ startRecording() {
   // 停止录音
   stopRecording() {
     console.log("长按停止录音");
+    this.setData({
+      showOverlay: false // 显示蒙层
+    });
     recorderManager.stop();
     console.log('停止录音');
   },
