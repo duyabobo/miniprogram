@@ -1,5 +1,4 @@
-{
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "见面邀请",
+{ 
+  "navigationStyle": "custom",
   "backgroundTextStyle": "light"
 }
