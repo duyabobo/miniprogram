@@ -20,6 +20,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navTitle: "",
+    leftIcon: "",
     showOverlay: false, // 默认不显示蒙层
     promptHeader: '',         // 提示语
     promptSentences: [],      // 提示词句子数组
@@ -63,7 +65,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options) { 
+    this.setData({
+      navTitle: "见面邀请",
+      statusBarHeight: app.globalData.statusBarHeight,
+    });
     if (wx.getStorageSync('shareOpenid') === '') {
       wx.setStorageSync('shareOpenid', options.shareOpenid)
     }

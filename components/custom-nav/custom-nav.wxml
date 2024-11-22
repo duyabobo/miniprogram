@@ -1,0 +1,16 @@
+<view class="custom-navbar"> 
+  <!-- 左侧图标 -->
+  <view class="navbar-left" bindtap="onIconClick">
+    <image src="{{leftIcon}}" class="icon-image"></image>
+  </view>
+
+  <!-- 页面标题居中 -->
+  <view class="navbar-center">
+    <text class="title">{{navTitle}}</text>
+  </view>
+
+  <!-- 右侧占位 -->
+  <view class="navbar-right">
+    <image src="" class="icon-image"></image>
+  </view>
+</view>

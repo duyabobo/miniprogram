@@ -96,47 +96,6 @@
   height: 30px;
 }
 
-/* 自定义导航栏样式 */
-.custom-navbar {
-  display: flex;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 左对齐（图标在左，标题居中） */ 
-  background-color: #ffffff;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);  /* 给顶部添加阴影 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;  /* 确保浮于页面其他内容之上 */
-  height: 120rpx;
-  width: 100%;
-  padding-top: 40rpx; 
-}
-
-/* 左侧图标 */
-.navbar-left {
-  display: flex;
-  align-items: center; 
-}
-
-.icon-image {
-  width: 35rpx;
-  height: 35rpx;
-}
-
-/* 标题居中 */
-.navbar-center { 
-  display: flex;
-  justify-content: center;
-  align-items: center; /* 垂直居中 */
-  margin: 0rpx 40rpx;
-}
-
-.navbar-center .title {
-  font-size: 34rpx;
-  color: #000;
-}
-
 /* 页面内容样式 */
 .container {
   padding-top: 120rpx; /* 给页面内容留出空间以适应自定义导航栏 */
