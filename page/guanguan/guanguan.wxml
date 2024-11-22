@@ -33,12 +33,8 @@
   </view> 
 </scroll-view>
 <!-- 使用 cover-view 固定底部按钮 -->
-<cover-view class="footer">
-  <cover-view 
-    class="record-button" 
-    bindlongpress="startRecording" 
-    bindtouchend="stopRecording"
-  >
+<cover-view class="footer" bindlongpress="startRecording" bindtouchend="stopRecording"> 
+  <cover-view class="record-button">
     按住说话
   </cover-view>
 </cover-view>

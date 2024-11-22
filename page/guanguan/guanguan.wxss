@@ -75,7 +75,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1); /* 四周阴影 */
   z-index: 1000; /* 确保浮于页面其他内容之上 */
 }
