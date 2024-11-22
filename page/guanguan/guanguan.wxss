@@ -81,6 +81,7 @@
 
 .record-button {
   height: 120rpx; /* 按钮高度 */
+  width: 100%;
   line-height: 120rpx; /* 行高与高度一致 */
   text-align: center; /* 水平居中 */
   font-size: 16px; /* 字体大小 */
@@ -107,7 +108,7 @@
   left: 0;
   right: 0;
   z-index: 1000;  /* 确保浮于页面其他内容之上 */
-  height: 110rpx;
+  height: 120rpx;
   width: 100%;
   padding-top: 40rpx; 
 }
