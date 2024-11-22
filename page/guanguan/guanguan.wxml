@@ -1,4 +1,4 @@
-<custom-nav navTitle="{{navTitle}}" leftIcon="{{leftIcon}}"></custom-nav>
+<custom-nav navTitle="{{navTitle}}"></custom-nav>
 
 <scroll-view class="container" scroll-y="true" enable-flex="true" scroll-with-animation="false">
   <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-state='{{item.state}}' bindtap="clickGuanInfo">

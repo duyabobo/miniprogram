@@ -6,5 +6,12 @@ Component({
     },
     leftIcon: String, 
   },
-  methods: {}
+  methods: {
+    onHamburgerClick() {
+      // 跳转到目标页面
+      wx.navigateTo({
+        url: '/page/mine/mine',
+      });
+    },
+  },
 });
