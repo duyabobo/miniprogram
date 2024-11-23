@@ -28,12 +28,6 @@ Page({
     }
   },
 
-  addsubscribeTemplate :function (event) {
-    let that = this
-    let guanId = event.currentTarget.dataset.guan_id;
-    that.subscribeTemplate(guanId, that.data.operate.subscribeTemplateIds)
-  },
-
   operate: function (event) {
     let that = this
     let guanId = event.currentTarget.dataset.guan_id;

@@ -23,14 +23,6 @@
   <button class="common-button-long" bindtap="operate" data-guan_id='{{guanId}}' data-op_type='{{operate.opType}}'>
     {{operate.opDesc}}
   </button> 
-  <!-- 如果是发起邀请，就提示多少人满足期望 -->
-  <view wx:if="{{operate.opType==1}}" class="desc" bindtap="updateRequirement">  
-    {{operate.requirementResult}}
-  </view>
-  <!-- 如果不是发起邀请，就提示增加订阅信息 -->
-  <view wx:else class="desc" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
-    订阅见面消息
-  </view>
 </view>
 <view wx:else class="operate-and-desc">
     <picker mode="selector" value="{{operate.meetResult.selectValueIndex}}" range="{{operate.meetResult.choiceList}}" data-guan_id='{{guanId}}' bindchange="meetResultChoice">

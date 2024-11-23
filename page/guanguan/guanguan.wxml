@@ -33,10 +33,10 @@
   </view> 
 </scroll-view>
 <!-- 使用 cover-view 固定底部按钮 -->
-<cover-view class="footer" bindlongpress="startRecording" bindtouchend="stopRecording"> 
-  <cover-view class="record-button">
+<cover-view class="footer"> 
+  <button class="common-button-long" bindlongpress="startRecording" bindtouchend="stopRecording">
     按住说话
-  </cover-view>
+  </button> 
 </cover-view>
 
 <!-- 浮层，显示提示文字和实时识别内容 -->

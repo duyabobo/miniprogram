@@ -79,21 +79,22 @@ page {
 }
 
 .operate-and-desc {
-  background-color: white;
+  background-color: #f5f5f5;
   position: fixed;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   padding-top: 15rpx;
-  width: 100%;
+  width: 100vw;
+  height: 50px;
   bottom: 0rpx;
 }
 
-.desc {
+.subscription {
   text-align: center;
-  color: orangered;
+  color: black;
   padding-bottom: 10rpx;
-  font-size: 25rpx;
+  font-size: 28rpx; 
   text-decoration: underline;
 }
