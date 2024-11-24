@@ -32,7 +32,7 @@
         "pagePath": "page/voice/voice",
         "iconPath": "resources/voice_grey.png",
         "selectedIconPath": "resources/voice_orange.png",
-        "text": ""
+        "text": "关关"
       },
       {
         "pagePath": "page/mine/mine",
