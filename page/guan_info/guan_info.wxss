@@ -84,8 +84,7 @@ page {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-  padding-top: 15rpx;
+  justify-content: center; 
   width: 100%;
   bottom: 0rpx;
 }
