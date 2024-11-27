@@ -2,7 +2,6 @@
   "pages": [
     "page/guanguan/guanguan",
     "page/mine/mine",
-    "page/voice/voice",
     "page/guan_info/guan_info",
     "page/my_certification/my_certification",
     "page/my_information/my_information",
@@ -27,12 +26,6 @@
         "iconPath": "resources/logo_grey.png",
         "selectedIconPath": "resources/logo_orange.png",
         "text": "见面"
-      },
-      {
-        "pagePath": "page/voice/voice",
-        "iconPath": "resources/voice_grey.png",
-        "selectedIconPath": "resources/voice_orange.png",
-        "text": "关关"
       },
       {
         "pagePath": "page/mine/mine",
