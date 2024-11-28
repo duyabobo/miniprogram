@@ -42,7 +42,7 @@ input {
 /* 自定义button样式 */
 .common-button-short {
   color: white;
-  background-color: orangered; 
+  background-color: #FF3216;
   width: 300rpx;
   /* margin-bottom: 10rpx; */
   font-size: 35rpx;
@@ -54,7 +54,7 @@ input {
 }
 .common-button-long {
   color: white;
-  background-color: orangered;
+  background-color: #FF3216;
   width: 600rpx;
   margin: 20rpx 0rpx;
   font-size: 35rpx;
@@ -65,7 +65,7 @@ input {
   border: none;
 }
 .white-button-short {
-  color: orangered; 
+  color: #FF3216;
   width: 300rpx;
   /* margin-bottom: 10rpx; */
   font-size: 35rpx;
@@ -76,7 +76,7 @@ input {
   border: 1rpx solid gray;
 }
 .white-button-long{
-  color: orangered; 
+  color: #FF3216;
   width: 600rpx;
   margin: 10rpx 0rpx;
   font-size: 35rpx;

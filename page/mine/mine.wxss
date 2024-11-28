@@ -109,5 +109,5 @@ button::after {
   margin: 40rpx;
   font-size: 25rpx;
   width: 100rpx;
-  color: orangered;
+  color: #FF3216;
 }
