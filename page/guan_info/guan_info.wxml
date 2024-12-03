@@ -4,7 +4,7 @@
       <image class="img" src="{{activity.img}}"></image>
       <view class="time-and-noti">
         <view class="time-text">{{activity.time}}</view>
-        <view class="desc" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
+        <view wx:if="{{operate.opType!=1}}" class="desc" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
           订阅提醒
         </view>
       </view>
