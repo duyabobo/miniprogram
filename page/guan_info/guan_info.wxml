@@ -2,7 +2,12 @@
   <view class="activity-people">
     <view class="activity">
       <image class="img" src="{{activity.img}}"></image>
-      <view class="time-text">{{activity.time}}</view>
+      <view class="time-and-noti">
+        <view class="time-text">{{activity.time}}</view>
+        <view class="desc" bindtap="addsubscribeTemplate" data-guan_id='{{guanId}}'>
+          订阅提醒
+        </view>
+      </view>
       <view class="address-text">{{activity.address}}</view>
     </view>
 
