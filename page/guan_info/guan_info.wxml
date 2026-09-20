@@ -4,10 +4,10 @@
   <!-- 顶部封面图 -->
   <image class="cover-img" src="{{activity.img}}" mode="aspectFill"></image>
 
-  <!-- 时间 & 地点 -->
+  <!-- 时间 & 地点（分两行展示） -->
   <view class="meta-bar">
-    <text class="meta-time">{{activity.time}}</text>
-    <text class="meta-address">{{activity.address}}</text>
+    <text class="meta-time">🕐 {{activity.time}}</text>
+    <text class="meta-address">📍 {{activity.address}}</text>
     <view wx:if="{{progressDesc}}" class="progress-tag progress-tag--{{progressStatus}}">{{progressDesc}}</view>
   </view>
 

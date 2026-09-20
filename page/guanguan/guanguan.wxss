@@ -17,18 +17,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20rpx 24rpx;
+  padding: 24rpx;
   margin: 16rpx 20rpx;
   background: #fff;
   border-radius: 16rpx;
   box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
   position: relative;
   overflow: hidden;
+  min-height: 160rpx;
 }
 
 .guan-img {
-  width: 120rpx;
-  height: 120rpx;
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 12rpx;
   flex-shrink: 0;
   background: #e0e0e0;
@@ -41,18 +42,22 @@
 .guan-info {
   flex: 1;
   padding-left: 24rpx;
+  /* 避免文字蔓延到右侧进度徽标下方 */
+  padding-right: 90rpx;
 }
 
 .guan-time {
-  font-size: 28rpx;
-  color: #333;
-  font-weight: 500;
-  margin-bottom: 8rpx;
+  font-size: 32rpx;
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
 }
 
 .guan-address {
-  font-size: 24rpx;
-  color: #888;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.5;
 }
 
 /* 占位骨架 */

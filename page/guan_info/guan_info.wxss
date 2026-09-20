@@ -1,7 +1,7 @@
 /* guan_info.wxss - 见面详情页样式 */
 
 .page-wrap {
-  height: calc(100vh - 180rpx - env(safe-area-inset-bottom));
+  height: 100vh;
   background: #f8f8f8;
 }
 
@@ -16,25 +16,23 @@
 /* 时间地点条 */
 .meta-bar {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 20rpx 30rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24rpx 30rpx;
   background: #fff;
   border-bottom: 1rpx solid #f0f0f0;
-  flex-wrap: wrap;
   gap: 10rpx;
 }
 
 .meta-time {
-  font-size: 26rpx;
-  color: #555;
-  margin-right: 20rpx;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 600;
 }
 
 .meta-address {
-  font-size: 26rpx;
-  color: #555;
-  flex: 1;
+  font-size: 28rpx;
+  color: #666;
 }
 
 .progress-tag {
@@ -123,9 +121,9 @@
   padding: 60rpx 0;
 }
 
-/* 底部占位 */
+/* 底部占位（防止固定按钮栏遮挡内容，高度 = 按钮栏高度 + safe-area） */
 .bottom-placeholder {
-  height: 180rpx;
+  height: calc(200rpx + env(safe-area-inset-bottom));
 }
 
 /* 底部按钮栏（固定） */

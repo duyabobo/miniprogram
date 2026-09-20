@@ -55,16 +55,17 @@
 
 .panel {
   flex: 1;
-  padding: 24rpx 16rpx;
+  padding: 24rpx 20rpx;
   overflow-y: auto;
 }
 
+/* 左右面板内侧 padding 减小，贴近分割线 */
 .panel--left {
-  padding-right: 12rpx;
+  padding-right: 16rpx;
 }
 
 .panel--right {
-  padding-left: 12rpx;
+  padding-left: 16rpx;
 }
 
 .panel-title {
@@ -76,11 +77,13 @@
   text-align: center;
 }
 
-/* 中间分割线 */
+/* 中间分割线：不设 flex-shrink，让 flex 布局自然居中 */
 .divider {
   width: 1rpx;
+  flex-shrink: 0;
   background: #e0e0e0;
-  margin: 20rpx 0;
+  margin: 16rpx 0;
+  align-self: stretch;
 }
 
 /* 配置项 */
