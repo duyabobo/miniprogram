@@ -43,7 +43,6 @@
 .panel {
   flex: 1;
   padding: 24rpx 20rpx;
-  overflow-y: auto;
 }
 
 /* 用左面板的 border-right 作为分割线，彻底避免 flex 子元素偏移问题 */

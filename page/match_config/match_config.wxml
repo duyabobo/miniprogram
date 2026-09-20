@@ -7,9 +7,9 @@
     <text class="recognized-content">{{recognizedText}}</text>
   </view>
 
-  <!-- 双侧配置展示区 -->
-  <scroll-view class="dual-panel" scroll-y="false" enable-flex="true">
-    <!-- 左侧：我的条件（border-right 作为分割线，保证绝对居中） -->
+  <!-- 双侧配置展示区（用普通 view 而非 scroll-view，保证 flex 等分宽度严格居中） -->
+  <view class="dual-panel">
+    <!-- 左侧：我的条件（border-right 作为分割线） -->
     <view class="panel panel--left">
       <view class="panel-title">我的条件</view>
       <view wx:if="{{myInfoPairs.length}}">
@@ -40,7 +40,7 @@
       </view>
       <view wx:else class="empty-tip">暂未配置</view>
     </view>
-  </scroll-view>
+  </view>
 
   <!-- 底部语音输入区 -->
   <view class="bottom-bar">
