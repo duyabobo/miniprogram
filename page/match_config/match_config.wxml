@@ -1,10 +1,6 @@
 <!-- 匹配配置页：我的条件 | 我的期望 双侧展示 + 底部语音输入 -->
 <view class="page-wrap">
 
-  <!-- 页面标题 -->
-  <view class="page-title">匹配配置</view>
-  <view class="page-subtitle">语音说出你的条件和期望，自动识别更新</view>
-
   <!-- 识别结果文字（有内容时展示） -->
   <view class="recognized-text" wx:if="{{recognizedText}}">
     <text class="recognized-label">识别内容：</text>
@@ -13,7 +9,7 @@
 
   <!-- 双侧配置展示区 -->
   <scroll-view class="dual-panel" scroll-y="false" enable-flex="true">
-    <!-- 左侧：我的条件 -->
+    <!-- 左侧：我的条件（border-right 作为分割线，保证绝对居中） -->
     <view class="panel panel--left">
       <view class="panel-title">我的条件</view>
       <view wx:if="{{myInfoPairs.length}}">
@@ -28,9 +24,6 @@
       </view>
       <view wx:else class="empty-tip">暂未配置</view>
     </view>
-
-    <!-- 中间分割线 -->
-    <view class="divider"></view>
 
     <!-- 右侧：我的期望 -->
     <view class="panel panel--right">
@@ -51,10 +44,7 @@
 
   <!-- 底部语音输入区 -->
   <view class="bottom-bar">
-    <view class="voice-hint" wx:if="{{recordState === 'idle'}}">
-      点击麦克风，说出你的条件和期望
-    </view>
-    <view class="voice-hint voice-hint--recording" wx:elif="{{recordState === 'recording'}}">
+    <view class="voice-hint voice-hint--recording" wx:if="{{recordState === 'recording'}}">
       正在录音…点击停止
     </view>
     <view class="voice-hint voice-hint--processing" wx:elif="{{recordState === 'processing'}}">

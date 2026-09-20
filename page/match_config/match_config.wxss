@@ -7,23 +7,9 @@
   background: #f8f8f8;
 }
 
-/* 标题区 */
-.page-title {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: #222;
-  padding: 40rpx 30rpx 8rpx;
-}
-
-.page-subtitle {
-  font-size: 24rpx;
-  color: #aaa;
-  padding: 0 30rpx 20rpx;
-}
-
 /* 识别结果 */
 .recognized-text {
-  margin: 0 20rpx 16rpx;
+  margin: 20rpx 20rpx 0;
   padding: 16rpx 20rpx;
   background: #fff8e1;
   border-radius: 12rpx;
@@ -47,25 +33,22 @@
   display: flex;
   flex-direction: row;
   background: #fff;
-  margin: 0 20rpx;
+  margin: 20rpx 20rpx 0;
   border-radius: 16rpx;
   overflow: hidden;
   box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
 }
 
+/* 两侧面板完全对称，保证 border-right 严格居中 */
 .panel {
   flex: 1;
   padding: 24rpx 20rpx;
   overflow-y: auto;
 }
 
-/* 左右面板内侧 padding 减小，贴近分割线 */
+/* 用左面板的 border-right 作为分割线，彻底避免 flex 子元素偏移问题 */
 .panel--left {
-  padding-right: 16rpx;
-}
-
-.panel--right {
-  padding-left: 16rpx;
+  border-right: 1rpx solid #e8e8e8;
 }
 
 .panel-title {
@@ -75,15 +58,6 @@
   margin-bottom: 20rpx;
   letter-spacing: 2rpx;
   text-align: center;
-}
-
-/* 中间分割线：不设 flex-shrink，让 flex 布局自然居中 */
-.divider {
-  width: 1rpx;
-  flex-shrink: 0;
-  background: #e0e0e0;
-  margin: 16rpx 0;
-  align-self: stretch;
 }
 
 /* 配置项 */
@@ -133,7 +107,6 @@
 
 .voice-hint {
   font-size: 24rpx;
-  color: #aaa;
   text-align: center;
 }
 

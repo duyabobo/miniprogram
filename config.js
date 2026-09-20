@@ -1,9 +1,16 @@
 /**
  * 小程序配置文件
+ * ENV = 'local'  → 连接本地开发服务（http://localhost:8888）
+ * ENV = 'prod'   → 连接线上服务（https://www.ggjjzhzz.cn）
  */
-// const HOST_TEST = 'localhost:443'
-const HOST_TEST = 'www.ggjjzhzz.cn'
-const HTTP_HOST_TEST = 'https://' + HOST_TEST
+const ENV = 'local'
+
+const HOST_MAP = {
+  local: 'http://localhost:8888',
+  prod:  'https://www.ggjjzhzz.cn',
+}
+
+const HTTP_HOST_TEST = HOST_MAP[ENV]
 
 // 后台 API 接口路径
 const loginUrl = '/login'
