@@ -163,27 +163,27 @@
 }
 
 /* 按钮颜色区分 */
-.action-btn--见面,
-.action-btn--发起见面 {
+.action-btn--meet,
+.action-btn--start-meet {
   background: #ff6b35;
 }
 
-.action-btn--取消 {
+.action-btn--cancel {
   background: #bdbdbd;
 }
 
-.action-btn--合适 {
+.action-btn--suitable {
   background: #4caf50;
 }
 
-.action-btn--不合适 {
+.action-btn--unsuitable {
   background: #f44336;
 }
 
-.action-btn--结束关系 {
+.action-btn--end {
   background: #9e9e9e;
 }
 
-.action-btn--恢复关系 {
+.action-btn--restore {
   background: #ff9800;
 }

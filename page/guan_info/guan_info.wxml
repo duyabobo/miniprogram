@@ -52,7 +52,7 @@
     <button
       wx:for="{{operate.bottomButtons}}"
       wx:key="label"
-      class="action-btn action-btn--{{item.label}}"
+      class="action-btn action-btn--{{item.styleKey}}"
       data-btn="{{item}}"
       bindtap="operate"
     >{{item.label}}</button>
