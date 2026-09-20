@@ -1,105 +1,189 @@
-page {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* guan_info.wxss - 见面详情页样式 */
+
+.page-wrap {
+  height: calc(100vh - 180rpx - env(safe-area-inset-bottom));
+  background: #f8f8f8;
 }
 
-.activity-people {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.activity {
-  display: flex;
-  flex-direction: column;
-  width: 700rpx;
-}
-
-.time-and-noti {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between; 
-  margin: 0rpx 20rpx;
-}
-
-.desc {
-  text-align: center;
-  padding-bottom: 10rpx;
-  font-size: 28rpx;
-  text-decoration: underline;
-}
-
-.img {
-  width: 700rpx;
-  height: 350rpx; 
-  border-radius: 20rpx;
-  box-shadow: 0rpx 0rpx 10rpx 5rpx #e1e1e1;
-  margin: 20rpx 0rpx;
-}
-
-.time-text {
-  font-size: 40rpx;
-  overflow-wrap: break-word;  
-}
-
-.address-text {
-  font-size: 35rpx;
-  color: gray; 
-  margin: 0rpx 20rpx;
-}
-
-.people {
-  width: 700rpx;
-  margin: 20rpx;
-  display: flex;
-  flex-direction: column; 
-}
-
-.opposite-info-pair {
-  display: flex;
-  flex-direction: row;
-  margin: 5rpx 30rpx;
-}
-
-.opposite-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex: 5;
-}
-
-.data-name {
-  font-size: 30rpx;
-  color: gray;
-}
-
-.data-value {
-  font-size: 30rpx;
-  margin-left: 10rpx;
-}
-
-.bottom {
-  height: 150rpx;
-}
-
-.meet_result {
-  color: gray;
-  font-size: 25rpx;
-  display: flex;
-  margin: 30rpx 0rpx;
-  justify-content: center;
-}
-
-.operate-and-desc {
-  background-color: white;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
+/* 封面图 */
+.cover-img {
   width: 100%;
-  bottom: 0rpx;
+  height: 480rpx;
+  display: block;
+  background: #e0e0e0;
+}
+
+/* 时间地点条 */
+.meta-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.meta-time {
+  font-size: 26rpx;
+  color: #555;
+  margin-right: 20rpx;
+}
+
+.meta-address {
+  font-size: 26rpx;
+  color: #555;
+  flex: 1;
+}
+
+.progress-tag {
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.progress-tag--4 { background: #ff6b6b; }
+.progress-tag--5 { background: #bdbdbd; }
+.progress-tag--3 { background: #ffa040; }
+.progress-tag--2 { background: #5b8cff; }
+.progress-tag--1 { background: #9c7aee; }
+.progress-tag--0 { background: #4caf50; }
+
+/* 双侧面板 */
+.dual-panel {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  margin: 16rpx 20rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  min-height: 200rpx;
+}
+
+.panel {
+  flex: 1;
+  padding: 24rpx 20rpx;
+}
+
+.panel--left {
+  padding-right: 16rpx;
+}
+
+.panel--right {
+  padding-left: 16rpx;
+}
+
+.panel-title {
+  font-size: 24rpx;
+  color: #aaa;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.panel-group {
+  margin-bottom: 8rpx;
+}
+
+.panel-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12rpx;
+}
+
+.panel-label {
+  font-size: 22rpx;
+  color: #aaa;
+  margin-bottom: 2rpx;
+}
+
+.panel-value {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 中间分割线 */
+.divider {
+  width: 1rpx;
+  background: #e8e8e8;
+  margin: 16rpx 0;
+}
+
+/* 无对方信息 */
+.no-opposite {
+  text-align: center;
+  color: #aaa;
+  font-size: 28rpx;
+  padding: 60rpx 0;
+}
+
+/* 底部占位 */
+.bottom-placeholder {
+  height: 180rpx;
+}
+
+/* 底部按钮栏（固定） */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  gap: 24rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  text-align: center;
+  border: none;
+  color: #fff;
+}
+
+.action-btn::after {
+  border: none;
+}
+
+/* 按钮颜色区分 */
+.action-btn--见面,
+.action-btn--发起见面 {
+  background: #ff6b35;
+}
+
+.action-btn--取消 {
+  background: #bdbdbd;
+}
+
+.action-btn--合适 {
+  background: #4caf50;
+}
+
+.action-btn--不合适 {
+  background: #f44336;
+}
+
+.action-btn--结束关系 {
+  background: #9e9e9e;
+}
+
+.action-btn--恢复关系 {
+  background: #ff9800;
 }

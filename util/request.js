@@ -124,6 +124,7 @@ function getGuanguanRequest(that, requestData) {
     data: requestData,
     success(res) {
       if (requestIsSuccess(res)) {
+        // 接口返回 guanguanList + configSufficient
         that.setData(res.data.data)
       }
     }

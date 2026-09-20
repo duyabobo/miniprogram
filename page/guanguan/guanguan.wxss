@@ -1,71 +1,117 @@
-.page {
+/* guanguan.wxss - 见面列表页样式 */
+
+.page-wrap {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  height: 100vh;
+  background: #f5f5f5;
 }
 
-.container {
+.list-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 列表项 */
+.guan-item {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 10rpx; /* Add padding between columns */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.guan {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center; 
-  margin: 20rpx;
-  padding: 20rpx 40rpx;
-  background-color: #FFFFFF; 
-  box-sizing: border-box;
-  border-radius: 40rpx;  
-}
-
-.img,
-.img-default {
-  width: 500rpx;
-  height: 250rpx;
-  margin: 10rpx;
-  border-radius: 10rpx;
-  background-color: #f5f5f5; /* Set default background color */
-}
-
-.address-time-status {
-  display: flex;
-  width: 500rpx;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0 20rpx;
-}
-
-.info,
-.info-default {
-  display: flex;
-  width: 100%; /* Make width 100% to occupy full width of the column */
   flex-direction: row;
   align-items: center;
+  padding: 20rpx 24rpx;
+  margin: 16rpx 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
 }
 
-.info-default {
-  background-color: #f5f5f5; /* Set default background color */
+.guan-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+  background: #e0e0e0;
 }
 
-.info-img {
-  width: 35rpx;
-  height: 35rpx;
-  padding-right: 5rpx;
+.guan-img--placeholder {
+  background: #e8e8e8;
 }
 
-.address {
-  font-size: 30rpx;
-  color: gray;
+.guan-info {
+  flex: 1;
+  padding-left: 24rpx;
 }
 
-.time {
-  font-size: 35rpx;
+.guan-time {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.guan-address {
+  font-size: 24rpx;
+  color: #888;
+}
+
+/* 占位骨架 */
+.guan-placeholder-text {
+  padding: 8rpx 0;
+}
+
+.guan-placeholder-line {
+  height: 28rpx;
+  background: #e8e8e8;
+  border-radius: 6rpx;
+  margin-bottom: 12rpx;
+}
+
+.guan-placeholder-line--short {
+  width: 60%;
+}
+
+/* 进展状态徽标 */
+.progress-badge {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* 按进展状态着色 */
+.progress-badge--4 { background: #ff6b6b; } /* 在一起 */
+.progress-badge--5 { background: #bdbdbd; } /* 不合适 */
+.progress-badge--3 { background: #ffa040; } /* 已见面 */
+.progress-badge--2 { background: #5b8cff; } /* 待见面 */
+.progress-badge--1 { background: #9c7aee; } /* 等待中 */
+.progress-badge--0 { background: #4caf50; } /* 待选择 */
+
+/* 底部栏 */
+.bottom-bar {
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.match-config-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #ff6b35;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  text-align: center;
+  border: none;
+}
+
+.match-config-btn::after {
+  border: none;
 }

@@ -9,9 +9,6 @@ let app = getApp();
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     guanguanList: [
       constVar.defaultGuan,
@@ -19,39 +16,41 @@ Page({
       constVar.defaultGuan,
       constVar.defaultGuan,
       constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan
-    ]
+    ],
+    configSufficient: true,  // 默认认为配置足够，接口返回后更新
   },
 
+  /** 点击列表项进入详情页 */
   clickGuanInfo: function (event) {
-    if (event.currentTarget.dataset.guan_id === 0) {
-      return
+    if (event.currentTarget.dataset.guan_id === 0) return;
+
+    // 匹配配置不足：引导去配置
+    if (!this.data.configSufficient) {
+      this.goToMatchConfig();
+      return;
     }
 
-    let needLogin = !wx.getStorageSync('hasLogin')
-    let jumpUrl = config.GUANINFO_PAGE + "?guanId=" + event.currentTarget.dataset.guan_id + "&state=" + event.currentTarget.dataset.state
+    const needLogin = !wx.getStorageSync('hasLogin')
+    const jumpUrl = config.GUANINFO_PAGE
+      + "?guanId=" + event.currentTarget.dataset.guan_id
+      + "&state=" + event.currentTarget.dataset.progress_desc
+
     wxLogin.checkLoginBeforeJump(function () {
-      wx.showToast({ title: "登陆成功", duration: 500});
-      setTimeout(()=> {
-        wx.switchTab({
-          url: config.GUANGUAN_PAGE,
-          success: function(e) {
-            let page = getCurrentPages().pop();
-            if (page === undefined || page == null) return;
-            page.onShow();
-          }
-        })
+      wx.showToast({ title: "登陆成功", duration: 500 });
+      setTimeout(() => {
+        wx.navigateTo({ url: jumpUrl })
       }, 500)
     }, jumpUrl, needLogin)
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  /** 底部"匹配配置"按钮 */
+  goToMatchConfig: function () {
+    const needLogin = !wx.getStorageSync('hasLogin')
+    wxLogin.checkLoginBeforeJump(function () {
+      wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
+    }, config.MATCH_CONFIG_PAGE, needLogin)
+  },
+
   onLoad: function (options) {
     if (wx.getStorageSync('shareOpenid') === '') {
       wx.setStorageSync('shareOpenid', options.shareOpenid)
@@ -59,39 +58,30 @@ Page({
     wxInteractive.wxCheckToast(options.errMsg)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () { 
-    let that = this
+  onShow: function () {
+    const that = this
     if (wx.getStorageSync('hasLogin')) {
       wx.getLocation({
         type: 'wgs84',
         complete(res) {
-          let requestData = {
+          request.getGuanguanRequest(that, {
             latitude: res.latitude,
             longitude: res.longitude
-          };
-          request.getGuanguanRequest(that, requestData)
+          })
         }
       })
     } else {
-      let requestData = {}
-      request.getGuanguanRequest(that, requestData)
+      request.getGuanguanRequest(that, {})
     }
   },
 
-  onShareAppMessage: function (ops) {
+  onShareAppMessage: function () {
     return {
       title: '关关雎鸠',
       path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
-      success: function (res) {
-        console.log("转发成功:" + JSON.stringify(res));
-      },
-      fail: function (res) {
-        console.log("转发失败:" + JSON.stringify(res));
-      }
+      success: function (res) { console.log("转发成功:" + JSON.stringify(res)) },
+      fail: function (res) { console.log("转发失败:" + JSON.stringify(res)) }
     }
   },
-  
+
 })

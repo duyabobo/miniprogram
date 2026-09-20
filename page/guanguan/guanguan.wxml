@@ -1,32 +1,43 @@
-<scroll-view class="container" scroll-y="true" enable-flex="true">
-  <view class="guan" wx:for="{{guanguanList}}" wx:key="id" data-guan_id='{{item.id}}' data-state='{{item.state}}' bindtap="clickGuanInfo">
-    <image wx:if="{{item.id!=0}}" class="img" src="{{item.img}}">
-    </image>
-    <image wx:else class="img-default" src=""></image>
-    <view class="address-time-status">
-      <view wx:if="{{item.id!=0}}" class="info">
-        <view class="time">
-          {{item.time}}
+<view class="page-wrap">
+  <!-- 见面备选列表 -->
+  <scroll-view class="list-container" scroll-y="true" enable-flex="true">
+    <view
+      class="guan-item"
+      wx:for="{{guanguanList}}"
+      wx:key="id"
+      data-guan_id="{{item.id}}"
+      data-progress_status="{{item.progressStatus}}"
+      data-progress_desc="{{item.progressDesc}}"
+      bindtap="clickGuanInfo"
+    >
+      <!-- 封面图 -->
+      <image wx:if="{{item.id != 0}}" class="guan-img" src="{{item.img}}" mode="aspectFill"></image>
+      <view wx:else class="guan-img guan-img--placeholder"></view>
+
+      <!-- 信息区 -->
+      <view class="guan-info">
+        <view wx:if="{{item.id != 0}}">
+          <view class="guan-time">{{item.time}}</view>
+          <view class="guan-address">{{item.address}}</view>
+        </view>
+        <view wx:else class="guan-placeholder-text">
+          <view class="guan-placeholder-line"></view>
+          <view class="guan-placeholder-line guan-placeholder-line--short"></view>
         </view>
       </view>
-      <view wx:else class="info-default">  <!-- 占位 -->
-        <view class="state">  <!-- 这个view只是为了防止address-default为空时，无法渲染出占位背景色 -->
-          <image class="info-img"></image>
-        </view>
-      </view>
-      <view wx:if="{{item.id!=0}}" class="info">
-        <view class="address">
-          {{item.address}}
-        </view>
-      </view>
-      <view wx:else class="info-default">  <!-- 占位 -->
-        <view class="address">
-          {{item.address}}
-        </view>
-        <view class="state">  <!-- 这个view只是为了防止address-default为空时，无法渲染出占位背景色 -->
-          <image class="info-img"></image>
-        </view>
+
+      <!-- 进展状态徽标 -->
+      <view
+        wx:if="{{item.id != 0 && item.progressDesc}}"
+        class="progress-badge progress-badge--{{item.progressStatus}}"
+      >
+        {{item.progressDesc}}
       </view>
     </view>
-  </view> 
-</scroll-view>
+  </scroll-view>
+
+  <!-- 底部匹配配置按钮 -->
+  <view class="bottom-bar">
+    <button class="match-config-btn" bindtap="goToMatchConfig">匹配配置</button>
+  </view>
+</view>

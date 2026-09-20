@@ -1,5 +1,0 @@
-<!--page/about/about.wxml-->
-<scroll-view class="container" scroll-y="true">
-    <view class="title">{{title}}</view>
-    <view class="desc" wx:for="{{descList}}" wx:key="id">{{item}}</view>
-</scroll-view>
