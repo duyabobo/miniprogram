@@ -141,10 +141,13 @@ Page({
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: options.state || '见面详情' })
+    const guanId = options.guanId
+    // 先写入 guanId，避免 onShow 因空值跳过刷新
+    this.setData({ guanId })
     const that = this
     request.myRequest({
       url: config.guaninfoUrl,
-      data: { guanId: options.guanId },
+      data: { guanId },
       success(res) {
         if (request.requestIsSuccess(res)) {
           that._applyPageData(res.data.data)
