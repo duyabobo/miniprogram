@@ -1,3 +1,11 @@
 {
-  "navigationBarTitleText": "匹配配置"
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#5CB8F8",
+  "backgroundColorContent": "#5CB8F8",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "page-nav": "/components/page-nav/page-nav",
+    "profile-board": "/components/profile-board/profile-board"
+  }
 }

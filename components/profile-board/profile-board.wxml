@@ -1,0 +1,15 @@
+<view class="pair-card">
+  <view class="pair-head" wx:if="{{infoTitle || requirementTitle}}">
+    <text class="pair-head__side pair-head__side--info">{{infoTitle}}</text>
+    <view class="pair-head__gap"></view>
+    <text class="pair-head__side pair-head__side--need">{{requirementTitle}}</text>
+  </view>
+  <block wx:if="{{rows.length}}">
+    <view class="pair-row" wx:for="{{rows}}" wx:key="label">
+      <text class="pair-value pair-value--info {{item.infoMissing ? 'pair-value--missing' : ''}}">{{item.infoValue}}</text>
+      <text class="pair-label">{{item.label}}</text>
+      <text class="pair-value pair-value--need {{item.requirementMissing ? 'pair-value--missing' : ''}}">{{item.requirementValue}}</text>
+    </view>
+  </block>
+  <text wx:elif="{{emptyText}}" class="pair-empty">{{emptyText}}</text>
+</view>

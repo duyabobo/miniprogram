@@ -124,8 +124,12 @@ function getGuanguanRequest(that, requestData) {
     data: requestData,
     success(res) {
       if (requestIsSuccess(res)) {
-        // 接口返回 guanguanList + configSufficient
-        that.setData(res.data.data)
+        // 首页自己决定用接口列表还是预览数据
+        if (typeof that.applyGuanguanData === 'function') {
+          that.applyGuanguanData(res.data.data)
+        } else {
+          that.setData(res.data.data)
+        }
       }
     }
   })

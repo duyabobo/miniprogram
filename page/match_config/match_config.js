@@ -1,18 +1,31 @@
 const config = require('../../config.js')
 const request = require("../../util/request");
 
-// 录音状态
 const RECORD_STATE_IDLE = 'idle'
 const RECORD_STATE_RECORDING = 'recording'
 const RECORD_STATE_PROCESSING = 'processing'
+
+const RECORD_FORMAT = 'mp3'
+const RECORD_SAMPLE_RATE = 16000
+
+const VOICE_STATUS_TEXT = {
+  idle: '说说你自己和期望',
+  recording: '正在录音，再次点击结束',
+  processing: '正在整理个人信息和期望',
+}
+
+const MIC_DENIED_TITLE = '需要麦克风'
+const MIC_DENIED_CONTENT = '语音搜集需要使用麦克风，请在设置里允许录音。'
 
 Page({
 
   data: {
     myInfoPairs: [],
     myRequirementPairs: [],
-    recordState: RECORD_STATE_IDLE,  // idle | recording | processing
-    recognizedText: '',              // 语音识别结果文字
+    recordState: RECORD_STATE_IDLE,
+    voiceStatusText: VOICE_STATUS_TEXT[RECORD_STATE_IDLE],
+    recognizedText: '',
+    showPrivacy: false,
   },
 
   _recorderManager: null,
@@ -36,50 +49,60 @@ Page({
     })
   },
 
-  /** 初始化录音事件 */
+  _setRecordState: function (state) {
+    console.log('语音状态', state)
+    this.setData({
+      recordState: state,
+      voiceStatusText: VOICE_STATUS_TEXT[state] || VOICE_STATUS_TEXT[RECORD_STATE_IDLE],
+    })
+  },
+
   _initRecorderEvents: function () {
     const that = this
     const rm = this._recorderManager
 
     rm.onStart(() => {
       console.log('录音开始')
-      that.setData({ recordState: RECORD_STATE_RECORDING })
+      that._setRecordState(RECORD_STATE_RECORDING)
     })
 
     rm.onError((err) => {
-      console.error('录音错误', err)
+      console.log('录音失败', err)
       wx.showToast({ title: '录音失败，请重试', icon: 'none' })
-      that.setData({ recordState: RECORD_STATE_IDLE })
+      that._setRecordState(RECORD_STATE_IDLE)
     })
 
     rm.onStop((res) => {
-      console.log('录音结束, tempFilePath:', res.tempFilePath)
-      that.setData({ recordState: RECORD_STATE_PROCESSING })
+      console.log('录音结束', res.tempFilePath)
+      that._setRecordState(RECORD_STATE_PROCESSING)
       that._uploadAndRecognize(res.tempFilePath)
     })
   },
 
-  /** 点击语音按钮：开始/停止录音 */
   onVoiceBtnTap: function () {
     const state = this.data.recordState
     if (state === RECORD_STATE_IDLE) {
       this._startRecord()
-    } else if (state === RECORD_STATE_RECORDING) {
+      return
+    }
+    if (state === RECORD_STATE_RECORDING) {
       this._stopRecord()
     }
-    // processing 状态下不响应
   },
 
   _startRecord: function () {
+    const that = this
     wx.authorize({
       scope: 'scope.record',
-      success: () => {
-        this._recorderManager.start({ format: 'mp3', sampleRate: 16000 })
+      success() {
+        console.log('麦克风已允许')
+        that._recorderManager.start({ format: RECORD_FORMAT, sampleRate: RECORD_SAMPLE_RATE })
       },
-      fail: () => {
+      fail() {
+        console.log('麦克风未允许')
         wx.showModal({
-          title: '需要麦克风权限',
-          content: '请在设置中允许使用麦克风',
+          title: MIC_DENIED_TITLE,
+          content: MIC_DENIED_CONTENT,
           confirmText: '去设置',
           success(res) {
             if (res.confirm) wx.openSetting()
@@ -93,7 +116,6 @@ Page({
     this._recorderManager.stop()
   },
 
-  /** 上传录音文件，获取识别文字 */
   _uploadAndRecognize: function (filePath) {
     const that = this
     wx.uploadFile({
@@ -101,7 +123,7 @@ Page({
       filePath: filePath,
       name: 'audio',
       header: {
-        sign: ''  // 此处 sign 由后端统一处理或跳过（上传接口鉴权可放宽）
+        sign: ''
       },
       formData: {
         accessToken: wx.getStorageSync('accessToken')
@@ -110,21 +132,21 @@ Page({
         const data = JSON.parse(res.data)
         if (data.code === 0 && data.data && data.data.text) {
           const text = data.data.text
+          console.log('语音识别完成', text.length)
           that.setData({ recognizedText: text })
           that._updateFromVoiceText(text)
-        } else {
-          wx.showToast({ title: '识别失败，请重试', icon: 'none' })
-          that.setData({ recordState: RECORD_STATE_IDLE })
+          return
         }
+        wx.showToast({ title: '识别失败，请重试', icon: 'none' })
+        that._setRecordState(RECORD_STATE_IDLE)
       },
       fail() {
         wx.showToast({ title: '上传失败，请重试', icon: 'none' })
-        that.setData({ recordState: RECORD_STATE_IDLE })
+        that._setRecordState(RECORD_STATE_IDLE)
       }
     })
   },
 
-  /** 将识别文字发给后端提取条件/期望 */
   _updateFromVoiceText: function (voiceText) {
     const that = this
     request.myRequest({
@@ -132,23 +154,33 @@ Page({
       method: 'PUT',
       data: { voiceText },
       success(res) {
-        that.setData({ recordState: RECORD_STATE_IDLE })
+        that._setRecordState(RECORD_STATE_IDLE)
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
           wx.showToast({ title: '更新成功', icon: 'success' })
-        } else {
-          wx.showModal({ title: '提取失败', content: res.data.errMsg || '请重试', showCancel: false, confirmText: '好的' })
+          return
         }
+        wx.showModal({ title: '提取失败', content: res.data.errMsg || '请重试', showCancel: false, confirmText: '好的' })
       },
       fail() {
-        that.setData({ recordState: RECORD_STATE_IDLE })
+        that._setRecordState(RECORD_STATE_IDLE)
         wx.showToast({ title: '更新失败，请重试', icon: 'none' })
       }
     })
   },
 
+  openPrivacy: function () {
+    console.log('打开隐私说明')
+    this.setData({ showPrivacy: true })
+  },
+
+  closePrivacy: function () {
+    this.setData({ showPrivacy: false })
+  },
+
+  holdSheet: function () {},
+
   onUnload: function () {
-    // 页面卸载时停止录音
     if (this.data.recordState === RECORD_STATE_RECORDING) {
       this._recorderManager.stop()
     }

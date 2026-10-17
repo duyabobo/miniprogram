@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "见面"
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#5CB8F8",
+  "backgroundColorContent": "#5CB8F8",
+  "backgroundTextStyle": "dark"
 }

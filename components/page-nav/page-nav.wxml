@@ -1,0 +1,8 @@
+<view class="custom-navbar" style="height: {{navBarHeight}}px; padding-top: {{statusBarHeight}}px;">
+  <view class="custom-navbar__inner" style="height: {{navContentHeight}}px;">
+    <view class="nav-back" hover-class="nav-back--pressed" hover-stay-time="80" bindtap="onBack">
+      <view class="nav-back__chevron"></view>
+    </view>
+    <text class="custom-navbar__title">{{title}}</text>
+  </view>
+</view>

@@ -1,63 +1,40 @@
-<!-- 匹配配置页：我的条件 | 我的期望 双侧展示 + 底部语音输入 -->
 <view class="page-wrap">
+  <page-nav title="关关雎鸠" />
 
-  <!-- 识别结果文字（有内容时展示） -->
-  <view class="recognized-text" wx:if="{{recognizedText}}">
-    <text class="recognized-label">识别内容：</text>
-    <text class="recognized-content">{{recognizedText}}</text>
-  </view>
-
-  <!-- 双侧配置展示区（用普通 view 而非 scroll-view，保证 flex 等分宽度严格居中） -->
-  <view class="dual-panel">
-    <!-- 左侧：我的条件（border-right 作为分割线） -->
-    <view class="panel panel--left">
-      <view class="panel-title">我的条件</view>
-      <view wx:if="{{myInfoPairs.length}}">
-        <view
-          wx:for="{{myInfoPairs}}"
-          wx:key="desc"
-          class="config-item"
-        >
-          <text class="config-label">{{item.desc}}</text>
-          <text class="config-value">{{item.value}}</text>
-        </view>
-      </view>
-      <view wx:else class="empty-tip">暂未配置</view>
+  <scroll-view class="stage" scroll-y="true">
+    <view class="transcript" wx:if="{{recognizedText}}">
+      <text class="transcript-label">刚才说的</text>
+      <text class="transcript-body">{{recognizedText}}</text>
     </view>
 
-    <!-- 右侧：我的期望 -->
-    <view class="panel panel--right">
-      <view class="panel-title">我的期望</view>
-      <view wx:if="{{myRequirementPairs.length}}">
-        <view
-          wx:for="{{myRequirementPairs}}"
-          wx:key="desc"
-          class="config-item"
-        >
-          <text class="config-label">{{item.desc}}</text>
-          <text class="config-value">{{item.value}}</text>
-        </view>
-      </view>
-      <view wx:else class="empty-tip">暂未配置</view>
-    </view>
-  </view>
+    <profile-board
+      info-pairs="{{myInfoPairs}}"
+      requirement-pairs="{{myRequirementPairs}}"
+      info-title="我的信息"
+      requirement-title="我的期望"
+      empty-text="说一段话后，这里会整理出个人信息和期望"
+    />
+  </scroll-view>
 
-  <!-- 底部语音输入区 -->
-  <view class="bottom-bar">
-    <view class="voice-hint voice-hint--recording" wx:if="{{recordState === 'recording'}}">
-      正在录音…点击停止
-    </view>
-    <view class="voice-hint voice-hint--processing" wx:elif="{{recordState === 'processing'}}">
-      识别中…请稍候
-    </view>
-
+  <view class="voice-dock">
+    <text class="voice-status">{{voiceStatusText}}</text>
     <view
-      class="voice-btn voice-btn--{{recordState}}"
+      class="mic-btn mic-btn--{{recordState}}"
+      hover-class="mic-btn--pressed"
+      hover-stay-time="80"
       bindtap="onVoiceBtnTap"
     >
-      <view wx:if="{{recordState === 'idle'}}" class="voice-icon">🎙️</view>
-      <view wx:elif="{{recordState === 'recording'}}" class="voice-icon voice-icon--pulse">⏹️</view>
-      <view wx:elif="{{recordState === 'processing'}}" class="voice-icon voice-icon--spin">⏳</view>
+      <image wx:if="{{recordState === 'recording'}}" class="mic-icon" src="../../resources/icons/stop.svg" mode="aspectFit" />
+      <image wx:else class="mic-icon" src="../../resources/icons/mic.svg" mode="aspectFit" />
+    </view>
+    <text class="privacy-link" bindtap="openPrivacy">隐私说明</text>
+  </view>
+
+  <view class="privacy-mask" wx:if="{{showPrivacy}}" bindtap="closePrivacy">
+    <view class="privacy-sheet" catchtap="holdSheet">
+      <text class="privacy-title">隐私说明</text>
+      <text class="privacy-body">点按麦克风后才会开始录音。录音只用来把你说的话整理成个人信息和期望，用于匹配，不会用于别的用途。你可以随时再说一段，覆盖之前整理的内容。</text>
+      <view class="privacy-close" hover-class="privacy-close--pressed" bindtap="closePrivacy">知道了</view>
     </view>
   </view>
 </view>

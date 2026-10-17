@@ -1,60 +1,36 @@
-<!-- 见面详情页 -->
-<scroll-view class="page-wrap" scroll-y="true" enable-flex="true">
+<view class="page-wrap">
+  <page-nav title="见面详情" />
 
-  <!-- 顶部封面图 -->
-  <image class="cover-img" src="{{activity.img}}" mode="aspectFill"></image>
-
-  <!-- 时间 & 地点（分两行展示） -->
-  <view class="meta-bar">
-    <text class="meta-time">🕐 {{activity.time}}</text>
-    <text class="meta-address">📍 {{activity.address}}</text>
-    <view wx:if="{{progressDesc}}" class="progress-tag progress-tag--{{progressStatus}}">{{progressDesc}}</view>
-  </view>
-
-  <!-- 双侧信息区：他的条件 | 他的期望 -->
-  <view class="dual-panel" wx:if="{{opposite.infoDataPairs.length || opposite.requirementDataPairs.length}}">
-    <!-- 左侧：他的条件 -->
-    <view class="panel panel--left">
-      <view class="panel-title">他的条件</view>
-      <view wx:for="{{opposite.infoDataPairs}}" wx:key="index" class="panel-group">
-        <view wx:for="{{item}}" wx:key="desc" class="panel-item">
-          <text class="panel-label">{{item.desc}}</text>
-          <text class="panel-value">{{item.value}}{{item.subDesc}}</text>
-        </view>
-      </view>
-    </view>
-
-    <!-- 中间分割线 -->
-    <view class="divider"></view>
-
-    <!-- 右侧：他的期望 -->
-    <view class="panel panel--right">
-      <view class="panel-title">他的期望</view>
-      <view wx:for="{{opposite.requirementDataPairs}}" wx:key="index" class="panel-group">
-        <view wx:for="{{item}}" wx:key="desc" class="panel-item">
-          <text class="panel-label">{{item.desc}}</text>
-          <text class="panel-value">{{item.value}}{{item.subDesc}}</text>
-        </view>
-      </view>
+  <view class="place-card">
+    <image wx:if="{{activity.img && !placeImgHidden}}" class="place-img" src="{{activity.img}}" mode="aspectFill" binderror="onPlaceImgError" />
+    <view class="place-body">
+      <text class="place-name">{{activity.address}}</text>
+      <text class="place-time">{{activity.time}}</text>
     </view>
   </view>
 
-  <!-- 无对方信息时的占位 -->
-  <view wx:else class="no-opposite">暂无对方信息</view>
+  <scroll-view class="stage" scroll-y="true">
+    <profile-board
+      wx:if="{{showOpposite}}"
+      info-pairs="{{opposite.infoDataPairs}}"
+      requirement-pairs="{{opposite.requirementDataPairs}}"
+      info-title="ta的信息"
+      requirement-title="ta的期望"
+      empty-text="还没有可展示的对象资料"
+    />
+  </scroll-view>
 
-  <!-- 底部占位（防止按钮遮挡内容） -->
-  <view class="bottom-placeholder"></view>
-</scroll-view>
-
-<!-- 底部操作区（固定在底部，不随滚动） -->
-<view class="bottom-bar" wx:if="{{operate.bottomButtons.length}}">
-  <view class="btn-group">
-    <button
-      wx:for="{{operate.bottomButtons}}"
-      wx:key="label"
-      class="action-btn action-btn--{{item.styleKey}}"
-      data-btn="{{item}}"
-      bindtap="operate"
-    >{{item.label}}</button>
+  <view class="bottom-bar" wx:if="{{operate.bottomButtons.length}}">
+    <view class="btn-group">
+      <button
+        wx:for="{{operate.bottomButtons}}"
+        wx:key="label"
+        class="action-btn action-btn--{{item.styleKey}}"
+        hover-class="action-btn--pressed"
+        hover-stay-time="80"
+        data-btn="{{item}}"
+        bindtap="operate"
+      >{{item.label}}</button>
+    </view>
   </view>
 </view>

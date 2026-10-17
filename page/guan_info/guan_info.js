@@ -37,8 +37,10 @@ Page({
   data: {
     guanId: null,
     progressStatus: null,
-    progressDesc: '',
+    progressDesc: '见面',
+    showOpposite: false,
     activity: {},
+    placeImgHidden: false,
     opposite: { infoDataPairs: [], requirementDataPairs: [] },
     operate: { bottomButtons: [] },
   },
@@ -54,15 +56,34 @@ Page({
     })
   },
 
+  /** 单心及以上一定有对象；待选择时看接口是否带回了对方资料 */
+  _hasOpposite: function (progressStatus, opposite) {
+    if (progressStatus >= PROGRESS_SELECTED) return true
+    const infoLen = (opposite.infoDataPairs || []).length
+    const reqLen = (opposite.requirementDataPairs || []).length
+    return infoLen > 0 || reqLen > 0
+  },
+
   /** 将服务端返回的页面数据写入，注入按钮 styleKey 以支持 WXSS 样式绑定 */
   _applyPageData: function (data) {
     const enriched = Object.assign({}, data);
+    const opposite = enriched.opposite || { infoDataPairs: [], requirementDataPairs: [] }
+    enriched.opposite = opposite
+    enriched.showOpposite = this._hasOpposite(enriched.progressStatus, opposite)
+    if (!enriched.progressDesc) enriched.progressDesc = '见面'
     if (enriched.operate && enriched.operate.bottomButtons) {
       enriched.operate = Object.assign({}, enriched.operate, {
         bottomButtons: enrichButtonsWithStyleKey(enriched.operate.bottomButtons),
       });
     }
+    enriched.placeImgHidden = false
+    console.log('见面详情', enriched.progressStatus, enriched.showOpposite, !!(enriched.activity && enriched.activity.img))
     this.setData(enriched);
+  },
+
+  onPlaceImgError: function () {
+    console.log('地点图片加载失败')
+    this.setData({ placeImgHidden: true })
   },
 
   /** 执行活动操作（见面/取消），有 needConfirm 时先弹框 */
@@ -140,10 +161,11 @@ Page({
   },
 
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: options.state || '见面详情' })
     const guanId = options.guanId
-    // 先写入 guanId，避免 onShow 因空值跳过刷新
-    this.setData({ guanId })
+    this.setData({
+      guanId,
+      progressDesc: options.state || '见面',
+    })
     const that = this
     request.myRequest({
       url: config.guaninfoUrl,

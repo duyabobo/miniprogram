@@ -1,151 +1,155 @@
-/* match_config.wxss - 匹配配置页样式 */
+/* 与首页同一套天空渐变 */
+page {
+  height: 100%;
+  background-color: #5cb8f8;
+  background-image: linear-gradient(180deg, #5cb8f8 0%, #a8d9f7 38%, #d4ecfb 68%, #eef8fd 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 
 .page-wrap {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: #f8f8f8;
-}
-
-/* 识别结果 */
-.recognized-text {
-  margin: 20rpx 20rpx 0;
-  padding: 16rpx 20rpx;
-  background: #fff8e1;
-  border-radius: 12rpx;
-  border-left: 4rpx solid #ffc107;
-}
-
-.recognized-label {
-  font-size: 22rpx;
-  color: #888;
-}
-
-.recognized-content {
-  font-size: 26rpx;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* 双侧面板 */
-.dual-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  background: #fff;
-  margin: 20rpx 20rpx 0;
-  border-radius: 16rpx;
+  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  background: transparent;
 }
 
-/* 两侧面板完全对称，保证 border-right 严格居中 */
-.panel {
+.stage {
   flex: 1;
-  padding: 24rpx 20rpx;
+  height: 0;
 }
 
-/* 用左面板的 border-right 作为分割线，彻底避免 flex 子元素偏移问题 */
-.panel--left {
-  border-right: 1rpx solid #e8e8e8;
+.transcript {
+  margin: 0 28rpx 16rpx;
+  padding: 22rpx 24rpx;
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 20rpx;
 }
 
-.panel-title {
+.transcript-label {
+  display: block;
+  margin-bottom: 8rpx;
   font-size: 22rpx;
-  color: #aaa;
-  font-weight: 700;
-  margin-bottom: 20rpx;
-  letter-spacing: 2rpx;
-  text-align: center;
+  font-weight: 600;
+  color: #2a96d8;
 }
 
-/* 配置项 */
-.config-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20rpx;
-  padding-bottom: 16rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+.transcript-body {
+  display: block;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #1c2834;
 }
 
-.config-item:last-child {
-  border-bottom: none;
-}
-
-.config-label {
-  font-size: 20rpx;
-  color: #bbb;
-  margin-bottom: 4rpx;
-}
-
-.config-value {
-  font-size: 24rpx;
-  color: #333;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.empty-tip {
-  color: #ccc;
-  font-size: 24rpx;
-  text-align: center;
-  padding: 40rpx 0;
-}
-
-/* 底部语音区 */
-.bottom-bar {
-  padding: 20rpx 40rpx;
-  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
-  background: #fff;
-  border-top: 1rpx solid #f0f0f0;
+.voice-dock {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16rpx;
+  padding: 8rpx 48rpx calc(20rpx + env(safe-area-inset-bottom));
 }
 
-.voice-hint {
+.voice-status {
+  min-height: 40rpx;
+  margin-bottom: 16rpx;
   font-size: 24rpx;
+  line-height: 1.4;
+  color: #3d5160;
   text-align: center;
 }
 
-.voice-hint--recording {
-  color: #f44336;
-  font-weight: 600;
-}
-
-.voice-hint--processing {
-  color: #2196f3;
-}
-
-/* 语音按钮 */
-.voice-btn {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 60rpx;
+.mic-btn {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ff6b35;
-  box-shadow: 0 4rpx 20rpx rgba(255, 107, 53, 0.4);
-  transition: all 0.2s;
+  background: linear-gradient(135deg, #45b8f5 0%, #2a9de6 100%);
+  box-shadow: 0 10rpx 28rpx rgba(42, 157, 230, 0.35);
 }
 
-.voice-btn--recording {
-  background: #f44336;
-  animation: pulse 1s infinite;
+.mic-btn--pressed {
+  transform: scale(0.96);
+  background: linear-gradient(135deg, #3aa8e8 0%, #2389cf 100%);
 }
 
-.voice-btn--processing {
-  background: #9e9e9e;
+.mic-btn--recording {
+  animation: mic-pulse 1s infinite;
 }
 
-.voice-icon {
-  font-size: 52rpx;
+.mic-btn--processing {
+  opacity: 0.45;
 }
 
-@keyframes pulse {
-  0%   { transform: scale(1);   box-shadow: 0 4rpx 20rpx rgba(244,67,54,0.4); }
-  50%  { transform: scale(1.08); box-shadow: 0 4rpx 32rpx rgba(244,67,54,0.7); }
-  100% { transform: scale(1);   box-shadow: 0 4rpx 20rpx rgba(244,67,54,0.4); }
+.mic-icon {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.privacy-link {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: #2a96d8;
+  text-decoration: underline;
+}
+
+.privacy-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(28, 40, 52, 0.35);
+}
+
+.privacy-sheet {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 36rpx 40rpx calc(36rpx + env(safe-area-inset-bottom));
+  background: #f4fbfe;
+  border-radius: 28rpx 28rpx 0 0;
+}
+
+.privacy-title {
+  display: block;
+  margin-bottom: 16rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1c2834;
+}
+
+.privacy-body {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: #3d5160;
+}
+
+.privacy-close {
+  margin-top: 28rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 44rpx;
+  background: linear-gradient(135deg, #45b8f5 0%, #2a9de6 100%);
+}
+
+.privacy-close--pressed {
+  background: linear-gradient(135deg, #3aa8e8 0%, #2389cf 100%);
+}
+
+@keyframes mic-pulse {
+  0% { box-shadow: 0 10rpx 28rpx rgba(42, 157, 230, 0.35); }
+  50% { box-shadow: 0 10rpx 36rpx rgba(42, 157, 230, 0.65); }
+  100% { box-shadow: 0 10rpx 28rpx rgba(42, 157, 230, 0.35); }
 }

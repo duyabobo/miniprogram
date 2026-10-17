@@ -1,141 +1,67 @@
-/* guan_info.wxss - 见面详情页样式 */
+/* 与首页同一套天空渐变 */
+page {
+  height: 100%;
+  background-color: #5cb8f8;
+  background-image: linear-gradient(180deg, #5cb8f8 0%, #a8d9f7 38%, #d4ecfb 68%, #eef8fd 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 
 .page-wrap {
-  height: 100vh;
-  background: #f8f8f8;
-}
-
-/* 封面图 */
-.cover-img {
-  width: 100%;
-  height: 480rpx;
-  display: block;
-  background: #e0e0e0;
-}
-
-/* 时间地点条 */
-.meta-bar {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 24rpx 30rpx;
-  background: #fff;
-  border-bottom: 1rpx solid #f0f0f0;
-  gap: 10rpx;
-}
-
-.meta-time {
-  font-size: 30rpx;
-  color: #333;
-  font-weight: 600;
-}
-
-.meta-address {
-  font-size: 28rpx;
-  color: #666;
-}
-
-.progress-tag {
-  padding: 4rpx 16rpx;
-  border-radius: 20rpx;
-  font-size: 22rpx;
-  font-weight: 600;
-  color: #fff;
-}
-
-.progress-tag--4 { background: #ff6b6b; }
-.progress-tag--5 { background: #bdbdbd; }
-.progress-tag--3 { background: #ffa040; }
-.progress-tag--2 { background: #5b8cff; }
-.progress-tag--1 { background: #9c7aee; }
-.progress-tag--0 { background: #4caf50; }
-
-/* 双侧面板 */
-.dual-panel {
-  display: flex;
-  flex-direction: row;
-  background: #fff;
-  margin: 16rpx 20rpx;
-  border-radius: 16rpx;
+  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
-  min-height: 200rpx;
+  position: relative;
+  background: transparent;
 }
 
-.panel {
+.stage {
   flex: 1;
-  padding: 24rpx 20rpx;
+  height: 0;
 }
 
-.panel--left {
-  padding-right: 16rpx;
+.place-card {
+  flex-shrink: 0;
+  margin: 0 28rpx 12rpx;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8rpx 24rpx rgba(46, 152, 220, 0.1);
+  overflow: hidden;
 }
 
-.panel--right {
-  padding-left: 16rpx;
+.place-img {
+  display: block;
+  width: 100%;
+  height: 280rpx;
+  background: #d4ecfb;
 }
 
-.panel-title {
-  font-size: 24rpx;
-  color: #aaa;
+.place-body {
+  padding: 22rpx 24rpx 24rpx;
+}
+
+.place-name {
+  display: block;
+  font-size: 32rpx;
   font-weight: 600;
-  margin-bottom: 16rpx;
-  text-transform: uppercase;
-  letter-spacing: 2rpx;
+  line-height: 1.4;
+  color: #1c2834;
 }
 
-.panel-group {
-  margin-bottom: 8rpx;
+.place-time {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 1.4;
+  color: #5a6d7d;
 }
 
-.panel-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 12rpx;
-}
-
-.panel-label {
-  font-size: 22rpx;
-  color: #aaa;
-  margin-bottom: 2rpx;
-}
-
-.panel-value {
-  font-size: 26rpx;
-  color: #333;
-  font-weight: 500;
-}
-
-/* 中间分割线 */
-.divider {
-  width: 1rpx;
-  background: #e8e8e8;
-  margin: 16rpx 0;
-}
-
-/* 无对方信息 */
-.no-opposite {
-  text-align: center;
-  color: #aaa;
-  font-size: 28rpx;
-  padding: 60rpx 0;
-}
-
-/* 底部占位（防止固定按钮栏遮挡内容，高度 = 按钮栏高度 + safe-area） */
-.bottom-placeholder {
-  height: calc(200rpx + env(safe-area-inset-bottom));
-}
-
-/* 底部按钮栏（固定） */
 .bottom-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20rpx 40rpx;
-  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
-  background: #fff;
-  border-top: 1rpx solid #f0f0f0;
+  flex-shrink: 0;
+  padding: 8rpx 32rpx calc(16rpx + env(safe-area-inset-bottom));
 }
 
 .btn-group {
@@ -146,42 +72,41 @@
 
 .action-btn {
   flex: 1;
-  height: 88rpx;
-  line-height: 88rpx;
+  height: 96rpx;
+  margin: 0;
+  padding: 0;
+  line-height: 96rpx;
   font-size: 30rpx;
   font-weight: 600;
-  border-radius: 44rpx;
+  letter-spacing: 2rpx;
+  border-radius: 48rpx;
   text-align: center;
-  border: none;
   color: #fff;
+  background: linear-gradient(135deg, #45b8f5 0%, #2a9de6 100%);
+  box-shadow: 0 10rpx 28rpx rgba(42, 157, 230, 0.28);
 }
 
 .action-btn::after {
   border: none;
 }
 
-/* 按钮颜色区分 */
+.action-btn--pressed {
+  transform: scale(0.98);
+}
+
 .action-btn--meet,
-.action-btn--start-meet {
-  background: #ff6b35;
-}
-
-.action-btn--cancel {
-  background: #bdbdbd;
-}
-
-.action-btn--suitable {
-  background: #4caf50;
-}
-
-.action-btn--unsuitable {
-  background: #f44336;
-}
-
-.action-btn--end {
-  background: #9e9e9e;
-}
-
+.action-btn--start-meet,
+.action-btn--suitable,
 .action-btn--restore {
-  background: #ff9800;
+  color: #fff;
+  background: linear-gradient(135deg, #45b8f5 0%, #2a9de6 100%);
+  box-shadow: 0 10rpx 28rpx rgba(42, 157, 230, 0.28);
+}
+
+.action-btn--cancel,
+.action-btn--unsuitable,
+.action-btn--end {
+  color: #5a6d7d;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8rpx 24rpx rgba(46, 152, 220, 0.1);
 }

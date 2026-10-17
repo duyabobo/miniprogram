@@ -3,21 +3,32 @@ const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 const pageUrl = require("../../util/page_url");
-const constVar = require("../../util/const_var");
+const guanguanPreview = require("../../util/mock_guanguan");
+const navBar = require("../../util/nav_bar");
 
 let app = getApp();
 
 Page({
 
   data: {
-    guanguanList: [
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-      constVar.defaultGuan,
-    ],
+    guanguanList: guanguanPreview.fillGuanguanList([], null),
     configSufficient: true,  // 默认认为配置足够，接口返回后更新
+    statusBarHeight: 20,
+    navContentHeight: 44,
+    navBarHeight: 64,
+  },
+
+  /** 真实活动排在前面，后面用预览数据把首页铺满 */
+  applyGuanguanData: function (payload) {
+    const data = payload || {}
+    this.latestPayload = data
+    const next = {
+      guanguanList: guanguanPreview.fillGuanguanList(data.guanguanList, this.userLocation),
+    }
+    if (typeof data.configSufficient !== 'undefined') {
+      next.configSufficient = data.configSufficient
+    }
+    this.setData(next)
   },
 
   /** 点击列表项进入详情页 */
@@ -43,7 +54,7 @@ Page({
     }, jumpUrl, needLogin)
   },
 
-  /** 底部"匹配配置"按钮 */
+  /** 底部「关关雎鸠」按钮，进入匹配配置 */
   goToMatchConfig: function () {
     const needLogin = !wx.getStorageSync('hasLogin')
     wxLogin.checkLoginBeforeJump(function () {
@@ -52,6 +63,7 @@ Page({
   },
 
   onLoad: function (options) {
+    this.setData(navBar.getNavBarLayout())
     if (wx.getStorageSync('shareOpenid') === '') {
       wx.setStorageSync('shareOpenid', options.shareOpenid)
     }
@@ -60,19 +72,28 @@ Page({
 
   onShow: function () {
     const that = this
-    if (wx.getStorageSync('hasLogin')) {
-      wx.getLocation({
-        type: 'wgs84',
-        complete(res) {
-          request.getGuanguanRequest(that, {
-            latitude: res.latitude,
-            longitude: res.longitude
+    wx.getLocation({
+      type: 'wgs84',
+      complete(res) {
+        if (typeof res.latitude === 'number' && typeof res.longitude === 'number') {
+          that.userLocation = { latitude: res.latitude, longitude: res.longitude }
+        }
+        const requestData = {}
+        if (wx.getStorageSync('hasLogin') && that.userLocation) {
+          requestData.latitude = that.userLocation.latitude
+          requestData.longitude = that.userLocation.longitude
+        }
+        if (that.userLocation) {
+          that.setData({
+            guanguanList: guanguanPreview.fillGuanguanList(
+              (that.latestPayload && that.latestPayload.guanguanList) || [],
+              that.userLocation
+            ),
           })
         }
-      })
-    } else {
-      request.getGuanguanRequest(that, {})
-    }
+        request.getGuanguanRequest(that, requestData)
+      }
+    })
   },
 
   onShareAppMessage: function () {
