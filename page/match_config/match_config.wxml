@@ -2,6 +2,7 @@
   <page-nav title="关关雎鸠" />
 
   <scroll-view class="stage" scroll-y="true">
+    <view class="stage-gap"></view>
     <view class="transcript" wx:if="{{recognizedText}}">
       <text class="transcript-label">刚才说的</text>
       <text class="transcript-body">{{recognizedText}}</text>

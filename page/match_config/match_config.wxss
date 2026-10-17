@@ -21,6 +21,12 @@ page {
   height: 0;
 }
 
+/* 与首页列表顶部留白一致；scroll-view 自身 padding 在小程序里不稳定 */
+.stage-gap {
+  height: 12rpx;
+  flex-shrink: 0;
+}
+
 .transcript {
   margin: 0 28rpx 16rpx;
   padding: 22rpx 24rpx;
