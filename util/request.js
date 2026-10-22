@@ -135,6 +135,19 @@ function getGuanguanRequest(that, requestData) {
   })
 }
 
+function signedForm(url, method, formData) {
+  formData.requestSeq = util.randomString()
+  formData.accessToken = wx.getStorageSync('accessToken')
+  var contentDict = JSON.parse(JSON.stringify(formData))
+  contentDict.path = url
+  contentDict.method = method
+  contentDict.secret = wx.getStorageSync('secret')
+  return {
+    header: { sign: md5.hex_md5(getContentFromQuery(contentDict, "|")) },
+    formData: formData,
+  }
+}
+
 function logRequestErr(msg, res) {
   console.log(msg + JSON.stringify(res))
 }
@@ -157,6 +170,7 @@ function requestFinishWithErr(res) {
 
 module.exports = {
   myRequest,
+  signedForm,
   normalUpdateRequest,
   loginRequest,
   getGuanguanRequest,

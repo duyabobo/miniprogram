@@ -3,32 +3,7 @@ const enumerate = require("../../util/enumerate");
 const request = require("../../util/request");
 const pageUrl = require("../../util/page_url")
 
-const PROGRESS_NOT_SELECTED = 0
 const PROGRESS_SELECTED = 1
-const PROGRESS_WAIT_MEET = 2
-const PROGRESS_MET = 3
-const PROGRESS_AGREE = 4
-const PROGRESS_DISAGREE = 5
-
-// 按钮 label（中文）→ CSS styleKey（英文）映射，用于避免 WXSS 不支持中文类名的问题
-const BUTTON_LABEL_STYLE_MAP = {
-  '见面': 'meet',
-  '发起见面': 'start-meet',
-  '取消': 'cancel',
-  '合适': 'suitable',
-  '不合适': 'unsuitable',
-  '结束关系': 'end',
-  '恢复关系': 'restore',
-}
-
-/** 给按钮列表注入 styleKey，用于 WXSS 样式绑定 */
-function enrichButtonsWithStyleKey(buttons) {
-  if (!buttons || !buttons.length) return buttons;
-  return buttons.map(btn => ({
-    ...btn,
-    styleKey: BUTTON_LABEL_STYLE_MAP[btn.label] || 'default',
-  }));
-}
 
 let app = getApp();
 
@@ -36,13 +11,16 @@ Page({
 
   data: {
     guanId: null,
+    viewer: false,
     progressStatus: null,
-    progressDesc: '见面',
+    progressDesc: '',
+    copy: {},
     showOpposite: false,
     activity: {},
     placeImgHidden: false,
-    opposite: { infoDataPairs: [], requirementDataPairs: [] },
+    opposite: { rows: [] },
     operate: { bottomButtons: [] },
+    share: { enabled: false, label: '' },
   },
 
   subscribeTemplate: function (guanId, subscribeTemplateIds) {
@@ -59,25 +37,22 @@ Page({
   /** 单心及以上一定有对象；待选择时看接口是否带回了对方资料 */
   _hasOpposite: function (progressStatus, opposite) {
     if (progressStatus >= PROGRESS_SELECTED) return true
-    const infoLen = (opposite.infoDataPairs || []).length
-    const reqLen = (opposite.requirementDataPairs || []).length
-    return infoLen > 0 || reqLen > 0
+    return ((opposite && opposite.rows) || []).length > 0
   },
 
   /** 将服务端返回的页面数据写入，注入按钮 styleKey 以支持 WXSS 样式绑定 */
   _applyPageData: function (data) {
     const enriched = Object.assign({}, data);
-    const opposite = enriched.opposite || { infoDataPairs: [], requirementDataPairs: [] }
+    const opposite = enriched.opposite || { rows: [] }
     enriched.opposite = opposite
     enriched.showOpposite = this._hasOpposite(enriched.progressStatus, opposite)
-    if (!enriched.progressDesc) enriched.progressDesc = '见面'
-    if (enriched.operate && enriched.operate.bottomButtons) {
-      enriched.operate = Object.assign({}, enriched.operate, {
-        bottomButtons: enrichButtonsWithStyleKey(enriched.operate.bottomButtons),
-      });
-    }
     enriched.placeImgHidden = false
-    console.log('见面详情', enriched.progressStatus, enriched.showOpposite, !!(enriched.activity && enriched.activity.img))
+    if (this.data.viewer) {
+      enriched.viewer = true
+      enriched.operate = Object.assign({}, enriched.operate, { bottomButtons: [] })
+      enriched.share = { enabled: false, label: '' }
+    }
+    console.log('详情页', enriched.progressStatus, enriched.viewer, enriched.showOpposite, !!(enriched.share && enriched.share.enabled))
     this.setData(enriched);
   },
 
@@ -86,8 +61,9 @@ Page({
     this.setData({ placeImgHidden: true })
   },
 
-  /** 执行活动操作（见面/取消），有 needConfirm 时先弹框 */
+  /** 执行活动操作，有 needConfirm 时先弹框 */
   operate: function (event) {
+    if (this.data.viewer) return
     const that = this
     const btn = event.currentTarget.dataset.btn
     if (!btn) return;
@@ -110,6 +86,7 @@ Page({
   },
 
   _doOperate: function (btn) {
+    if (this.data.viewer) return
     const that = this
     const guanId = that.data.guanId
 
@@ -149,9 +126,14 @@ Page({
 
   _reloadInfo: function () {
     const that = this
+    const data = { guanId: that.data.guanId }
+    if (that.data.viewer) {
+      data.viewer = Number(pageUrl.MEET_VIEWER_FLAG)
+      data.shareOpenid = that.meetShareOpenid || ''
+    }
     request.myRequest({
       url: config.guaninfoUrl,
-      data: { guanId: that.data.guanId },
+      data: data,
       success(res) {
         if (request.requestIsSuccess(res)) {
           that._applyPageData(res.data.data)
@@ -161,21 +143,18 @@ Page({
   },
 
   onLoad: function (options) {
-    const guanId = options.guanId
+    const viewer = options.viewer === pageUrl.MEET_VIEWER_FLAG
+    this.meetShareOpenid = viewer ? (options.shareOpenid || '') : ''
+    if (this.meetShareOpenid && wx.getStorageSync('shareOpenid') === '') {
+      wx.setStorageSync('shareOpenid', this.meetShareOpenid)
+    }
     this.setData({
-      guanId,
-      progressDesc: options.state || '见面',
+      guanId: options.guanId,
+      viewer: viewer,
+      progressDesc: options.state || '',
     })
-    const that = this
-    request.myRequest({
-      url: config.guaninfoUrl,
-      data: { guanId },
-      success(res) {
-        if (request.requestIsSuccess(res)) {
-          that._applyPageData(res.data.data)
-        }
-      }
-    })
+    console.log('打开见面', options.guanId, viewer)
+    this._reloadInfo()
   },
 
   onShow: function () {
@@ -185,11 +164,17 @@ Page({
   },
 
   onShareAppMessage: function () {
+    const share = this.data.share || {}
+    if (share.enabled && this.data.guanId) {
+      console.log('分享见面', this.data.guanId)
+      return {
+        title: share.label,
+        path: pageUrl.getMeetViewerPage(config.GUANINFO_PAGE, this.data.guanId),
+      }
+    }
     return {
       title: '关关雎鸠',
       path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
-      success: function (res) { console.log("转发成功:" + JSON.stringify(res)) },
-      fail: function (res) { console.log("转发失败:" + JSON.stringify(res)) }
     }
   },
 

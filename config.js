@@ -18,7 +18,6 @@ const guanguanUrl = '/guanguan'
 const guaninfoUrl = '/guan_info'
 const matchConfigUrl = '/match_config'
 const voiceTextUrl = '/voice_text'
-const phoneVerifyUrl = '/phone_verify'
 const subscribeCBUrl = '/subscribe_cb'
 const meetResultUrl = '/meet_result'
 
@@ -37,7 +36,6 @@ module.exports = {
     guaninfoUrl,
     matchConfigUrl,
     voiceTextUrl,
-    phoneVerifyUrl,
     subscribeCBUrl,
     meetResultUrl,
     GUANGUAN_PAGE,

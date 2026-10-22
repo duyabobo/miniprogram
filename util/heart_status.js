@@ -12,7 +12,7 @@ const PERMANENT_HEART_KINDS = {
   double: true,
 }
 
-// 实心 > 心碎 > 双心 > 单心 > 无心；同级按 10km 距离档、见面时间升序
+// 实心 > 心碎 > 双心 > 单心 > 无心；同级按 10km 距离档、开始时间升序
 const HEART_SORT_ORDER = {
   solid: 0,
   broken: 1,

@@ -1,5 +1,5 @@
 <view class="page-wrap">
-  <page-nav title="见面详情" />
+  <page-nav title="{{copy.pageTitle}}" />
 
   <view class="place-card">
     <image wx:if="{{activity.img && !placeImgHidden}}" class="place-img" src="{{activity.img}}" mode="aspectFill" binderror="onPlaceImgError" />
@@ -12,16 +12,22 @@
   <scroll-view class="stage" scroll-y="true">
     <profile-board
       wx:if="{{showOpposite}}"
-      info-pairs="{{opposite.infoDataPairs}}"
-      requirement-pairs="{{opposite.requirementDataPairs}}"
-      info-title="ta的信息"
-      requirement-title="ta的期望"
-      empty-text="还没有可展示的对象资料"
+      rows="{{opposite.rows}}"
+      info-title="{{copy.infoTitle}}"
+      requirement-title="{{copy.requirementTitle}}"
+      empty-text="{{copy.emptyText}}"
     />
   </scroll-view>
 
-  <view class="bottom-bar" wx:if="{{operate.bottomButtons.length}}">
-    <view class="btn-group">
+  <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length}}">
+    <button
+      wx:if="{{share.enabled}}"
+      class="share-btn"
+      hover-class="share-btn--pressed"
+      hover-stay-time="80"
+      open-type="share"
+    >{{share.label}}</button>
+    <view class="btn-group" wx:if="{{operate.bottomButtons.length}}">
       <button
         wx:for="{{operate.bottomButtons}}"
         wx:key="label"

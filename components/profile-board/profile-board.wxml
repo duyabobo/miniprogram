@@ -5,7 +5,7 @@
     <text class="pair-head__side pair-head__side--need">{{requirementTitle}}</text>
   </view>
   <block wx:if="{{rows.length}}">
-    <view class="pair-row" wx:for="{{rows}}" wx:key="label">
+    <view class="pair-row" wx:for="{{rows}}" wx:key="dimKey">
       <text class="pair-value pair-value--info {{item.infoMissing ? 'pair-value--missing' : ''}}">{{item.infoValue}}</text>
       <text class="pair-label">{{item.label}}</text>
       <text class="pair-value pair-value--need {{item.requirementMissing ? 'pair-value--missing' : ''}}">{{item.requirementValue}}</text>

@@ -8,22 +8,13 @@ const RECORD_STATE_PROCESSING = 'processing'
 const RECORD_FORMAT = 'mp3'
 const RECORD_SAMPLE_RATE = 16000
 
-const VOICE_STATUS_TEXT = {
-  idle: '说说你自己和期望',
-  recording: '正在录音，再次点击结束',
-  processing: '正在整理个人信息和期望',
-}
-
-const MIC_DENIED_TITLE = '需要麦克风'
-const MIC_DENIED_CONTENT = '语音搜集需要使用麦克风，请在设置里允许录音。'
-
 Page({
 
   data: {
-    myInfoPairs: [],
-    myRequirementPairs: [],
+    copy: {},
+    rows: [],
     recordState: RECORD_STATE_IDLE,
-    voiceStatusText: VOICE_STATUS_TEXT[RECORD_STATE_IDLE],
+    voiceStatusText: '',
     recognizedText: '',
     showPrivacy: false,
   },
@@ -44,16 +35,18 @@ Page({
       success(res) {
         if (request.requestIsSuccess(res)) {
           that.setData(res.data.data)
+          that._setRecordState(that.data.recordState)
         }
       }
     })
   },
 
   _setRecordState: function (state) {
+    const voiceStatus = (this.data.copy && this.data.copy.voiceStatus) || {}
     console.log('语音状态', state)
     this.setData({
       recordState: state,
-      voiceStatusText: VOICE_STATUS_TEXT[state] || VOICE_STATUS_TEXT[RECORD_STATE_IDLE],
+      voiceStatusText: voiceStatus[state] || '',
     })
   },
 
@@ -100,10 +93,11 @@ Page({
       },
       fail() {
         console.log('麦克风未允许')
+        const copy = that.data.copy || {}
         wx.showModal({
-          title: MIC_DENIED_TITLE,
-          content: MIC_DENIED_CONTENT,
-          confirmText: '去设置',
+          title: copy.micDeniedTitle || '',
+          content: copy.micDeniedContent || '',
+          confirmText: copy.micDeniedConfirm || '',
           success(res) {
             if (res.confirm) wx.openSetting()
           }
@@ -118,26 +112,37 @@ Page({
 
   _uploadAndRecognize: function (filePath) {
     const that = this
+    const signed = request.signedForm(config.voiceTextUrl, 'POST', {})
     wx.uploadFile({
       url: config.HTTP_HOST_TEST + config.voiceTextUrl,
       filePath: filePath,
       name: 'audio',
-      header: {
-        sign: ''
-      },
-      formData: {
-        accessToken: wx.getStorageSync('accessToken')
-      },
+      header: signed.header,
+      formData: signed.formData,
       success(res) {
-        const data = JSON.parse(res.data)
-        if (data.code === 0 && data.data && data.data.text) {
-          const text = data.data.text
-          console.log('语音识别完成', text.length)
-          that.setData({ recognizedText: text })
-          that._updateFromVoiceText(text)
+        let data = {}
+        try {
+          data = JSON.parse(res.data)
+        } catch (err) {
+          console.log('语音识别响应无法解析', err)
+        }
+        const payload = data.data || {}
+        if (data.code === 0) {
+          console.log('语音识别完成', (payload.text || '').length)
+          that.setData({
+            recognizedText: payload.text || '',
+            copy: payload.copy || that.data.copy,
+            rows: payload.rows || that.data.rows,
+          })
+          that._setRecordState(RECORD_STATE_IDLE)
+          if (!payload.text) {
+            wx.showToast({ title: '没有识别到内容', icon: 'none' })
+            return
+          }
+          wx.showToast({ title: '更新成功', icon: 'success' })
           return
         }
-        wx.showToast({ title: '识别失败，请重试', icon: 'none' })
+        wx.showToast({ title: data.errMsg || '识别失败，请重试', icon: 'none' })
         that._setRecordState(RECORD_STATE_IDLE)
       },
       fail() {
@@ -147,30 +152,8 @@ Page({
     })
   },
 
-  _updateFromVoiceText: function (voiceText) {
-    const that = this
-    request.myRequest({
-      url: config.matchConfigUrl,
-      method: 'PUT',
-      data: { voiceText },
-      success(res) {
-        that._setRecordState(RECORD_STATE_IDLE)
-        if (request.requestIsSuccess(res)) {
-          that.setData(res.data.data)
-          wx.showToast({ title: '更新成功', icon: 'success' })
-          return
-        }
-        wx.showModal({ title: '提取失败', content: res.data.errMsg || '请重试', showCancel: false, confirmText: '好的' })
-      },
-      fail() {
-        that._setRecordState(RECORD_STATE_IDLE)
-        wx.showToast({ title: '更新失败，请重试', icon: 'none' })
-      }
-    })
-  },
-
   openPrivacy: function () {
-    console.log('打开隐私说明')
+    console.log('打开说明')
     this.setData({ showPrivacy: true })
   },
 

@@ -12,6 +12,7 @@ Page({
 
   data: {
     guanguanList: guanguanPreview.fillGuanguanList([], null),
+    copy: {},
     configSufficient: true,  // 默认认为配置足够，接口返回后更新
     statusBarHeight: 20,
     navContentHeight: 44,
@@ -27,6 +28,9 @@ Page({
     }
     if (typeof data.configSufficient !== 'undefined') {
       next.configSufficient = data.configSufficient
+    }
+    if (data.copy) {
+      next.copy = data.copy
     }
     this.setData(next)
   },

@@ -1,4 +1,4 @@
-/* guanguan.wxss - 见面列表页（天空蓝渐变） */
+/* guanguan.wxss - 列表页（天空蓝渐变） */
 
 page {
   height: 100%;

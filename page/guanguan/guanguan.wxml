@@ -1,7 +1,7 @@
 <view class="page-wrap">
   <view class="custom-navbar" style="height: {{navBarHeight}}px; padding-top: {{statusBarHeight}}px;">
     <view class="custom-navbar__inner" style="height: {{navContentHeight}}px;">
-      <text class="custom-navbar__title">见面</text>
+      <text class="custom-navbar__title">{{copy.listTitle}}</text>
     </view>
   </view>
   <scroll-view class="list-container" scroll-y="true" enable-flex="true">

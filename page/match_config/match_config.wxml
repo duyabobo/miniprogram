@@ -1,19 +1,18 @@
 <view class="page-wrap">
-  <page-nav title="关关雎鸠" />
+  <page-nav title="{{copy.pageTitle}}" />
 
   <scroll-view class="stage" scroll-y="true">
     <view class="stage-gap"></view>
     <view class="transcript" wx:if="{{recognizedText}}">
-      <text class="transcript-label">刚才说的</text>
+      <text class="transcript-label">{{copy.transcriptLabel}}</text>
       <text class="transcript-body">{{recognizedText}}</text>
     </view>
 
     <profile-board
-      info-pairs="{{myInfoPairs}}"
-      requirement-pairs="{{myRequirementPairs}}"
-      info-title="我的信息"
-      requirement-title="我的期望"
-      empty-text="说一段话后，这里会整理出个人信息和期望"
+      rows="{{rows}}"
+      info-title="{{copy.infoTitle}}"
+      requirement-title="{{copy.requirementTitle}}"
+      empty-text="{{copy.emptyText}}"
     />
   </scroll-view>
 
@@ -28,14 +27,14 @@
       <image wx:if="{{recordState === 'recording'}}" class="mic-icon" src="../../resources/icons/stop.svg" mode="aspectFit" />
       <image wx:else class="mic-icon" src="../../resources/icons/mic.svg" mode="aspectFit" />
     </view>
-    <text class="privacy-link" bindtap="openPrivacy">隐私说明</text>
+    <text class="privacy-link" bindtap="openPrivacy">{{copy.privacyEntry}}</text>
   </view>
 
   <view class="privacy-mask" wx:if="{{showPrivacy}}" bindtap="closePrivacy">
     <view class="privacy-sheet" catchtap="holdSheet">
-      <text class="privacy-title">隐私说明</text>
-      <text class="privacy-body">点按麦克风后才会开始录音。录音只用来把你说的话整理成个人信息和期望，用于匹配，不会用于别的用途。你可以随时再说一段，覆盖之前整理的内容。</text>
-      <view class="privacy-close" hover-class="privacy-close--pressed" bindtap="closePrivacy">知道了</view>
+      <text class="privacy-title">{{copy.privacyTitle}}</text>
+      <text class="privacy-body">{{copy.privacyBody}}</text>
+      <view class="privacy-close" hover-class="privacy-close--pressed" bindtap="closePrivacy">{{copy.privacyConfirm}}</view>
     </view>
   </view>
 </view>
