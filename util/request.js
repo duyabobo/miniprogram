@@ -99,13 +99,12 @@ function normalUpdateRequest(that, url, data) {
   })
 }
 
-function loginRequest(code, phoneCode, sucJumpFunc) {
+function loginRequest(code, sucJumpFunc) {
   let shareOpenid = wx.getStorageSync('shareOpenid');
   myRequest({
     url: config.loginUrl,
     data: {
       code: code,
-      phoneCode: phoneCode || '',
       shareOpenid: shareOpenid,
     },
     success(res) {
@@ -121,12 +120,33 @@ function loginRequest(code, phoneCode, sucJumpFunc) {
   })
 }
 
-function bindPhoneRequest(phoneCode, done) {
+function sendPhoneCodeRequest(phone, done) {
+  myRequest({
+    url: config.phoneCodeUrl,
+    method: 'POST',
+    data: {
+      phone: phone,
+    },
+    success(res) {
+      if (requestIsSuccess(res)) {
+        done((res.data.data && res.data.data.retryAfter) || 0)
+        return
+      }
+      wx.showToast({
+        title: (res.data && res.data.errMsg) || '验证码没有发出',
+        icon: 'none',
+      })
+    }
+  })
+}
+
+function bindPhoneRequest(phone, code, done) {
   myRequest({
     url: config.phoneUrl,
     method: 'POST',
     data: {
-      phoneCode: phoneCode,
+      phone: phone,
+      code: code,
     },
     success(res) {
       if (requestIsSuccess(res)) {
@@ -135,7 +155,7 @@ function bindPhoneRequest(phoneCode, done) {
         return
       }
       wx.showToast({
-        title: (res.data && res.data.errMsg) || '没有拿到手机号',
+        title: (res.data && res.data.errMsg) || '验证码不正确',
         icon: 'none',
       })
     }
@@ -197,6 +217,7 @@ module.exports = {
   signedForm,
   normalUpdateRequest,
   loginRequest,
+  sendPhoneCodeRequest,
   bindPhoneRequest,
   getGuanguanRequest,
   simplePostRequest,

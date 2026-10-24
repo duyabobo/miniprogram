@@ -4,6 +4,7 @@ const request = require("../../util/request");
 const pageUrl = require("../../util/page_url")
 
 const PROGRESS_SELECTED = 1
+const CODE_TICK_MS = 1000
 
 let app = getApp();
 
@@ -24,6 +25,10 @@ Page({
     fee: { required: false, text: '' },
     subscribe: { templateIds: [], label: '', hint: '' },
     pendingPay: null,
+    phoneGate: false,
+    phoneInput: '',
+    codeInput: '',
+    codeWait: 0,
   },
 
   _templateIds: function () {
@@ -78,6 +83,9 @@ Page({
       enriched.operate = Object.assign({}, enriched.operate, { bottomButtons: [] })
       enriched.share = { enabled: false, label: '' }
     }
+    if (typeof enriched.phoneBound !== 'undefined') {
+      wx.setStorageSync('phoneBound', !!enriched.phoneBound)
+    }
     console.log('详情页', enriched.progressStatus, enriched.viewer, enriched.showOpposite, !!(enriched.share && enriched.share.enabled))
     this.setData(enriched);
   },
@@ -87,12 +95,19 @@ Page({
     this.setData({ placeImgHidden: true })
   },
 
-  /** 执行活动操作。先要订阅额度，有 needConfirm 时再弹框。 */
+  /** 执行活动操作。未绑定手机号时先绑定，再要订阅额度，有 needConfirm 时再弹框。 */
   operate: function (event) {
     if (this.data.viewer) return
-    const that = this
     const btn = event.currentTarget.dataset.btn
     if (!btn) return
+    const that = this
+    this._requirePhone(function () {
+      that._operateAfterPhone(btn)
+    })
+  },
+
+  _operateAfterPhone: function (btn) {
+    const that = this
     this._requestSubscribe(function () {
       const needConfirm = btn.needConfirm || btn.needconfirm
       const hint = btn.hint || ''
@@ -115,6 +130,13 @@ Page({
   },
 
   confirmPay: function () {
+    const that = this
+    this._requirePhone(function () {
+      that._payAfterPhone()
+    })
+  },
+
+  _payAfterPhone: function () {
     const pay = this.data.pendingPay
     const btn = this.pendingBtn
     if (!pay || !pay.wx || !btn) return
@@ -199,6 +221,93 @@ Page({
         }
       }
     })
+  },
+
+  _requirePhone: function (done) {
+    const that = this
+    const openGate = function () {
+      if (wx.getStorageSync('phoneBound')) {
+        done()
+        return
+      }
+      that._afterPhone = done
+      that.setData({ phoneGate: true })
+    }
+    if (wx.getStorageSync('hasLogin')) {
+      openGate()
+      return
+    }
+    wx.login({
+      success(res) {
+        if (!res.code) {
+          wx.showToast({ title: '登录没有完成', icon: 'none' })
+          return
+        }
+        request.loginRequest(res.code, openGate)
+      }
+    })
+  },
+
+  closePhoneGate: function () {
+    this._afterPhone = null
+    this.setData({ phoneGate: false })
+  },
+
+  onPhoneInput: function (event) {
+    this.setData({ phoneInput: event.detail.value })
+  },
+
+  onCodeInput: function (event) {
+    this.setData({ codeInput: event.detail.value })
+  },
+
+  sendPhoneCode: function () {
+    if (this.data.codeWait > 0) return
+    const phone = this.data.phoneInput || ''
+    const that = this
+    request.sendPhoneCodeRequest(phone, function (retryAfter) {
+      that._startCodeWait(retryAfter)
+    })
+  },
+
+  submitPhoneBind: function () {
+    const phone = this.data.phoneInput || ''
+    const code = this.data.codeInput || ''
+    const that = this
+    request.bindPhoneRequest(phone, code, function () {
+      const next = that._afterPhone
+      that._afterPhone = null
+      that.setData({ phoneGate: false, phoneBound: true })
+      if (next) next()
+    })
+  },
+
+  _startCodeWait: function (retryAfter) {
+    const wait = Number(retryAfter) || 0
+    if (this._codeTimer) {
+      clearInterval(this._codeTimer)
+      this._codeTimer = null
+    }
+    this.setData({ codeWait: wait })
+    if (wait <= 0) return
+    const that = this
+    this._codeTimer = setInterval(function () {
+      const left = that.data.codeWait - 1
+      if (left <= 0) {
+        clearInterval(that._codeTimer)
+        that._codeTimer = null
+        that.setData({ codeWait: 0 })
+        return
+      }
+      that.setData({ codeWait: left })
+    }, CODE_TICK_MS)
+  },
+
+  onUnload: function () {
+    if (this._codeTimer) {
+      clearInterval(this._codeTimer)
+      this._codeTimer = null
+    }
   },
 
   onLoad: function (options) {

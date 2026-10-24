@@ -15,6 +15,7 @@ const HTTP_HOST_TEST = HOST_MAP[ENV]
 // 后台 API 接口路径
 const loginUrl = '/login'
 const phoneUrl = '/phone'
+const phoneCodeUrl = '/phone_code'
 const guanguanUrl = '/guanguan'
 const guaninfoUrl = '/guan_info'
 const matchConfigUrl = '/match_config'
@@ -34,6 +35,7 @@ module.exports = {
     HTTP_HOST_TEST,
     loginUrl,
     phoneUrl,
+    phoneCodeUrl,
     guanguanUrl,
     guaninfoUrl,
     matchConfigUrl,
