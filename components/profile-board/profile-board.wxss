@@ -33,8 +33,8 @@
   padding-left: 16rpx;
 }
 
-.pair-head__gap {
-  width: 112rpx;
+.pair-label-slot {
+  width: 168rpx;
   flex-shrink: 0;
 }
 
@@ -75,12 +75,17 @@
 }
 
 .pair-label {
-  width: 112rpx;
-  flex-shrink: 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 22rpx;
   line-height: 1.4;
   color: #2a96d8;
+}
+
+.pair-required {
+  margin-left: 2rpx;
+  color: #e23b3b;
 }
 
 .pair-empty {

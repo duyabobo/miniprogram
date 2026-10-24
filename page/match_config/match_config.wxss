@@ -21,9 +21,9 @@ page {
   height: 0;
 }
 
-/* 与首页列表顶部留白一致；scroll-view 自身 padding 在小程序里不稳定 */
+/* scroll-view 自身 padding 在小程序里不稳定，用占位把资料区和导航拉开 */
 .stage-gap {
-  height: 12rpx;
+  height: 48rpx;
   flex-shrink: 0;
 }
 
@@ -86,7 +86,8 @@ page {
   animation: mic-pulse 1s infinite;
 }
 
-.mic-btn--processing {
+.mic-btn--processing,
+.mic-btn--blocked {
   opacity: 0.45;
 }
 

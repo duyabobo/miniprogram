@@ -178,6 +178,53 @@ page {
   border: none;
 }
 
+.phone-gate {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(28, 40, 52, 0.35);
+}
+
+.phone-gate__card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40rpx 32rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+}
+
+.phone-gate__title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1c2834;
+}
+
+.phone-gate__hint {
+  display: block;
+  margin: 16rpx 0 32rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #5c6b78;
+}
+
+.phone-gate__later {
+  margin-top: 16rpx;
+  background: transparent;
+  color: #5c6b78;
+  font-size: 28rpx;
+}
+
+.phone-gate__later::after {
+  border: none;
+}
+
 .match-config-btn--pressed {
   background: linear-gradient(135deg, #3aa8e8 0%, #2389cf 100%);
   transform: scale(0.98);

@@ -56,6 +56,7 @@ const myRequest = function (requestConfig = {}) {
       wx.setStorageSync('accessToken', "")
       wx.setStorageSync('secret', "")
       wx.setStorageSync('openid', "")
+      wx.setStorageSync('phoneBound', false)
     }
   }
   wx.request(requestConfig);
@@ -98,12 +99,13 @@ function normalUpdateRequest(that, url, data) {
   })
 }
 
-function loginRequest(code, sucJumpFunc) {
+function loginRequest(code, phoneCode, sucJumpFunc) {
   let shareOpenid = wx.getStorageSync('shareOpenid');
   myRequest({
     url: config.loginUrl,
     data: {
       code: code,
+      phoneCode: phoneCode || '',
       shareOpenid: shareOpenid,
     },
     success(res) {
@@ -112,8 +114,30 @@ function loginRequest(code, sucJumpFunc) {
         wx.setStorageSync('secret', res.data.data.secret)
         wx.setStorageSync('openid', res.data.data.openid)
         wx.setStorageSync('hasLogin', true)
+        wx.setStorageSync('phoneBound', !!(res.data.data && res.data.data.phoneBound))
         sucJumpFunc()
       }
+    }
+  })
+}
+
+function bindPhoneRequest(phoneCode, done) {
+  myRequest({
+    url: config.phoneUrl,
+    method: 'POST',
+    data: {
+      phoneCode: phoneCode,
+    },
+    success(res) {
+      if (requestIsSuccess(res)) {
+        wx.setStorageSync('phoneBound', true)
+        done()
+        return
+      }
+      wx.showToast({
+        title: (res.data && res.data.errMsg) || '没有拿到手机号',
+        icon: 'none',
+      })
     }
   })
 }
@@ -173,6 +197,7 @@ module.exports = {
   signedForm,
   normalUpdateRequest,
   loginRequest,
+  bindPhoneRequest,
   getGuanguanRequest,
   simplePostRequest,
   logRequestErr,

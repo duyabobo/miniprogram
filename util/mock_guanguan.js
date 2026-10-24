@@ -15,13 +15,13 @@ const TIANJIN_CENTER = { latitude: 39.128, longitude: 117.195 }
  * 在天津/北京都能落在 100km 与 2h 档规则内
  */
 const EMPTY_NEARBY_OFFSETS = [
-  { address: '天津 · 滨江道咖啡', latOffset: 0.004, lngOffset: -0.006, minutesFromNow: 48 },
-  { address: '天津 · 意式风情区茶馆', latOffset: 0.006, lngOffset: 0.005, minutesFromNow: 62 },
-  { address: '天津 · 古文化街小馆', latOffset: 0.012, lngOffset: 0.003, minutesFromNow: 78 },
-  { address: '天津 · 南开大学东门', latOffset: -0.022, lngOffset: -0.008, minutesFromNow: 92 },
-  { address: '天津 · 之眼河畔', latOffset: 0.018, lngOffset: -0.004, minutesFromNow: 105 },
+  { address: '天津 · 滨江道咖啡', latOffset: 0.004, lngOffset: -0.006, minutesFromNow: 16 },
+  { address: '天津 · 意式风情区茶馆', latOffset: 0.006, lngOffset: 0.005, minutesFromNow: 28 },
+  { address: '天津 · 古文化街小馆', latOffset: 0.012, lngOffset: 0.003, minutesFromNow: 40 },
+  { address: '天津 · 南开大学东门', latOffset: -0.022, lngOffset: -0.008, minutesFromNow: 50 },
+  { address: '天津 · 之眼河畔', latOffset: 0.018, lngOffset: -0.004, minutesFromNow: 58 },
 ]
-const PERMANENT_HEART_KINDS = { broken: true, solid: true, double: true }
+const PERMANENT_HEART_KINDS = { broken: true, solid: true, half: true, double: true }
 const PREVIEW_PROGRESS_CYCLE = [5, 2, 1, 0]
 
 function previewProgressStatus(index) {

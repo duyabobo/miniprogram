@@ -1,13 +1,16 @@
 <view class="pair-card">
   <view class="pair-head" wx:if="{{infoTitle || requirementTitle}}">
     <text class="pair-head__side pair-head__side--info">{{infoTitle}}</text>
-    <view class="pair-head__gap"></view>
+    <view class="pair-label-slot"></view>
     <text class="pair-head__side pair-head__side--need">{{requirementTitle}}</text>
   </view>
   <block wx:if="{{rows.length}}">
     <view class="pair-row" wx:for="{{rows}}" wx:key="dimKey">
       <text class="pair-value pair-value--info {{item.infoMissing ? 'pair-value--missing' : ''}}">{{item.infoValue}}</text>
-      <text class="pair-label">{{item.label}}</text>
+      <view class="pair-label pair-label-slot">
+        <text>{{item.label}}</text>
+        <text wx:if="{{item.required}}" class="pair-required">*</text>
+      </view>
       <text class="pair-value pair-value--need {{item.requirementMissing ? 'pair-value--missing' : ''}}">{{item.requirementValue}}</text>
     </view>
   </block>

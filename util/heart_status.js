@@ -3,27 +3,32 @@ const meetLabel = require('./meet_label')
 const HEART_KIND_EMPTY = 'empty'
 const HEART_KIND_SINGLE = 'single'
 const HEART_KIND_DOUBLE = 'double'
+const HEART_KIND_HALF = 'half'
 const HEART_KIND_SOLID = 'solid'
 const HEART_KIND_BROKEN = 'broken'
 
 const PERMANENT_HEART_KINDS = {
   broken: true,
   solid: true,
+  half: true,
   double: true,
 }
 
-// 实心 > 心碎 > 双心 > 单心 > 无心；同级按 10km 距离档、开始时间升序
+// 实心 > 半实心 > 心碎 > 双心 > 单心 > 无心；同级按 10km 距离档、开始时间升序
 const HEART_SORT_ORDER = {
   solid: 0,
-  broken: 1,
-  double: 2,
-  single: 3,
-  empty: 4,
+  half: 1,
+  broken: 2,
+  double: 3,
+  single: 4,
+  empty: 5,
 }
 
 const DISTANCE_BUCKET_KM = 10
 const MAX_LIST_DISTANCE_KM = 100
-const LEAD_MINUTES_PER_DISTANCE_BUCKET = 120
+const MINUTES_PER_HOUR = 60
+const LEAD_HOURS_PER_DISTANCE_BUCKET = 1
+const LEAD_MINUTES_PER_DISTANCE_BUCKET = LEAD_HOURS_PER_DISTANCE_BUCKET * MINUTES_PER_HOUR
 
 function distanceKm(userLocation, latitude, longitude) {
   if (!userLocation || !latitude || !longitude) return null
@@ -38,8 +43,8 @@ function distanceKm(userLocation, latitude, longitude) {
 
 function distanceBucket(distanceKm) {
   if (distanceKm === null) return 999
-  if (distanceKm <= 0) return 1
-  return Math.floor(distanceKm / DISTANCE_BUCKET_KM) + 1
+  if (distanceKm <= DISTANCE_BUCKET_KM) return 1
+  return Math.ceil(distanceKm / DISTANCE_BUCKET_KM)
 }
 
 function maxLeadMinutesForTransient(distanceKm) {
@@ -48,7 +53,8 @@ function maxLeadMinutesForTransient(distanceKm) {
 
 function heartKindOf(progressStatus, hasMatch) {
   if (progressStatus === 5) return HEART_KIND_BROKEN
-  if (progressStatus === 4 || progressStatus === 3) return HEART_KIND_SOLID
+  if (progressStatus === 4) return HEART_KIND_SOLID
+  if (progressStatus === 3) return HEART_KIND_HALF
   if (progressStatus === 2) return HEART_KIND_DOUBLE
   if (progressStatus === 1) return HEART_KIND_SINGLE
   if (progressStatus === 0) return hasMatch ? HEART_KIND_SINGLE : HEART_KIND_EMPTY
@@ -126,6 +132,7 @@ module.exports = {
   HEART_KIND_EMPTY,
   HEART_KIND_SINGLE,
   HEART_KIND_DOUBLE,
+  HEART_KIND_HALF,
   HEART_KIND_SOLID,
   HEART_KIND_BROKEN,
   distanceKm,

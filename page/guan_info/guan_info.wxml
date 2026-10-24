@@ -19,7 +19,23 @@
     />
   </scroll-view>
 
-  <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length}}">
+  <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length || fee.text || subscribe.label || pendingPay}}">
+    <view class="fee-card" wx:if="{{fee.text}}">{{fee.text}}</view>
+    <view class="notice-hint" wx:if="{{subscribe.hint && !viewer}}">{{subscribe.hint}}</view>
+    <button
+      wx:if="{{subscribe.label && !viewer}}"
+      class="share-btn"
+      hover-class="share-btn--pressed"
+      hover-stay-time="80"
+      bindtap="enableNotice"
+    >{{subscribe.label}}</button>
+    <button
+      wx:if="{{pendingPay}}"
+      class="action-btn action-btn--meet"
+      hover-class="action-btn--pressed"
+      hover-stay-time="80"
+      bindtap="confirmPay"
+    >{{pendingPay.buttonLabel}}</button>
     <button
       wx:if="{{share.enabled}}"
       class="share-btn"

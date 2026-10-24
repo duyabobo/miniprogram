@@ -12,7 +12,7 @@
   "networkTimeout": {
     "request": 10000,
     "connectSocket": 10000,
-    "uploadFile": 30000,
+    "uploadFile": 60000,
     "downloadFile": 10000
   },
   "requiredPrivateInfos": [

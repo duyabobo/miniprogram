@@ -3,7 +3,12 @@
 
   <scroll-view class="stage" scroll-y="true">
     <view class="stage-gap"></view>
-    <view class="transcript" wx:if="{{recognizedText}}">
+    <view class="transcript" wx:if="{{recordState === 'processing'}}">
+      <text class="transcript-label">正在解析</text>
+      <text class="transcript-body">{{voiceStatusText}}</text>
+    </view>
+
+    <view class="transcript" wx:if="{{recognizedText && recordState !== 'processing'}}">
       <text class="transcript-label">{{copy.transcriptLabel}}</text>
       <text class="transcript-body">{{recognizedText}}</text>
     </view>

@@ -18,7 +18,7 @@ function wxLogin(sucJumpFunc) {
       wx.login({
         success(res) {
           if (res.code) {
-            request.loginRequest(res.code, sucJumpFunc)
+            request.loginRequest(res.code, '', sucJumpFunc)
           } else {
             console.log('登录失败！' + res.data.errMsg)
           }

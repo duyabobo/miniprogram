@@ -14,6 +14,7 @@ const HTTP_HOST_TEST = HOST_MAP[ENV]
 
 // 后台 API 接口路径
 const loginUrl = '/login'
+const phoneUrl = '/phone'
 const guanguanUrl = '/guanguan'
 const guaninfoUrl = '/guan_info'
 const matchConfigUrl = '/match_config'
@@ -32,6 +33,7 @@ const SUBSCRIBE_OFFLINE_NOTI_TID = '0LeRGd69AHugmAOYDLHxut1DBZhpkZUdZb5f57DeD3g'
 module.exports = {
     HTTP_HOST_TEST,
     loginUrl,
+    phoneUrl,
     guanguanUrl,
     guaninfoUrl,
     matchConfigUrl,

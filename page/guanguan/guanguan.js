@@ -1,5 +1,4 @@
 const config = require('../../config.js')
-const wxLogin = require("../../util/wx_login");
 const request = require("../../util/request");
 const wxInteractive = require("../../util/wx_interactive");
 const pageUrl = require("../../util/page_url");
@@ -13,6 +12,7 @@ Page({
   data: {
     guanguanList: guanguanPreview.fillGuanguanList([], null),
     copy: {},
+    phoneGate: false,
     configSufficient: true,  // 默认认为配置足够，接口返回后更新
     statusBarHeight: 20,
     navContentHeight: 44,
@@ -32,7 +32,59 @@ Page({
     if (data.copy) {
       next.copy = data.copy
     }
+    if (typeof data.phoneBound !== 'undefined') {
+      wx.setStorageSync('phoneBound', !!data.phoneBound)
+    }
     this.setData(next)
+  },
+
+  enterAfterPhone: function (url) {
+    if (wx.getStorageSync('hasLogin') && wx.getStorageSync('phoneBound')) {
+      wx.navigateTo({ url: url })
+      return
+    }
+    this.pendingUrl = url
+    this.setData({ phoneGate: true })
+  },
+
+  closePhoneGate: function () {
+    this.pendingUrl = ''
+    this.setData({ phoneGate: false })
+  },
+
+  onGetPhoneNumber: function (event) {
+    const phoneCode = (event.detail && event.detail.code) || ''
+    if (!phoneCode) {
+      wx.showToast({ title: '需要手机号才能继续', icon: 'none' })
+      return
+    }
+    const that = this
+    const url = this.pendingUrl
+    const go = function () {
+      that.setData({ phoneGate: false })
+      if (url) {
+        wx.navigateTo({ url: url })
+      }
+    }
+    if (wx.getStorageSync('hasLogin')) {
+      request.bindPhoneRequest(phoneCode, go)
+      return
+    }
+    wx.login({
+      success(res) {
+        if (!res.code) {
+          wx.showToast({ title: '登录没有完成', icon: 'none' })
+          return
+        }
+        request.loginRequest(res.code, phoneCode, function () {
+          if (!wx.getStorageSync('phoneBound')) {
+            wx.showToast({ title: '没有拿到手机号，请再授权一次', icon: 'none' })
+            return
+          }
+          go()
+        })
+      }
+    })
   },
 
   /** 点击列表项进入详情页 */
@@ -45,25 +97,15 @@ Page({
       return;
     }
 
-    const needLogin = !wx.getStorageSync('hasLogin')
     const jumpUrl = config.GUANINFO_PAGE
       + "?guanId=" + event.currentTarget.dataset.guan_id
       + "&state=" + event.currentTarget.dataset.progress_desc
-
-    wxLogin.checkLoginBeforeJump(function () {
-      wx.showToast({ title: "登陆成功", duration: 500 });
-      setTimeout(() => {
-        wx.navigateTo({ url: jumpUrl })
-      }, 500)
-    }, jumpUrl, needLogin)
+    this.enterAfterPhone(jumpUrl)
   },
 
   /** 底部「关关雎鸠」按钮，进入匹配配置 */
   goToMatchConfig: function () {
-    const needLogin = !wx.getStorageSync('hasLogin')
-    wxLogin.checkLoginBeforeJump(function () {
-      wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
-    }, config.MATCH_CONFIG_PAGE, needLogin)
+    this.enterAfterPhone(config.MATCH_CONFIG_PAGE)
   },
 
   onLoad: function (options) {

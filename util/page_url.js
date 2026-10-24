@@ -10,8 +10,21 @@ function getMeetViewerPage(page, guanId) {
     return page + '?guanId=' + guanId + '&viewer=' + MEET_VIEWER_FLAG + '&shareOpenid=' + openid
 }
 
+const MEET_SHARE_COVER = '/resources/share-meet.png'
+
+function meetSharePayload(activity) {
+    const time = activity && activity.time ? activity.time : ''
+    const address = activity && activity.address ? activity.address : ''
+    const detail = [time, address].filter(function (part) { return part }).join(' ')
+    return {
+        title: detail ? ('安全见面 ' + detail) : '安全见面，分享亲友',
+        imageUrl: MEET_SHARE_COVER,
+    }
+}
+
 module.exports = {
     MEET_VIEWER_FLAG,
     getSharePageWithOpenid,
     getMeetViewerPage,
+    meetSharePayload,
 }

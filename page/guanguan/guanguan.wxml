@@ -26,6 +26,9 @@
       <view wx:elif="{{item.heartKind === 'double'}}" class="progress-mark">
         <image class="heart-mark" src="../../resources/icons/heart-double.svg" mode="aspectFit" />
       </view>
+      <view wx:elif="{{item.heartKind === 'half'}}" class="progress-mark">
+        <image class="heart-mark" src="../../resources/icons/heart-half.svg" mode="aspectFit" />
+      </view>
       <view wx:elif="{{item.heartKind === 'solid'}}" class="progress-mark">
         <image class="heart-mark" src="../../resources/icons/heart-solid.svg" mode="aspectFit" />
       </view>
@@ -42,6 +45,19 @@
       </view>
     </view>
   </scroll-view>
+
+  <view class="phone-gate" wx:if="{{phoneGate}}">
+    <view class="phone-gate__card">
+      <text class="phone-gate__title">{{copy.phoneGateTitle}}</text>
+      <text class="phone-gate__hint">{{copy.phoneGateHint}}</text>
+      <button
+        class="match-config-btn"
+        open-type="getPhoneNumber"
+        bindgetphonenumber="onGetPhoneNumber"
+      >{{copy.phoneGateButton}}</button>
+      <button class="phone-gate__later" bindtap="closePhoneGate">{{copy.phoneGateLater}}</button>
+    </view>
+  </view>
 
   <view class="bottom-bar">
     <button

@@ -1,4 +1,5 @@
 const config = require('../../config.js')
+const enumerate = require("../../util/enumerate");
 const request = require("../../util/request");
 
 const RECORD_STATE_IDLE = 'idle'
@@ -7,6 +8,7 @@ const RECORD_STATE_PROCESSING = 'processing'
 
 const RECORD_FORMAT = 'mp3'
 const RECORD_SAMPLE_RATE = 16000
+const UPLOAD_TIMEOUT_MS = 60000
 
 Page({
 
@@ -17,6 +19,8 @@ Page({
     voiceStatusText: '',
     recognizedText: '',
     showPrivacy: false,
+    voiceEnabled: true,
+    voiceBlockText: '',
   },
 
   _recorderManager: null,
@@ -34,8 +38,7 @@ Page({
       data: {},
       success(res) {
         if (request.requestIsSuccess(res)) {
-          that.setData(res.data.data)
-          that._setRecordState(that.data.recordState)
+          that._applyPayload(res.data.data || {}, true)
         }
       }
     })
@@ -47,6 +50,39 @@ Page({
     this.setData({
       recordState: state,
       voiceStatusText: voiceStatus[state] || '',
+    })
+  },
+
+  _applyPayload: function (payload, resetIdle) {
+    const voiceEnabled = payload.voiceEnabled !== false
+    const voiceBlockText = payload.voiceBlockText || ''
+    const copy = payload.copy || this.data.copy
+    const voiceStatus = (copy && copy.voiceStatus) || {}
+    const next = {
+      copy: copy,
+      rows: payload.rows || [],
+      voiceEnabled: voiceEnabled,
+      voiceBlockText: voiceBlockText,
+    }
+    if (typeof payload.text === 'string') {
+      next.recognizedText = payload.text
+    }
+    if (!voiceEnabled) {
+      next.recordState = 'blocked'
+      next.voiceStatusText = voiceBlockText
+    } else if (resetIdle) {
+      next.recordState = RECORD_STATE_IDLE
+      next.voiceStatusText = voiceStatus.idle || ''
+    }
+    console.log('资料页', voiceEnabled, (next.rows || []).length)
+    this.setData(next)
+  },
+
+  _showNotice: function (title, content) {
+    wx.showModal({
+      title: title || '',
+      content: content || '',
+      showCancel: false,
     })
   },
 
@@ -73,6 +109,10 @@ Page({
   },
 
   onVoiceBtnTap: function () {
+    if (this.data.voiceEnabled === false) {
+      this._showNotice(this.data.copy.voiceBlockTitle, this.data.voiceBlockText)
+      return
+    }
     const state = this.data.recordState
     if (state === RECORD_STATE_IDLE) {
       this._startRecord()
@@ -119,6 +159,7 @@ Page({
       name: 'audio',
       header: signed.header,
       formData: signed.formData,
+      timeout: UPLOAD_TIMEOUT_MS,
       success(res) {
         let data = {}
         try {
@@ -127,14 +168,14 @@ Page({
           console.log('语音识别响应无法解析', err)
         }
         const payload = data.data || {}
-        if (data.code === 0) {
+        const accepted = data.code === enumerate.SUCESS_CODE || data.code > enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE
+        if (accepted) {
           console.log('语音识别完成', (payload.text || '').length)
-          that.setData({
-            recognizedText: payload.text || '',
-            copy: payload.copy || that.data.copy,
-            rows: payload.rows || that.data.rows,
-          })
-          that._setRecordState(RECORD_STATE_IDLE)
+          that._applyPayload(payload, true)
+          if (data.code > enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE) {
+            that._showNotice(that.data.copy.profileConflictTitle, data.errMsg)
+            return
+          }
           if (!payload.text) {
             wx.showToast({ title: '没有识别到内容', icon: 'none' })
             return
@@ -142,8 +183,8 @@ Page({
           wx.showToast({ title: '更新成功', icon: 'success' })
           return
         }
-        wx.showToast({ title: data.errMsg || '识别失败，请重试', icon: 'none' })
         that._setRecordState(RECORD_STATE_IDLE)
+        that._showNotice((that.data.copy && that.data.copy.voiceRejectTitle) || '', data.errMsg || '')
       },
       fail() {
         wx.showToast({ title: '上传失败，请重试', icon: 'none' })
