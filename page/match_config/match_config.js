@@ -69,7 +69,7 @@ Page({
     }
     if (!voiceEnabled) {
       next.recordState = 'blocked'
-      next.voiceStatusText = voiceBlockText
+      next.voiceStatusText = ''
     } else if (resetIdle) {
       next.recordState = RECORD_STATE_IDLE
       next.voiceStatusText = voiceStatus.idle || ''

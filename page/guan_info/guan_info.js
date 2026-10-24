@@ -23,7 +23,7 @@ Page({
     operate: { bottomButtons: [] },
     share: { enabled: false, label: '' },
     fee: { required: false, text: '' },
-    subscribe: { templateIds: [], label: '', hint: '' },
+    subscribe: { templateIds: [] },
     pendingPay: null,
     phoneGate: false,
     phoneInput: '',
@@ -55,16 +55,6 @@ Page({
     })
   },
 
-  enableNotice: function () {
-    const ids = this._templateIds()
-    this._requestSubscribe(function (res) {
-      const accepted = ids.some(function (id) { return res && res[id] === 'accept' })
-      if (accepted) {
-        wx.showToast({ title: '已开启提醒', icon: 'none' })
-      }
-    })
-  },
-
   /** 单心及以上一定有对象；待选择时看接口是否带回了对方资料 */
   _hasOpposite: function (progressStatus, opposite) {
     if (progressStatus >= PROGRESS_SELECTED) return true
@@ -80,6 +70,8 @@ Page({
     enriched.placeImgHidden = false
     if (this.data.viewer) {
       enriched.viewer = true
+      enriched.opposite = { rows: [] }
+      enriched.showOpposite = false
       enriched.operate = Object.assign({}, enriched.operate, { bottomButtons: [] })
       enriched.share = { enabled: false, label: '' }
     }
@@ -95,7 +87,7 @@ Page({
     this.setData({ placeImgHidden: true })
   },
 
-  /** 执行活动操作。未绑定手机号时先绑定，再要订阅额度，有 needConfirm 时再弹框。 */
+  /** 未绑定手机号时先绑定。需要确认的先确认，确认后再按按钮决定要不要申请订阅。 */
   operate: function (event) {
     if (this.data.viewer) return
     const btn = event.currentTarget.dataset.btn
@@ -108,24 +100,32 @@ Page({
 
   _operateAfterPhone: function (btn) {
     const that = this
-    this._requestSubscribe(function () {
-      const needConfirm = btn.needConfirm || btn.needconfirm
-      const hint = btn.hint || ''
-      if (needConfirm) {
-        wx.showModal({
-          title: '确认' + btn.label + '？',
-          content: hint,
-          confirmText: btn.label,
-          cancelText: '再想想',
-          success(res) {
-            if (res.confirm) {
-              that._doOperate(btn)
-            }
-          }
-        })
-      } else {
-        that._doOperate(btn)
+    const needConfirm = btn.needConfirm || btn.needconfirm
+    if (!needConfirm) {
+      this._runOperate(btn)
+      return
+    }
+    wx.showModal({
+      title: '确认' + btn.label + '？',
+      content: btn.hint || '',
+      confirmText: btn.label,
+      cancelText: '再想想',
+      success(res) {
+        if (res.confirm) {
+          that._runOperate(btn)
+        }
       }
+    })
+  },
+
+  _runOperate: function (btn) {
+    const that = this
+    if (!(btn.askSubscribe || btn.asksubscribe)) {
+      this._doOperate(btn)
+      return
+    }
+    this._requestSubscribe(function () {
+      that._doOperate(btn)
     })
   },
 
@@ -158,26 +158,11 @@ Page({
     const guanId = that.data.guanId
 
     if (btn.action === 'operate') {
-      app.preventActive(() => {
-        request.myRequest({
-          url: config.guaninfoUrl,
-          method: 'PUT',
-          data: { guanId, opType: btn.opType, openid: wx.getStorageSync('openid') },
-          success(res) {
-            if (request.requestIsSuccess(res) || request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
-              that.setData({ pendingPay: null })
-              that._applyPageData(res.data.data)
-              wx.showModal({ title: res.data.errMsg || '操作成功', showCancel: false, confirmText: '确认' })
-            } else if (request.requestFinishWithCode(res, enumerate.NEED_MEET_FEE_CODE)) {
-              that._stagePay(btn, res.data)
-            } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
-              wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
-            } else {
-              wx.showModal({ title: res.data.errMsg, showCancel: false, confirmText: '确认' })
-            }
-          }
-        })
-      })
+      if (btn.needLocation || btn.needlocation) {
+        this._operateAtPlace(btn, guanId)
+        return
+      }
+      this._postOperate(btn, guanId, {})
     } else if (btn.action === 'meetResult') {
       request.myRequest({
         url: config.meetResultUrl,
@@ -192,6 +177,43 @@ Page({
         }
       })
     }
+  },
+
+  _operateAtPlace: function (btn, guanId) {
+    const that = this
+    wx.getLocation({
+      type: 'wgs84',
+      success(loc) {
+        that._postOperate(btn, guanId, { latitude: loc.latitude, longitude: loc.longitude })
+      },
+      fail() {
+        wx.showModal({ title: '需要定位才能签到', showCancel: false, confirmText: '确认' })
+      }
+    })
+  },
+
+  _postOperate: function (btn, guanId, extra) {
+    const that = this
+    app.preventActive(() => {
+      request.myRequest({
+        url: config.guaninfoUrl,
+        method: 'PUT',
+        data: Object.assign({ guanId, opType: btn.opType, openid: wx.getStorageSync('openid') }, extra),
+        success(res) {
+          if (request.requestIsSuccess(res) || request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
+            that.setData({ pendingPay: null })
+            that._applyPageData(res.data.data)
+            wx.showModal({ title: res.data.errMsg || '操作成功', showCancel: false, confirmText: '确认' })
+          } else if (request.requestFinishWithCode(res, enumerate.NEED_MEET_FEE_CODE)) {
+            that._stagePay(btn, res.data)
+          } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
+            wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
+          } else {
+            wx.showModal({ title: res.data.errMsg, showCancel: false, confirmText: '确认' })
+          }
+        }
+      })
+    })
   },
 
   _stagePay: function (btn, body) {

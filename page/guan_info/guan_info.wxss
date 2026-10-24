@@ -68,13 +68,6 @@ page {
   border-radius: 20rpx;
 }
 
-.notice-hint {
-  font-size: 22rpx;
-  line-height: 1.5;
-  color: #5a6d7d;
-  text-align: center;
-}
-
 .bottom-bar {
   flex-shrink: 0;
   display: flex;

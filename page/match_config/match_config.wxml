@@ -22,7 +22,7 @@
   </scroll-view>
 
   <view class="voice-dock">
-    <text class="voice-status">{{voiceStatusText}}</text>
+    <text class="voice-status" wx:if="{{voiceStatusText}}">{{voiceStatusText}}</text>
     <view
       class="mic-btn mic-btn--{{recordState}}"
       hover-class="mic-btn--pressed"
