@@ -55,15 +55,7 @@
     </view>
   </view>
 
-  <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length || fee.text || pendingPay}}">
-    <view class="fee-card" wx:if="{{fee.text}}">{{fee.text}}</view>
-    <button
-      wx:if="{{pendingPay}}"
-      class="action-btn action-btn--meet"
-      hover-class="action-btn--pressed"
-      hover-stay-time="80"
-      bindtap="confirmPay"
-    >{{pendingPay.buttonLabel}}</button>
+  <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length}}">
     <button
       wx:if="{{share.enabled}}"
       class="share-btn"

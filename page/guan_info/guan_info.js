@@ -22,9 +22,7 @@ Page({
     opposite: { rows: [] },
     operate: { bottomButtons: [] },
     share: { enabled: false, label: '' },
-    fee: { required: false, text: '' },
     subscribe: { templateIds: [] },
-    pendingPay: null,
     phoneGate: false,
     phoneInput: '',
     codeInput: '',
@@ -129,40 +127,13 @@ Page({
     })
   },
 
-  confirmPay: function () {
-    const that = this
-    this._requirePhone(function () {
-      that._payAfterPhone()
-    })
-  },
-
-  _payAfterPhone: function () {
-    const pay = this.data.pendingPay
-    const btn = this.pendingBtn
-    if (!pay || !pay.wx || !btn) return
-    const that = this
-    wx.requestPayment(Object.assign({}, pay.wx, {
-      success() {
-        that.setData({ pendingPay: null })
-        that._doOperate(btn)
-      },
-      fail() {
-        wx.showModal({ title: '支付未完成', showCancel: false, confirmText: '确认' })
-      }
-    }))
-  },
-
   _doOperate: function (btn) {
     if (this.data.viewer) return
     const that = this
     const guanId = that.data.guanId
 
     if (btn.action === 'operate') {
-      if (btn.needLocation || btn.needlocation) {
-        this._operateAtPlace(btn, guanId)
-        return
-      }
-      this._postOperate(btn, guanId, {})
+      this._postOperate(btn, guanId)
     } else if (btn.action === 'meetResult') {
       request.myRequest({
         url: config.meetResultUrl,
@@ -179,33 +150,17 @@ Page({
     }
   },
 
-  _operateAtPlace: function (btn, guanId) {
-    const that = this
-    wx.getLocation({
-      type: 'wgs84',
-      success(loc) {
-        that._postOperate(btn, guanId, { latitude: loc.latitude, longitude: loc.longitude })
-      },
-      fail() {
-        wx.showModal({ title: '需要定位才能签到', showCancel: false, confirmText: '确认' })
-      }
-    })
-  },
-
-  _postOperate: function (btn, guanId, extra) {
+  _postOperate: function (btn, guanId) {
     const that = this
     app.preventActive(() => {
       request.myRequest({
         url: config.guaninfoUrl,
         method: 'PUT',
-        data: Object.assign({ guanId, opType: btn.opType, openid: wx.getStorageSync('openid') }, extra),
+        data: { guanId, opType: btn.opType },
         success(res) {
           if (request.requestIsSuccess(res) || request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
-            that.setData({ pendingPay: null })
             that._applyPageData(res.data.data)
             wx.showModal({ title: res.data.errMsg || '操作成功', showCancel: false, confirmText: '确认' })
-          } else if (request.requestFinishWithCode(res, enumerate.NEED_MEET_FEE_CODE)) {
-            that._stagePay(btn, res.data)
           } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
             wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
           } else {
@@ -214,17 +169,6 @@ Page({
         }
       })
     })
-  },
-
-  _stagePay: function (btn, body) {
-    this._applyPageData((body && body.data) || {})
-    const pay = body && body.data && body.data.pay
-    if (pay && pay.wx) {
-      this.pendingBtn = btn
-      this.setData({ pendingPay: pay })
-      return
-    }
-    wx.showModal({ title: (body && body.errMsg) || '请再试一次', showCancel: false, confirmText: '确认' })
   },
 
   _reloadInfo: function () {
@@ -357,7 +301,7 @@ Page({
     const share = this.data.share || {}
     if (share.enabled && this.data.guanId) {
       console.log('分享见面', this.data.guanId)
-      const payload = pageUrl.meetSharePayload(this.data.activity)
+      const payload = pageUrl.meetSharePayload(this.data.activity, this.data.placeImgHidden)
       payload.path = pageUrl.getMeetViewerPage(config.GUANINFO_PAGE, this.data.guanId)
       return payload
     }
