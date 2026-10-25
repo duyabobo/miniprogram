@@ -9,12 +9,19 @@
     </view>
   </view>
 
+  <view class="board-pin" wx:if="{{showOpposite && !viewer}}">
+    <profile-board
+      head-only="{{true}}"
+      info-title="{{copy.infoTitle}}"
+      requirement-title="{{copy.requirementTitle}}"
+    />
+  </view>
+
   <scroll-view class="stage" scroll-y="true">
     <profile-board
       wx:if="{{showOpposite && !viewer}}"
       rows="{{opposite.rows}}"
-      info-title="{{copy.infoTitle}}"
-      requirement-title="{{copy.requirementTitle}}"
+      hide-head="{{true}}"
       empty-text="{{copy.emptyText}}"
     />
   </scroll-view>

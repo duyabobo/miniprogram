@@ -21,10 +21,10 @@ page {
   height: 0;
 }
 
-/* scroll-view 自身 padding 在小程序里不稳定，用占位把资料区和导航拉开 */
-.stage-gap {
-  height: 48rpx;
+/* 表头钉在导航下，不进滚动区。间距是原先 48rpx 的一半。 */
+.board-pin {
   flex-shrink: 0;
+  padding-top: 24rpx;
 }
 
 .transcript {

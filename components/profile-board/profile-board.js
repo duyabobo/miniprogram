@@ -16,5 +16,13 @@ Component({
       type: String,
       value: '',
     },
+    headOnly: {
+      type: Boolean,
+      value: false,
+    },
+    hideHead: {
+      type: Boolean,
+      value: false,
+    },
   },
 })

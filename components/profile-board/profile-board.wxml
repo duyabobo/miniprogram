@@ -1,10 +1,10 @@
-<view class="pair-card">
-  <view class="pair-head" wx:if="{{infoTitle || requirementTitle}}">
+<view class="pair-card {{headOnly ? 'pair-card--pin' : ''}}">
+  <view class="pair-head" wx:if="{{!hideHead && (infoTitle || requirementTitle)}}">
     <text class="pair-head__side pair-head__side--info">{{infoTitle}}</text>
     <view class="pair-label-slot"></view>
     <text class="pair-head__side pair-head__side--need">{{requirementTitle}}</text>
   </view>
-  <block wx:if="{{rows.length}}">
+  <block wx:if="{{!headOnly && rows.length}}">
     <view class="pair-row" wx:for="{{rows}}" wx:key="dimKey">
       <text class="pair-value pair-value--info {{item.infoMissing ? 'pair-value--missing' : ''}}">{{item.infoValue}}</text>
       <view class="pair-label pair-label-slot">
@@ -14,5 +14,5 @@
       <text class="pair-value pair-value--need {{item.requirementMissing ? 'pair-value--missing' : ''}}">{{item.requirementValue}}</text>
     </view>
   </block>
-  <text wx:elif="{{emptyText}}" class="pair-empty">{{emptyText}}</text>
+  <text wx:elif="{{!headOnly && emptyText}}" class="pair-empty">{{emptyText}}</text>
 </view>

@@ -8,6 +8,12 @@
   background: transparent;
 }
 
+.pair-card--pin {
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .pair-head {
   display: flex;
   align-items: center;

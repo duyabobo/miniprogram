@@ -22,6 +22,10 @@ page {
   height: 0;
 }
 
+.board-pin {
+  flex-shrink: 0;
+}
+
 .place-card {
   flex-shrink: 0;
   margin: 12rpx 28rpx 48rpx;

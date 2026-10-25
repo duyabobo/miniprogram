@@ -1,8 +1,15 @@
 <view class="page-wrap">
   <page-nav title="{{copy.pageTitle}}" />
 
+  <view class="board-pin">
+    <profile-board
+      head-only="{{true}}"
+      info-title="{{copy.infoTitle}}"
+      requirement-title="{{copy.requirementTitle}}"
+    />
+  </view>
+
   <scroll-view class="stage" scroll-y="true">
-    <view class="stage-gap"></view>
     <view class="transcript" wx:if="{{recordState === 'processing'}}">
       <text class="transcript-label">正在解析</text>
       <text class="transcript-body">{{voiceStatusText}}</text>
@@ -15,8 +22,7 @@
 
     <profile-board
       rows="{{rows}}"
-      info-title="{{copy.infoTitle}}"
-      requirement-title="{{copy.requirementTitle}}"
+      hide-head="{{true}}"
       empty-text="{{copy.emptyText}}"
     />
   </scroll-view>
