@@ -205,9 +205,28 @@ function buildPreviewGuanguanList(now, userLocation) {
   return fillGuanguanList([], userLocation, now)
 }
 
-function fillGuanguanList(realList, userLocation, now) {
+function isLoginPlaceholder(item) {
+  return !!item && Number(item.id) < 0
+}
+
+function presentLoginPlaceholder(item, loginHint) {
+  return Object.assign({}, item, {
+    monthLabel: '',
+    dayLabel: '',
+    friendlyTime: loginHint || '',
+    distanceText: '',
+    needLogin: true,
+  })
+}
+
+function fillGuanguanList(realList, userLocation, now, loginHint) {
   const current = now || new Date()
-  return sortAndDecorateList(realList || [], current, userLocation)
+  const source = realList || []
+  const placeholders = source.filter(isLoginPlaceholder).map(function (item) {
+    return presentLoginPlaceholder(item, loginHint)
+  })
+  const meetings = source.filter(function (item) { return !isLoginPlaceholder(item) })
+  return placeholders.concat(sortAndDecorateList(meetings, current, userLocation))
 }
 
 module.exports = {

@@ -33,4 +33,5 @@ function wxLogin(sucJumpFunc) {
 
 module.exports = {
   checkLoginBeforeJump,
+  wxLogin,
 }
