@@ -21,7 +21,6 @@ const EMPTY_NEARBY_OFFSETS = [
   { address: '天津 · 南开大学东门', latOffset: -0.022, lngOffset: -0.008, minutesFromNow: 50 },
   { address: '天津 · 之眼河畔', latOffset: 0.018, lngOffset: -0.004, minutesFromNow: 58 },
 ]
-const PERMANENT_HEART_KINDS = { broken: true, solid: true, half: true, double: true }
 const PREVIEW_PROGRESS_CYCLE = [5, 2, 1, 0]
 
 function previewProgressStatus(index) {
@@ -82,7 +81,7 @@ function decorateGuanguanItem(item, now, userLocation) {
     monthLabel: monthLabel,
     dayLabel: dayLabel,
     friendlyTime: meetDate
-      ? meetLabel.friendlyMeetTime(meetDate, now, { allowBeyondWindow: PERMANENT_HEART_KINDS[heartKind] })
+      ? meetLabel.friendlyMeetTime(meetDate, now, { allowBeyondWindow: true })
       : (item.time || ''),
     distanceText: meetLabel.distanceText(userLocation, item.latitude, item.longitude),
     heartKind: heartKind,
@@ -90,20 +89,11 @@ function decorateGuanguanItem(item, now, userLocation) {
   })
 }
 
-function sortAndDecorateList(rawList, now, userLocation) {
-  const current = now || new Date()
-  const sorted = heartStatus.filterAndSortList(rawList, current, userLocation, function (item) {
-    return parseMeetDate(item)
-  })
-  return sorted.map(function (item) {
-    return decorateGuanguanItem(item, current, userLocation)
-  }).filter(function (item) {
-    return !!item.friendlyTime || PERMANENT_HEART_KINDS[item.heartKind]
-  })
-}
-
 function decorateGuanguanList(list, now, userLocation) {
-  return sortAndDecorateList(list || [], now, userLocation)
+  const current = now || new Date()
+  return (list || []).map(function (item) {
+    return decorateGuanguanItem(item, current, userLocation)
+  })
 }
 
 function weekendSlotsWithinTwoWeeks(now) {
@@ -221,12 +211,12 @@ function presentLoginPlaceholder(item, loginHint) {
 
 function fillGuanguanList(realList, userLocation, now, loginHint) {
   const current = now || new Date()
-  const source = realList || []
-  const placeholders = source.filter(isLoginPlaceholder).map(function (item) {
-    return presentLoginPlaceholder(item, loginHint)
+  return (realList || []).map(function (item) {
+    if (isLoginPlaceholder(item)) {
+      return presentLoginPlaceholder(item, loginHint)
+    }
+    return decorateGuanguanItem(item, current, userLocation)
   })
-  const meetings = source.filter(function (item) { return !isLoginPlaceholder(item) })
-  return placeholders.concat(sortAndDecorateList(meetings, current, userLocation))
 }
 
 module.exports = {

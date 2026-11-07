@@ -20,14 +20,10 @@ Page({
   },
 
   _listForView: function (rawList, loginHint) {
-    const source = rawList || []
-    const visible = wx.getStorageSync('hasLogin')
-      ? source.filter(function (item) { return item && Number(item.id) > 0 })
-      : source
-    return guanguanPreview.fillGuanguanList(visible, this.userLocation, null, loginHint)
+    return guanguanPreview.fillGuanguanList(rawList || [], this.userLocation, null, loginHint)
   },
 
-  /** 真实活动排在前面。未登录时保留服务端那条占位场次。 */
+  /** 列表顺序和去留都按接口返回，这里只补展示文案。 */
   applyGuanguanData: function (payload) {
     const data = payload || {}
     this.latestPayload = data
