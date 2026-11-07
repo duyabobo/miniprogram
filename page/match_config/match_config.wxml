@@ -41,6 +41,8 @@
     <text class="privacy-link" bindtap="openPrivacy">{{copy.privacyEntry}}</text>
   </view>
 
+  <phone-gate wx:if="{{phoneGate}}" copy="{{copy}}" bind:done="onPhoneBound" bind:close="closePhoneGate" />
+
   <view class="privacy-mask" wx:if="{{showPrivacy}}" bindtap="closePrivacy">
     <view class="privacy-sheet" catchtap="holdSheet">
       <text class="privacy-title">{{copy.privacyTitle}}</text>

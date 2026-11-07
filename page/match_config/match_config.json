@@ -6,6 +6,7 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "page-nav": "/components/page-nav/page-nav",
-    "profile-board": "/components/profile-board/profile-board"
+    "profile-board": "/components/profile-board/profile-board",
+    "phone-gate": "/components/phone-gate/phone-gate"
   }
 }

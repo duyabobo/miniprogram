@@ -26,34 +26,7 @@
     />
   </scroll-view>
 
-  <view class="phone-gate" wx:if="{{phoneGate}}">
-    <view class="phone-gate__card">
-      <text class="phone-gate__title">{{copy.phoneGateTitle}}</text>
-      <input
-        class="phone-gate__input"
-        type="number"
-        maxlength="{{copy.phoneDigitCount}}"
-        placeholder="{{copy.phonePlaceholder}}"
-        value="{{phoneInput}}"
-        bindinput="onPhoneInput"
-      />
-      <view class="phone-gate__code-row">
-        <input
-          class="phone-gate__input"
-          type="number"
-          maxlength="{{copy.codeLength}}"
-          placeholder="{{copy.codePlaceholder}}"
-          value="{{codeInput}}"
-          bindinput="onCodeInput"
-        />
-        <button class="phone-gate__send" bindtap="sendPhoneCode">
-          {{codeWait > 0 ? codeWait : copy.sendCodeButton}}
-        </button>
-      </view>
-      <button class="phone-gate__submit" bindtap="submitPhoneBind">{{copy.phoneGateButton}}</button>
-      <button class="phone-gate__later" bindtap="closePhoneGate">{{copy.phoneGateLater}}</button>
-    </view>
-  </view>
+  <phone-gate wx:if="{{phoneGate}}" copy="{{copy}}" bind:done="onPhoneBound" bind:close="closePhoneGate" />
 
   <view class="bottom-bar" wx:if="{{share.enabled || operate.bottomButtons.length}}">
     <button

@@ -2,9 +2,9 @@ const config = require('../../config.js')
 const enumerate = require("../../util/enumerate");
 const request = require("../../util/request");
 const pageUrl = require("../../util/page_url")
+const phoneGate = require("../../util/phone_gate")
 
 const PROGRESS_SELECTED = 1
-const CODE_TICK_MS = 1000
 
 let app = getApp();
 
@@ -24,9 +24,6 @@ Page({
     share: { enabled: false, label: '' },
     subscribe: { templateIds: [] },
     phoneGate: false,
-    phoneInput: '',
-    codeInput: '',
-    codeWait: 0,
   },
 
   _templateIds: function () {
@@ -74,7 +71,7 @@ Page({
       enriched.share = { enabled: false, label: '' }
     }
     if (typeof enriched.phoneBound !== 'undefined') {
-      wx.setStorageSync('phoneBound', !!enriched.phoneBound)
+      phoneGate.rememberBound(enriched.phoneBound)
     }
     console.log('详情页', enriched.progressStatus, enriched.viewer, enriched.showOpposite, !!(enriched.share && enriched.share.enabled))
     this.setData(enriched);
@@ -85,13 +82,13 @@ Page({
     this.setData({ placeImgHidden: true })
   },
 
-  /** 未绑定手机号时先绑定。需要确认的先确认，确认后再按按钮决定要不要申请订阅。 */
+  /** 未绑定手机号时先绑定。需要确认的先确认。每个操作按钮确认后都申请一次订阅。 */
   operate: function (event) {
     if (this.data.viewer) return
     const btn = event.currentTarget.dataset.btn
     if (!btn) return
     const that = this
-    this._requirePhone(function () {
+    phoneGate.requireBound(this, function () {
       that._operateAfterPhone(btn)
     })
   },
@@ -161,6 +158,8 @@ Page({
           if (request.requestIsSuccess(res) || request.requestFinishBiggerThanCode(res, enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE)) {
             that._applyPageData(res.data.data)
             wx.showModal({ title: res.data.errMsg || '操作成功', showCancel: false, confirmText: '确认' })
+          } else if (request.requestFinishWithCode(res, enumerate.PHONE_REQUIRED_CODE)) {
+            phoneGate.markUnbound(that)
           } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
             wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
           } else {
@@ -189,91 +188,12 @@ Page({
     })
   },
 
-  _requirePhone: function (done) {
-    const that = this
-    const openGate = function () {
-      if (wx.getStorageSync('phoneBound')) {
-        done()
-        return
-      }
-      that._afterPhone = done
-      that.setData({ phoneGate: true })
-    }
-    if (wx.getStorageSync('hasLogin')) {
-      openGate()
-      return
-    }
-    wx.login({
-      success(res) {
-        if (!res.code) {
-          wx.showToast({ title: '登录没有完成', icon: 'none' })
-          return
-        }
-        request.loginRequest(res.code, openGate)
-      }
-    })
-  },
-
   closePhoneGate: function () {
-    this._afterPhone = null
-    this.setData({ phoneGate: false })
+    phoneGate.closePhoneGate(this)
   },
 
-  onPhoneInput: function (event) {
-    this.setData({ phoneInput: event.detail.value })
-  },
-
-  onCodeInput: function (event) {
-    this.setData({ codeInput: event.detail.value })
-  },
-
-  sendPhoneCode: function () {
-    if (this.data.codeWait > 0) return
-    const phone = this.data.phoneInput || ''
-    const that = this
-    request.sendPhoneCodeRequest(phone, function (retryAfter) {
-      that._startCodeWait(retryAfter)
-    })
-  },
-
-  submitPhoneBind: function () {
-    const phone = this.data.phoneInput || ''
-    const code = this.data.codeInput || ''
-    const that = this
-    request.bindPhoneRequest(phone, code, function () {
-      const next = that._afterPhone
-      that._afterPhone = null
-      that.setData({ phoneGate: false, phoneBound: true })
-      if (next) next()
-    })
-  },
-
-  _startCodeWait: function (retryAfter) {
-    const wait = Number(retryAfter) || 0
-    if (this._codeTimer) {
-      clearInterval(this._codeTimer)
-      this._codeTimer = null
-    }
-    this.setData({ codeWait: wait })
-    if (wait <= 0) return
-    const that = this
-    this._codeTimer = setInterval(function () {
-      const left = that.data.codeWait - 1
-      if (left <= 0) {
-        clearInterval(that._codeTimer)
-        that._codeTimer = null
-        that.setData({ codeWait: 0 })
-        return
-      }
-      that.setData({ codeWait: left })
-    }, CODE_TICK_MS)
-  },
-
-  onUnload: function () {
-    if (this._codeTimer) {
-      clearInterval(this._codeTimer)
-      this._codeTimer = null
-    }
+  onPhoneBound: function () {
+    phoneGate.onPhoneBound(this)
   },
 
   onLoad: function (options) {

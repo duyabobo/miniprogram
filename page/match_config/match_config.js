@@ -1,6 +1,7 @@
 const config = require('../../config.js')
 const enumerate = require("../../util/enumerate");
 const request = require("../../util/request");
+const phoneGate = require("../../util/phone_gate");
 
 const RECORD_STATE_IDLE = 'idle'
 const RECORD_STATE_RECORDING = 'recording'
@@ -21,6 +22,7 @@ Page({
     showPrivacy: false,
     voiceEnabled: true,
     voiceBlockText: '',
+    phoneGate: false,
   },
 
   _recorderManager: null,
@@ -66,6 +68,10 @@ Page({
     }
     if (typeof payload.text === 'string') {
       next.recognizedText = payload.text
+    }
+    if (typeof payload.phoneBound !== 'undefined') {
+      next.phoneBound = !!payload.phoneBound
+      phoneGate.rememberBound(payload.phoneBound)
     }
     if (!voiceEnabled) {
       next.recordState = 'blocked'
@@ -115,7 +121,10 @@ Page({
     }
     const state = this.data.recordState
     if (state === RECORD_STATE_IDLE) {
-      this._startRecord()
+      const that = this
+      phoneGate.requireBound(this, function () {
+        that._startRecord()
+      })
       return
     }
     if (state === RECORD_STATE_RECORDING) {
@@ -168,6 +177,12 @@ Page({
           console.log('语音识别响应无法解析', err)
         }
         const payload = data.data || {}
+        if (data.code === enumerate.PHONE_REQUIRED_CODE) {
+          console.log('语音提交前手机号未验证')
+          that._setRecordState(RECORD_STATE_IDLE)
+          phoneGate.markUnbound(that)
+          return
+        }
         const accepted = data.code === enumerate.SUCESS_CODE || data.code > enumerate.GUAN_SUCCESS_WITH_NOTI_MIN_CODE
         if (accepted) {
           console.log('语音识别完成', (payload.text || '').length)
@@ -191,6 +206,14 @@ Page({
         that._setRecordState(RECORD_STATE_IDLE)
       }
     })
+  },
+
+  closePhoneGate: function () {
+    phoneGate.closePhoneGate(this)
+  },
+
+  onPhoneBound: function () {
+    phoneGate.onPhoneBound(this)
   },
 
   openPrivacy: function () {

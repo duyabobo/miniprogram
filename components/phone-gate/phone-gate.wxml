@@ -1,0 +1,28 @@
+<view class="phone-gate">
+  <view class="phone-gate__card">
+    <text class="phone-gate__title">{{copy.phoneGateTitle}}</text>
+    <input
+      class="phone-gate__input"
+      type="number"
+      maxlength="{{copy.phoneDigitCount}}"
+      placeholder="{{copy.phonePlaceholder}}"
+      value="{{phoneInput}}"
+      bindinput="onPhoneInput"
+    />
+    <view class="phone-gate__code-row">
+      <input
+        class="phone-gate__input"
+        type="number"
+        maxlength="{{copy.codeLength}}"
+        placeholder="{{copy.codePlaceholder}}"
+        value="{{codeInput}}"
+        bindinput="onCodeInput"
+      />
+      <button class="phone-gate__send" bindtap="sendPhoneCode">
+        {{codeWait > 0 ? codeWait : copy.sendCodeButton}}
+      </button>
+    </view>
+    <button class="phone-gate__submit" bindtap="submitPhoneBind">{{copy.phoneGateButton}}</button>
+    <button class="phone-gate__later" bindtap="close">{{copy.phoneGateLater}}</button>
+  </view>
+</view>
