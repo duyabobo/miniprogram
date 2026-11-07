@@ -27,7 +27,7 @@ Page({
     return guanguanPreview.fillGuanguanList(visible, this.userLocation, null, loginHint)
   },
 
-  /** 真实活动排在前面。未登录时保留服务端那条占位见面。 */
+  /** 真实活动排在前面。未登录时保留服务端那条占位场次。 */
   applyGuanguanData: function (payload) {
     const data = payload || {}
     this.latestPayload = data
@@ -51,7 +51,7 @@ Page({
     wxLogin.wxLogin(afterLogin)
   },
 
-  /** 未登录时点占位见面，先登录再刷新首页。 */
+  /** 未登录时点占位场次，先登录再刷新首页。 */
   clickGuanInfo: function (event) {
     const that = this
     if (!wx.getStorageSync('hasLogin')) {
@@ -72,7 +72,7 @@ Page({
     wx.navigateTo({ url: jumpUrl })
   },
 
-  /** 底部「关关雎鸠」。未登录先登录，成功后再进入语音页。 */
+  /** 底部入口。未登录先登录，成功后再进入语音页。 */
   goToMatchConfig: function () {
     const open = function () {
       wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
@@ -122,7 +122,7 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: '关关雎鸠',
+      title: (this.data.copy && this.data.copy.shareTitle) || '',
       path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
       success: function (res) { console.log("转发成功:" + JSON.stringify(res)) },
       fail: function (res) { console.log("转发失败:" + JSON.stringify(res)) }

@@ -23,6 +23,7 @@ Page({
     voiceEnabled: true,
     voiceBlockText: '',
     phoneGate: false,
+    phoneRequired: true,
   },
 
   _recorderManager: null,
@@ -72,6 +73,9 @@ Page({
     if (typeof payload.phoneBound !== 'undefined') {
       next.phoneBound = !!payload.phoneBound
       phoneGate.rememberBound(payload.phoneBound)
+    }
+    if (typeof payload.phoneRequired !== 'undefined') {
+      next.phoneRequired = !!payload.phoneRequired
     }
     if (!voiceEnabled) {
       next.recordState = 'blocked'

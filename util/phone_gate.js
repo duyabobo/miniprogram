@@ -13,6 +13,10 @@ function rememberBound(bound) {
 
 /** 未登录先登录。未绑定则打开页面上的 phoneGate，绑定成功后再执行 done。 */
 function requireBound(page, done) {
+  if (page.data.phoneRequired === false) {
+    done()
+    return
+  }
   const openGate = function () {
     if (phoneIsBound(page)) {
       done()
@@ -51,7 +55,11 @@ function closePhoneGate(page) {
 
 function markUnbound(page) {
   rememberBound(false)
-  page.setData({ phoneBound: false, phoneGate: true })
+  const next = { phoneBound: false }
+  if (page.data.phoneRequired !== false) {
+    next.phoneGate = true
+  }
+  page.setData(next)
 }
 
 module.exports = {

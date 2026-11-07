@@ -10,12 +10,14 @@ function getMeetViewerPage(page, guanId) {
     return page + '?guanId=' + guanId + '&viewer=' + MEET_VIEWER_FLAG + '&sharePassportId=' + passportId
 }
 
-function meetSharePayload(activity, placeImgHidden) {
+function meetSharePayload(activity, placeImgHidden, shareCardTitle) {
     const time = activity && activity.time ? activity.time : ''
     const address = activity && activity.address ? activity.address : ''
     const detail = [time, address].filter(function (part) { return part }).join(' ')
+    const cardTitle = shareCardTitle || ''
+    const title = detail ? [cardTitle, detail].filter(function (part) { return part }).join(' ') : cardTitle
     const payload = {
-        title: detail ? ('安全见面 ' + detail) : '安全见面，分享亲友',
+        title: title,
     }
     const img = activity && activity.img ? activity.img : ''
     if (img && !placeImgHidden) {

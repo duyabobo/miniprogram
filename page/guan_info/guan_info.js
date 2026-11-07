@@ -4,8 +4,6 @@ const request = require("../../util/request");
 const pageUrl = require("../../util/page_url")
 const phoneGate = require("../../util/phone_gate")
 
-const PROGRESS_SELECTED = 1
-
 let app = getApp();
 
 Page({
@@ -24,6 +22,7 @@ Page({
     share: { enabled: false, label: '' },
     subscribe: { templateIds: [] },
     phoneGate: false,
+    phoneRequired: true,
   },
 
   _templateIds: function () {
@@ -50,9 +49,8 @@ Page({
     })
   },
 
-  /** 单心及以上一定有对象；待选择时看接口是否带回了对方资料 */
-  _hasOpposite: function (progressStatus, opposite) {
-    if (progressStatus >= PROGRESS_SELECTED) return true
+  /** 没有可展示的对方资料时，不画两列标题，也不提示空状态。 */
+  _hasOpposite: function (opposite) {
     return ((opposite && opposite.rows) || []).length > 0
   },
 
@@ -61,7 +59,7 @@ Page({
     const enriched = Object.assign({}, data);
     const opposite = enriched.opposite || { rows: [] }
     enriched.opposite = opposite
-    enriched.showOpposite = this._hasOpposite(enriched.progressStatus, opposite)
+    enriched.showOpposite = this._hasOpposite(opposite)
     enriched.placeImgHidden = false
     if (this.data.viewer) {
       enriched.viewer = true
@@ -207,7 +205,7 @@ Page({
       viewer: viewer,
       progressDesc: options.state || '',
     })
-    console.log('打开见面', options.guanId, viewer)
+    console.log('打开详情', options.guanId, viewer)
     this._reloadInfo()
   },
 
@@ -220,13 +218,14 @@ Page({
   onShareAppMessage: function () {
     const share = this.data.share || {}
     if (share.enabled && this.data.guanId) {
-      console.log('分享见面', this.data.guanId)
-      const payload = pageUrl.meetSharePayload(this.data.activity, this.data.placeImgHidden)
+      console.log('分享详情', this.data.guanId)
+      const copy = this.data.copy || {}
+      const payload = pageUrl.meetSharePayload(this.data.activity, this.data.placeImgHidden, copy.shareCardTitle)
       payload.path = pageUrl.getMeetViewerPage(config.GUANINFO_PAGE, this.data.guanId)
       return payload
     }
     return {
-      title: '关关雎鸠',
+      title: (this.data.copy && this.data.copy.shareTitle) || '',
       path: pageUrl.getSharePageWithOpenid(config.GUANGUAN_PAGE),
     }
   },

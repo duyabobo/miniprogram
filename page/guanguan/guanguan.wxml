@@ -20,21 +20,23 @@
         <text class="date-day">{{item.dayLabel}}</text>
       </view>
 
-      <view wx:if="{{item.heartKind === 'single'}}" class="progress-mark">
-        <image class="heart-mark" src="../../resources/icons/heart-single.svg" mode="aspectFit" />
-      </view>
-      <view wx:elif="{{item.heartKind === 'double'}}" class="progress-mark">
-        <image class="heart-mark" src="../../resources/icons/heart-double.svg" mode="aspectFit" />
-      </view>
-      <view wx:elif="{{item.heartKind === 'half'}}" class="progress-mark">
-        <image class="heart-mark" src="../../resources/icons/heart-half.svg" mode="aspectFit" />
-      </view>
-      <view wx:elif="{{item.heartKind === 'solid'}}" class="progress-mark">
-        <image class="heart-mark" src="../../resources/icons/heart-solid.svg" mode="aspectFit" />
-      </view>
-      <view wx:elif="{{item.heartKind === 'broken'}}" class="progress-mark">
-        <image class="heart-mark" src="../../resources/icons/heart-broken.svg" mode="aspectFit" />
-      </view>
+      <block wx:if="{{copy.showHeart !== false}}">
+        <view wx:if="{{item.heartKind === 'single'}}" class="progress-mark">
+          <image class="heart-mark" src="../../resources/icons/heart-single.svg" mode="aspectFit" />
+        </view>
+        <view wx:elif="{{item.heartKind === 'double'}}" class="progress-mark">
+          <image class="heart-mark" src="../../resources/icons/heart-double.svg" mode="aspectFit" />
+        </view>
+        <view wx:elif="{{item.heartKind === 'half'}}" class="progress-mark">
+          <image class="heart-mark" src="../../resources/icons/heart-half.svg" mode="aspectFit" />
+        </view>
+        <view wx:elif="{{item.heartKind === 'solid'}}" class="progress-mark">
+          <image class="heart-mark" src="../../resources/icons/heart-solid.svg" mode="aspectFit" />
+        </view>
+        <view wx:elif="{{item.heartKind === 'broken'}}" class="progress-mark">
+          <image class="heart-mark" src="../../resources/icons/heart-broken.svg" mode="aspectFit" />
+        </view>
+      </block>
 
       <view class="guan-info">
         <view class="guan-address">{{item.address}}</view>
@@ -46,14 +48,14 @@
     </view>
   </scroll-view>
 
-  <view class="bottom-bar">
+  <view class="bottom-bar" wx:if="{{copy.entryTitle}}">
     <button
       class="match-config-btn"
       hover-class="match-config-btn--pressed"
       hover-stay-time="80"
       bindtap="goToMatchConfig"
     >
-      关关雎鸠
+      {{copy.entryTitle}}
     </button>
   </view>
 </view>
