@@ -176,7 +176,7 @@ Page({
     const data = { guanId: that.data.guanId }
     if (that.data.viewer) {
       data.viewer = Number(pageUrl.MEET_VIEWER_FLAG)
-      data.shareOpenid = that.meetShareOpenid || ''
+      data.sharePassportId = that.meetSharePassportId || ''
     }
     request.myRequest({
       url: config.guaninfoUrl,
@@ -278,9 +278,9 @@ Page({
 
   onLoad: function (options) {
     const viewer = options.viewer === pageUrl.MEET_VIEWER_FLAG
-    this.meetShareOpenid = viewer ? (options.shareOpenid || '') : ''
-    if (this.meetShareOpenid && wx.getStorageSync('shareOpenid') === '') {
-      wx.setStorageSync('shareOpenid', this.meetShareOpenid)
+    this.meetSharePassportId = viewer ? (options.sharePassportId || '') : ''
+    if (this.meetSharePassportId && wx.getStorageSync('sharePassportId') === '') {
+      wx.setStorageSync('sharePassportId', this.meetSharePassportId)
     }
     this.setData({
       guanId: options.guanId,

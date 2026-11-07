@@ -86,8 +86,8 @@ Page({
 
   onLoad: function (options) {
     this.setData(navBar.getNavBarLayout())
-    if (wx.getStorageSync('shareOpenid') === '') {
-      wx.setStorageSync('shareOpenid', options.shareOpenid)
+    if (wx.getStorageSync('sharePassportId') === '' && options.sharePassportId) {
+      wx.setStorageSync('sharePassportId', options.sharePassportId)
     }
     wxInteractive.wxCheckToast(options.errMsg)
   },

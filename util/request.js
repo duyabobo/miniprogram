@@ -56,6 +56,7 @@ const myRequest = function (requestConfig = {}) {
       wx.setStorageSync('accessToken', "")
       wx.setStorageSync('secret', "")
       wx.setStorageSync('openid', "")
+      wx.setStorageSync('passportId', "")
       wx.setStorageSync('phoneBound', false)
     }
   }
@@ -100,18 +101,19 @@ function normalUpdateRequest(that, url, data) {
 }
 
 function loginRequest(code, sucJumpFunc) {
-  let shareOpenid = wx.getStorageSync('shareOpenid');
+  let sharePassportId = wx.getStorageSync('sharePassportId');
   myRequest({
     url: config.loginUrl,
     data: {
       code: code,
-      shareOpenid: shareOpenid,
+      sharePassportId: sharePassportId,
     },
     success(res) {
       if (requestIsSuccess(res)) {
         wx.setStorageSync('accessToken', res.data.data.accessToken)
         wx.setStorageSync('secret', res.data.data.secret)
         wx.setStorageSync('openid', res.data.data.openid)
+        wx.setStorageSync('passportId', res.data.data.passportId)
         wx.setStorageSync('hasLogin', true)
         wx.setStorageSync('phoneBound', !!(res.data.data && res.data.data.phoneBound))
         sucJumpFunc()

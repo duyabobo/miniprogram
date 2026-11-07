@@ -1,13 +1,13 @@
 const MEET_VIEWER_FLAG = '1'
 
 function getSharePageWithOpenid(page) {
-    let openid = wx.getStorageSync('openid');
-    return page + '?shareOpenid=' + openid
+    const passportId = wx.getStorageSync('passportId')
+    return page + '?sharePassportId=' + passportId
 }
 
 function getMeetViewerPage(page, guanId) {
-    const openid = wx.getStorageSync('openid')
-    return page + '?guanId=' + guanId + '&viewer=' + MEET_VIEWER_FLAG + '&shareOpenid=' + openid
+    const passportId = wx.getStorageSync('passportId')
+    return page + '?guanId=' + guanId + '&viewer=' + MEET_VIEWER_FLAG + '&sharePassportId=' + passportId
 }
 
 function meetSharePayload(activity, placeImgHidden) {
