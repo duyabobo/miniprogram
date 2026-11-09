@@ -40,32 +40,49 @@ Page({
     if (typeof data.phoneBound !== 'undefined') {
       wx.setStorageSync('phoneBound', !!data.phoneBound)
     }
-    this.setData(next)
+    const that = this
+    this.setData(next, function () { that._openPending() })
   },
 
   guideLogin: function (afterLogin) {
-    wxLogin.wxLogin(afterLogin)
+    const that = this
+    wxLogin.wxLogin(afterLogin, function () { that._pendingOpen = null })
   },
 
-  /** 未登录时点占位场次，先登录再刷新首页。 */
-  clickGuanInfo: function (event) {
-    const that = this
-    if (!wx.getStorageSync('hasLogin')) {
-      this.guideLogin(function () { that.loadList() })
+  _openGuan: function (guanId, progressDesc) {
+    if (!guanId || guanId <= 0) return
+    if (!this.data.configSufficient) {
+      this.goToMatchConfig()
       return
     }
-    const guanId = Number(event.currentTarget.dataset.guan_id)
-    if (!guanId || guanId <= 0) return
-
-    if (!this.data.configSufficient) {
-      this.goToMatchConfig();
-      return;
-    }
-
     const jumpUrl = config.GUANINFO_PAGE
       + "?guanId=" + guanId
-      + "&state=" + event.currentTarget.dataset.progress_desc
+      + "&state=" + (progressDesc || '')
     wx.navigateTo({ url: jumpUrl })
+  },
+
+  /** 登录成功并且列表已经写回之后，再打开刚才点的那场。 */
+  _openPending: function () {
+    const pending = this._pendingOpen
+    if (!pending || !pending.armed || !wx.getStorageSync('hasLogin')) return
+    this._pendingOpen = null
+    this._openGuan(pending.guanId, pending.progressDesc)
+  },
+
+  /** 未登录时先登录。登录成功后刷新首页，并打开刚才点的那场。 */
+  clickGuanInfo: function (event) {
+    const that = this
+    const guanId = Number(event.currentTarget.dataset.guan_id)
+    const progressDesc = event.currentTarget.dataset.progress_desc
+    if (!wx.getStorageSync('hasLogin')) {
+      this._pendingOpen = { guanId: guanId, progressDesc: progressDesc, armed: false }
+      this.guideLogin(function () {
+        if (that._pendingOpen) that._pendingOpen.armed = true
+        that.loadList()
+      })
+      return
+    }
+    this._openGuan(guanId, progressDesc)
   },
 
   /** 底部入口。未登录先登录，成功后再进入语音页。 */
@@ -90,9 +107,12 @@ Page({
 
   loadList: function () {
     const that = this
+    this._listStamp = (this._listStamp || 0) + 1
+    const stamp = this._listStamp
     wx.getLocation({
       type: 'wgs84',
       complete(res) {
+        if (stamp !== that._listStamp) return
         if (typeof res.latitude === 'number' && typeof res.longitude === 'number') {
           that.userLocation = { latitude: res.latitude, longitude: res.longitude }
         }
@@ -107,7 +127,7 @@ Page({
             guanguanList: that._listForView(that.latestPayload.guanguanList, hint),
           })
         }
-        request.getGuanguanRequest(that, requestData)
+        request.getGuanguanRequest(that, requestData, stamp)
       }
     })
   },

@@ -10,23 +10,27 @@ function checkLoginBeforeJump(sucJumpFunc, jumpUrl, needLogin) {  // 不需要�
     }
 }
 
-function wxLogin(sucJumpFunc) {
+function wxLogin(sucJumpFunc, onCancel) {
   wx.showActionSheet({
     itemList: ['微信登录'],
-    success: function (res) {
+    success: function () {
       console.log('wx login success')
       wx.login({
         success(res) {
           if (res.code) {
-            request.loginRequest(res.code, sucJumpFunc)
-          } else {
-            console.log('登录失败！' + res.data.errMsg)
+            request.loginRequest(res.code, sucJumpFunc, onCancel)
+            return
           }
+          request.loginFailed(res, onCancel)
+        },
+        fail(err) {
+          request.loginFailed(err, onCancel)
         }
       })
     },
-    fail: function (res) {
+    fail: function () {
       console.log('cancel wx login')
+      if (typeof onCancel === 'function') onCancel()
     }
   })
 }

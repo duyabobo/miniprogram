@@ -3,7 +3,7 @@
  * ENV = 'local'  → 连接本地开发服务（http://localhost:8888）
  * ENV = 'prod'   → 连接线上服务（https://www.ggjjzhzz.cn）
  */
-const ENV = 'local'
+const ENV = 'prod'
 
 const HOST_MAP = {
   local: 'http://localhost:8888',

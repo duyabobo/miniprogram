@@ -44,7 +44,9 @@ const myRequest = function (requestConfig = {}) {
 
   let localFail = requestConfig.fail
   requestConfig.fail = function (res) {
-    localFail(res)
+    if (typeof localFail === 'function') {
+      localFail(res)
+    }
     logRequestErr(requestConfig.url + " err:", res)
   }
 
@@ -100,7 +102,14 @@ function normalUpdateRequest(that, url, data) {
   })
 }
 
-function loginRequest(code, sucJumpFunc) {
+function loginFailed(res, onFail) {
+  const detail = (res && res.data && res.data.errMsg) || (res && res.errMsg) || ''
+  console.log('登录没有完成', detail)
+  if (typeof onFail === 'function') onFail()
+  wx.showToast({ title: '登录没有完成', icon: 'none' })
+}
+
+function loginRequest(code, sucJumpFunc, onFail) {
   let sharePassportId = wx.getStorageSync('sharePassportId');
   myRequest({
     url: config.loginUrl,
@@ -116,8 +125,13 @@ function loginRequest(code, sucJumpFunc) {
         wx.setStorageSync('passportId', res.data.data.passportId)
         wx.setStorageSync('hasLogin', true)
         wx.setStorageSync('phoneBound', !!(res.data.data && res.data.data.phoneBound))
-        sucJumpFunc()
+        if (typeof sucJumpFunc === 'function') sucJumpFunc()
+        return
       }
+      loginFailed(res, onFail)
+    },
+    fail(res) {
+      loginFailed(res, onFail)
     }
   })
 }
@@ -164,11 +178,12 @@ function bindPhoneRequest(phone, code, done) {
   })
 }
 
-function getGuanguanRequest(that, requestData) {
+function getGuanguanRequest(that, requestData, stamp) {
   myRequest({
     url: config.guanguanUrl,
     data: requestData,
     success(res) {
+      if (stamp !== that._listStamp) return
       if (requestIsSuccess(res)) {
         // 首页自己决定用接口列表还是预览数据
         if (typeof that.applyGuanguanData === 'function') {
@@ -219,6 +234,7 @@ module.exports = {
   signedForm,
   normalUpdateRequest,
   loginRequest,
+  loginFailed,
   sendPhoneCodeRequest,
   bindPhoneRequest,
   getGuanguanRequest,
