@@ -5,6 +5,8 @@ const md5 = require("./md5")
 const base64 = require("./base64")
 const {RESP_SIGN_INVALID} = require("./enumerate");
 
+const LOGIN_REQUEST_TIMEOUT_MS = 20000
+
 function getContentFromQuery(data, sep) {
   if (typeof (data) == "string") {
     return base64.Base64.encode(data)
@@ -38,9 +40,9 @@ const myRequest = function (requestConfig = {}) {
   var content = getContentFromQuery(contentDict, "|")
   let sign = md5.hex_md5(content)
   requestConfig.url = config.HTTP_HOST_TEST + requestConfig.url
-  requestConfig.header={
-    'sign': sign
-  }
+  var header = requestConfig.header || {}
+  header.sign = sign
+  requestConfig.header = header
 
   let localFail = requestConfig.fail
   requestConfig.fail = function (res) {
@@ -106,16 +108,27 @@ function loginFailed(res, onFail) {
   const detail = (res && res.data && res.data.errMsg) || (res && res.errMsg) || ''
   console.log('登录没有完成', detail)
   if (typeof onFail === 'function') onFail()
-  wx.showToast({ title: '登录没有完成', icon: 'none' })
+  wx.showModal({
+    title: '登录没有完成',
+    content: detail || '请再试一次',
+    showCancel: false,
+    confirmText: '知道了',
+  })
 }
 
 function loginRequest(code, sucJumpFunc, onFail) {
-  let sharePassportId = wx.getStorageSync('sharePassportId');
+  let sharePassportId = wx.getStorageSync('sharePassportId')
+  console.log('提交微信登录 codeLen=%s', code ? String(code).length : 0)
   myRequest({
     url: config.loginUrl,
+    method: 'POST',
+    timeout: LOGIN_REQUEST_TIMEOUT_MS,
+    header: {
+      'content-type': 'application/json',
+    },
     data: {
       code: code,
-      sharePassportId: sharePassportId,
+      sharePassportId: sharePassportId || '',
     },
     success(res) {
       if (requestIsSuccess(res)) {

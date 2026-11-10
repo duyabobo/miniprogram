@@ -48,6 +48,29 @@
     </view>
   </scroll-view>
 
+  <view
+    class="login-sheet"
+    wx:if="{{loginSheet}}"
+    bindtap="cancelLogin"
+    catchtouchmove="holdLoginSheet"
+  >
+    <view class="login-sheet__panel" catchtap="holdLoginSheet">
+      <button
+        class="login-sheet__action"
+        hover-class="login-sheet__action--pressed"
+        hover-stay-time="80"
+        bindtap="confirmLogin"
+      >微信登录</button>
+      <view class="login-sheet__gap"></view>
+      <button
+        class="login-sheet__cancel"
+        hover-class="login-sheet__action--pressed"
+        hover-stay-time="80"
+        bindtap="cancelLogin"
+      >取消</button>
+    </view>
+  </view>
+
   <view class="bottom-bar" wx:if="{{copy.entryTitle}}">
     <button
       class="match-config-btn"

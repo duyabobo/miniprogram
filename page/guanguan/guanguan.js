@@ -17,6 +17,7 @@ Page({
     statusBarHeight: 20,
     navContentHeight: 44,
     navBarHeight: 64,
+    loginSheet: false,
   },
 
   _listForView: function (rawList, loginHint) {
@@ -45,9 +46,41 @@ Page({
   },
 
   guideLogin: function (afterLogin) {
-    const that = this
-    wxLogin.wxLogin(afterLogin, function () { that._pendingOpen = null })
+    if (this._loginBusy) {
+      console.log('微信登录进行中')
+      return false
+    }
+    console.log('打开微信登录')
+    this._afterLogin = afterLogin
+    this.setData({ loginSheet: true })
+    return true
   },
+
+  confirmLogin: function () {
+    if (this._loginBusy) return
+    const afterLogin = this._afterLogin
+    this._loginBusy = true
+    this._afterLogin = null
+    const that = this
+    this.setData({ loginSheet: false })
+    wxLogin.startWxLogin(function () {
+      that._loginBusy = false
+      if (typeof afterLogin === 'function') afterLogin()
+    }, function () {
+      that._loginBusy = false
+      that._pendingOpen = null
+    })
+  },
+
+  cancelLogin: function () {
+    if (this._loginBusy) return
+    console.log('取消微信登录')
+    this._afterLogin = null
+    this._pendingOpen = null
+    this.setData({ loginSheet: false })
+  },
+
+  holdLoginSheet: function () {},
 
   _openGuan: function (guanId, progressDesc) {
     if (!guanId || guanId <= 0) return
@@ -75,11 +108,13 @@ Page({
     const guanId = Number(event.currentTarget.dataset.guan_id)
     const progressDesc = event.currentTarget.dataset.progress_desc
     if (!wx.getStorageSync('hasLogin')) {
-      this._pendingOpen = { guanId: guanId, progressDesc: progressDesc, armed: false }
-      this.guideLogin(function () {
+      const opened = this.guideLogin(function () {
         if (that._pendingOpen) that._pendingOpen.armed = true
         that.loadList()
       })
+      if (opened) {
+        this._pendingOpen = { guanId: guanId, progressDesc: progressDesc, armed: false }
+      }
       return
     }
     this._openGuan(guanId, progressDesc)

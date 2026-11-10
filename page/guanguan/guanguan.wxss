@@ -183,3 +183,52 @@ page {
   transform: scale(0.98);
   box-shadow: 0 6rpx 18rpx rgba(42, 157, 230, 0.28);
 }
+
+.login-sheet {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(28, 40, 52, 0.45);
+}
+
+.login-sheet__panel {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.login-sheet__action,
+.login-sheet__cancel {
+  display: block;
+  width: 100%;
+  height: 112rpx;
+  margin: 0;
+  padding: 0;
+  line-height: 112rpx;
+  background: #fff;
+  color: #1c2834;
+  font-size: 34rpx;
+  font-weight: 400;
+  border-radius: 0;
+}
+
+.login-sheet__action::after,
+.login-sheet__cancel::after {
+  border: none;
+}
+
+.login-sheet__gap {
+  height: 16rpx;
+  background: #f2f3f5;
+}
+
+.login-sheet__action--pressed {
+  background: #f4f8fb;
+}
