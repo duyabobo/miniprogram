@@ -17,14 +17,15 @@
     />
   </view>
 
-  <scroll-view class="stage" scroll-y="true">
-    <profile-board
-      wx:if="{{showOpposite && !viewer}}"
-      rows="{{opposite.rows}}"
-      hide-head="{{true}}"
-      empty-text="{{copy.emptyText}}"
-    />
-  </scroll-view>
+  <view class="stage">
+    <view class="board-body" wx:if="{{showOpposite && !viewer}}">
+      <profile-board
+        rows="{{opposite.rows}}"
+        hide-head="{{true}}"
+        empty-text="{{copy.emptyText}}"
+      />
+    </view>
+  </view>
 
   <phone-gate wx:if="{{phoneGate}}" copy="{{copy}}" bind:done="onPhoneBound" bind:close="closePhoneGate" />
 

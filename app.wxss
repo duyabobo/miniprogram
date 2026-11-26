@@ -29,6 +29,26 @@ input {
   text-align: center;
 }
 
+/* 信息板页：中间区固定高度，条目均分，不滚动 */
+.stage {
+  flex: 1;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.board-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.board-body profile-board {
+  display: block;
+  height: 100%;
+}
+
 /* page */
 .container {
   display: flex;

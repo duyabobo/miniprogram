@@ -1,4 +1,4 @@
-<view class="pair-card {{headOnly ? 'pair-card--pin' : ''}}">
+<view class="pair-card {{headOnly ? 'pair-card--pin' : 'pair-card--fill'}}">
   <view class="pair-head" wx:if="{{!hideHead && (infoTitle || requirementTitle)}}">
     <text class="pair-head__side pair-head__side--info">{{infoTitle}}</text>
     <view class="pair-label-slot"></view>

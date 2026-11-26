@@ -16,18 +16,14 @@ page {
   background: transparent;
 }
 
-.stage {
-  flex: 1;
-  height: 0;
-}
-
-/* 表头钉在导航下，不进滚动区。间距是原先 48rpx 的一半。 */
+/* 表头钉在导航下。间距是原先 48rpx 的一半。 */
 .board-pin {
   flex-shrink: 0;
   padding-top: 24rpx;
 }
 
 .transcript {
+  flex-shrink: 0;
   margin: 0 28rpx 16rpx;
   padding: 22rpx 24rpx;
   background: rgba(255, 255, 255, 0.72);

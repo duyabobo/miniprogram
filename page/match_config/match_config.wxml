@@ -9,7 +9,7 @@
     />
   </view>
 
-  <scroll-view class="stage" scroll-y="true">
+  <view class="stage">
     <view class="transcript" wx:if="{{recordState === 'processing'}}">
       <text class="transcript-label">正在解析</text>
       <text class="transcript-body">{{voiceStatusText}}</text>
@@ -20,12 +20,14 @@
       <text class="transcript-body">{{recognizedText}}</text>
     </view>
 
-    <profile-board
-      rows="{{rows}}"
-      hide-head="{{true}}"
-      empty-text="{{copy.emptyText}}"
-    />
-  </scroll-view>
+    <view class="board-body">
+      <profile-board
+        rows="{{rows}}"
+        hide-head="{{true}}"
+        empty-text="{{copy.emptyText}}"
+      />
+    </view>
+  </view>
 
   <view class="voice-dock">
     <text class="voice-status" wx:if="{{voiceStatusText}}">{{voiceStatusText}}</text>
