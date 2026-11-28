@@ -6,6 +6,8 @@ const guanguanPreview = require("../../util/mock_guanguan");
 const navBar = require("../../util/nav_bar");
 const wxLogin = require("../../util/wx_login");
 
+const LIST_PAGE_SIZE = 20
+
 let app = getApp();
 
 Page({
@@ -13,27 +15,42 @@ Page({
   data: {
     guanguanList: guanguanPreview.fillGuanguanList([], null),
     copy: {},
-    configSufficient: true,  // 默认认为配置足够，接口返回后更新
     statusBarHeight: 20,
     navContentHeight: 44,
     navBarHeight: 64,
     loginSheet: false,
+    hasMore: false,
+    loadingMore: false,
+    showNoMore: false,
   },
 
   _listForView: function (rawList, loginHint) {
     return guanguanPreview.fillGuanguanList(rawList || [], this.userLocation, null, loginHint)
   },
 
-  /** 列表顺序和去留都按接口返回，这里只补展示文案。 */
-  applyGuanguanData: function (payload) {
+  /** 列表顺序和去留都按接口返回，这里只补展示文案。append 时接到现有列表后面。 */
+  applyGuanguanData: function (payload, append) {
     const data = payload || {}
-    this.latestPayload = data
     const loginHint = data.copy && data.copy.loginHint
-    const next = {
-      guanguanList: this._listForView(data.guanguanList, loginHint),
+    const pageList = this._listForView(data.guanguanList, loginHint)
+    const pageCount = (data.guanguanList || []).length
+    if (append) {
+      this._serverCount = (this._serverCount || 0) + pageCount
+      this.latestPayload = Object.assign({}, this.latestPayload || {}, data, {
+        guanguanList: ((this.latestPayload && this.latestPayload.guanguanList) || []).concat(data.guanguanList || []),
+      })
+    } else {
+      this._serverCount = pageCount
+      this.latestPayload = data
     }
-    if (typeof data.configSufficient !== 'undefined') {
-      next.configSufficient = data.configSufficient
+    const loginOnly = !append && pageCount === 1 && pageList[0] && pageList[0].needLogin
+    const next = {
+      guanguanList: append
+        ? (this.data.guanguanList || []).concat(pageList)
+        : pageList,
+      hasMore: !!data.hasMore,
+      loadingMore: false,
+      showNoMore: !data.hasMore && !loginOnly && (append || pageCount > 0),
     }
     if (data.copy) {
       next.copy = data.copy
@@ -43,6 +60,11 @@ Page({
     }
     const that = this
     this.setData(next, function () { that._openPending() })
+  },
+
+  onGuanguanLoadMoreDone: function () {
+    this._loadingMore = false
+    this.setData({ loadingMore: false })
   },
 
   guideLogin: function (afterLogin) {
@@ -84,10 +106,6 @@ Page({
 
   _openGuan: function (guanId, progressDesc) {
     if (!guanId || guanId <= 0) return
-    if (!this.data.configSufficient) {
-      this.goToMatchConfig()
-      return
-    }
     const jumpUrl = config.GUANINFO_PAGE
       + "?guanId=" + guanId
       + "&state=" + (progressDesc || '')
@@ -140,31 +158,63 @@ Page({
     wxInteractive.wxCheckToast(options.errMsg)
   },
 
-  loadList: function () {
-    const that = this
+  loadList: function (options) {
+    const append = !!(options && options.append)
+    if (append) {
+      if (!this.data.hasMore || this._loadingMore) return
+      this._loadingMore = true
+      this.setData({ loadingMore: true })
+      this._fetchList(true)
+      return
+    }
+    this._loadingMore = false
+    this._serverCount = 0
     this._listStamp = (this._listStamp || 0) + 1
+    this.setData({ hasMore: false, loadingMore: false, showNoMore: false })
+    this._fetchList(false)
+  },
+
+  _fetchList: function (append) {
+    const that = this
     const stamp = this._listStamp
+    const send = function () {
+      if (stamp !== that._listStamp) {
+        if (append) that.onGuanguanLoadMoreDone()
+        return
+      }
+      const requestData = {
+        limit: LIST_PAGE_SIZE,
+        offset: append ? (that._serverCount || 0) : 0,
+      }
+      if (wx.getStorageSync('hasLogin') && that.userLocation) {
+        requestData.latitude = that.userLocation.latitude
+        requestData.longitude = that.userLocation.longitude
+      }
+      if (!append && that.userLocation && that.latestPayload) {
+        const hint = that.data.copy && that.data.copy.loginHint
+        that.setData({
+          guanguanList: that._listForView(that.latestPayload.guanguanList, hint),
+        })
+      }
+      request.getGuanguanRequest(that, requestData, stamp, append)
+    }
+    if (append && that.userLocation) {
+      send()
+      return
+    }
     wx.getLocation({
       type: 'wgs84',
       complete(res) {
-        if (stamp !== that._listStamp) return
         if (typeof res.latitude === 'number' && typeof res.longitude === 'number') {
           that.userLocation = { latitude: res.latitude, longitude: res.longitude }
         }
-        const requestData = {}
-        if (wx.getStorageSync('hasLogin') && that.userLocation) {
-          requestData.latitude = that.userLocation.latitude
-          requestData.longitude = that.userLocation.longitude
-        }
-        if (that.userLocation && that.latestPayload) {
-          const hint = that.data.copy && that.data.copy.loginHint
-          that.setData({
-            guanguanList: that._listForView(that.latestPayload.guanguanList, hint),
-          })
-        }
-        request.getGuanguanRequest(that, requestData, stamp)
+        send()
       }
     })
+  },
+
+  onListReachBottom: function () {
+    this.loadList({ append: true })
   },
 
   onShow: function () {

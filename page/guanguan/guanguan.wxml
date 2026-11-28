@@ -4,7 +4,13 @@
       <text class="custom-navbar__title">{{copy.listTitle}}</text>
     </view>
   </view>
-  <scroll-view class="list-container" scroll-y="true" enable-flex="true">
+  <scroll-view
+    class="list-container"
+    scroll-y="true"
+    enable-flex="true"
+    lower-threshold="120"
+    bindscrolltolower="onListReachBottom"
+  >
     <view
       class="guan-item"
       wx:for="{{guanguanList}}"
@@ -45,6 +51,12 @@
           <text class="guan-distance">{{item.distanceText}}</text>
         </view>
       </view>
+    </view>
+    <view class="list-footer" wx:if="{{loadingMore}}">
+      <text>加载中...</text>
+    </view>
+    <view class="list-footer" wx:elif="{{showNoMore}}">
+      <text>没有更多了</text>
     </view>
   </scroll-view>
 

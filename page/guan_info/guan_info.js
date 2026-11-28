@@ -159,7 +159,16 @@ Page({
           } else if (request.requestFinishWithCode(res, enumerate.PHONE_REQUIRED_CODE)) {
             phoneGate.markUnbound(that)
           } else if (request.requestFinishWithCode(res, enumerate.NEED_FILL_INFORMATION_CODE)) {
-            wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
+            wx.showModal({
+              title: res.data.errMsg || '请完善个人信息',
+              showCancel: false,
+              confirmText: '去完善',
+              success(modalRes) {
+                if (modalRes.confirm) {
+                  wx.navigateTo({ url: config.MATCH_CONFIG_PAGE })
+                }
+              }
+            })
           } else {
             wx.showModal({ title: res.data.errMsg, showCancel: false, confirmText: '确认' })
           }

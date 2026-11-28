@@ -191,7 +191,7 @@ function bindPhoneRequest(phone, code, done) {
   })
 }
 
-function getGuanguanRequest(that, requestData, stamp) {
+function getGuanguanRequest(that, requestData, stamp, append) {
   myRequest({
     url: config.guanguanUrl,
     data: requestData,
@@ -200,10 +200,16 @@ function getGuanguanRequest(that, requestData, stamp) {
       if (requestIsSuccess(res)) {
         // 首页自己决定用接口列表还是预览数据
         if (typeof that.applyGuanguanData === 'function') {
-          that.applyGuanguanData(res.data.data)
+          that.applyGuanguanData(res.data.data, !!append)
         } else {
           that.setData(res.data.data)
         }
+      }
+    },
+    complete() {
+      if (stamp !== that._listStamp) return
+      if (append && typeof that.onGuanguanLoadMoreDone === 'function') {
+        that.onGuanguanLoadMoreDone()
       }
     }
   })

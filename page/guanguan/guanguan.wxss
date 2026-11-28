@@ -50,6 +50,13 @@ page {
   background: transparent;
 }
 
+.list-footer {
+  padding: 24rpx 0 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: rgba(28, 40, 52, 0.45);
+}
+
 .guan-item {
   display: flex;
   flex-direction: row;
