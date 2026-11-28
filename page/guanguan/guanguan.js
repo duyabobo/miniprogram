@@ -6,7 +6,7 @@ const guanguanPreview = require("../../util/mock_guanguan");
 const navBar = require("../../util/nav_bar");
 const wxLogin = require("../../util/wx_login");
 
-const LIST_PAGE_SIZE = 20
+const LIST_SCROLL_LOWER_THRESHOLD_PX = 120
 
 let app = getApp();
 
@@ -22,35 +22,36 @@ Page({
     hasMore: false,
     loadingMore: false,
     showNoMore: false,
+    listLowerThreshold: LIST_SCROLL_LOWER_THRESHOLD_PX,
   },
 
   _listForView: function (rawList, loginHint) {
     return guanguanPreview.fillGuanguanList(rawList || [], this.userLocation, null, loginHint)
   },
 
+  _appendUnseen: function (existing, incoming) {
+    const seen = {}
+    ;(existing || []).forEach(function (item) { seen[item.id] = true })
+    return (incoming || []).filter(function (item) { return !seen[item.id] })
+  },
+
   /** 列表顺序和去留都按接口返回，这里只补展示文案。append 时接到现有列表后面。 */
   applyGuanguanData: function (payload, append) {
     const data = payload || {}
-    const loginHint = data.copy && data.copy.loginHint
-    const pageList = this._listForView(data.guanguanList, loginHint)
-    const pageCount = (data.guanguanList || []).length
-    if (append) {
-      this._serverCount = (this._serverCount || 0) + pageCount
-      this.latestPayload = Object.assign({}, this.latestPayload || {}, data, {
-        guanguanList: ((this.latestPayload && this.latestPayload.guanguanList) || []).concat(data.guanguanList || []),
-      })
-    } else {
-      this._serverCount = pageCount
-      this.latestPayload = data
-    }
-    const loginOnly = !append && pageCount === 1 && pageList[0] && pageList[0].needLogin
+    const rawPage = data.guanguanList || []
+    // offset 按服务端返回条数累加；展示层再按 id 去重，避免跨页偶发重复
+    this._serverCount = append ? (this._serverCount || 0) + rawPage.length : rawPage.length
+    const addRaw = append ? this._appendUnseen(this._rawList, rawPage) : rawPage
+    this._rawList = append ? (this._rawList || []).concat(addRaw) : addRaw
+    this.latestPayload = Object.assign({}, data, { guanguanList: this._rawList })
+
+    const pageList = this._listForView(addRaw, data.copy && data.copy.loginHint)
+    const loginOnly = !append && pageList.length === 1 && pageList[0].needLogin
     const next = {
-      guanguanList: append
-        ? (this.data.guanguanList || []).concat(pageList)
-        : pageList,
+      guanguanList: append ? (this.data.guanguanList || []).concat(pageList) : pageList,
       hasMore: !!data.hasMore,
       loadingMore: false,
-      showNoMore: !data.hasMore && !loginOnly && (append || pageCount > 0),
+      showNoMore: !data.hasMore && !loginOnly && (append || rawPage.length > 0),
     }
     if (data.copy) {
       next.copy = data.copy
@@ -169,6 +170,7 @@ Page({
     }
     this._loadingMore = false
     this._serverCount = 0
+    this._rawList = []
     this._listStamp = (this._listStamp || 0) + 1
     this.setData({ hasMore: false, loadingMore: false, showNoMore: false })
     this._fetchList(false)
@@ -183,7 +185,6 @@ Page({
         return
       }
       const requestData = {
-        limit: LIST_PAGE_SIZE,
         offset: append ? (that._serverCount || 0) : 0,
       }
       if (wx.getStorageSync('hasLogin') && that.userLocation) {

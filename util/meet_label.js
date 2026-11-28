@@ -1,7 +1,7 @@
 const WEEKDAY_SHORT = ['日', '一', '二', '三', '四', '五', '六']
 const NEAR_WINDOW_MINUTES = 120
 const HALF_HOUR_MINUTES = 30
-const LIST_WINDOW_DAYS = 14
+const LIST_WINDOW_DAYS = 7
 const EARTH_RADIUS_KM = 6371
 const MINUTES_PER_DAY = 24 * 60
 const MS_PER_MINUTE = 60 * 1000

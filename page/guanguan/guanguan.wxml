@@ -8,7 +8,7 @@
     class="list-container"
     scroll-y="true"
     enable-flex="true"
-    lower-threshold="120"
+    lower-threshold="{{listLowerThreshold}}"
     bindscrolltolower="onListReachBottom"
   >
     <view

@@ -14,21 +14,12 @@ const PERMANENT_HEART_KINDS = {
   double: true,
 }
 
-// 实心 > 半实心 > 心碎 > 双心 > 单心 > 无心；同级按 10km 距离档、开始时间升序
-const HEART_SORT_ORDER = {
-  solid: 0,
-  half: 1,
-  broken: 2,
-  double: 3,
-  single: 4,
-  empty: 5,
-}
-
 const DISTANCE_BUCKET_KM = 10
 const MAX_LIST_DISTANCE_KM = 100
 const MINUTES_PER_HOUR = 60
 const LEAD_HOURS_PER_DISTANCE_BUCKET = 1
 const LEAD_MINUTES_PER_DISTANCE_BUCKET = LEAD_HOURS_PER_DISTANCE_BUCKET * MINUTES_PER_HOUR
+const MISSING_SORT_ORDER = 999999
 
 function distanceKm(userLocation, latitude, longitude) {
   if (!userLocation || !latitude || !longitude) return null
@@ -47,7 +38,7 @@ function distanceBucket(distanceKm) {
   return Math.ceil(distanceKm / DISTANCE_BUCKET_KM)
 }
 
-function maxLeadMinutesForTransient(distanceKm) {
+function minLeadMinutesForTransient(distanceKm) {
   return distanceBucket(distanceKm) * LEAD_MINUTES_PER_DISTANCE_BUCKET
 }
 
@@ -72,22 +63,21 @@ function shouldShowItem(heartKind, distanceKm, minutesUntil) {
   if (minutesUntil === null || minutesUntil < 0) return false
   if (minutesUntil > meetLabel.LIST_WINDOW_MINUTES) return false
   if (heartKind === HEART_KIND_EMPTY || heartKind === HEART_KIND_SINGLE) {
-    return minutesUntil <= maxLeadMinutesForTransient(distanceKm)
+    return minutesUntil >= minLeadMinutesForTransient(distanceKm)
   }
   return false
 }
 
-function sortKey(heartKind, distanceKm, meetDate, now) {
-  const minutesUntil = meetDate ? (meetDate - now) / 60000 : 999999
+function sortKey(distanceKm, meetDate, now) {
+  const minutesUntil = meetDate ? (meetDate - now) / 60000 : MISSING_SORT_ORDER
   return [
-    HEART_SORT_ORDER[heartKind] === undefined ? 9 : HEART_SORT_ORDER[heartKind],
-    distanceBucket(distanceKm),
+    distanceKm === null ? MISSING_SORT_ORDER : distanceKm,
     minutesUntil,
   ]
 }
 
 function compareSortKey(a, b) {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) return a[i] - b[i]
   }
   return 0
@@ -111,7 +101,7 @@ function filterAndSortList(list, now, userLocation, parseMeetDate) {
     if (!shouldShowItem(heartKind, km, minutesUntil)) return
     ranked.push({
       item: item,
-      key: sortKey(heartKind, km, meetDate, current),
+      key: sortKey(km, meetDate, current),
     })
   })
   ranked.sort(function (a, b) { return compareSortKey(a.key, b.key) })
